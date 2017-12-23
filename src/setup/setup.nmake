@@ -1,0 +1,52 @@
+# Makefile for building the Buze installer.
+#
+# The WiX toolkit must be installed and added to the PATH environment
+# variable. F.ex PATH=%PATH%;%PROGRAMFILES(x86)%\WiX Toolset v3.7
+#
+# To build setup.msi, run:
+# nmake -f setup.nmake
+#
+
+.SUFFIXES: .wxs .wixobj
+
+!IF "$(PLATFORM)" == ""
+PLATFORM = "Win32"
+!ENDIF
+
+!IF "$(CONFIGURATION)" == ""
+CONFIGURATION = "ReleaseChecked"
+!ENDIF
+
+!IF "$(PLATFORM)" == "Win32"
+ARCH=x86
+OUTDIR=$(CONFIGURATION)
+!ELSEIF "$(PLATFORM)" == "x64"
+ARCH=x64
+OUTDIR=x64\$(CONFIGURATION)
+!ELSE
+!ERROR "Unknown platform $(PLATFORM)"
+!ENDIF
+
+!MESSAGE PLATFORM = $(PLATFORM)
+!MESSAGE ARCH = $(ARCH)
+!MESSAGE CONFIGURATION = $(CONFIGURATION)
+!MESSAGE OUTDIR = $(OUTDIR)
+
+WIXCC = candle
+WCFLAG = -nologo -arch $(ARCH) -dCONFIGURATION=$(CONFIGURATION)
+WIXLINKER = light
+WLFLAG = -nologo -ext WixUIExtension 
+
+all: $(OUTDIR)\setup.msi
+
+$(OUTDIR)\setup.msi: $(OUTDIR)\setup.wixobj
+	$(WIXLINKER) $(WLFLAG) -out $@ $?
+
+$(OUTDIR)\setup.wixobj: setup.wxs
+	$(WIXCC) $(WCFLAG) -out $@ $?
+
+clean:
+	del /q $(OUTDIR)\*.wixobj $(OUTDIR)\*.wixpdb $(OUTDIR)\*.msi 2>nul
+
+rebuild: clean all
+

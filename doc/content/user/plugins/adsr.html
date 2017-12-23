@@ -1,0 +1,55 @@
+<html>
+<body>
+<h1>ADSR Value Generators</h1>
+
+<p>
+	The ADSR Value Generator emits ADSR values to other plugins' parameters at specified intervals.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Interval type</td>
+		<td>byte</td>
+		<td>The type of interval. 0=ticks, 1=ticks/256, 2=sec/16</td>
+	</tr>
+	<tr>
+		<td>Interval length</td>
+		<td>byte</td>
+		<td>The interval length in units set by the interval type.</td>
+	</tr>
+	<tr>
+		<td>Attack</td>
+		<td>word</td>
+		<td>0-1 sec</td>
+	</tr>
+	<tr>
+		<td>Decay</td>
+		<td>word</td>
+		<td>0-1 sec</td>
+	</tr>
+	<tr>
+		<td>Sustain</td>
+		<td>word</td>
+		<td>0-100%</td>
+	</tr>
+	<tr>
+		<td>Release</td>
+		<td>word</td>
+		<td>0-1 sec</td>
+	</tr>
+	<tr>
+		<td>Trigger</td>
+		<td>switch</td>
+		<td>1=start, 0=release</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

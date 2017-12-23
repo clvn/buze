@@ -1,0 +1,35 @@
+﻿<html>
+<body>
+<h1>Syncing external MIDI with Buzé</h1>
+
+<p>
+	This describes syncing stop/stop in Buzé with an external application over MIDI, using the virtual MIDI Yoke drivers in MIDI-OX as a virtual MIDI cable between the applications.
+</p>
+
+<p>
+	Get and install <a href="http://www.midiox.com">MIDI-OX</a>.
+</p>
+<p>
+	Set up MIDI routings in MIDI-OX. A simple setup may look like this:
+</p>
+<img src="midiyoke-routing.png" />
+<p>
+	Start your host, e.g Reaper and go to MIDI preferences. Select the virtual MIDI-OX output port the host should send midi to, and make sure sending of SPP is enabled.
+</p>
+<img src="reaper-prefs.png" />
+
+<p>
+	Start Buzé, make sure the MIDI-OX input port is enabled for input:
+</p>
+<img src="buze-prefs.png" />
+
+<p>
+	Finally, enable MIDI sync in Buzé by checking the stop-sign icon in the toolbar:
+</p>
+<img src="buze-sync.png" />
+
+<p>
+	Now, when you press "Play" in your host, Buzé should start playing too.
+</p>
+</body>
+</html>

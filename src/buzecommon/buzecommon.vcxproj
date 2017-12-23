@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseChecked|Win32">
+      <Configuration>ReleaseChecked</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseChecked|x64">
+      <Configuration>ReleaseChecked</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7E2A5808-248E-4D80-B0D0-AFE205DCC7D3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\Debug\buzecommon.res Debug/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Lib />
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\Debug\buzecommon.res Debug/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;NDEBUG;_WINDOWS;STRICT;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\Release\buzecommon.res Release/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;NDEBUG;_WINDOWS;STRICT;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\Release\buzecommon.res Release/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;NNDEBUG;_WINDOWS;STRICT;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\ReleaseChecked\buzecommon.res ReleaseChecked/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\include;..\buzecommon;..\armstrong\include;..\wtl;..\atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_USRDLL;WIN32;NNDEBUG;_WINDOWS;STRICT;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <WarningVersion>11</WarningVersion>
+    </ClCompile>
+    <Lib />
+    <PostBuildEvent>
+      <Command>rem lib /remove:.\ReleaseChecked\buzecommon.res ReleaseChecked/buzecommon.lib</Command>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BuzeConfiguration.cpp" />
+    <ClCompile Include="EnvelopeCtrl.cpp" />
+    <ClCompile Include="MachineDropTarget.cpp" />
+    <ClCompile Include="Mixdown.cpp" />
+    <ClCompile Include="ParametersControl.cpp" />
+    <ClCompile Include="ParameterSliderBar.cpp" />
+    <ClCompile Include="PrefGlobals.cpp" />
+    <ClCompile Include="WaitWindow.cpp" />
+    <ClCompile Include="DragDropImpl.cpp" />
+    <ClCompile Include="Fft.cpp" />
+    <ClCompile Include="FileVersionInfo.cpp" />
+    <ClCompile Include="Keymaps.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+      </PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MachineIndex.cpp" />
+    <ClCompile Include="plur.cpp" />
+    <ClCompile Include="PresetManager.cpp" />
+    <ClCompile Include="PvstMachines.cpp" />
+    <ClCompile Include="SearchBox.cpp" />
+    <ClCompile Include="ThemeManager.cpp" />
+    <ClCompile Include="utils.cpp" />
+    <ClCompile Include="VisualStylesXP.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\CreateCheckboxImageList.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\ResourceFile.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\ResourceTextFile.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\XHtmlDraw.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\XHtmlDrawLink.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\XHtmlTree.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\XNamedColors.cpp" />
+    <ClCompile Include="XHtmlTreeWTL\XString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\buze\ViewFrame.h" />
+    <ClInclude Include="..\..\include\buze\ViewImpl.h" />
+    <ClInclude Include="BuzeConfiguration.h" />
+    <ClInclude Include="Configuration.h" />
+    <ClInclude Include="envelope_h.h" />
+    <ClInclude Include="EnvelopeCtrl.h" />
+    <ClInclude Include="MachineDropTarget.h" />
+    <ClInclude Include="Mixdown.h" />
+    <ClInclude Include="ParametersControl.h" />
+    <ClInclude Include="ParameterSliderBar.h" />
+    <ClInclude Include="PrefGlobals.h" />
+    <ClInclude Include="Properties.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="WaitWindow.h" />
+    <ClInclude Include="PropertyList\PropertyItem.h" />
+    <ClInclude Include="PropertyList\PropertyItemEditors.h" />
+    <ClInclude Include="PropertyList\PropertyItemImpl.h" />
+    <ClInclude Include="PropertyList\PropertyList.h" />
+    <ClInclude Include="atlgdix.h" />
+    <ClInclude Include="cpputils.h" />
+    <ClInclude Include="DragDropImpl.h" />
+    <ClInclude Include="Fft.h" />
+    <ClInclude Include="FileReader.h" />
+    <ClInclude Include="FileVersionInfo.h" />
+    <ClInclude Include="Keymaps.h" />
+    <ClInclude Include="MachineIndex.h" />
+    <ClInclude Include="plur.h" />
+    <ClInclude Include="PresetManager.h" />
+    <ClInclude Include="pugxml.h" />
+    <ClInclude Include="PvstMachines.h" />
+    <ClInclude Include="SearchBox.h" />
+    <ClInclude Include="SplitterWindowKey.h" />
+    <ClInclude Include="ThemeManager.h" />
+    <ClInclude Include="ToolbarBands.h" />
+    <ClInclude Include="ToolbarWindow.h" />
+    <ClInclude Include="utils.h" />
+    <ClInclude Include="VisualStylesXP.h" />
+    <ClInclude Include="WtlExt.h" />
+    <ClInclude Include="WTLTabViewCtrl.h" />
+    <ClInclude Include="WtlUtils.h" />
+    <ClInclude Include="XHtmlTreeWTL\CreateCheckboxImageList.h" />
+    <ClInclude Include="XHtmlTreeWTL\ResourceFile.h" />
+    <ClInclude Include="XHtmlTreeWTL\ResourceTextFile.h" />
+    <ClInclude Include="XHtmlTreeWTL\XHtmlDraw.h" />
+    <ClInclude Include="XHtmlTreeWTL\XHtmlDrawLink.h" />
+    <ClInclude Include="XHtmlTreeWTL\XHtmlTree.h" />
+    <ClInclude Include="XHtmlTreeWTL\XNamedColors.h" />
+    <ClInclude Include="XHtmlTreeWTL\XString.h" />
+    <ClInclude Include="XHtmlTreeWTL\XTrace.h" />
+    <ClInclude Include="..\wtl\atlapp.h" />
+    <ClInclude Include="..\wtl\atlcrack.h" />
+    <ClInclude Include="..\wtl\atlctrls.h" />
+    <ClInclude Include="..\wtl\atlctrlw.h" />
+    <ClInclude Include="..\wtl\atlctrlx.h" />
+    <ClInclude Include="..\wtl\atlddx.h" />
+    <ClInclude Include="..\wtl\atldlgs.h" />
+    <ClInclude Include="..\wtl\atlframe.h" />
+    <ClInclude Include="..\wtl\atlgdi.h" />
+    <ClInclude Include="..\wtl\atlmisc.h" />
+    <ClInclude Include="..\wtl\atlprint.h" />
+    <ClInclude Include="..\wtl\atlres.h" />
+    <ClInclude Include="..\wtl\atlresce.h" />
+    <ClInclude Include="..\wtl\atlscrl.h" />
+    <ClInclude Include="..\wtl\atlsplit.h" />
+    <ClInclude Include="..\wtl\atltheme.h" />
+    <ClInclude Include="..\wtl\atluser.h" />
+    <ClInclude Include="..\wtl\atlwinx.h" />
+    <ClInclude Include="..\..\include\buze\buze.h" />
+    <ClInclude Include="..\..\include\buze\buzesdk.h" />
+    <ClInclude Include="..\..\include\buze\HostModule.h" />
+    <ClInclude Include="..\..\include\buze\View.h" />
+    <ClInclude Include="..\..\include\buze\WtlDllModule.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="buzecommon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\include\buze\buze.zidl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/buze.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/buzelib/buze.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../Python/buze.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RootDir)%(Directory)/buze.h;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

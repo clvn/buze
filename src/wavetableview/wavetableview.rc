@@ -1,0 +1,138 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+// #include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    //"#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDT_HELP_WAVETABLEVIEW RCDATA "res\\keyboard_wavetable.txt"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_WAVE_EDIT           BITMAP                  "res\\waveeditor.bmp"
+IDR_WAVETABLE           BITMAP                  "res\\wavetable.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_WAVE_EDIT TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_WAVE_ZOOM_SAMPLES
+    BUTTON      ID_WAVE_ZOOM_SECONDS
+    BUTTON      ID_WAVE_ZOOM_TICKS
+    BUTTON      ID_WAVE_ZOOM_WORD
+    SEPARATOR
+    BUTTON      ID_WAVE_ZOOM_SELECTION
+    BUTTON      ID_WAVE_ZOOM_ALL
+    BUTTON      ID_WAVE_ZOOM_IN
+    BUTTON      ID_WAVE_ZOOM_OUT
+END
+
+IDR_WAVETABLE TOOLBAR  16, 15
+BEGIN
+    BUTTON      IDC_CLEARWAVEBUTTON
+    BUTTON      IDC_LOADWAVEBUTTON
+    BUTTON      IDC_SAVEWAVEBUTTON
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WAVE_ZOOM_OUT        "Zoom Out"
+    ID_WAVE_ZOOM_SELECTION  "Zoom To Selection"
+    ID_WAVE_ZOOM_ALL        "Show All"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_LOADWAVEBUTTON      "Load wave from disk"
+    IDC_SAVEWAVEBUTTON      "Save current wave to disk"
+    IDC_CLEARWAVEBUTTON     "Clear current wave"
+END
+STRINGTABLE 
+BEGIN
+/*    ID_VIEW_NEWPATTERNEDITOR "Show a new pattern editor\nNew Pattern Editor"
+    ID_VIEW_MACHINES        "Show the machine view\nMachine View"
+    ID_VIEW_WAVETABLE       "Show the wavetable\nWavetable"
+    ID_VIEW_SECONDARYPATTERNEDITOR 
+                            "Show the secondary pattern editor\nSecondary Pattern Editor"
+*/
+    ID_WAVE_ZOOM_SAMPLES    "Marker Scale: Samples"
+    ID_WAVE_ZOOM_SECONDS    "Marker Scale: Seconds"
+    ID_WAVE_ZOOM_TICKS      "Marker Scale: Ticks"
+    ID_WAVE_ZOOM_IN         "Zoom In"
+END
+STRINGTABLE 
+BEGIN
+    ID_WAVE_ZOOM_WORD       "Marker Scale: Word"
+END
+STRINGTABLE
+BEGIN
+    ID_WAVE_CLEARWAVE "Clear content of wave"
+    ID_WAVE_TRIM "Trim wave using selection"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

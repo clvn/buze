@@ -1,0 +1,9 @@
+vst2index scans a VST plugin directory and generates output in 
+index.txt-format compatible with Buzé.
+
+Normally it can be used like so:
+
+vst2index Gear\Vst > index_vst.txt
+
+Although many VSTs print disagnostic messages at load-time so you may need to
+edit the output file by hand and trim out the excess output to make it usable.

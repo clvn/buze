@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "vst2index", "vst2index.vcproj", "{D2CD3451-54D1-4DBA-A2D9-FFC19935B248}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{D2CD3451-54D1-4DBA-A2D9-FFC19935B248}.Debug.ActiveCfg = Debug|Win32
+		{D2CD3451-54D1-4DBA-A2D9-FFC19935B248}.Debug.Build.0 = Debug|Win32
+		{D2CD3451-54D1-4DBA-A2D9-FFC19935B248}.Release.ActiveCfg = Release|Win32
+		{D2CD3451-54D1-4DBA-A2D9-FFC19935B248}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,155 @@
+<html>
+<body>
+<h1>MIDI Tracker</h1>
+
+<p>
+	The miditracker is modeled after Polac VST and sends MIDI messages via MIDI connections.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Global Command</td>
+		<td>byte</td>
+		<td>Global Command</td>
+	</tr>
+	<tr>
+		<td>Command Value</td>
+		<td>word</td>
+		<td>Global Command Value</td>
+	</tr>
+	<tr>
+		<td>Program</td>
+		<td>word</td>
+		<td>Change MIDI Program</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Note</td>
+		<td>note</td>
+		<td>Note to play</td>
+	</tr>
+	<tr>
+		<td>Velocity</td>
+		<td>byte</td>
+		<td>Velocity of the played note</td>
+	</tr>
+	<tr>
+		<td>Note Delay</td>
+		<td>byte</td>
+		<td>Delay before note triggering (ticks?)</td>
+	</tr>
+	<tr>
+		<td>Note Cut</td>
+		<td>byte</td>
+		<td>Delay before note release (ticks?)</td>
+	</tr>
+	<tr>
+		<td>Command</td>
+		<td>byte</td>
+		<td>Track Command (details below)</td>
+	</tr>
+	<tr>
+		<td>Command Value</td>
+		<td>word</td>
+		<td>Command value</td>
+	</tr>
+	<tr>
+		<td>Parameter</td>
+		<td>word</td>
+		<td>Track parameter (details below)</td>
+	</tr>
+	<tr>
+		<td>Parameter Value</td>
+		<td>word</td>
+		<td>Parameter value</td>
+	</tr>
+	<tr>
+		<td>MIDI Channel</td>
+		<td>byte</td>
+		<td>MIDI channel</td>
+	</tr>
+</table>
+
+<h2>MIDI Tracker Commands</h2>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Value</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>MIDI Message</td>
+		<td>09</td>
+		<td>Send a MIDI Message (details below)</td>
+	</tr>
+</table>
+
+<h2>MIDI Message</h2>
+<p>The MIDI Message word is of the form xxyy, where "xx" is the message and "yy" is its value.<br />
+Here are the available messages:</p>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Message</th>
+                <th>Value Range</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>CC</td>
+		<td>00-7F</td>
+                <td>00-7F</td>
+		<td>Sends a MIDI Control Change (CC)</td>
+	</tr>
+	<tr>
+		<td>Pitch Bend Range</td>
+		<td>FE</td>
+                <td>00-FF</td>
+		<td>Defines range of pitch bends</td>
+	</tr>
+	<tr>
+		<td>Pitch Bend</td>
+		<td>FF</td>
+                <td>00-FF</td>
+		<td>Sends a MIDI Pitch Bend</td>
+	</tr>
+</table>
+
+<h2>MIDI Tracker Parameters</h2>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Value</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>None</td>
+		<td>30ff</td>
+		<td>Does nothing</td>
+	</tr>
+	<tr>
+		<td>Pitch Bend</td>
+		<td>30fe</td>
+		<td>MIDI pitch bend</td>
+	</tr>
+	<tr>
+		<td>CC</td>
+		<td>3000...30fa</td>
+		<td>MIDI Control Change (CC)</td>
+	</tr>
+</table>
+</body>
+</html>

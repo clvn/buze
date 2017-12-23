@@ -1,0 +1,19 @@
+<job>
+<!-- 
+
+Generates html for the webside
+
+-->
+	<script type="text/javascript" src="templatetools.js"></script>
+	<script type="text/javascript">
+
+var WFile = new ActiveXObject("Scripting.FileSystemObject");
+var xsl = createTemplate("website\\template\\template.xslt");
+processTemplateDir("content\\user", "website\\output\\user", 1);
+processTemplateDir("content\\developer", "website\\output\\developer", 1);
+processTemplateDir("content\\website", "website\\output", 0);
+processAssetDir("website\\template\\assets", "website\\output\\assets");
+
+	</script>
+
+</job>

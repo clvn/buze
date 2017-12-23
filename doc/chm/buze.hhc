@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Welcome">
+		<param name="Local" value="output\index.html">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="User Reference">
+		<param name="Local" value="output\user\index.html">
+		</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Getting started">
+				<param name="Local" value="output\user\gettingstarted.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Practical usage tips">
+				<param name="Local" value="output\user\tips.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Frequently Asked Questions">
+				<param name="Local" value="output\user\faq.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Cheatsheets">
+				<param name="Local" value="output\user\cheatsheets.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Windows and Views">
+				<param name="Local" value="output\user\views\index.html">
+				</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Global">
+						<param name="Local" value="output\user\views\global.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Machine View">
+						<param name="Local" value="output\user\views\machineview.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Parameter View">
+						<param name="Local" value="output\user\views\parameterview.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Pattern Editor">
+						<param name="Local" value="output\user\views\patterneditor.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Pattern Format View">
+						<param name="Local" value="output\user\views\patternformatview.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Order List">
+						<param name="Local" value="output\user\views\orderlist.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Wave Table">
+						<param name="Local" value="output\user\views\wavetable.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="File Browser">
+						<param name="Local" value="output\user\views\filebrowser.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="All Machines View">
+						<param name="Local" value="output\user\views\allmachinesview.html">
+						</OBJECT>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Preferences">
+						<param name="Local" value="output\user\views\preferences.html">
+						</OBJECT>
+				</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Basic Concepts">
+				<param name="Local" value="output\user\basicconcepts\index.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Plugins">
+					<param name="Local" value="output\user\basicconcepts\plugintypes.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Patterns">
+					<param name="Local" value="output\user\basicconcepts\patterns.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="The default project">
+					<param name="Local" value="output\user\basicconcepts\defaultproject.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Using MIDI">
+					<param name="Local" value="output\user\basicconcepts\midi.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Using JACK">
+					<param name="Local" value="output\user\basicconcepts\jack.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Using VST plugins">
+					<param name="Local" value="output\user\basicconcepts\vst.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Using peer plugins">
+					<param name="Local" value="output\user\basicconcepts\peers.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Tempo, time signatures, shuffle/swing">
+					<param name="Local" value="output\user\basicconcepts\tempo.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Customizing Buz&eacute;">
+					<param name="Local" value="output\user\basicconcepts\customizing.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Plugins">
+				<param name="Local" value="output\user\plugins\index.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Master">
+					<param name="Local" value="output\user\plugins\master.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Audio Output and Output16">
+					<param name="Local" value="output\user\plugins\audiooutput.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Audio Input">
+					<param name="Local" value="output\user\plugins\audioinput.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="File Recorder">
+					<param name="Local" value="output\user\plugins\filerecorder.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Wavetable Recorder">
+					<param name="Local" value="output\user\plugins\waverecorder.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MIDI Tracker">
+					<param name="Local" value="output\user\plugins\miditracker.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MIDI Input">
+					<param name="Local" value="output\user\plugins\midiinput.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MIDI Output">
+					<param name="Local" value="output\user\plugins\midioutput.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MIDI Control Change">
+					<param name="Local" value="output\user\plugins\midicc.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="MIDI Time">
+					<param name="Local" value="output\user\plugins\miditime.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Stream Plugins">
+					<param name="Local" value="output\user\plugins\stream.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Value Generator">
+					<param name="Local" value="output\user\plugins\value.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Note Generator">
+					<param name="Local" value="output\user\plugins\note.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LFO Value Generator">
+					<param name="Local" value="output\user\plugins\lfo.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="ADSR Value Generator">
+					<param name="Local" value="output\user\plugins\adsr.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Signal Value Generator">
+					<param name="Local" value="output\user\plugins\signal.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Sequence plugin">
+					<param name="Local" value="output\user\plugins\sequence.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Pattern Player plugin">
+					<param name="Local" value="output\user\plugins\patternplayer.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Modplug plugin">
+					<param name="Local" value="output\user\plugins\modplug.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Buzz wrapper">
+					<param name="Local" value="output\user\plugins\buzz2zzub.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="VST(i) wrapper">
+					<param name="Local" value="output\user\plugins\vst2zzub.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Lunar wrapper">
+					<param name="Local" value="output\user\plugins\lunar.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Psycle wrapper">
+					<param name="Local" value="output\user\plugins\psy2zzub.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="LADSPA wrapper">
+					<param name="Local" value="output\user\plugins\lad2zzub.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="VAMP wrapper">
+					<param name="Local" value="output\user\plugins\vamp2zzub.html">
+					</OBJECT>
+			</UL>
+
+		</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Developer Reference">
+		<param name="Local" value="output\developer\index.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Armstrong Notes">
+			<param name="Local" value="output\developer\armstrong\index.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Developing plugins">
+			<param name="Local" value="output\developer\armstrong\plugins.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Armstrong API Browser">
+			<param name="Local" value="output\developer\api\index.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Buze API Browser">
+			<param name="Local" value="output\developer\api\buze.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Building the source code">
+			<param name="Local" value="output\developer\build\index.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Tools used in the build process">
+			<param name="Local" value="output\developer\armstrong\tools.html">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

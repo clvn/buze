@@ -1,0 +1,48 @@
+<html>
+<body>
+<h1>Master plugin</h1>
+
+<h2>Global parameters</h2>
+<table border="1">
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Volume</td>
+		<td>word</td>
+		<td>Master Volume (0=0 dB, 4000=-80 dB)</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table border="1">
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td colspan="3" align="center"><i>none</i></td>
+	</tr>
+</table>
+
+<h2>Description</h2>
+<p>
+	The Master plugin receives audio from incoming audio connections and
+	passes the audio on to the audio device. The Master plugin also
+	exposes all active MIDI output devices, and passes on MIDI messages
+	from incoming MIDI connections.
+</p>
+<p>
+	The master can optionally be deleted, and users can choose to use
+	separate plugins for its audio and MIDI capabilities: The <a href="audiooutput.html">
+	Audio Output
+	or Audio Output16</a> plugins are capable of sending audio to the current
+	audio device. The MIDI Output plugin exposes all active MIDI output
+	devices in the same way the Master does.
+</p>
+
+</body>
+</html>

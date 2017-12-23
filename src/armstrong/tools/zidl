@@ -1,0 +1,1316 @@
+#!/usr/bin/env python
+# encoding: latin-1
+# zzub IDL parser
+
+import sys,re,os
+from optparse import OptionParser
+from StringIO import StringIO
+
+c_header_copyright = """/*
+Copyright (C) 2003-2008 Anders Ervik <calvin@countzero.no>
+Copyright (C) 2006-2008 Leonard Ritter <contact@leonard-ritter.com>
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*/"""
+
+py_header = """#!/usr/bin/env python
+# encoding: latin-1
+
+from ctypes import *
+
+import sys, os
+
+def load_library(*names,**kw):
+	\"""
+	searches for a library with given names and returns a ctypes 
+	.so/.dll library object if successful. if the library can not
+	be loaded, an assertion error will be thrown.
+	
+	@type  names: list of strings
+	@param names: one or more aliases for required libraries, e.g.
+				  'SDL','SDL-1.2'.
+	@rtype: ctypes CDLL handle
+	\"""
+	import ctypes, os, sys
+	searchpaths = []
+	if os.name in ('posix', 'mac'):
+		if os.environ.has_key('LD_LIBRARY_PATH'):
+			searchpaths += os.environ['LD_LIBRARY_PATH'].split(os.pathsep)
+		searchpaths += [
+			'/usr/local/lib64',
+			'/usr/local/lib',
+			'/usr/lib64',
+			'/usr/lib',
+		]
+	elif os.name == 'nt':
+		searchpaths += ['.']
+		if 'PATH' in os.environ:
+			searchpaths += os.environ['PATH'].split(os.pathsep)
+	else:
+		assert 0, "Unknown OS: %s" % os.name
+	if 'paths' in kw:
+		searchpaths += kw['paths']
+	for name in names:
+		if os.name == 'nt':
+			libname = name + '.dll'
+		elif sys.platform == 'darwin':
+			libname = 'lib' + name + '.dylib'
+			if 'version' in kw:
+				libname += '.' + kw['version']
+		else:
+			libname = 'lib' + name + '.so'
+			if 'version' in kw:
+				libname += '.' + kw['version']
+		m = None
+		for path in searchpaths:
+			if os.path.isdir(path):
+				libpath = os.path.join(path,libname)
+				if os.path.isfile(libpath):
+					m = ctypes.CDLL(libpath)
+					break
+				for filename in reversed(sorted(os.listdir(path))):
+					if filename.startswith(libname):
+						m = ctypes.CDLL(os.path.join(path,filename))
+						break
+				if m:
+					break
+		if m:
+			break
+	assert m, "libraries %s not found in %s" % (','.join(["'%s'" % a for a in names]),','.join(searchpaths))
+	return m
+	
+def dlopen(*args,**kwds):
+	\"""
+	Opens a library by name and returns a handle object. See 
+	{library.load} for more information.
+	\"""
+	return load_library(*args,**kwds)
+
+def dlsym(lib, name, restype, *args):
+	\"""
+	Retrieves a symbol from a library loaded by dlopen and
+	assigns correct result and argument types.
+	
+	@param lib: Library object.
+	@type lib: ctypes.CDLL
+	@param name: Name of symbol.
+	@type name: str
+	@param restype: Type of function return value.
+	@param args: Types of function arguments.	
+	\"""
+	if not lib:
+		return None
+	proc = getattr(lib,name)
+	proc.restype = restype
+	proc.argtypes = [argtype for argname,argtype in args]
+	proc.o_restype = restype
+	proc.o_args = args
+	return proc
+"""
+
+class ParseError(Exception):
+	pass
+
+class Token:
+	def __init__(self, name, exp, vgroup = 1, rgroup = 2, **kargs):
+		self.name = name
+		self.rname = kargs.get('rname', self.name)
+		self.exp = re.compile('^[ ]*(%s)[ ]*(.*)$' % exp)
+		self.vgroup = vgroup
+		self.rgroup = rgroup
+		self.replaces = kargs.get('replaces', [])
+
+def match_scan_try_funcs(postfix):		
+	match = lambda self: self.match(getattr(self, 'tok_'+postfix))
+	scan = lambda self: self.scan(getattr(self, 'tok_'+postfix))
+	_try = lambda self: self._try(getattr(self, 'tok_'+postfix))
+	return match, scan, _try
+
+class Parser:	
+	string_replaces = [
+		('\\"', '"'),
+		("\\'", "'"),
+		("\\t", "\t"),
+		("\\n", "\n"),
+		("\\r", "\r"),
+	]
+	for i in range(256):
+		string_replaces.append(('\\x%02x' % i, chr(i)))
+	tok_symbol = Token('symbol', r'[A-Za-z_][A-Za-z0-9_]*')
+	tok_colon = Token('colon', r':')
+	tok_bo = Token('bo', r'\(')
+	tok_bc = Token('bc', r'\)')
+	tok_sbo = Token('sbo', r'\[')
+	tok_sbc = Token('sbc', r'\]')
+	tok_eq = Token('eq', r'==')
+	tok_equal = Token('equal', r'(=)([^=].*)', 2, 3)
+	tok_ne = Token('ne', r'!=')
+	tok_excl = Token('excl', r'!')
+	tok_gt = Token('gt', r'(>)([^=].*)', 2, 3)
+	tok_lt = Token('lt', r'(<)([^=].*)', 2, 3)
+	tok_ge = Token('ge', r'>=')
+	tok_le = Token('le', r'<=')
+	tok_at = Token('at', r'\@')
+	tok_asterisk = Token('asterisk', r'\*')
+	tok_add = Token('add', r'(\+)([^\+].*)', 2, 3)
+	tok_sub = Token('sub', r'(\-)([^\-].*)', 2, 3)
+	tok_mul = Token('mul', r'(\*)([^\*].*)', 2, 3)
+	tok_div = Token('div', r'(\/)([^\/].*)', 2, 3)
+	tok_float = Token('float', r'(-?[0-9]*[.]?[0-9]+)([A-Za-z_0-9\%\xb0]+)?', (2,3), 4)
+	tok_int = Token('int', r'[0-9]+')
+	tok_to = Token('to', r'->')
+	tok_dot = Token('dot', r'\.')
+	tok_comma = Token('comma', r',')
+	tok_plus = Token('plus', r'\+')
+	tok_minus = Token('minus', r'\-')
+	tok_string1 = Token('string1', r'["]((\\"|[^"])*)["]', 2, 4, replaces=string_replaces)
+	tok_string2 = Token('string2', r"[']((\\'|[^'])*)[']", 2, 4, replaces=string_replaces)
+	
+	tokens = [
+		tok_colon,
+		tok_string1, tok_string2,
+		tok_float, tok_int, tok_asterisk,
+		tok_symbol, tok_excl, tok_dot,
+		tok_bo, tok_bc, tok_sbo, tok_sbc, tok_to, tok_comma,
+		tok_eq, tok_ne, tok_gt, tok_lt, tok_ge, tok_le,
+		tok_add, tok_sub, tok_mul, tok_div, tok_at, tok_plus, tok_minus, tok_equal
+	]
+
+	aliases = {}
+	
+	def __init__(self):
+		self.context = dict(file='',lineno=0,line='')
+		self.level = 0
+		self.line = ''
+		self.pos = 0
+		self.consts = []
+		for tok in self.tokens:
+			import new
+			m,s,t = match_scan_try_funcs(tok.name)
+			setattr(self, 'match_'+tok.name, new.instancemethod(m,self,Parser))
+			setattr(self, 'scan_'+tok.name, new.instancemethod(s,self,Parser))
+			setattr(self, 'try_'+tok.name, new.instancemethod(t,self,Parser))
+
+	def warning(self, msg, context=None):
+		if not context:
+			context = self.context
+		traceback = self.format_context('warning: '  + msg, context)
+		print >> sys.stderr, traceback
+		
+	def format_context(self, msg, context):
+		if sys.platform == 'win32':
+			s = '%s(%s) : %s' % (os.path.abspath(context['file']), context['lineno'], msg)
+		else:
+			s = '%s:%s:%s\n' % (context['file'], context['lineno'], msg)
+			s += context['line']
+		return s
+
+	def error(self, msg, context=None):
+		if not context:
+			context = self.context
+		traceback = self.format_context('error: '  + msg, context)
+		print >> sys.stderr, traceback
+		raise ParseError
+		
+	def match(self,token):
+		m = token.exp.match(self.line)
+		if m:
+			line = m.group(token.rgroup)
+			if type(token.vgroup) in (list, tuple):
+				value = [m.group(v) for v in token.vgroup]
+			else:
+				value = m.group(token.vgroup)
+				for before,after in token.replaces:
+					value = value.replace(before,after)
+			return value, line
+		return None
+		
+	def match_any(self):
+		for tok in self.tokens:
+			m = self.match(tok)
+			if m:
+				return tok, m
+		return None
+			
+	def _try(self,token):
+		m = self.match(token)
+		if m:
+			value, self.line = m
+			return value
+			
+	def scan(self,token):
+		value = self._try(token)
+		if value == None:
+			self.error('%s expected at %r.' % (token.rname, self.line))
+		return value
+		
+	def match_name(self):
+		m = self.match_symbol()
+		if m and (m[0] in self.consts):
+			return None
+		return m
+		
+	def try_name(self):
+		m = self.match_symbol()
+		if m and (m[0] in self.consts):
+			return None
+		value = self.try_symbol()
+		if value:
+			value = self.aliases.get(value, value)
+		return value
+		
+	def scan_name(self):
+		m = self.match_symbol()
+		if m and (m[0] in self.consts):
+			self.error('symbol expected, but got constant.')
+		value = self.scan_symbol()
+		if value:
+			value = self.aliases.get(value, value)
+		return value
+		
+	def parse(self):
+		try:
+			while self.lines.next():
+				while self.line:
+					tok,(value,line) = self.match_any()
+					if not tok:
+						self.error('syntax error.')
+					else:
+						value = self.scan(tok)
+						print self.level,tok.name,repr(value)
+		except StopIteration:
+			pass
+			
+	def scan_keyword(self, kw):
+		v = self.scan_name()
+		if not v:
+			self.error('keyword %s expected.' % kw)
+		if v != kw:
+			self.error('keyword %s expected, got %s.' % (kw, v))
+		return v
+			
+	def match_keyword(self, kw):
+		m = self.match_name()
+		if not m:
+			return None
+		value, line = m
+		if value != kw:
+			return None
+		return value
+		
+	def try_keyword(self, kw):		
+		m = self.match_keyword(kw)
+		if not m:
+			return
+		self.scan_keyword(kw)
+		return m
+	
+	def scan_lines(self, infile):
+		prefixline = ''
+		prefixlineno = 0
+		lineno = 0
+		for l in file(infile,'r'):
+			lineno += 1
+			level = 0
+			# strip commentary
+			if '#' in l:
+				l = l[:l.index('#')]
+			# strip right side spaces
+			l = l.rstrip()
+			if prefixline:
+				l = prefixline + l
+				thisline = prefixlineno
+				prefixline = ''
+			else:
+				thisline = lineno
+			# if empty, skip
+			if not l:
+				continue
+			# if right side is backspace, store to prefix
+			if l.endswith('\\'):
+				if not prefixlineno:
+					prefixlineno = lineno
+				l = l[:-1] + ' '
+				prefixline += l
+				continue
+			else:
+				prefixlineno = 0
+			# count left hand tabs
+			while l[0] == '\t':
+				level += 1
+				l = l[1:]
+			# replace all other tabs with spaces
+			l = l.replace('\t', ' ')
+			# fold multiple spaces down to one
+			while '  ' in l:
+				l = l.replace('  ',' ')
+			# now we should have a quite sane string
+			self.context['file'] = infile
+			self.context['lineno'] = thisline
+			self.context['line'] = l
+			self.level = level
+			self.line = l
+			self.pos = 0
+			yield True
+		yield False
+		
+	def read(self, infile):
+		self.infile = infile
+		self.lines = self.scan_lines(infile)
+		try:
+			self.parse()
+		except ParseError:
+			raise ParseError
+		except:
+			import traceback
+			traceback.print_exc()
+			self.error("internal parser error.")
+
+	def parse_file(self, infile):
+		self.read(infile)
+
+def split_camelcase(s):
+	o = ''
+	for c in s:
+		if c.isupper() and o and not o.endswith('_'):
+			o += '_'
+		o += c.lower()
+	return o
+
+class zzubIDLObject(object):
+	doc = []
+
+	def write_c_doc(self, f):
+		if self.doc:
+			print >> f
+		for i,doc in enumerate(self.doc):
+			doc = doc.strip()
+			if len(self.doc) == 1:
+				print >> f, '/** \\brief ' + doc + ' */'
+			elif i == 0:
+				print >> f, '/** \\brief ' + doc
+			elif i == len(self.doc)-1:
+				print >> f, '\t' + doc + ' */'
+			else:
+				print >> f, '\t' + doc
+				
+	def make_c_name(self, parent, name):
+		c_name = ''
+		if parent and parent.c_name:
+			if not name:
+				return parent.c_name
+			c_name = parent.c_name + '_'
+		return c_name + split_camelcase(self.name)
+		
+	def write_c_fwddecl(self, parent, f):
+		pass
+		
+	def write_c_def(self, parent, f):
+		pass
+		
+	def write_c_header(self, parent, f):
+		pass
+		
+	def write_py_ctypes_anon(self, parent, f):
+		pass
+		
+	def write_py_doc(self, f):
+		if self.doc:
+			print >> f
+		for i,doc in enumerate(self.doc):
+			doc = doc.strip()
+			print >> f, '# ' + doc
+			
+	def write_py_docstr(self, f, ident):
+		if not self.doc:
+			return
+		tab = '\t' * ident
+		for i,doc in enumerate(self.doc):
+			if len(self.doc) == 1:
+				print >> f, tab + '"""' + doc + '"""'
+			elif i == 0:
+				print >> f, tab + '"""' + doc
+			elif i == len(self.doc)-1:
+				print >> f, tab + doc + '"""'
+			else:
+				print >> f, tab + doc
+			
+	def write_py_ctypes(self, parent, f):
+		pass
+	
+	def write_py_classes(self, parent, f):
+		pass
+	
+class Namespace(zzubIDLObject):
+	def __init__(self):
+		self.namespaces = []
+		self.classes = []
+		self.name = ''
+		self.c_name = ''
+		self.functions = []
+		self.enums = []
+
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_namespace(self)
+		self.name = parser.scan_symbol()
+		self.c_name = self.make_c_name(parent, self.name)
+		parser.scan_colon()
+		
+	def add_enum(self, e):
+		self.enums.append(e)
+		
+	def add_namespace(self, ns):
+		self.namespaces.append(ns)
+		
+	def add_class(self, class_):
+		self.classes.append(class_)
+		
+	def add_function(self, func):
+		self.functions.append(func)
+		
+	def write_c_header(self, parent, f):
+		if self.c_name:
+			print >> f, "/* namespace " + self.c_name + " */\n"
+		self.write_c_doc(f)
+		self.write_c_fwddecl(self, f)
+		for enum in self.enums:
+			enum.write_c_header(self, f)
+		for function in self.functions:
+			function.write_c_header(self, f)
+		for class_ in self.classes:
+			class_.write_c_header(self, f)
+		for ns in self.namespaces:
+			ns.write_c_header(self, f)
+	
+	def write_c_fwddecl(self, parent, f):
+		for class_ in self.classes:
+			class_.write_c_fwddecl(self, f)
+			
+	def write_c_def(self, parent, f):
+		for ns in self.namespaces:
+			ns.write_c_def(self, f)
+		for class_ in self.classes:
+			class_.write_c_def(self, f)
+			
+	def write_py_ctypes(self, parent, f):
+		self.write_py_doc(f)
+		for enum in self.enums:
+			enum.write_py_ctypes(self, f)
+		for class_ in self.classes:
+			class_.write_py_ctypes(self, f)
+		for function in self.functions:
+			function.write_py_ctypes(self, f)
+		for class_ in self.classes:
+			class_.write_py_ctypes_funcs(self, f)
+		for ns in self.namespaces:
+			ns.write_py_ctypes(self, f)
+			
+	def write_py_classes(self, parent, f):
+		for class_ in self.classes:
+			class_.write_py_classes(self, f)
+		for ns in self.namespaces:
+			ns.write_py_classes(self, f)
+		
+class Class(zzubIDLObject):
+	def __init__(self):
+		self.functions = []
+		self.classes = []
+		self.members = []
+		self.py_ctypes_written = False
+		self.py_ctypes_writing = False
+		
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_class(self)
+		self.name = parser.scan_symbol()
+		self.c_name = self.make_c_name(parent, self.name)
+		self.typestruct_name = '_' + self.c_name
+		self.struct_name = self.c_name + '_t'
+		parser.typemap[self.name] = dict(
+			py_c_type='POINTER(' + self.struct_name + ')',
+			py_c_out_type='POINTER(POINTER(' + self.struct_name + '))',
+			py_c_itype='POINTER("' + self.struct_name + '")',
+			py_c_out_itype='POINTER(POINTER("' + self.struct_name + '"))',
+			py_c_real_type=self.struct_name,
+			py_c_real_itype='"' + self.struct_name + '"',
+			c_real_type=self.struct_name,
+			c_type=self.struct_name + ' *', 
+			c_out_type=self.struct_name + ' * *',
+			class_=self
+		)
+		parser.scan_colon()
+		
+	def add_class(self, class_):
+		self.classes.append(class_)
+		
+	def add_function(self, func):
+		self.functions.append(func)
+		
+	def add_member(self, member):
+		self.members.append(member)
+		
+	def write_c_header(self, parent, f):
+		if self.classes or self.members:
+			for class_ in self.classes:
+				class_.write_c_header(self, f)
+			print >> f, '/* class ' + self.name + ' */\n'
+			self.write_c_doc(f)
+			print >> f, 'struct ' + self.c_name + ' {'
+			for member in self.members:
+				member.write_c_header(self, f)
+			print >> f, '};'
+		else:
+			print >> f, '/* class ' + self.name + ' */\n'
+			self.write_c_doc(f)
+		for function in self.functions:
+			function.write_c_header(self, f)
+		print >> f
+		
+	def write_c_fwddecl(self, parent, f):
+		if self.classes or self.members:
+			self.write_c_doc(f)
+			print >> f, 'typedef struct ' + self.c_name + ' ' + self.struct_name + ';'
+			for class_ in self.classes:
+				class_.write_c_fwddecl(parent,f)
+		else:
+			self.write_c_doc(f)
+			print >> f, '#if !defined(NO_' + self.c_name.upper() + '_TYPE)'
+			print >> f, 'typedef struct ' + self.typestruct_name + ' ' + self.struct_name + ';'
+			print >> f, '#endif'
+			
+	def write_c_def(self, parent, f):
+		for class_ in self.classes:
+			class_.write_c_def(self, f)
+		for function in self.functions:
+			function.write_c_def(self, f)
+
+	def write_py_ctypes(self, parent, f):
+		if self.py_ctypes_written:
+			return True
+		if self.py_ctypes_writing:
+			return False
+		self.py_ctypes_writing = True
+		for member in self.members:
+			member.solve_py_ctypes_deps(f)
+		print >> f, 'class ' + self.struct_name + '(Structure):'
+		self.write_py_docstr(f, 1)
+		print >> f, '\t_fields_ = ['
+		for member in self.members:
+			member.write_py_ctypes(self, f)
+		print >> f, '\t]'
+		print >> f, '\t_anonymous_ = ['
+		for member in self.members:
+			member.write_py_ctypes_anon(self, f)
+		print >> f, '\t]'
+		for class_ in self.classes:
+			class_.write_py_ctypes(self, f)
+		self.py_ctypes_written = True
+		return True
+	
+	def write_py_ctypes_funcs(self, parent, f):
+		for class_ in self.classes:
+			class_.write_py_ctypes_funcs(self, f)
+		for function in self.functions:
+			function.write_py_ctypes(self, f)
+			
+	def write_py_classes(self, parent, f):
+		if self.members:
+			print >> f, self.name + ' = ' + self.struct_name
+			print >> f
+		else:
+			# handle class
+			print >> f, 'class ' + self.name + '(object):'
+			self.write_py_docstr(f, 1)
+			print >> f
+			print >> f, '\t_as_parameter_ = None'
+			print >> f, '\t_hash = 0'
+			print >> f, '\t'
+			print >> f, '\tdef __init__(self, handle):'
+			print >> f, '\t\tself._as_parameter_ = handle'
+			print >> f, '\t\tself._hash = cast(self._as_parameter_, c_void_p).value'
+			print >> f, '\t'
+			print >> f, '\t@classmethod'
+			print >> f, '\tdef _new_from_handle(cls,handle):'
+			print >> f, '\t\tif not handle:'
+			print >> f, '\t\t\treturn None'
+			print >> f, '\t\treturn cls(handle)'
+			print >> f, '\t'
+			print >> f, '\tdef __hash__(self):'
+			print >> f, '\t\treturn self._hash'
+			print >> f, '\t'
+			print >> f, '\tdef __eq__(self,other):'
+			print >> f, '\t\treturn self._hash == hash(other)'
+			print >> f, '\t'
+			print >> f, '\tdef __ne__(self,other):'
+			print >> f, '\t\treturn self._hash != hash(other)'
+			print >> f, '\t'
+			for function in self.functions:
+				function.write_py_method(self, f)
+			print >> f
+			print >> f, self.struct_name + '._wrapper_ = ' + self.name
+			print >> f
+		
+class Union(zzubIDLObject):
+	nextid = 0
+
+	def __init__(self):
+		self.members = []
+		self.py_ctypes_written = False
+
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_member(self)
+		parser.scan_colon()
+		
+		uid = Union.nextid
+		Union.nextid += 1
+		self.name = 'union_%08x' % uid
+		self.c_name = self.make_c_name(parent, self.name)
+		self.typestruct_name = '_' + self.c_name
+		self.struct_name = self.c_name + '_t'
+		parser.typemap[self.name] = dict(
+			py_c_type='POINTER(' + self.struct_name + ')',
+			py_c_out_type='POINTER(POINTER(' + self.struct_name + '))',
+			c_real_type=self.struct_name,
+			c_type=self.struct_name + ' *', 
+			c_out_type=self.struct_name + ' * *',
+			class_=self
+		)
+		
+		
+	def add_member(self, member):
+		self.members.append(member)
+		
+	def solve_py_ctypes_deps(self, f):
+		if self.py_ctypes_written:
+			return
+		for member in self.members:
+			member.solve_py_ctypes_deps(f)
+		print >> f, 'class ' + self.struct_name + '(Union):'
+		print >> f, '\t_fields_ = ['
+		for member in self.members:
+			member.write_py_ctypes(self, f)
+		print >> f, '\t]'
+		self.py_ctypes_written = True
+		
+	def write_c_header(self, parent, f):
+		self.write_c_doc(f)
+		print >> f, '\tunion {'
+		for member in self.members:
+			member.write_c_header(self, f)
+		print >> f, '\t};'
+		
+	def write_py_ctypes_anon(self, parent, f):
+		print >> f, '\t\t"' + self.name + '",'
+		
+	def write_py_ctypes(self, parent, f):
+		print >> f, '\t\t("' + self.name + '",' + self.struct_name + '),'
+		
+class Enum(zzubIDLObject):
+	def __init__(self):
+		self.name = ''
+		self.c_name = ''
+		self.items = []
+		self.anon = True
+
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_enum(self)
+		if parser.match_symbol():
+			self.anon = False
+			self.name = parser.scan_symbol()
+		self.c_name = self.make_c_name(parent, self.name)
+		parser.scan_colon()
+		
+	def add_item(self, item):
+		self.items.append(item)
+		
+	def write_c_header(self, parent, f):
+		self.write_c_doc(f)
+		if self.name:
+			print >> f, 'enum ' + self.c_name + ' {'
+		else:
+			print >> f, "enum {"
+		for item in self.items:
+			item.write_c_header(self, f)
+		print >> f, "};"
+		print >> f
+
+	def write_py_ctypes(self, parent, f):
+		self.write_py_doc(f)
+		print >> f
+		print >> f,'# enum ' + self.c_name
+		lastval = 0
+		for item in self.items:
+			lastval = item.write_py_ctypes(self, f, lastval)
+		
+class EnumItem(zzubIDLObject):
+	def __init__(self):
+		self.name = ''
+		self.value = None
+		self.bits = []
+		
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_item(self)
+		self.name = parser.scan_symbol()
+		self.c_name = ''
+		if parent.c_name:
+			self.c_name = parent.c_name + '_'
+		self.c_name += self.name.lower()
+		parser.scan_equal()
+		if parser.try_keyword('bit'):
+			while True:
+				self.bits.append(int(parser.scan_int()))
+				if not parser.try_comma():
+					break
+		else:
+			self.value = int(parser.scan_int())
+			
+	def get_valstr(self):
+		valstr = ''
+		if self.bits:
+			valstr = '|'.join([('(1 << %i)' % bit) for bit in self.bits])
+		elif self.value != None:
+			valstr = str(self.value)
+		return valstr
+			
+	def write_c_header(self, parent,f):
+		self.write_c_doc(f)
+		valstr = self.get_valstr()
+		if valstr:
+			print >> f, "\t" + self.c_name + ' = ' + valstr + ','
+		else:
+			print >> f, "\t" + self.c_name + ','
+			
+	def write_py_ctypes(self, parent, f, lastval):
+		self.write_py_doc(f)
+		valstr = self.get_valstr()
+		print >> f, self.c_name + ' = ' + valstr
+	
+class Argument(zzubIDLObject):
+	typemap = {
+		'string' : dict(py_c_type='c_char_p', py_c_out_type='c_char_p', c_type='const char *', c_out_type='char *'),
+		'bool' : dict(py_c_type='c_int', py_c_out_type='POINTER(c_int)', c_type='int', c_out_type='int *', comment='bool'),
+		'int' : dict(py_c_type='c_int', py_c_out_type='POINTER(c_int)', c_type='int', c_out_type='int *'),
+		'byte' : dict(py_c_type='c_byte', py_c_out_type='POINTER(c_byte)', c_type='char', c_out_type='char *'),
+		'int64' : dict(py_c_type='c_longlong', py_c_out_type='POINTER(c_longlong)', c_type='long long', c_out_type='long long *'),
+		'uint' : dict(py_c_type='c_uint', py_c_out_type='POINTER(c_uint)', c_type='unsigned int', c_out_type='unsigned int *'),
+		'char' : dict(py_c_type='c_char', py_c_out_type='POINTER(c_char)', c_type='char', c_out_type='char *'),
+		'uchar' : dict(py_c_type='c_ubyte', py_c_out_type='POINTER(c_ubyte)', c_type='unsigned char', c_out_type='unsigned char *'),
+		'pvoid' : dict(py_c_type='c_void_p', py_c_out_type='POINTER(c_void_p)', c_type='void *', c_out_type='void * *'),
+		'ushort' : dict(py_c_type='c_ushort', py_c_out_type='POINTER(c_ushort)', c_type='unsigned short', c_out_type='unsigned short *'),
+		'float' : dict(py_c_type='c_float', py_c_out_type='POINTER(c_float)', c_type='float', c_out_type='float *'),
+		'double' : dict(py_c_type='c_double', py_c_out_type='POINTER(c_double)', c_type='double', c_out_type='double *'),
+	}
+	
+	def __init__(self):
+		self.typename = ''
+		self.name = ''
+		self.argdirs = []
+		self.c_type = ''
+		self.py_c_type = ''
+		self.py_c_itype = ''
+		self.retval = False
+		self.comment = ''
+		self.arrayinfo = []
+		self.context = None
+		self.parser = None
+		self.typemap_cfg = None
+		self.default_value = None
+		self.opaque_class = False
+		self.python = True
+		self.extract_value = False
+		self.py_ctypes_deps_solved = False
+
+	def solve_py_ctypes_deps(self, f, ref):
+		if self.py_ctypes_deps_solved:
+			return
+		self.resolve(ref)
+		if not 'class_' in self.typemap_cfg:
+			return
+		classobj = self.typemap_cfg['class_']
+		if not classobj.write_py_ctypes(self, f):
+			self.py_c_type = self.py_c_itype
+		self.py_ctypes_deps_solved = True
+		
+	def parse(self, parser, retval=False):
+		self.parser = parser
+		self.context = dict(parser.context)
+		self.retval = retval
+		if parser.try_keyword('no_python'):
+			self.python = False
+		if not retval:
+			for adt in ['in', 'out']:
+				if parser.try_keyword(adt):
+					if adt in self.argdirs:
+						parser.error('argument direction already specified: ' + adt)
+					self.argdirs.append(adt)
+		if not self.argdirs:
+			self.argdirs = ['in']
+		self.typename = parser.scan_symbol()
+		while parser.try_sbo():
+			self.arrayinfo.append(dict(count=0,mul=1))
+			if parser.match_symbol():
+				self.arrayinfo[-1]['count'] = parser.scan_symbol()
+				if parser.try_mul():
+					self.arrayinfo[-1]['mul'] = int(parser.scan_int())
+			else:
+				self.arrayinfo[-1]['count'] = int(parser.scan_int())
+			parser.scan_sbc()
+		if not self.retval:
+			self.name = parser.scan_symbol()
+			if parser.try_equal():
+				self.default_value = parser.scan_int()
+			
+	def resolve(self, ref=True):
+		if self.typename in self.typemap:
+			tm = self.typemap[self.typename]
+		elif self.typename in self.parser.typemap:
+			tm = self.parser.typemap[self.typename]
+		else:
+			self.parser.error('unknown type: '+self.typename, self.context)
+		self.comment = tm.get('comment','')
+		self.typemap_cfg = tm
+		if ('class_' in tm) and not tm['class_'].members: # handle class?
+			self.opaque_class = True
+		self.py_arg = self.name
+		if 'out' in self.argdirs:
+			if not self.opaque_class:
+				self.extract_value = True
+			self.c_type = tm['c_out_type']
+			self.py_c_type = tm['py_c_out_type']
+			if self.typename == 'string':
+				self.py_c_decl_type = 'c_char'
+				if not self.arrayinfo:
+					self.parser.error('out ' + self.typename + ' declared without size referrer', self.context)
+			else:
+				self.py_c_decl_type = tm['py_c_type']
+			countargs = []
+			for ai in self.arrayinfo:
+				count = str(ai['count'])
+				if ai['mul'] > 1:
+					count = '(' + count + '*' + str(ai['mul']) + ')'
+				countargs.append(count)
+			if countargs:
+				self.py_c_decl_type = '(' + self.py_c_decl_type + '*' + '*'.join(countargs) + ')'
+			else:
+				self.py_arg = 'byref(' + self.py_arg + ')'
+			if 'py_c_out_itype' in tm:
+				self.py_c_itype = tm['py_c_out_itype']
+			else:
+				self.py_c_itype = self.py_c_type
+			for ai in self.arrayinfo[1:]:
+				self.c_type = self.c_type + ' *'
+				self.py_c_type = 'POINTER(' + self.py_c_type + ')'
+				self.py_c_itype = 'POINTER(' + self.py_c_itype + ')'
+		else:
+			if ('class_' in tm) and (not self.opaque_class):
+				self.extract_value = True
+			if not ref and tm.has_key('c_real_type'):
+				self.c_type = tm['c_real_type']
+			else:
+				self.c_type = tm['c_type']
+			if not ref and tm.has_key('py_c_real_type'):
+				self.py_c_type = tm['py_c_real_type']
+				if 'py_c_real_itype' in tm:
+					self.py_c_itype = tm['py_c_real_itype']
+				else:
+					self.py_c_itype = self.py_c_type
+			else:
+				self.py_c_type = tm['py_c_type']
+				if 'py_c_itype' in tm:
+					self.py_c_itype = tm['py_c_itype']
+				else:
+					self.py_c_itype = self.py_c_type
+			countargs = []
+			self.py_c_decl_type = tm['py_c_type']
+			for i,ai in enumerate(self.arrayinfo):
+				if i == 0:
+					self.c_type = 'const ' + self.c_type + ' *'
+				else:
+					self.c_type = self.c_type + ' *'
+				self.py_c_type = 'POINTER(' + self.py_c_type + ')'
+				self.py_c_itype = 'POINTER(' + self.py_c_itype + ')'
+				count = str(ai['count'])
+				if ai['mul'] > 1:
+					count = '(' + count + '*' + str(ai['mul']) + ')'
+				countargs.append(count)
+			if countargs:
+				self.py_c_decl_type = '(' + self.py_c_decl_type + '*' + '*'.join(countargs) + ')'
+		
+	def write_c_header(self, parent, f):
+		pass
+		
+class ClassMember(zzubIDLObject):
+	def __init__(self):
+		self.specs = Argument()
+		self.ref = True
+
+	def solve_py_ctypes_deps(self, f):
+		self.specs.solve_py_ctypes_deps(f, self.ref)
+		
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_member(self)
+		if parser.try_keyword('noref'):
+			self.ref = False
+		self.specs.parse(parser)
+		
+	def write_c_header(self, parent, f):
+		def make_arg(typename, argname):
+			if typename.endswith('*'):
+				return typename + argname
+			return typename + ' ' + argname
+		self.specs.resolve(self.ref)
+		self.write_c_doc(f)
+		print >> f, '\t' + make_arg(self.specs.c_type, self.specs.name) + ';'
+		
+	def write_py_ctypes(self, parent, f):
+		self.solve_py_ctypes_deps(f)
+		print >> f, '\t\t("' + self.specs.name + '", ' + self.specs.py_c_type + '),'
+	
+class Function(zzubIDLObject):
+	def __init__(self):
+		self.ret_arg = None
+		self.args = []
+		self.static = False
+		self.c_name = ''
+		self.func_type = False
+		
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_function(self)
+		if parser.try_keyword('static'):
+			self.static = True
+		self.name = parser.scan_symbol()
+		if parent and parent.c_name:
+			self.c_name = parent.c_name + '_'
+		self.c_name += self.name.lower()
+		self.parser = parser
+		parser.scan_bo()
+		while not parser.try_bc():
+			arg = Argument()
+			self.args.append(arg)
+			arg.parse(parser)
+			if not parser.match_bc():
+				parser.scan_comma()
+		if parser.try_colon():
+			self.ret_arg = Argument()
+			self.ret_arg.parse(parser, retval=True)
+		if self.func_type:
+			parser.typemap[self.name] = dict(
+				c_type=self.c_name + '_t', 
+				c_out_type=self.c_name + '_t *',
+				py_c_type=self.c_name + '_t',
+				py_c_out_type=self.c_name + '_t',
+				functype=self)
+
+	def write_c_header(self, parent, f):
+		retval = 'void'
+		if self.ret_arg:
+			self.ret_arg.resolve()
+			retval = self.ret_arg.c_type
+			if self.ret_arg.comment:
+				retval = '/*'+self.ret_arg.comment+'*/ ' + retval
+		args = []
+		def make_arg(typename, argname, defval=None):
+			if typename.endswith('*'):
+				return typename + argname
+			if defval != None:
+				return typename + ' ' + argname + '/*=' + defval + '*/'
+			else:
+				return typename + ' ' + argname
+		if not self.func_type and isinstance(parent, Class) and not self.static:
+			args.append(parent.struct_name + ' *' + parent.name.lower())
+		for arg in self.args:
+			arg.resolve()
+			args.append(make_arg(arg.c_type, arg.name, arg.default_value))
+		retval = make_arg(retval, '')
+		self.write_c_doc(f)
+		if self.func_type:
+			print >> f, retval + 'typedef (*' + self.c_name + '_t)(' + ', '.join(args) + ');'
+		else:
+			print >> f, retval + self.c_name + '(' + ', '.join(args) + ');'
+
+	def write_c_def(self, parent, f):
+		print >> f, '\t' + self.c_name
+		
+	def write_py_method(self, parent, f):
+		if self.func_type:
+			return
+		args = []
+		callargs = []
+		outargs = []
+		arrayargs = []
+		if isinstance(parent, Class) and not self.static:
+			args.append('self')
+			callargs.append('self')
+		for arg in self.args:
+			is_in = 'in' in arg.argdirs
+			is_out = 'out' in arg.argdirs
+			is_bidi = is_in and is_out
+			callargs.append(arg.py_arg)
+			if is_bidi or is_out:
+				outargs.append(arg)
+			if is_bidi or is_in:
+				if arg.default_value != None:
+					args.append(arg.name + '=' + arg.default_value)
+				else:
+					args.append(arg.name)
+				if (len(arg.arrayinfo) == 1) and (arg.typename != 'string'):
+					arrayargs.append(arg)
+				
+		if self.static:
+			print >> f, '\t@staticmethod'
+		print >> f, '\tdef ' + self.name + '(' + ', '.join(args) + '):'
+		self.write_py_docstr(f, 2)
+		if not self.static:
+			print >> f, '\t\tassert self._as_parameter_'
+			
+		for arrayarg in arrayargs:
+			print >> f, '\t\t' + arrayarg.name + ' = ' + arrayarg.py_c_decl_type + '(*' + arrayarg.name + ')'
+		for outarg in outargs:
+			print >> f, '\t\t' + outarg.name + ' = ' + outarg.py_c_decl_type + '()'
+		
+		callfunc = self.c_name + '(' + ','.join(callargs) + ')'
+		resargs = []
+		outargnames = []
+		
+		def wrapped_retarg(arg,argname):
+			if arg.extract_value:
+				if 'class_' in arg.typemap_cfg:
+					argname = '(lambda p: p and p.contents)(' + argname + ')'
+				elif (len(arg.arrayinfo) == 1) and (arg.typename != 'string'):
+					argname = '[v for v in ' + argname + ']'
+				else:
+					argname = argname + '.value'
+			if arg.opaque_class:
+				class_ = arg.typemap_cfg['class_']
+				return class_.name + '._new_from_handle(' + argname + ')'
+			return argname
+			
+		if not self.ret_arg or not self.ret_arg.python:
+			print >> f, '\t\t' + callfunc
+		elif not outargs:
+			print >> f, '\t\treturn ' + wrapped_retarg(self.ret_arg, callfunc)
+		else:
+			outargnames.append(wrapped_retarg(self.ret_arg,'_ret_arg'))
+			print >> f, '\t\t_ret_arg = ' + callfunc
+		
+		for outarg in outargs:
+			outargnames.append(wrapped_retarg(outarg,outarg.name))
+		if outargnames:
+			print >> f, '\t\treturn ' + ','.join(outargnames)
+			
+		print >> f, '\t'
+
+	def write_py_ctypes(self, parent, f):
+		retval = 'None'
+		if self.ret_arg:
+			self.ret_arg.resolve()
+			retval = self.ret_arg.py_c_type
+		args = []
+		if not self.func_type:
+			args.append('lib' + self.parser.dlname)
+			args.append('"' + self.c_name + '"')
+		args.append(retval)
+		if not self.func_type and isinstance(parent, Class) and not self.static:
+			args.append('("' + parent.name.lower() + '", POINTER(' + parent.struct_name + '))')
+		for arg in self.args:
+			arg.resolve()
+			if self.func_type:
+				args.append(arg.py_c_type)
+			else:
+				args.append('("' + arg.name + '",' + arg.py_c_type + ')')
+		if self.func_type:
+			print >> f, self.c_name + '_t' + ' = CFUNCTYPE(' + ', '.join(args) + ')'
+		else:
+			print >> f, self.c_name + ' = dlsym(' + ', '.join(args) + ')'
+
+class FunctionType(Function):
+	def __init__(self):
+		Function.__init__(self)
+		self.func_type = True
+
+class IteratorFunction(zzubIDLObject):
+	def parse(self, parser):
+		parent = parser.top()
+		parent.add_function(self)
+		# iterator get_plugin_list: for get_plugin in get_plugin_count
+		self.name = parser.scan_symbol()
+		self.parser = parser
+		parser.scan_colon()
+		parser.scan_keyword('for')
+		self.get_item_func = parser.scan_symbol()
+		parser.scan_keyword('in')
+		self.get_count_func = parser.scan_symbol()
+
+	def write_py_method(self, parent, f):
+		print >> f, '\tdef ' + self.name + '(self):'
+		self.write_py_docstr(f, 2)
+		print >> f, '\t\tfor index in xrange(self.' + self.get_count_func + '()):'
+		print >> f, '\t\t\tyield self.' + self.get_item_func + '(index)'
+			
+		print >> f, '\t'
+
+class zzubIDLParser(Parser):
+	symbols = {
+		'namespace' : dict(factory=Namespace, parent=[Namespace]),
+		'class' : dict(factory=Class, parent=[Class,Namespace]),
+		'def' : dict(factory=Function, parent=[Class,Namespace]),
+		'enum' : dict(factory=Enum, parent=[Namespace]),
+		'set' : dict(factory=EnumItem, parent=[Enum]),
+		'member' : dict(factory=ClassMember, parent=[Class,Union]),
+		'union' : dict(factory=Union, parent=[Class,Union]),
+		'pdef' : dict(factory=FunctionType, parent=[Namespace,Class]),
+		'iterator': dict(factory=IteratorFunction, parent=[Class]),
+	}
+	
+	typemap = {
+	}
+
+	def __init__(self, libversion):
+		Parser.__init__(self)
+		self.stack = []
+		self.libversion = libversion
+		self.includes = []
+		self.comment = []
+		self.dlname = ''
+		self.root = Namespace()
+		
+	def top(self):
+		if not self.stack:
+			return self.root
+		return self.stack[-1]
+		
+	def last_stack_class(self):
+		item = self.top()
+		return item and item.__class__
+		
+	def write_c_def(self, filename):
+		f = StringIO()
+		print >> f, 'EXPORTS'
+		self.root.write_c_def(None, f)
+		file(filename, 'w').write(f.getvalue())
+		
+	def write_c_header(self, filename):
+		basename = os.path.basename(filename)
+		hdef = '__' + basename.upper().replace('.','_')
+		
+		f = StringIO()
+		print >> f, c_header_copyright
+		print >> f
+		print >> f, "/* autogenerated from " + self.context['file'] + " */"
+		print >> f
+		print >> f, "#if !defined(" + hdef + ")"
+		print >> f, "#define " + hdef
+		print >> f
+		print >> f, '#if defined(__cplusplus)'
+		print >> f, 'extern "C" {'
+		print >> f, '#endif'
+		print >> f
+		for include in self.includes:
+			print >> f, '#include "%s"' % include
+		print >> f
+		self.root.write_c_header(None, f)
+		print >> f, '#if defined(__cplusplus)'
+		print >> f, '} // extern "C"'
+		print >> f, '#endif'
+		print >> f
+		print >> f, "#endif // " + hdef
+		file(filename, 'w').write(f.getvalue())
+		
+	def write_py_ctypes(self, filename):
+		f = StringIO()
+		print >> f, py_header
+		print >> f, 'lib' + self.dlname + ' = dlopen("' + self.dlname + '", "' + self.libversion + '")'
+		self.root.write_py_ctypes(None, f)
+		self.root.write_py_classes(None, f)
+		file(filename, 'w').write(f.getvalue())
+		
+	def cleanup_doc(self, docs):
+		if not docs:
+			return docs
+		words = ' '.join(docs).split(' ') # breakup into words
+		comments = []
+		line = []
+		for word in words:
+			if (len(' '.join(line)) + len(word)) > 50:
+				comments.append(' '.join(line))
+				line = []
+			line.append(word)
+		if line:
+			comments.append(' '.join(line))
+		return comments
+		
+	def parse(self):
+		try:
+			while self.lines.next():
+				if self.level < len(self.stack):
+					self.stack = self.stack[:self.level]
+				if self.match_string2():
+					self.comment.append(self.scan_string2())
+				elif self.match_string1():
+					self.comment.append(self.scan_string1())
+				elif self.match_symbol():
+					name = self.scan_symbol()
+					if name == 'include':
+						self.comments = []
+						self.includes.append(self.scan_string1())
+					elif name == 'dlname':
+						self.dlname = self.scan_string1()
+					else:
+						if not name in self.symbols:
+							self.error('unknown symbol: '+name)
+						cfg = self.symbols[name]
+						class_ = cfg['factory']
+						parent = cfg.get('parent', [None])
+						stackclass = self.last_stack_class()
+						if not stackclass in parent:
+							self.error("%s can't be a child of %s" % (name,stackclass.__name__))
+						obj = class_()
+						obj.doc = self.comment #self.cleanup_doc(self.comment)
+						self.comment = []
+						obj.parse(self)
+						self.stack.append(obj)
+				if self.line:
+					self.error("unexpected characters at end of line: "+self.line)
+				
+		except StopIteration:
+			pass
+
+if __name__ == '__main__':
+	parser = OptionParser(version="zzub IDL parser 0.1")
+	parser.add_option("--c-header", dest="cheader", help="specifies path to write C header file", metavar="<filename.h>")
+	parser.add_option("--c-def", dest="cdef", help="specifies path to write C win32 .def file", metavar="<filename.def>")
+	parser.add_option("--py-ctypes", dest="pyctypes", help="specifies path to write Python ctypes wrapper module", metavar="<filename.py>")
+	parser.add_option("--libversion", dest="libversion", help="specifies lib version to use.", metavar="<major>.<minor>")
+	options,args = parser.parse_args()
+	if not args:
+		print >> sys.stderr, "no input file(s)."
+		raise SystemExit, 255
+	parser = zzubIDLParser(libversion=options.libversion)
+	try:
+		parser.parse_file(args[0])
+		if options.cheader:
+			parser.write_c_header(options.cheader)
+		if options.cdef:
+			parser.write_c_def(options.cdef)
+		if options.pyctypes:
+			parser.write_py_ctypes(options.pyctypes)
+	except ParseError:
+		raise SystemExit, 255

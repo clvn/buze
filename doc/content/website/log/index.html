@@ -1,0 +1,112 @@
+<html>
+<head>
+<script src="sarissa.js"></script>
+<script src="jquery-1.2.6.js"></script>
+<script>
+
+var list_processor = null;
+var revdetail_processor = null;
+var detail_processor = null;
+var xmlDoc = null;
+var revcache = {};
+
+function loadxml(url) {
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", url, false);
+	xmlhttp.send('');
+	return xmlhttp.responseXML;
+}
+
+function initialize() {
+
+	list_processor = new XSLTProcessor();
+	detail_processor = new XSLTProcessor();
+	revdetail_processor = new XSLTProcessor();
+
+	// import list stylesheet
+	var listxsl = loadxml("show_revisions.xsl");
+	list_processor.importStylesheet(listxsl);
+
+	var detailxsl = loadxml("show_details.xsl");
+	detail_processor.importStylesheet(detailxsl);
+
+	var revdetailxsl = loadxml("show_revisiondetail.xsl");
+	revdetail_processor.importStylesheet(revdetailxsl);
+
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", "last.xml", false);
+	xmlhttp.send('');
+	
+	xmlDoc = xmlhttp.responseXML;
+	
+	render_revisions();
+}
+
+function clear_output() {
+	var outp = document.getElementById("output_container");
+	while (outp.hasChildNodes()) outp.removeChild(outp.firstChild);
+}
+
+function show_revision(rev) {
+	detail_processor.setParameter(null, "revision", rev);
+	var newFragment = detail_processor.transformToFragment(xmlDoc, document);
+	var outp = document.getElementById("output_container");
+
+	clear_output();
+	outp.appendChild(newFragment);
+}
+
+function render_revisions() {
+	var revcountdd = document.getElementById("revision_count");
+
+	list_processor.setParameter(null, "count", Number(revcountdd.value));
+	var newFragment = list_processor.transformToFragment(xmlDoc, document);
+	var outp = document.getElementById("output_container");
+
+	clear_output();
+	outp.appendChild(newFragment);
+	jQuery("div.rev").each(function() {
+		show_revisiondetail(this, this.getAttribute("rev"), this.getAttribute("src"));
+	} );
+}
+
+function show_revisiondetail(container, rev, src) {
+	container.innerHTML = "";
+
+	var data;
+	if (revcache[src]) {
+		data = revcache[src];
+	} else {
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("GET", src, false);
+		xmlhttp.send('');
+		data = xmlhttp.responseXML;
+		revcache[src] = data;
+	}
+
+	revdetail_processor.setParameter(null, "revision", rev);
+	var newFragment = revdetail_processor.transformToFragment(data, document);
+	container.appendChild(newFragment);
+
+}
+
+</script>
+</head>
+<body onload="initialize()">
+
+Show: 
+<select id="revision_count" onchange="render_revisions()">
+	<option value="1">HEAD</option>
+	<option selected="selected" value="10">10</option>
+	<option value="25">25</option>
+	<option value="50">50</option>
+</select>
+<br />
+<hr />
+
+<div id="output_container">
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+// DO NOT OPEN THIS FILE IN THE VISUAL RESOURCE EDITOR!
+//
+#include "resource.h"
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+//IDT_HELP_PATTERNVIEW RCDATA "res\\keyboard_patterneditor.txt"
+//IDT_HELP_MACHINEVIEW RCDATA "res\\keyboard_machines.txt"
+//IDT_HELP_WAVETABLEVIEW RCDATA "res\\keyboard_wavetable.txt"
+//IDT_HELP_PARAMETERVIEW RCDATA "res\\keyboard_parameters.txt"
+//IDT_HELP_HELPVIEW RCDATA "res\\help.txt"
+IDC_ABOUTTEXT RCDATA "res\\about.txt"
+
+#endif

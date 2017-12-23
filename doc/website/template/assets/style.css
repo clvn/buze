@@ -1,0 +1,68 @@
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	background-image:url(grad2.png);
+	background-color:blue;
+	color:white;
+	background-repeat:repeat-x;
+	line-height:110%;
+}
+
+#apDiv1 {
+	width:830px;
+	background-color: #585858;
+	color: #FFF;
+	font-size: 12px;
+	font-family: Verdana, Geneva, sans-serif;
+	padding:10px;
+	border-bottom:3px solid black;
+}
+body {
+	background-color: #333;
+}
+
+#apDiv4 {
+	padding:10px;
+	border-bottom:3px solid black;
+}
+#apDiv4 a {
+	color:white;
+}
+
+#apDiv2 {
+	margin-left:auto;
+	margin-right:auto;
+	width:850px;
+}
+h1 {
+/*	width:830px;*/
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 24px;
+/*	padding:10px;*/
+}
+
+#apDiv2 a {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	color:white;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+table {
+}
+
+th,td {
+    font-size:80%;
+}
+
+.signature {
+	font-family:courier;
+	background-color:#808080;
+	padding:8px;
+}

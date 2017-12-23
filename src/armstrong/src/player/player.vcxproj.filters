@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="audiodriver">
+      <UniqueIdentifier>{85922d8e-23e3-485f-9a9a-f6347f30089a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audiodriver\asio">
+      <UniqueIdentifier>{deb2f23b-0390-44ea-a647-9ed959610f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audiodriver\dsound">
+      <UniqueIdentifier>{45da8c70-28a5-41de-9421-38120e8f46dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="audiodriver\jack">
+      <UniqueIdentifier>{18308887-eaab-410d-a33a-32299352809b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mididriver">
+      <UniqueIdentifier>{9a24f5e7-e251-473a-ad8c-c63b7e16de34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mididriver\portmidi">
+      <UniqueIdentifier>{fa8cdd96-f605-497c-b5eb-1e19cc858616}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mididriver\jack">
+      <UniqueIdentifier>{5b2ad163-7761-4ceb-8f7b-b7d467f8513f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{4298e7f7-f715-45b8-9002-d1fad838b88c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="driver_native.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dummy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pluginmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\audioapi.cpp">
+      <Filter>audiodriver</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\convertsample.cpp">
+      <Filter>audiodriver</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\asio\asiocallbacks.cpp">
+      <Filter>audiodriver\asio</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\asio\asiodriver.cpp">
+      <Filter>audiodriver\asio</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\dsound\dsoundbuffer.cpp">
+      <Filter>audiodriver\dsound</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\dsound\dsounddriver.cpp">
+      <Filter>audiodriver\dsound</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\dsound\dsoundutil.cpp">
+      <Filter>audiodriver\dsound</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\jack\jackdriver.cpp">
+      <Filter>audiodriver\jack</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\audiodriver.cpp">
+      <Filter>audiodriver</Filter>
+    </ClCompile>
+    <ClCompile Include="audiodriver\jack\JackWeakAPI.cpp">
+      <Filter>audiodriver\jack</Filter>
+    </ClCompile>
+    <ClCompile Include="mididriver\portmidi\portmididriver.cpp">
+      <Filter>mididriver\portmidi</Filter>
+    </ClCompile>
+    <ClCompile Include="midi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mididriver\jack\jackmididriver.cpp">
+      <Filter>mididriver\jack</Filter>
+    </ClCompile>
+    <ClCompile Include="armserveclient.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="archive.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver_native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="driver_silent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dummy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="midinames.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\audioapi.h">
+      <Filter>audiodriver</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\audiodriver.h">
+      <Filter>audiodriver</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\convertsample.h">
+      <Filter>audiodriver</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\asio\asiocallbacks.h">
+      <Filter>audiodriver\asio</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\asio\asiodriver.h">
+      <Filter>audiodriver\asio</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\dsound\dsound.h">
+      <Filter>audiodriver\dsound</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\dsound\dsoundbuffer.h">
+      <Filter>audiodriver\dsound</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\dsound\dsounddriver.h">
+      <Filter>audiodriver\dsound</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\dsound\dsoundutil.h">
+      <Filter>audiodriver\dsound</Filter>
+    </ClInclude>
+    <ClInclude Include="audiodriver\jack\jackdriver.h">
+      <Filter>audiodriver\jack</Filter>
+    </ClInclude>
+    <ClInclude Include="midi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mididriver\portmidi\portmididriver.h">
+      <Filter>mididriver\portmidi</Filter>
+    </ClInclude>
+    <ClInclude Include="mididriver\midiapi.h">
+      <Filter>mididriver</Filter>
+    </ClInclude>
+    <ClInclude Include="mididriver\jack\jackmididriver.h">
+      <Filter>mididriver\jack</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\zzub\plugin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\zzub\signature.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\zzub\types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\zzub\zzub.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="armserveclient.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\include\zzub\zzub.zidl">
+      <Filter>include</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\zzub\pluginenum.zidl">
+      <Filter>include</Filter>
+    </None>
+  </ItemGroup>
+</Project>

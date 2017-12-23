@@ -1,0 +1,58 @@
+<html>
+<body>
+<h1>Pattern Player</h1>
+
+<p>
+	The pattern player plugin plays patterns in desired BPM/TPB.
+</p>
+
+<h2>Global parameters</h2>
+<table border="1">
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>BPM</td>
+		<td>word</td>
+		<td>Beats per minute, 0 = use timesource</td>
+	</tr>
+	<tr>
+		<td>TPB</td>
+		<td>byte</td>
+		<td>Ticks per beat, 0 = use timesource</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table border="1">
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Pattern Trigger</td>
+		<td>word</td>
+		<td>Pattern ID to play</td>
+	</tr>
+	<tr>
+		<td>Transpose</td>
+		<td>note</td>
+		<td>Transpose pattern notes relative to C-4</td>
+	</tr>
+</table>
+
+<p>
+	A Pattern Player plugin has global parameters for tempo and track parameters for pattern to play and transpose. By adding more tracks, it can play more patterns. 
+</p>
+<p>
+	By default, a pattern player inherits its tempo from the sequence plugin, but it offers parameters for setting BPM and TPB independently of the global tempo.
+</p>
+<p>
+	To simultaneously play patterns in a different tempo, add another Pattern Player plugin to the project.
+</p>
+
+</body>
+</html>

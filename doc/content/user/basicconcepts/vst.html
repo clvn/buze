@@ -1,0 +1,33 @@
+<html>
+<body>
+<h1>Using VST instruments</h1>
+<p>
+	<i>(Beware Buzz-users; Buze supports PVST, but also implements its own native VST-wrapper which is described here.)</i>
+</p>
+<p>
+	VST instruments rely on MIDI messages to play notes, and therefore depends on another plugin to generate MIDI notes.
+</p>
+<p>
+	For example, one could use another VST, such as a VST implementing a pianoroll to generate MIDI notes. Or, as we'll discuss here, use one of the built-in MIDI generators.
+</p>
+<p>
+	To see this in action, first create an instance of a VST plugin. Let's use Joachims TB4005 as an example.
+</p>
+<p>
+	Right click in the <a href="../views/machineview.html">Machine View</a> background and find "TB4005" from the context menu. 
+	Then right click in the Machine View background and find "<a href="../plugins/miditracker.html">MIDI Tracker</a>" from the context menu. 
+	Then connect the MIDI Tracker to the TB4005. Notice how the color of the wire is blue, indicating a MIDI wire instead of the black audio wire.
+</p>
+<p>
+	Finally connect the TB4005 to the Master with an audio wire. Click on the MIDI Tracker plugin and play some notes on your keyboard to hear the TB4005.
+</p>
+<p>
+	Many Buzz plugins also support MIDI. It is possible to connect the MIDI Tracker to both the Infector as well as the TB4005 in order to
+	make them play the same notes. Note however for Infector, you need to set up Infectors MIDI channel properties. 
+	To see these properties, right click the plugin in the Machine View and select "Machine Properties".
+</p>
+<p>
+	Consider using the more light weight <a href="../plugins/note.html">Note Generator</a> plugin instead of the MIDI Tracker.
+</p>
+</body>
+</html>

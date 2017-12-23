@@ -1,0 +1,119 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+//#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    //"#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDT_HELP_HELPVIEW RCDATA "res\\help.txt"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_FILEBROWSER TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILEBROWSER_PREV
+    BUTTON      ID_FILEBROWSER_NEXT
+	BUTTON      ID_FILEBROWSER_REFRESH
+    SEPARATOR
+    BUTTON      ID_FILEBROWSER_ADD_PATH
+    BUTTON      ID_FILEBROWSER_REMOVE_PATH
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_FILEBROWSER         BITMAP                  "res\\filebrowser.bmp"
+IDB_PATTERNFORMAT_IMAGES BITMAP                  "res\\treeimages.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_FILEBROWSER_ADD_PATH "Add path to shortcuts dropdown box"
+    ID_FILEBROWSER_REMOVE_PATH "Remove path from shortcuts dropdown box"
+	ID_FILEBROWSER_REFRESH  "Refresh current folder"
+    ID_FILEBROWSER_NEXT     "Next"
+    ID_FILEBROWSER_PREV     "Previous"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILEBROWSER_IMPORT "Import selection to wavetable"
+    ID_FILEBROWSER_IMPORT_ADVANCE "Import selection to wavetable and move to next file"
+    ID_FILEBROWSER_PREVIEW "Preview selected file or change directory"
+    ID_FILEBROWSER_PREVIEW_ADVANCE "Preview selected file and move to next file"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PROPERTYVIEW_RETURNTOVIEW "Return to previous view"
+END
+
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

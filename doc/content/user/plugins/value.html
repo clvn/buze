@@ -1,0 +1,73 @@
+<html>
+<body>
+<h1>Value Generators</h1>
+
+<p>
+	The Value Generator filters, transforms and sends values to other plugins' parameters.
+</p>
+<p>
+	Value generators can be used to control multiple plugin parameters at once, and/or connected in chains to perform complex operations on values before they reach their targets.
+</p>
+<p>
+	The value generator is also capable of generating random numbers using the Mersenne Twister algorithm using a specified seed.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Value</td>
+		<td>word</td>
+		<td>Input value</td>
+	</tr>
+	<tr>
+		<td>Seed</td>
+		<td>word</td>
+		<td>Random number generator seed. Used when operator = random. Setting the seed resets the random number generator.</td>
+	</tr>
+	<tr>
+		<td>Threshold</td>
+		<td>byte</td>
+		<td>Skips n values for every outputted value.</td>
+	</tr>
+	<tr>
+		<td>Allow min</td>
+		<td>word</td>
+		<td>Min value in allowed range. Tells the plugin to ignore values below this value.</td>
+	</tr>
+	<tr>
+		<td>Allow max</td>
+		<td>word</td>
+		<td>Max value in allowed range. Tells the plugin to ignore values above this value.</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Operator</td>
+		<td>byte</td>
+		<td>0=add, 1=sub, 2=mul, 3=div, 4=mod, 5=neg, 6=random, 7=scale, 8=min, 9=max</td>
+	</tr>
+	<tr>
+		<td>Operator value</td>
+		<td>word</td>
+		<td>Value for operation. Ignored when operator is neg or random.</td>
+	</tr>
+</table>
+
+<p>
+	The track operations are applied in order. Division by zero becomes zero. The random operator destroys the input value.
+</p>
+
+</body>
+</html>

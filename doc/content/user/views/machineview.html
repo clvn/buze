@@ -1,0 +1,226 @@
+<html>
+<body>
+<h1>Machine View</h1>
+
+<p>
+	The machine view helps creating and structuring plugins in a graph.
+</p>
+
+<h2>Working with plugins</h2>
+<ul>
+	<li>Click a plugin for single plugin selection.</li>
+	<li>Hold ctrl and left click to toggle selection state for single plugins.</li>
+	<li>Left click+drag in the background to create a selection rectangle with a new selection.</li>
+	<li>Hold shift and left click+drag in the background to create a selection rectangle that extends the selection.</li>
+	<li>Zoom with ctrl+mousewheel.</li>
+	<li>Left ctrl+drag the background to offset all plugins.</li>
+	<li>Use ctrl+arrows and ctrl+shift+arrows to move the selected plugins.</li>
+	<li>Middle click a connection to disconnect.</li>
+	<li>Left click an event connection to edit its parameter bindings.</li>
+	<li>Double click a plugin to open its parameter view - unless overriden by the plugin itself. Press shift+enter to always see the parameter view.</li>
+	<li>Refer to the plugins properties to set polyphony/number of tracks and custom attributes.</li>
+	<li>Plugins listed in the All Machines View and the machine view right click context menu are read from <a href="../basicconcepts/customizing.html">index.txt</a>. The "Unsorted" entries contain plugins which are not listed in index.txt.</li>
+	<li>Click+drag on an audio connection triangle to alter the connection volume.</li>
+</ul>
+
+<h2>Working with plugin groups</h2>
+<ul>
+	<li>To create a group, choose "Create New Group" from the background context menu.</li>
+	<li>Or select one or more plugins and/or groups, choose "Create Group From Selection" from the context menu.</li>
+	<li>To move a plugin or group between existing groups, use the context menu option "Move Plugin(s) To Group".</li>
+	<li>Double click a group to display its contents. Press Escape to go back to the parent group.</li>
+	<li>Copy/cut/paste of plugins and plugin groups works as expected</li>
+</ul>
+
+<h2>Creating plugins</h2>
+
+<p>
+	There are several ways to add new plugins to a song.
+</p>
+<ol>
+	<li>Go to the <a href="../allmachinesview/index.html">All Machines view</a> by pressing shift+F3, or from the main menu, View -> All Machines. Plugins listed in this hierarchy can be dragged into the machine view.</li>
+	<li>Right click in the machine view background and select a plugin from "New" in the popup menu.</li>
+	<li>Right click an existing effect plugin and select a plugin from either the "Replace", "Insert Before" or "Insert After" popup menus.</li>
+	<li>Right click in a connection triangle and select a plugin from "Insert" in the popup menu.</li>
+	<li>Click somewhere in the background and start typing, or click on a connection and start typing to insert.</li>
+</ol>
+
+<h2>Connecting plugins</h2>
+
+<p>
+	To connect any two plugins, hold down shift and click and drag from the plugin 
+	you want to create a connection. While dragging and holding the mouse over a plugin, 
+	a popup menu shows which types of connections can be created.
+</p>
+
+<p>
+	The types of connections are:
+</p>
+<table border="1">
+	<tr>
+		<th>
+			Connection type
+		</th>
+		<th>
+			Connection data
+		</th>
+		<th>
+			Connection requirements
+		</th>
+	</tr>
+	<tr>
+		<td>
+			<b>Audio connection</b>
+		</td>
+		<td>
+			Multi-channel, 32-bit floating point audio data
+		</td>
+		<td>
+			Source plugin has zzub_plugin_flag_has_audio_output.<br />
+			Target plugin has zzub_plugin_flag_has_audio_input.<br />
+			Click and drag on the connection triangle to adjust the volume on all channels.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<b>MIDI connection</b>
+		</td>
+		<td>
+			MIDI messages
+		</td>
+		<td>
+			Source plugin has zzub_plugin_flag_has_midi_output.<br />
+			Target plugin has zzub_plugin_flag_has_midi_input and exposes at least one virtual MIDI device.<br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<b>Event connection</b>
+		</td>
+		<td>
+			Parameter values mapped 1:1 from a list of parameter bindings
+		</td>
+		<td>
+			Source plugin has zzub_plugin_flag_has_event_output and at least one controller output parameter.<br />
+			Target plugin needs no special flags. Only one or more parameters.<br />
+			Click on the connection triangle to edit the current event parameter bindings.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<b>Note connection</b>
+		</td>
+		<td>
+			Note messages consisting of note, wave index and amp
+		</td>
+		<td>
+			Source plugin has zzub_plugin_flag_has_note_output.<br />
+			Target plugin needs no special flags. Only one or more note parameter.
+		</td>
+	</tr>
+</table>
+
+
+<h2>Background context menu</h2>
+<p>
+	Right+click somewhere in the background to bring up a context menu:
+</p>
+<blockquote>
+	<p>
+		<b>New...</b>: Creates a new plugin or plugins from a template.
+		The plugin and template hierarchy displayed in the "New"-submenu is parsed from Gear/Templates/*.armz and Gear/index.txt.
+		Plugins not listed in index.txt are placed in separate menus for "Unsorted Generators", "Unsorted Effects", 
+		"Unsorted Controllers", "Unsorted MIDI Effects", "Unsorted MIDI Generators" and "Unsorted Other Plugins".
+	</p>
+	<p>
+		<b>Cut/Copy/Paste</b>: Works with plugin selections on the clipboard.
+	</p>
+	<p>
+		<b>Create new group</b>: Creates a plugin group with stereo input/output.
+	</p>
+	<p>
+		<b>Import song...</b>: Import an existing .ARMZ from disk into the current project.
+	</p>
+	<p>
+		<b>Unmute all machines</b>: Yes.
+	</p>
+</blockquote>
+
+<h2>Plugin context menu</h2>
+<p>
+	Right+click a plugin or plugin selection to bring up its context menu:
+</p>
+<blockquote>
+	<p>
+		<b>Mute/Solo/Bypass</b>: Toggles muting options.
+	</p>
+	<p>
+		<b>Minimize/Unminimuze</b>: Toggles plugin display size.
+	</p>
+	<p>
+		<b>Hide Incoming</b>: Toggles whether to hide incoming connection wires. Can help keeping the graph more tidy.
+	</p>
+	<p>
+		<b>Parameters</b>: Shows the plugin parameter view.
+	</p>
+	<p>
+		<b>Properties</b>: Shows plugin properties.
+	</p>
+	<p>
+		<b>Cut/Copy</b>: Works with plugin selections on the clipboard.
+	</p>
+	<p>
+		<b>Delete</b>: Deletes the plugin.
+	</p>
+	<p>
+		<b>Smart Delete</b>: Deletes the plugin and keeps existing connections between plugins before and after the deleted plugin.
+	</p>
+	<p>
+		<b>Replace</b>: Replaces the machine with another machine
+	</p>
+	<p>
+		<b>Insert Before/Insert After</b>: Creates a new machine on the connection before or after the selected plugin.
+	</p>
+	<p>
+		<b>Render Output</b>: Render the output of the selected plugin to disk or wavetable as fast as possible. Fails if the song has looping patterns causing the song to run infinitely.
+	</p>
+	<p>
+		<b>Save Selection To File</b>: Saves the selected plugins to an .ARMZ on disk. Similar to "Copy", but saves to disk instead of the clipboard.
+	</p>
+	<p>
+		<b>Time Source</b>: Sets the source of BPM/TPB and other timing info for the selected plugin. 
+		
+		This is useful when a project plays patterns in different tempos at the same time. Plugins know only about a single tempo, so this setting decides what
+		tempo a plugin should track for its internal calculations.
+	</p>
+	<p>
+		<b>Create Full Pattern Format</b>: Creates a new pattern format with all parameters from the selected plugin. 
+	</p>
+	<p>
+		<b>Create Simple Pattern Format</b>: Creates a new pattern format with only note and velocity parameters from the selected plugin.
+	</p>
+</blockquote>
+
+
+<h2>Connection context menu</h2>
+<p>
+	Right+click on a connection triangle to bring up a context menu:
+</p>
+<blockquote>
+	<p>
+		<b>Disconnect &lt;type&gt;.</b>: Disconnects the specific connection type.
+	</p>
+	<p>
+		<b>Copy/Paste</b>: Works with the audio connections volumes.
+	</p>
+	<p>
+		<b>Insert...</b>: Inserts a plugin here.
+	</p>
+	<p>
+		<b>Properties</b>: Shows connection properties. For setting up the range of audio channels transfered between the source and target plugins.
+	</p>
+</blockquote>
+
+
+</body>
+</html>

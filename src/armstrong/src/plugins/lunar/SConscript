@@ -1,0 +1,88 @@
+#encoding: latin-1
+
+# libzzub, Buzé, Aldrin
+# Modular Sequencer
+# Copyright (C) 2006 The Aldrin Development Team
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+Import('pluginenv', 'build_plugin', 'install', 'mac', 'install_lib', 'win32', 'env')
+
+import os
+
+#######################################
+# lunar dependencies
+#######################################
+
+if pluginenv["LUNAR"] == True:
+	lunarstdenv = env.Clone()
+	lunarstdfiles = [
+		'lunarstd.cpp',
+	]
+	if win32:
+		lunarstdfiles.append('lunarstd.def')
+	lunarstd = lunarstdenv.SharedLibrary('${LIB_BUILD_PATH}/lunarstd', lunarstdfiles)[0]
+	install_lib(lunarstd)
+
+	pluginenv.Append(LIBS=[
+		'lunarstd'
+	])
+
+	if pluginenv["LUNARTARGET"] == 'llvm':
+		# XXX: don't use all libs, that makes little sense
+		# XXX: for every new platform, find out what is neccessary
+		# XXX: and selectively include those packages
+		pluginenv.ParseConfig('llvm-config --cxxflags --libs executionengine jit native bcreader selectiondag interpreter')
+		pluginenv.Append(CCFLAGS=[
+			'-DLUNARTARGET_LLVM'
+		])
+	elif pluginenv["LUNARTARGET"] == 'gcc':
+		pluginenv.Append(CCFLAGS=[
+			'-DLUNARTARGET_GCC'
+		])
+		pluginenv.Append(LIBS=[
+			pluginenv['LIB_DL'],
+			pluginenv['LIB_COMPAT'],
+		])
+	pluginenv.Append(CCFLAGS=[
+		'-DZZUB_SHARE_DIR_PATH="\\"%s\\""' % str(pluginenv.Dir("${DESTDIR}${PREFIX}/share/zzub")),
+		'-DSHLIBSUFFIX="\\"%s\\""' % pluginenv['SHLIBSUFFIX'],
+		'-DUSE_LUNAR',
+	])
+	
+	if mac:
+		# XXX: is this neccessary?
+		pluginenv.Append(CCFLAGS=[
+			'-D__STDC_LIMIT_MACROS',
+		])
+	
+	install('${DESTDIR}${PREFIX}/include/lunar', [
+		'include/lunar/fx.hpp',
+		'include/lunar/fx.h',
+		'include/lunar/dsp.h',
+	])
+
+	plugin = build_plugin(pluginenv, 'lunar', files=[
+			'lunar.cpp',
+			'sha1.c', # required by lunar
+		],
+		deffile="lunar/lunar.def")
+
+	liblunarpath = os.path.dirname(str(plugin[0]))
+	Export('liblunarpath')
+		
+	pluginenv.SConscript('fx/SConscript')
+	
+	

@@ -1,0 +1,60 @@
+<html>
+<body>
+
+<h1>Using MIDI</h1>
+
+<p>
+	In order to use external MIDI input or output devices, they must be enabled via the MIDI settings in Preferences. Enabled MIDI devices can be accessed by using the MIDI Input or MIDI Output plugins.
+</p>
+
+<h2>Bind MIDI controllers to plugin parameters:</h2>
+<p>
+	MIDI controllers can be assigned to individual plugin parameters from the parameter view.
+	From the machine view, double click a plugin, or press Shift+Enter, or select "Parameters" from the plugin context menu to show the parameter view.
+	Or from the pattern view, press Shift+Enter on a column which belongs to the plugin whose parameters you want to see.
+	Then right-click a parameter and choose "Bind to MIDI controller..." to show the MIDI binding dialog. To create the binding, simply move your MIDI controller
+	and see that the values in the dialog updates and press OK.
+</p>
+
+<h2>Recording live MIDI notes and control changes into patterns</h2>
+
+<h3>'Step' mode</h3>
+<p>
+	In this mode, the midi notes will be inserted at the cursor.
+</p>
+<ul>
+	<li>Add a miditracker to the machineview, and connect it to a VST instrument.</li>
+	<li>In the pattern view (F2) check the miditracker's note-column in the pattern format window (SHIFT-F2)</li>
+	<li>additionaly add some midichannels by pressing CTRL-+</li>
+</ul>
+<h3>'Live' mode</h3>
+<p>
+	This mode is also called 'overdub', and inserts notes at the pattern's current play-position.
+</p>
+<ul>
+	<li>Select a plugin in the Machine View to set MIDI focus. </li>
+	<li>Enable the recording-button on the main toolbar and press play. </li>
+	<li>Notes played through the machine view will be recorded into the first pattern with note columns belonging to the MIDI focus plugin.</li>
+</ul>
+
+<h2>MIDI plugins and routing in the machine view</h2>
+<h3>MIDI Tracker and Note Generator</h3>
+<p>
+	 The MIDI Tracker and Note Generator plugins can be used to generates MIDI signals.
+</p>
+
+<h3>MFX and VST MIDI plugins</h3>
+<p>
+	MFX is a plugin format designed to generate or process MIDI signals. Similarly, VST also supports plugins capable of generating or processing MIDI signals.
+	It is possible to create MIDI connections between MIDI-capable plugins and route signals as desired.
+</p>
+
+<h3>hw2zzub</h3>
+<p>
+	hw2zzub is a native plugin wrapper for hardware MIDI devices. hw2zzub reads profiles for physical devices described in a special JSON-format, 
+	which includes mappings for CC-to-parameters and audio device input channels.
+</p>
+
+
+</body>
+</html>

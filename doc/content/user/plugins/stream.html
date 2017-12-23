@@ -1,0 +1,69 @@
+<html>
+<body>
+<h1>Stream Plugins</h1>
+
+<p>
+	The stream plugins support a wide range of wave formats thanks to <a href="http://www.underbit.com/products/mad/">libmad</a> and <a href="http://www.mega-nerd.com/libsndfile/">libsndfile</a>.
+</p>
+<p>
+	These plugins share the same parameters, in order to let hosts implement previewing features.
+</p>
+<p>
+	The stream plugins synchronize the currently playing stream to the song playback position during seeks and jumps.
+</p>
+<p>
+	To select a file for playback, go to the plugins properties, and use the file selector from the plugins "Stream Source" property.  Note that the wavetable stream plugin takes a specially formed filename, and is currently not possible to set up from the user interface.
+</p>
+
+<h2>Types of stream plugins</h2>
+<ul>
+	<li>WAV/AIFF/etc via libsndfile</li>
+	<li>MP3 via libmad</li>
+	<li>Streaming from the internal wavetable</li>
+</ul>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Offset Low/High</td>
+		<td>word+word</td>
+		<td>Trigger offset</td>
+	</tr>
+	<tr>
+		<td>Length Low/High</td>
+		<td>word+word</td>
+		<td>Number of samples to play</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Channel</td>
+		<td>byte</td>
+		<td>MIDI Channel to send CC to</td>
+	</tr>
+	<tr>
+		<td>CC</td>
+		<td>byte</td>
+		<td>Control Change (CC)</td>
+	</tr>
+	<tr>
+		<td>Value</td>
+		<td>byte</td>
+		<td>Control Change (CC) value</td>
+	</tr>
+</table>
+
+</body>
+</html>

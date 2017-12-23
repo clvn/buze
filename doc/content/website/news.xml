@@ -1,0 +1,611 @@
+﻿<rss version="2.0">
+	<channel>
+		<title>Buzé News</title>
+		<link>http://www.batman.no/buze/</link>
+		<description>
+			Buzé modular tracker news feed
+		</description>
+		<language>en-us</language>
+		<copyright>Copyright 2003-2014 Buzé Developers</copyright>
+		<image>
+			<url>http://www.batman.no/buze/images/bze.png</url>
+			<title>Buzé</title>
+			<link>http://www.batman.no/buze/</link>
+		</image>
+
+		<item>
+			<title>
+				Version 0.8.7 released (r1270-1282)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Bugfixes and minor improvements:</div>
+<ul>
+<li>Fixed audible clicks when editing plugins and previewing waves</li>
+<li>Fixed song import with singleton plugins</li>
+<li>Can move the wait window, fixed saving screensets in the wrong location</li>
+<li>Wavetable: fixed editor zoom, tick markers, asserts</li>
+<li>Machine view: fixed led blinks, memory leaks</li>
+<li>Pattern editor info pane: new alt+pageup/pagedown hotkeys to jump pages of patterns, fixed and updated the context menu</li>
+</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.7.msi">Download Buzé installer</a> | 
+						<a href="http://www.batman.no/buze/lunar-audio-plugins-2.1.0.msi">Download Lunar Audio Plugins</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+
+				</div>
+			</description>
+			<pubDate>Sat, 07 Jun 2014 17:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.6 released (r1254-1269)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Features and fixes in this release:</div>
+<ul>
+<li>Song and template import improvements: Remaps imported waves to available wavetable slots and updates wave indexes in patterns, remaps imported pattern triggers</li>
+<li>Uses %APPDATA%\Buze for per-user storage of screensets, templates, plugin index, plugin cache, plugin presets</li>
+<li>Minor fixes: Pattern editor "Double Length" command, uninitialized variables in the pattern player plugin, VST plugin GUI compatibility</li>
+<li>Enable ATL thunk emulation with DEP, fixes f.ex Farbrausch V2 under Vista/7/8</li>
+</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.6.msi">Download Buzé installer</a> | 
+						<a href="http://www.batman.no/buze/lunar-audio-plugins-2.1.0.msi">Download Lunar Audio Plugins</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+
+				</div>
+			</description>
+			<pubDate>Sat, 03 May 2014 14:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.5 released (r1206-1253)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Features and fixes in this release:</div>
+<ul>
+	<li>Added new parameters "Swing" on the Pattern Player and Sequence plugins for easy, precise tempo shuffle/swing</li>
+	<li>F6 works slightly different: starts playing from the current cursor position in the current order list</li>
+	<li>New pattern editor "Add Trigger Column" context menu option for easy access to sequencer features</li>
+	<li>New pattern editor "Add Note/Velocity columns" and "Add All Columns" context menu options for easy extending pattern formats</li>
+	<li>Machine view search box indexes plugin name and author</li>
+	<li>hotkeys.json is no longer explicitly required, still used to override default hotkeys</li>
+	<li>Many smaller fixes: selects first audio device on startup, fixed asserts in the wavetable, fixed black pixels in the numeric combobox, fixed enter/gotopattern in trigger columns, fixed possible crashes in the pattern editor with add/remove track, fixed multichannel connection volumes, fixed module loader sample loop points</li>
+</ul>
+<div>
+	Buzé and the Lunar audio plugins have been split into separate installers. The Lunar installer does not have a user interface,
+	but installs itself to %PROGRAMFILES%\Lunar, and also adds itself to the PATH environment variable. After installing Lunar for the first time, remember
+	to restart Explorer.exe in order for the system to pick up the path environment changes (or reboot).
+</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.5.msi">Download Buzé installer</a> | 
+						<a href="http://www.batman.no/buze/lunar-audio-plugins-2.1.0.msi">Download Lunar Audio Plugins</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.5-pythonview.zip">Download Python plugin zip</a>
+					</div>
+
+
+				</div>
+			</description>
+			<pubDate>Fri, 14 Feb 2014 15:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.4 released (r1169-1205)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Features and fixes in this release:</div>
+<ul>
+<li>JACK improvements: Added support for native JACK MIDI, number of JACK audio ports increased to 16</li>
+<li>MIDI improvements: MIDI timestamps are handled with sample precision in MIDI connections, simplified MIDI internals</li>
+<li>DS audio driver does not hang when unplugging an external USB audio device</li>
+<li>Pattern editor Ctrl+I (interpolate selected values) was broken: no longer accidentally enables playback interpolation for the column</li>
+<li>Clamps out-of-range notes after runtime tranposing in the pattern player and controller plugins, fixes asserts</li>
+<li>Various minor fixes: asserts in preferences and wavetable, trouble with "Recent files" list, ignores tempo 0 in the module loaders</li>
+</ul>
+					<div>
+						Please delete libjack.dll from the Buzé program directory when upgrading from an earlier version!
+					</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.4.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.3-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Sun, 13 Oct 2013 15:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.3 released (r1101-1168)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Features and fixes in this release:</div>
+<ul>
+<li>Startup fixes for JACK. The JACK driver appears automatically in the Audio Driver Preferences when JACK is installed. Please delete libjack.dll from the Buzé program directory when upgrading from an earlier version!</li>
+<li>Fixes in the native pattern player, sequence and miditime plugins</li>
+<li>The .BMX importer is stricter about missing machines (and warns about it)</li>
+<li>Removed the autoupdate feature after an unfortunate flooding accident where the private signing key was lost</li>
+<li>Compiled with Visual Studio 2012 Express. <a href="http://www.batman.no/buze/developer/build/">The build process</a> was simplified, now uses free (as in beer) tools only.</li>
+</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.3.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.3-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Wed, 17 Jul 2013 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.2 released (r1094-1101)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>Features and fixes in this release:</div>
+<ul>
+<li>Keyjazz works across machineview, parameterview, mixerview</li>
+<li>Must press Enter to edit parameter values numerically - avoids keyjazzing collisions</li>
+<li>Optimized dragging of popup views</li>
+<li>Fixed controller connections/chains going into pattern and stream plugins</li>
+<li>Fixed automation of mute/bypass parameters</li>
+<li>Fixed a bug from previous version which prevented loading older songs (such as the demo songs)</li>
+</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.2.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.2-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Sat, 15 Sep 2012 14:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Version 0.8.1 released (r1052-1093)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+This time, most development went into the core audio engine (aka Armstrong, aka libzzub), focusing on compatibility improvements in ASIO and VST support.
+</div>
+<ul>
+	<li>Brand new audio driver code; supports ASIO, DS and adds support for <a href="http://jackaudio.org">JACK for Windows</a></li>
+	<li>Fixes long-standing compatibility problems with ASIO drivers for some soundboards</li>
+	<li>Added a button to launch the ASIO Control Panel in the preferences</li>
+	<li>VST program selection is loaded/saved from the song data</li>
+	<li>VST user interfaces are always opened (and hidden) when a VST is loaded</li>
+	<li>Big overhaul of the LADSPA plugin loader: Fixes cached default parameters and adds multi-IO support, could break older songs</li>
+	<li>Fixes in the parameter view for Wine</li>
+	<li>Wavetable volume slider enhancements and crash fix</li>
+	<li>New preference to remember pattern editor cursor by pattern or format</li>
+	<li>Compiled with Visual Studio 2010</li>
+</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.1.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.8.1-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Sun, 09 Sep 2012 14:00:00</pubDate>
+		</item>
+
+
+
+		<item>
+			<title>
+				Version 0.8.0 released (r1013-1051)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn, d98o, ld0d and sqz. Features and fixes in this release:
+					</div>
+					<ul>
+						<li>Added a new (experimental) mixer view bound to the F3 key</li>
+						<li>More convenient channel selector when connecting audio plugins with a large number of inputs/outputs</li>
+						<li>New Lunar plugins: ParamEQ, Exciter, Transient. Also added a native Output32-plugin</li>
+						<li>New logo and splash by damir "d98o" sijakovic</li>
+						<li>Optimizations for audio devices with many inputs/outputs</li>
+						<li>Smaller bugfixes all over the place, in native plugins, machine view, preset saving, slices, mixdown, song loading</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.8.0.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Sun, 29 Jul 2012 00:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.9 released (r1005-1012)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Bugfixing and minor enhancements.
+					</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.9.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Mon, 23 Apr 2012 18:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.8 released (r991-1004)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Bugfixing and minor enhancements.
+					</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.8.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Thu, 29 Mar 2012 22:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.7 released
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						This version fixes a severe bug in the mixing engine and improves Lunar Compressor 2.
+					</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.7.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Mon, 05 Mar 2012 23:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.6 released (r962-990)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						This version introduces one major new feature: plugin groups! In addition to a great number of smaller fixes and enhancements.
+					</div>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.6.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.6-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Sun, 04 Mar 2012 15:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.5 released (r936-961)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn, ld0d and zeffii. Features and fixes in this release:
+					</div>
+					<ul>
+						<li>Check for updates from the help menu</li>
+						<li>Various fixes: playback and wave preview glitches, mute/bypass, Buzz and Lunar channel names, connection properties, render output to selected wave, ++</li>
+						<li>Includes the new Matilde Tracker3 with "new buzz" multi-IO support</li>
+						<li>Updated Lunar Compressor2 with fixed knee and support for sidechain</li>
+						<li>Added several example scripts with the Python view</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.5.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.5-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Mon, 13 Feb 2012 23:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.4 released (r915-935)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn and ld0d. Features and fixes in this release:
+					</div>
+					<ul>
+						<li>Added a new plugin by ld0d: Lunar Compressor2</li>
+						<li>Optimizations in the parameter- and machineview</li>
+						<li>Various fixes: improved Wine support, MIDI play sync, wave loading by keyboard, wave editor slice selections, python paths, script API updates, ++</li>
+						<li>Includes a Lunar plugin SDK under Gear/Lunar/sdk for building audio/MIDI/controller plugins</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.4.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.4-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Mon, 30 Jan 2012 18:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.3.1 (r914)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Fixed a possible startup crash.
+						<a href="http://www.batman.no/buze/buze-0.7.3.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.3-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Fri, 20 Jan 2012 22:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.3 released (r897-913)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn, ld0d, sqz and phed. Features and fixes in this release:
+					</div>
+					<ul>
+						<li>New plugins ported to Lunar: Combfilter, Compressor, Equalizer, MS, 2x multiband, Simplestereo, Simpledelay, Limiter</li>
+						<li>Lunar extensions: Support for OpenGL GUI, multi-IO, notes and MIDI processing</li>
+						<li>VSTs recieve "all notes off"-message when playback stops</li>
+						<li>Fixed buggy mute/bypass, recorders and analyzer. Fixed crashes in screensets, machineview and dummy plugins</li>
+						<li>Smaller fixes and improvements all over the place</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.3.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.3-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Fri, 20 Jan 2012 18:00:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.2 released (r881-896)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn and sqz. Features and fixes in this release:
+					</div>
+					<ul>
+						<li>Max plugin latency compensation increased to 64k samples, heavily optimized</li>
+						<li>Value generator plugin: Added allow-min/max filtering parameters, new operators for scale/min/max</li>
+						<li>Machine view connection context menu: Added items for connection parameters and bindings, fixed properties</li>
+						<li>Wavetable fade fx improvements, new filebrowser toolbar icons, open comment view when loading a song with comments, open manual from the Help menu. Fixed silent audio connections, broken pattern editor toolbar buttons, threading weirdness, machineview click-during-load-crash, blank patternformat view on init</li>
+						<li>Python plugin: Added syntax coloring and save and execute hotkeys, more sample scripts</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.2.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.2-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Fri, 13 Jan 2012 13:30:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.1 released (r860-880)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn, sqz, ld0d. Highlights from this update include:
+					</div>
+					<ul>
+						<li>MIDI Focus locking from the status bar</li>
+						<li>New MIDI Controller Value generator plugin routes MIDI CCs and wheels to any parameters</li>
+						<li>Bugfixes: Mute/unmute fix, fixed wavelevel support for Buzz machines wavetable</li>
+						<li>New Python script console plugin can be installed separately. Exposes all Armstrong and Buze APIs</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.1.zip">Download zip</a> | 
+						<a href="http://www.batman.no/buze/buze-0.7.1-pythonview.zip">Download Python plugin zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Fri, 30 Dec 2011 02:02:00</pubDate>
+		</item>
+		<item>
+			<title>
+				Version 0.7.0 rc2 released (r790-859)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Contributions by clvn, sqz, ld0d. Highlights from this update include:
+					</div>
+					<ul>
+						<li>The user interface is plugin-based; views exist as dlls in Gear/Views; SDK included in the zip</li>
+						<li>Filebrowser supports samplebanks: can browse and load individual samples from mod, s3m, it, xm, drumkit</li>
+						<li>Wavetable selection enhancements</li>
+						<li>Various cleanups and removal of odd features and views</li>
+						<li>Bugfixes all over the place</li>
+					</ul>
+					<div>
+						<a href="http://www.batman.no/buze/buze-0.7.0rc2.zip">Download zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Fri, 23 Dec 2011 23:32:08</pubDate>
+		</item>
+
+		<item>
+			<title>
+				New bugtracker
+			</title>
+			<link>https://sourceforge.net/u/anders-e/buze/tickets/</link>
+			<description>
+				<div>
+					While waiting for the next major update, I've created a <a href="https://sourceforge.net/u/anders-e/buze/tickets/">bugtracker on sf.net</a>. Please post your bug findings and feature requests here.
+				</div>
+			</description>
+			<pubDate>Sat, 19 Nov 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r782-789)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					<div>
+						Bugfixing.
+					</div>
+					<div>
+						<a href="http://www.batman.no/lillebu.zip">Download zip</a>
+					</div>
+				</div>
+			</description>
+			<pubDate>Thu, 15 Sep 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r773-781)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Bugfixing, looks for VAMP plugins in Gear/VAMP, includes the <a href="http://www.vamp-plugins.org/plugin-doc/qm-vamp-plugins.html">QM set</a> by default, orderlist queue overrides pattern loop, can select source plugin in analyzer.
+				</div>
+			</description>
+			<pubDate>Tue, 16 Aug 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r767-772)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Bugfixing, new pitchshift/timestretch wavetable fx based on <a href="http://www.surina.net/soundtouch/">SoundTouch</a>.
+				</div>
+			</description>
+			<pubDate>Tue, 9 Aug 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r759-766)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Bugfixing, simpler default startup document, new joystick controller plugin.
+				</div>
+			</description>
+			<pubDate>Sun, 31 Jul 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r752-758)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Bugfixing and default hotkey updates: F3 = Machine View, no default hotkey for the Secondary Pattern Editor.
+				</div>
+			</description>
+			<pubDate>Fri, 22 Jul 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r746-751)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Parameter view optimizations, new button for toggling the user interfaces of VST and MFX plugins inside the parameter view, property view follows selected waves and wavelevels.
+				</div>
+			</description>
+			<pubDate>Mon, 18 Jul 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip (r736-745)
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					MIDI plugins fixes, "new machine" context menu updates, new VST path preference, plugin properties updates, new work in progress <a href="http://www.midiplugins.com/">MFX</a> (MIDI Fx) plugins wrapper, parameter view updates.
+				</div>
+			</description>
+			<pubDate>Sat, 16 Jul 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated web site
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Thx to zeffii and sqz.
+				</div>
+			</description>
+			<pubDate>Sun, 10 Jul 2011 22:00:00</pubDate>
+		</item>
+
+		<item>
+			<title>
+				Updated zip including r735
+			</title>
+			<link>http://www.batman.no/buze/</link>
+			<description>
+				<div>
+					Added "Create Simple Patternformat", property view follows selected plugins and patterns,
+					new <a href="http://www.vamp-plugins.org/">VAMP</a> plugin wrapper for pluggable wavetable beat slicing, pianoroll editing also moves track data belonging to notes, controller plugins fixes, new controller plugins assignment popup
+				</div>
+			</description>
+			<pubDate>Mon, 4 Jul 2011 22:00:00</pubDate>
+		</item>
+
+	</channel>
+</rss>

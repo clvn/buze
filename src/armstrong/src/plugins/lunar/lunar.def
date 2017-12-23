@@ -1,0 +1,5 @@
+EXPORTS
+	lunar_register_plugin
+	lunar_set_local_storage_dir
+	zzub_get_plugincollection
+	zzub_get_signature

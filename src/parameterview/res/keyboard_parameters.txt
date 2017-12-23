@@ -1,0 +1,7 @@
+
+Parameter view standard keyboard operations
+	
+    (keyboard notes)                    Play notes in selected machine
+
+Parameter view configurable keyboard shortcuts
+

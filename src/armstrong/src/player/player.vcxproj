@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseChecked|Win32">
+      <Configuration>ReleaseChecked</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseChecked|x64">
+      <Configuration>ReleaseChecked</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A06BF047-C0A7-4C77-8241-586DF174F63B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ExecutablePath>$(SolutionDir)tools;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">
+    <ExecutablePath>$(SolutionDir)tools;$(VC_ExecutablePath_x64);$(WindowsSdk_71A_ExecutablePath);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(FxCopDir);$(PATH);</ExecutablePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../include;..;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)player.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../include;..;../rtaudio;../rtaudio/include;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)player.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../include;..;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)player.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../include;..;../portaudio/include;../rtaudio;../rtaudio/include;../portmidi/porttime;../portmidi/pm_common;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)player.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../include;..;../portmidi/porttime;../portmidi/pm_common;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NNDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)player.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../include;..;../portmidi/porttime;../portmidi/pm_common;../atl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NNDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mixing\mixing.vcxproj">
+      <Project>{4e423fae-8129-425b-bc64-5ba1f548aa9b}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\storage\storage.vcxproj">
+      <Project>{0c634b46-5fd6-4d08-b55a-bac8271ac0a6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="armserveclient.cpp" />
+    <ClCompile Include="audiodriver\audiodriver.cpp" />
+    <ClCompile Include="audiodriver\jack\JackWeakAPI.cpp" />
+    <ClCompile Include="driver.cpp" />
+    <ClCompile Include="driver_native.cpp" />
+    <ClCompile Include="dummy.cpp" />
+    <ClCompile Include="midi.cpp" />
+    <ClCompile Include="mididriver\jack\jackmididriver.cpp" />
+    <ClCompile Include="mididriver\portmidi\portmididriver.cpp" />
+    <ClCompile Include="player.cpp" />
+    <ClCompile Include="pluginmanager.cpp" />
+    <ClCompile Include="audiodriver\audioapi.cpp" />
+    <ClCompile Include="audiodriver\convertsample.cpp" />
+    <ClCompile Include="audiodriver\asio\asiocallbacks.cpp" />
+    <ClCompile Include="audiodriver\asio\asiodriver.cpp" />
+    <ClCompile Include="audiodriver\dsound\dsoundbuffer.cpp" />
+    <ClCompile Include="audiodriver\dsound\dsounddriver.cpp" />
+    <ClCompile Include="audiodriver\dsound\dsoundutil.cpp" />
+    <ClCompile Include="audiodriver\jack\jackdriver.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\zzub\plugin.h" />
+    <ClInclude Include="..\..\include\zzub\signature.h" />
+    <ClInclude Include="..\..\include\zzub\types.h" />
+    <ClInclude Include="..\..\include\zzub\zzub.h" />
+    <ClInclude Include="archive.h" />
+    <ClInclude Include="armserveclient.h" />
+    <ClInclude Include="driver.h" />
+    <ClInclude Include="driver_native.h" />
+    <ClInclude Include="driver_silent.h" />
+    <ClInclude Include="dummy.h" />
+    <ClInclude Include="library.h" />
+    <ClInclude Include="midi.h" />
+    <ClInclude Include="mididriver\jack\jackmididriver.h" />
+    <ClInclude Include="mididriver\midiapi.h" />
+    <ClInclude Include="mididriver\portmidi\portmididriver.h" />
+    <ClInclude Include="midinames.h" />
+    <ClInclude Include="player.h" />
+    <ClInclude Include="pluginmanager.h" />
+    <ClInclude Include="audiodriver\audioapi.h" />
+    <ClInclude Include="audiodriver\audiodriver.h" />
+    <ClInclude Include="audiodriver\convertsample.h" />
+    <ClInclude Include="audiodriver\asio\asiocallbacks.h" />
+    <ClInclude Include="audiodriver\asio\asiodriver.h" />
+    <ClInclude Include="audiodriver\dsound\dsound.h" />
+    <ClInclude Include="audiodriver\dsound\dsoundbuffer.h" />
+    <ClInclude Include="audiodriver\dsound\dsounddriver.h" />
+    <ClInclude Include="audiodriver\dsound\dsoundutil.h" />
+    <ClInclude Include="audiodriver\jack\jackdriver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\include\zzub\zzub.zidl">
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/zzub.h
+zidl %(FullPath) cdef %(RootDir)%(Directory)/../../src/armstrong/libzzub.def
+zidl %(FullPath) py %(RootDir)%(Directory)/../../../../Python/armstrong.py
+</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RootDir)%(Directory)/zzub.h;%(Outputs)</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RootDir)%(Directory)/pluginenum.zidl</AdditionalInputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\include\zzub\pluginenum.zidl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

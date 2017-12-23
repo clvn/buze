@@ -1,0 +1,63 @@
+<html>
+<body>
+<h1>Note Generator</h1>
+
+<p>
+	The Note Generator transforms and sends notes to other plugins. Supports both note connections and MIDI connections.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Global Octave</td>
+		<td>byte</td>
+		<td>-5..5</td>
+	</tr>
+	<tr>
+		<td>Global Note</td>
+		<td>byte</td>
+		<td>-6..6</td>
+	</tr>
+	<tr>
+		<td>Harmonic Quantize</td>
+		<td>byte</td>
+		<td>0=custom, 1=major, 2=minor</td>
+	</tr>
+	<tr>
+		<td>C / C# / D / D# / E / F / F# / G / G# / A / A# / B</td>
+		<td>byte</td>
+		<td>Transpose single notes</td>
+	</tr>
+</table>
+
+<h2>Track parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Note</td>
+		<td>note</td>
+		<td>Note to process</td>
+	</tr>
+	<tr>
+		<td>Wave</td>
+		<td>byte</td>
+		<td>Wave index. Unused in MIDI output</td>
+	</tr>
+	<tr>
+		<td>Volume</td>
+		<td>byte</td>
+		<td>Volume</td>
+	</tr>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+﻿<html>
+<body>
+
+<h1>Plugins</h1>
+<p>
+	Plugins are key to get the most out of Buzé. Internal plugins expose unique features of Armstrong, and external plugin formats such as VST and LADSPA open a world of thousands of synths, effects, MIDI-utilities, analyzers and more.
+</p>
+
+<h2>Types of plugins</h2>
+<p>
+	The broad categories of plugins could be arranged as following:
+</p>
+<ul>
+	<li>Built-in core plugins
+		<ul>
+			<li>Audio device plugins</li>
+			<li>MIDI plugins</li>
+			<li>Streaming plugins</li>
+			<li>Recording plugins</li>
+			<li>Connection plugins</li>
+			<li>Pattern player plugins</li>
+			<li>Controller plugins</li>
+		</ul>
+	</li>
+	<li>Plugins wrappers
+		<ul>
+			<li>VST</li>
+			<li>Buzz</li>
+			<li>Psycle</li>
+			<li>LADSPA</li>
+		</ul>
+	</li>
+</ul>
+<p>
+	Refer to the <a href="../plugins/index.html">plugin references</a> for more details about the specific built-in plugins.
+</p>
+
+<h2>Types of plugins - by feature</h2>
+<p>
+	A plugin author/wrapper will decorate his plugin(s) a combination of flags to tell the engine about its features. Among other things, the flags indicate what other plugins they can connect to and the type of data flowing between the plugins. There are four distinct types of connections: Audio, MIDI, 
+	events and notes.
+</p>
+<p>
+	Because a plugin can perform almost any combination of audio/MIDI/event processing, it could be useful to understand the meaning of the individual flags
+	and how the user interface responds to these flags.
+</p>
+<table border="1">
+	<tr>
+		<th width="20%">
+			Flag
+		</th>
+		<th>
+			User interface response
+		</th>
+	</tr>
+	<tr>
+		<td>
+			has_audio_input
+		</td>
+		<td>
+			The plugin accepts incoming audio signals. Multi channel input is allowed. When creating an audio connection, the user must choose which range of channels to connect to.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			has_audio_output
+		</td>
+		<td>
+			The plugin can generate or alter audio, and sends its audio to connected plugins marked has_audio_input. Multi channel output is allowed. When creating an audio connection,
+			the user must choose which channel range to connect from.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			has_midi_input
+		</td>
+		<td>
+			The plugin accepts incoming MIDI connections. A plugin with this flag can expose more than one virtual MIDI device, and the user must decide which device to connect to when
+			creating the connection from another MIDI plugin. All Buzz machines have this flag set, forwarding any incoming MIDI signals to a fixed "Buzz MIDI Device" that represents the
+			Buzz machines' MIDI capabilities. F.ex it is possible to connect a MIDI tracker to any Buzz machine, and also VSTs and Psycle plugins support incoming MIDI connections.
+			Not all Buzz machines implement MIDI-support, and some (most?) plugins need to have MIDI support enabled through Properties.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			has_midi_output
+		</td>
+		<td>
+			The plugin sends outgoing MIDI signals. Can be connected to MIDI devices on plugins with the has_midi_input flag.
+			A plugin that combines has_midi_input and has_midi_output could do MIDI filtering, or perform other types of MIDI altering on the fly.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			has_event_output
+		</td>
+		<td>
+			<p>
+				The plugin sends parameter changes through event connections. Plugins with this flag are peer plugins, in a natively supported way. This type of plugin can expose one or more
+				"hidden" event-parameters, in addition to its public parameters seen in the parameter view. This hidden parameter comes in to play when making event connections.
+			</p>
+			<p>
+				F.ex an LFO-plugin that combines this flag with the has_interval-flag would expose such a hidden value-parameter. When bound to another parameter on a plugin through an event connection, 
+				the second parameter would be modified at a given interval.
+				However, a transpose-plugin could also use this flag to expose a series of hidden parameters, each acting as a connectable modifier for altering notes on-the-fly according to 
+				its public parameters.
+			</p>
+			<p>
+				BTD's Peer machines for Buzz use a different technique for its peering capabilities, and should not confused with this kind of native peer support.
+			</p>
+			<p>
+				This is a one-way type of connection, in the sense there is no has_event_input-flag, since an event connection could be made to any plugin that has parameters - which most plugins do.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			has_note_output
+		</td>
+		<td>
+			The plugin sends notes through note connections to any plugins with a note parameter.
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			is_connection
+		</td>
+		<td>
+			Internally, a connection is implemented as a plugin. Connection plugins are not rendered as boxes in the machine view, but they still appear e.g in the Pattern Format View, and other plugin-lists. 
+			Connection plugins are usually named such as "Audio1", "Midi2", "Event3", and have parameters which can be automated by MIDI and/or added to pattern formats.
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			is_sequence
+		</td>
+		<td>
+			The plugin implements its own tempo, and can be used as a tempo source by other plugins.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			has_interval
+		</td>
+		<td>
+			<p>
+				This flag allows plugins to determine the internal processing chunk size. It is used by plugins that need to interrupt the graph processing to play notes or change parameters with 
+				sample exact precision. Native peer LFO's use this flag to determine the interval of parameter updates.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			is_stream
+		</td>
+		<td>
+			<p>
+				The plugin plays streams, e.g from disk or the wavetable. The flag triggers special processing during song seeking in order to resume the stream correctly.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			mono_to_stereo<br />
+			plays_waves<br />
+			uses_lib_interface<br />
+			uses_instruments<br />
+			does_input_mixing<br />
+			no_output<br />
+			control_plugin<br />
+			auxiliary<br />
+			is_root<br />
+			offline<br />
+		</td>
+		<td>
+			Less used, legacy, obscure, internal. Subtle or no impact on the user interface experience.
+		</td>
+	</tr>
+</table>
+
+<h2>Plugin parameters</h2>
+
+<p>
+	A plugin has 5 parameter groups, or sections of parameters which are usually refered to by their group index number.
+</p>
+<table border="1" width="100%">
+	<tr>
+		<td width="20%">Virtual parameters</td>
+		<td width="10%">group 0</td>
+		<td>
+			Parameters defined by the engine on all plugins for toggling global plugin states: Mute, Soft Mute, Bypass and Soft Bypass.
+			The "Hard" versions mute/bypass permanently until toggled manually. The "Soft" variants mute/bypass until a parameter change.
+		</td>
+	</tr>
+	<tr>
+		<td>Global parameters</td>
+		<td>group 1</td>
+		<td>
+			Global plugin parameters defined by the plugin author.
+		</td>
+	</tr>
+	<tr>
+		<td>Track parameters</td>
+		<td>group 2</td>
+		<td>
+			Track plugin parameters defined by the plugin author. Track paramerers are repeated for the number of plugin tracks.
+		</td>
+	</tr>
+	<tr>
+		<td>Controller parameters</td>
+		<td>group 3</td>
+		<td>
+			Not visible from the parameter view, and neither user controllable in the regular sense. 
+			Only event plugins have controller parameters, which can be connected to parameters on controlled plugins.
+		</td>
+	</tr>
+	<tr>
+		<td>Meta parameters</td>
+		<td>group 4</td>
+		<td>
+			Parameters defined by the engine on certain plugins. 
+			These parameters do not affect the audio in any way, but offer a method for the user interface to add special "handles" in the song data to support a richer user experience.
+			A "Note Meta"-parameter is added on plugins with note parameters. Buze uses this to enable the inline piano roll or note matrix.
+			A "Wave Meta"-parameter is added on plugins with wave parameters. Buze plans to use this to enable an inline wave editor and recording facility.
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

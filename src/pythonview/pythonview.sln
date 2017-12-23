@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pythonview", "pythonview.vcproj", "{2078632C-38AD-41CD-9D8F-7AA317F1082A}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+		ReleaseChecked = ReleaseChecked
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.Debug.ActiveCfg = Debug|Win32
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.Debug.Build.0 = Debug|Win32
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.Release.ActiveCfg = Release|Win32
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.Release.Build.0 = Release|Win32
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.ReleaseChecked.ActiveCfg = Release|Win32
+		{2078632C-38AD-41CD-9D8F-7AA317F1082A}.ReleaseChecked.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

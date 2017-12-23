@@ -1,0 +1,89 @@
+﻿<html>
+<body>
+<h1>Tools used in the build process</h1>
+
+<p>
+	The build process uses several tools to generate source code. This document deals with the internal tools developed specifically for building the Buzé/Armstrong projects (but which can be and are used in other projects as well).
+</p>
+
+
+<h2>Zidl tool - Zzub Interface Description Language</h2>
+
+<p>
+	Zidl reads a public interface file as input, and produces source code in various programming languages as output.
+</p>
+
+<p>
+	Interface files are text files in zidl language, which supports enums, namespaces, structs, classes, methods and callbacks 
+	used to interoperate with a library. 
+</p>
+
+<p>
+	The output source file can be a C header, Lua and Python bindings, XML documentation and more.
+</p>
+
+<h3>History</h3>
+<p>
+	Zidl was originally developed by Paniq as a means to use the zzub C++ library from a Python application. The original zidl was written in Python.
+	Later, zidl was ported to C++ by clvn using the re2c lexer and lemon parser generator. The new version later added support for more features and languages. 
+	zzub was also renamed to Armstrong some time along the way, but the z was stuck
+</p>
+
+<h3>Using zidl</h3>
+<p>
+	Zidl uses C as the "lowest common denominator" for cross-language interopability, as most scripting languages can use libraries in C. 
+	Zidl can be used in C/C++ projects to expose desired functionality to scripting engines. It is likely also usable from other languages capable of producing shared
+	libraries with C calling conventions (f.ex Delphi).
+</p>
+<p>
+	A library typically generates its public interface header using zidl, and implements the interface methods using C calling conventions. 
+</p>
+<p>
+	Given the zidl file and the installed shared library, users can then generate Lua and Python bindings which call into the final library binary 
+	exposing the C interface.
+</p>
+
+<h3>Download and Source Code</h3>
+<p>
+	Get the source code and cross platform project files from the following Subversion repository:
+</p>
+<pre>
+	svn://anders-e.com/zidl/trunk/zidl
+</pre>
+<p>
+	Latest binaries for Windows exist in the win32deps directory of the Buzé repository. 
+</p>
+
+
+<h2>Documentgen tool - C++ code generator for SQLite</h2>
+<p>
+	documentgen reads a database description from a JSON file and produces C++ code to assist working with a SQLite database.
+</p>
+<p>
+The output C++ code contains:
+</p>
+<ul>
+	<li>Datastructures using boost::mpl to enable traversing database tables, fields, types and relations at compile-time</li>
+	<li>Strings with CREATE DATABASE and CREATE TABLE queries</li>
+	<li>Triggers and callbacks for before/after INSERT/UPDATE/DELETE operations</li>
+	<li>Code supporting undo/redo</li>
+</ul>
+
+<h3>History</h3>
+<p>
+The documentgen tool was developed to automate and simplify the process of making changes to the file format used by Buzé. Buzé uses SQLite internally to
+contain song data, and also as a file format when saving projects to disk. The tool has been generalized to be used in any suitable SQLite/C++ project.
+</p>
+
+<h3>Download and Source Code</h3>
+<p>
+	Get the source code and cross platform project files from the following Subversion repository:
+</p>
+<pre>
+	svn://anders-e.com/dbgenpp/trunk/dbgenpp
+</pre>
+<p>
+	Latest binaries for Windows exist in the win32deps directory of the Buzé repository. 
+</p>
+</body>
+</html>

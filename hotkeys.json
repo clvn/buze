@@ -1,0 +1,594 @@
+{
+
+// ------------------------------------------------------------------------------------------------
+// MAINFRAME
+// ------------------------------------------------------------------------------------------------
+
+/*
+  Main:
+    VK_F5,  ID_PLAY,                   VIRTKEY, NOINVERT
+    VK_F6,  ID_PLAYFROMCURSOR,         VIRTKEY, NOINVERT
+    VK_F6,  ID_REPLAY,                 VIRTKEY, SHIFT, NOINVERT
+    VK_F7,  ID_RECORD,                 VIRTKEY, NOINVERT
+    VK_F8,  ID_STOP,                   VIRTKEY, NOINVERT
+    VK_F12, ID_DEVICE_RESET,           VIRTKEY, NOINVERT
+
+  PV:
+    VK_F5,  ID_PATTERN_PLAY,           VIRTKEY, SHIFT, NOINVERT
+    VK_F6,  ID_PATTERN_PLAYFROMCURSOR, VIRTKEY, SHIFT, NOINVERT
+    VK_F6,  ID_PATTERN_REPLAY,         VIRTKEY, CONTROL, NOINVERT
+*/
+
+"mainframe" :
+{
+	"play"           : "f5",
+	"playfromcursor" : "f6",
+	"record"         : "f7",
+	"stop"           : "f8",
+	"device_reset"   : "f10",
+
+	"view_help"            : "f1",
+	"view_primary"         : "f2",
+	"view_machines"        : "f4",
+	"view_wavetable"       : "f9",
+	"view_patternformat"   : "f2 shift",
+	"view_allmachines"     : "f3 shift",
+	"view_files"           : "f9 shift",
+	"view_comment"         : "f11",
+	"view_showhide_params" : "f12",
+	"view_analyzer"        : "y ctrl shift",
+	"view_cpumeter"        : "c ctrl shift",
+	"view_history"         : "h ctrl shift",
+	"view_preferences"     : "s ctrl shift",
+
+	"view_nextpane"  : "tab ctrl",
+	"view_prevpane"  : "tab ctrl shift",
+	"view_closepane" : [ "w ctrl", "f4 ctrl" ],
+
+	"file_new"  : "n ctrl",
+	"file_open" : "o ctrl",
+	"file_save" : "s ctrl",
+
+	"edit_undo" : "z ctrl",
+	"edit_redo" : "y ctrl",
+
+	"screenset_recall_0" : "numpad0",
+	"screenset_recall_1" : "numpad1",
+	"screenset_recall_2" : "numpad2",
+	"screenset_recall_3" : "numpad3",
+	"screenset_recall_4" : "numpad4",
+	"screenset_recall_5" : "numpad5",
+	"screenset_recall_6" : "numpad6",
+	"screenset_recall_7" : "numpad7",
+	"screenset_recall_8" : "numpad8",
+	"screenset_recall_9" : "numpad9",
+	"screenset_store_0"  : "numpad0 ctrl",
+	"screenset_store_1"  : "numpad1 ctrl",
+	"screenset_store_2"  : "numpad2 ctrl",
+	"screenset_store_3"  : "numpad3 ctrl",
+	"screenset_store_4"  : "numpad4 ctrl",
+	"screenset_store_5"  : "numpad5 ctrl",
+	"screenset_store_6"  : "numpad6 ctrl",
+	"screenset_store_7"  : "numpad7 ctrl",
+	"screenset_store_8"  : "numpad8 ctrl",
+	"screenset_store_9"  : "numpad9 ctrl",
+
+	"keyjazz_octave_up"   : "multiply",
+	"keyjazz_octave_down" : "divide",
+
+	"bpm_up"   : "oem_6 ctrl",
+	"bpm_down" : "oem_4 ctrl"
+
+	/* BUILTINS:
+		x
+	*/
+},
+
+// ------------------------------------------------------------------------------------------------
+// PATTERN EDITOR
+// ------------------------------------------------------------------------------------------------
+
+"patternview" :
+{
+	"pattern_play"           : "f5 ctrl",
+	"pattern_replay"         : "f5 shift ctrl",
+	"pattern_playfromcursor" : "f6 ctrl",
+	"pattern_play_track"     : "4 shift",
+	"pattern_play_row"       : "8 shift",
+
+	"edit_copy"      : "c ctrl",
+	"edit_cut"       : "x ctrl",
+	"edit_paste"     : "v ctrl",
+	"cut_splice"     : "x ctrl shift",
+	"paste_splice"   : "v ctrl shift",
+	"paste_step"     : "p ctrl",
+	"paste_mixover"  : "p ctrl shift",
+	"paste_mixunder" : "p ctrl alt",
+
+	"clear_value"           : "oem_period",
+	"clear_track_row"       : "oem_period ctrl",
+	"clear_pattern_row"     : "oem_period ctrl shift",
+	"insert_column_row"     : "insert",
+	"insert_track_row"      : "insert ctrl",
+	"insert_pattern_row"    : "insert ctrl shift",
+	"edit_delete"           : "delete",
+	"delete_track_row"      : "delete ctrl",
+	"delete_pattern_row"    : "delete ctrl shift",
+	"backspace_value"       : "backspace",
+	"backspace_track_row"   : "backspace ctrl",
+	"backspace_pattern_row" : "backspace ctrl shift",
+
+	"select_begin"   : "",
+	"select_end"     : "",
+	"select_down"    : "d ctrl",
+	"select_beat"    : "d ctrl shift",
+	"select_columns" : "oem_5 ctrl",
+	"select_all"     : "oem_5 ctrl shift",
+	"select_none"    : "u ctrl",
+
+	"track_mute"   : "m ctrl",
+	"track_solo"   : "l ctrl",
+	"machine_mute" : "m ctrl shift",
+	"machine_solo" : "l ctrl shift",
+
+	"track_add"    : "add ctrl",
+	"track_remove" : "subtract ctrl",
+
+	"loop_set_begin"     : "b ctrl",
+	"loop_set_end"       : "e ctrl",
+	"loop_set_pattern"   : "b ctrl shift",
+	"loop_set_selection" : "e ctrl shift",
+
+	"format_up"              : "add alt shift",
+	"format_down"            : "subtract alt shift",
+	"pattern_up"             : "add alt",
+	"pattern_down"           : "subtract alt",
+	"dropdown_wave"          : "w alt",
+	"dropdown_format"        : "d alt",
+	"dropdown_pattern"       : "p alt",
+	"dropdown_octave"        : "o alt",
+	"dropdown_step"          : "s alt",
+	"toggle_playnotes"       : "n alt",
+	"toggle_showinfo"        : "i alt",
+	"toggle_follow"          : "oem_7 alt",
+	"show_notemask"          : "m alt",
+	"show_harmonictranspose" : "x alt",
+	"toggle_patternloop"     : "l alt",
+	"dropdown_patternscale"  : "c alt",
+	"dropdown_patternbeat"   : "b alt",
+	"dropdown_patternrows"   : "r alt",
+	"dropdown_patternname"   : "n alt",
+
+	"patternstack_back"    : [ "escape", "left alt" ],
+	"patternstack_forward" : "right alt",
+	"patternstack_reset"   : "",
+
+	"step_set_0" : "0 ctrl",
+	"step_set_1" : "1 ctrl",
+	"step_set_2" : "2 ctrl",
+	"step_set_3" : "3 ctrl",
+	"step_set_4" : "4 ctrl",
+	"step_set_5" : "5 ctrl",
+	"step_set_6" : "6 ctrl",
+	"step_set_7" : "7 ctrl",
+	"step_set_8" : "8 ctrl",
+	"step_set_9" : "9 ctrl",
+	"step_up"    : "",
+	"step_down"  : "",
+
+	"keyjazz_octave_up"      : "multiply",
+	"keyjazz_octave_down"    : "divide",
+	"wave_next"              : ">",
+	"wave_previous"          : "<",
+	"toggle_horizontalentry" : "h ctrl",
+	"cycle_notesaffect"      : "oem_5 alt",
+	"toggle_transposeset"    : "t alt",
+	"toggle_volmask"         : "",
+
+	"pattern_rows_double"   : "f ctrl",
+	"pattern_rows_halve"    : "g ctrl",
+	"pattern_length_double" : "f ctrl shift",
+	"pattern_length_halve"  : "g ctrl shift",
+
+	"transpose_notes_up"         : "q ctrl",
+	"transpose_notes_down"       : "a ctrl",
+	"transpose_notes_octaveup"   : "q ctrl shift",
+	"transpose_notes_octavedown" : "a ctrl shift",
+	"transpose_all_up"           : "q alt",
+	"transpose_all_down"         : "a alt",
+	"transpose_rekey"            : "",
+
+	"transform_randomize"          : "r ctrl",
+	"transform_randomrange"        : "r ctrl shift",
+	"transform_randomfrom"         : "",
+	"transform_humanize"           : "",
+	"transform_shuffle"            : "",
+	"transform_interpolate"        : "i ctrl",
+	"transform_gradiate"           : "i ctrl shift",
+	"transform_smooth"             : "",
+	"transform_reverse"            : "",
+	"transform_compact"            : "",
+	"transform_expand"             : "",
+	"transform_thin"               : "",
+	"transform_repeat"             : "",
+	"transform_echo"               : "",
+	"transform_unique"             : "",
+	"transform_scale"              : "",
+	"transform_fade"               : "",
+	"transform_curvemap"           : "",
+	"transform_invert"             : "",
+	"transform_rotaterows"         : "",
+	"transform_rotaterows_up"      : "",
+	"transform_rotaterows_down"    : "",
+	"transform_rotatevalues"       : "",
+	"transform_rotatevalues_up"    : "",
+	"transform_rotatevalues_down"  : "",
+	"transform_rotaterhythms"      : "",
+	"transform_rotaterhythms_up"   : "",
+	"transform_rotaterhythms_down" : "",
+	"transform_rotatenotes"        : "",
+	"transform_rotatenotes_up"     : "",
+	"transform_rotatenotes_down"   : "",
+	"transform_notelength"         : "",
+	"transform_volumes"            : "",
+	"transform_alltofirst"         : "",
+	"transform_firsttolast"        : "",
+	"transform_removefirst"        : "",
+	"transform_replacewaves"       : "",
+	"transform_invertchord_up"     : "oem_2 ctrl",
+	"transform_invertchord_down"   : "oem_2 ctrl shift",
+	"transform_trackswap"          : "j ctrl",
+	"transform_rowswap"            : "j ctrl shift",
+	"transform_clearsamecolumn"    : "",
+
+	"column_action_1" : "space",
+	"column_action_2" : "space ctrl",
+	"column_action_3" : "space ctrl shift",
+	"column_action_4" : "space shift",
+	"column_action_5" : "enter",
+	"column_action_6" : "enter shift",
+
+	"column_toggle_columncontrol" : "t ctrl",
+	"column_collapse_selection"   : "",
+	"column_uncollapse_selection" : "",
+	"column_toggle_collapse_selection" : "k ctrl",
+	"column_toggle_collapse_track" : "k ctrl shift",
+
+	"pickupvalue" : ";",
+
+	"infopane_up"   : "up alt",
+	"infopane_down" : "down alt",
+
+	"track_swap_right"          : "right ctrl alt",
+	"track_swap_left"           : "left ctrl alt",
+	"format_layoutplugin_right" : "right ctrl alt shift",
+	"format_layoutplugin_left"  : "left ctrl alt shift",
+
+	"pattern_create"     : "enter ctrl",
+	"pattern_clone"      : "enter ctrl shift",
+	"pattern_delete"     : "delete alt",
+	"pattern_properties" : "backspace alt",
+
+	"format_create"     : "",
+	"format_clone"      : "",
+	"format_delete"     : "",
+	"format_properties" : "",
+	"format_show" : "f2 shift",
+
+	"machine_parameters" : "enter alt",
+	"machine_properties" : "",
+
+	"orderlist_right" : "oem_6 alt",
+	"orderlist_left"  : "oem_4 alt"
+
+	/* BUILTINS:
+		x
+	*/
+},
+
+// ------------------------------------------------------------------------------------------------
+// KEYJAZZ
+// ------------------------------------------------------------------------------------------------
+
+"keyjazz" :
+{
+	"note_off" : "1",
+	"note_cut" : "oem_3",
+
+	"C-0" : "z",
+	"C#0" : "s",
+	"D-0" : "x",
+	"D#0" : "d",
+	"E-0" : "c",
+	"F-0" : "v",
+	"F#0" : "g",
+	"G-0" : "b",
+	"G#0" : "h",
+	"A-0" : "n",
+	"A#0" : "j",
+	"B-0" : "m",
+	"C-1" : [ "oem_comma", "q" ],
+	"C#1" : "2",
+	"D-1" : "w",
+	"D#1" : "3",
+	"E-1" : "e",
+	"F-1" : "r",
+	"F#1" : "5",
+	"G-1" : "t",
+	"G#1" : "6",
+	"A-1" : "y",
+	"A#1" : "7",
+	"B-1" : "u",
+	"C-2" : "i",
+	"C#2" : "9",
+	"D-2" : "o",
+	"D#2" : "0",
+	"E-2" : "p",
+
+	"jazz_lastnote" : "",
+	"jazz_track"    : "4",
+	"jazz_row"      : "8",
+
+	"octave_up"   : "f",
+	"octave_down" : "a"
+},
+
+// ------------------------------------------------------------------------------------------------
+// MACHINE VIEW
+// ------------------------------------------------------------------------------------------------
+
+"machineview" :
+{
+	"edit_copy"          : "c ctrl",
+	"edit_cut"           : "x ctrl",
+	"edit_paste"         : "v ctrl",
+	"edit_paste_no_data" : "v ctrl shift",
+	"edit_selectall"     : "a ctrl",
+	"edit_delete"        : "delete",
+	"delete_and_restore" : "delete shift",
+
+	"align_down"  : "down alt",
+	"align_left"  : "left alt",
+	"align_right" : "right alt",
+	"align_up"    : "up alt",
+
+	"move_down"            : "down ctrl",
+	"move_down_step"       : "down ctrl shift",
+	"move_down_left"       : "end ctrl",
+	"move_down_left_step"  : "end ctrl shift",
+	"move_down_right"      : "pagedown ctrl",
+	"move_down_right_step" : "pagedown ctrl shift",
+	"move_left"            : "left ctrl",
+	"move_left_step"       : "left ctrl shift",
+	"move_right"           : "right ctrl",
+	"move_right_step"      : "right ctrl shift",
+	"move_up"              : "up ctrl",
+	"move_up_step"         : "up ctrl shift",
+	"move_up_left"         : "home ctrl",
+	"move_up_left_step"    : "home ctrl shift",
+	"move_up_right"        : "pageup ctrl",
+	"move_up_right_step"   : "pageup ctrl shift",
+
+	"machine_mute"       : "m ctrl",
+	"machine_solo"       : "l ctrl",
+	"machine_bypass"     : "b ctrl",
+	"machine_unmute_all" : "u ctrl",
+
+	"machine_parameters" : "enter shift",
+	"machine_properties" : "backspace alt",
+
+	"toggle_connection_text" : "tab"
+
+	/* BUILTINS:
+		x	
+	*/
+},
+
+// ------------------------------------------------------------------------------------------------
+// WAVETABLE
+// ------------------------------------------------------------------------------------------------
+
+"wavetable" :
+{
+	"edit_copy"      : "c ctrl",
+	"edit_cut"       : "x ctrl",
+	"edit_paste"     : "v ctrl",
+	"edit_selectall" : "a ctrl",
+	"edit_delete"    : "delete",
+
+	"wave_zoom_in"        : "up shift",
+	"wave_zoom_out"       : "down shift",
+	"wave_zoom_selection" : "s shift",
+	"wave_zoom_all"       : "a shift",
+
+	"wave_properties" : "backspace alt",
+
+	"wave_clear" : "delete ctrl",
+	"wave_trim"  : "t ctrl"
+
+	/* BUILTINS:
+		x
+	*/
+},
+
+// ------------------------------------------------------------------------------------------------
+// PARAMETER EDITOR
+// ------------------------------------------------------------------------------------------------
+
+"parameter" :
+{
+	"slider_next"     : [ "down", "tab" ],
+	"slider_previous" : [ "up", "tab shift" ],
+
+	"move_right"     : "right",
+	"move_someright" : "right shift",
+	"move_pageright" : "right ctrl shift",
+	"move_left"      : "left",
+	"move_someleft"  : "left shift",
+	"move_pageleft"  : "left ctrl shift",
+
+	"entervalue" : "enter",
+
+	"preset_dropdown" : "p alt",
+	"preset_previous" : "up ctrl",
+	"preset_next"     : "down ctrl",
+
+	"preset_randomize" : "r ctrl",
+	"preset_humanize"  : "h ctrl"
+
+	/* BUILTINS:
+		x
+	*/
+},
+
+// ----------------------------------------------------------------------------
+// ORDER LIST
+// ----------------------------------------------------------------------------
+
+"orderlist" :
+{
+	"edit_copy"  : "c ctrl",
+	"edit_cut"   : "x ctrl",
+	"edit_paste" : "v ctrl",
+
+	"order_insert"           : "insert",
+	"order_duplicate"        : "d ctrl",
+	"order_new"              : "p ctrl",
+	"order_remove"           : "delete",
+	"order_remove_delete"    : "delete ctrl",
+	"order_backspace"        : "backspace",
+	"order_backspace_delete" : "backspace ctrl",
+	"loop_set_begin"         : "b ctrl",
+	"loop_set_end"           : "e ctrl",
+	"loop_set_selection"     : "l ctrl",
+
+	"toggle_follow" : "oem_7 alt",
+
+	"play"  : "space",
+	"queue" : "q ctrl",
+
+	"deselect"     : "escape",
+	"focus_editor" : "enter"
+
+	/* BUILTINS:
+		right	move right
+		left	move left
+		home	move first order
+		end		move last order
+		up		cycle pattern up
+		down	cycle pattern down
+	*/
+},
+
+// ------------------------------------------------------------------------------------------------
+// FILE BROWSER
+// ------------------------------------------------------------------------------------------------
+
+"filebrowser" :
+{
+	"import" : "enter",
+	"import_advance" : "backspace",
+	"preview" : "space ctrl",
+	"preview_advance" : "space",
+	"refresh" : "r ctrl",
+
+	"previous" : "left",
+	"next"     : "right"
+},
+
+// ------------------------------------------------------------------------------------------------
+// PROPERTY EDITOR
+// ------------------------------------------------------------------------------------------------
+
+"properties" :
+{
+	"returntoview" : "escape"
+},
+
+// ------------------------------------------------------------------------------------------------
+// PATTERN FORMAT EDITOR
+// ------------------------------------------------------------------------------------------------
+
+"patternformatview" :
+{
+	"returntoview" : "escape"
+	// had IDR_PROPERTYVIEW for returntoview -- they are missing a new ID in the msg map
+},
+
+// ------------------------------------------------------------------------------------------------
+// PYTHON SCRIPT EDITOR
+// ------------------------------------------------------------------------------------------------
+
+"pythonview" :
+{
+	"save" : "s ctrl",
+	"execute" : "f5",
+	"edit_undo" : "z ctrl",
+	"edit_redo" : "y ctrl"
+}
+
+// ------------------------------------------------------------------------------------------------
+// REFERENCE
+// ------------------------------------------------------------------------------------------------
+
+/*
+	All available commands are listed.
+
+	Keyjazz keys cannot have modifiers ("ctrl", "alt", or "shift").
+
+	You can create multiple bindings for a command with the following syntax:
+		"patternstack_back" : [ "escape", "left alt" ]
+
+	Commands can be commented out.
+
+	A command with an empty string ("") will be skipped.
+
+	The hotkey string for a command can be in any order, ie:
+		"foo" : "e ctrl"
+	or
+		"foo" : "ctrl e"
+
+	You can use an ASCII character for a hotkey, ie:
+		"wave_next" : "<"
+	If you use an ASCII character without any modifiers then the hotkey will be case-sensitive;
+	The character may require pressing shift.
+
+	If modifiers are used, then the hotkey is virtual and is not case sensitive, ie:
+		"interpolate" : "i ctrl"
+		"interpolate" : "I ctrl"
+	-- These two are the same.
+
+	You can also use these virtual keys:
+		backspace, tab, clear, enter
+		pause
+		capslock
+		escape, space
+		pageup, pagedown, end, home
+		left, up, right, down
+		select, print, execute, printscreen
+		insert, delete
+		help
+		numpad0, numpad1, numpad2, numpad3, numpad4, numpad5, numpad6, numpad7, numpad8, numpad9
+		multiply, add, separator, subtract, decimal, divide
+		f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15, f16
+		numlock, scrolllock
+		oem_1		// ';:' for US
+		oem_plus	// '+' any country
+		oem_comma	// ',' any country
+		oem_minus	// '-' any country
+		oem_period	// '.' any country
+		oem_2		// '/?' for US
+		oem_3		// '`~' for US
+		oem_4		// '[{' for US
+		oem_5		// '\|' for US
+		oem_6		// ']}' for US
+		oem_7		// ''"' for US
+		oem_8		//
+
+	The "BUILTINS" comment in each section lists hotkeys that cannot be modified, because they need to
+	support some special behaviour. An example of this would be the Up/Down/Left/Right keys in the
+	Pattern Editor, because they support repetition and diagonal motion.
+	Your custom bindings should not conflict with these keys.
+*/
+
+}

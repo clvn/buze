@@ -1,0 +1,57 @@
+﻿<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<UL>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="FAQ">
+	   <param name="Local" value="output\user\faq.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\faq.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\plugins\index.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\plugins\vst2zzub.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\basicconcepts\midi.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\basicconcepts\plugintypes.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="VST">
+	   <param name="Local" value="output\user\basicconcepts\vst.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="MIDI">
+	   <param name="Local" value="output\user\plugins\vst2zzub.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="MIDI">
+	   <param name="Local" value="output\user\basicconcepts\midi.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="MIDI">
+	   <param name="Local" value="output\user\basicconcepts\plugintypes.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="MIDI">
+	   <param name="Local" value="output\user\basicconcepts\vst.html">
+	   </OBJECT>
+   <LI> <OBJECT type="text/sitemap">
+	   <param name="Name" value="MIDI">
+	   <param name="Local" value="output\user\midisync\index.html">
+	   </OBJECT>
+</UL>
+</BODY></HTML>

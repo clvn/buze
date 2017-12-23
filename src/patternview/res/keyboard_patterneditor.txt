@@ -1,0 +1,24 @@
+
+Pattern editor standard keyboard and mouse operations
+	
+    Arrows                              Move cursor
+    Arrow up/down+Arrow left/right      Move cursor diagonally
+    Page Up                             Move cursor up 16 rows
+    Page Down                           Move cursor down 16 rows
+    TAB                                 Move cursor to next track
+    Shift+TAB                           Move cursor to previous track
+    Home                                Move to beginning of line
+    Ctrl+Home                           Move to beginning of loop
+    End                                 Move to last column
+    Ctrl+End                            Move to end of loop
+    (keyboard notes)                    Edit notes in note columns
+    Shift+(keyboard notes)              Edit notes in note columns, chord mode
+    Ctrl+Scroll wheel                   Change pattern display resolution
+    Shift+Scroll wheel                  Change font size
+    Drag+Drop selection                 Move selected pattern data
+    Drag+Ctrl+Drop selection            Copy selected pattern data
+    Drag selection+Right click          Stamp selected pattern data
+    (type pattern name: a..z, 0..9)     Insert pattern in trigger columns
+
+Pattern editor configurable keyboard shortcuts
+

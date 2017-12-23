@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="resampler">
+      <UniqueIdentifier>{20073f9c-63bc-4e6e-a0e4-8c8111b860d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="plugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream_info.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream_plugin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stream_wavetable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\BaseVoiceState.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\Downsampler2Flt.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\InterpPack.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\main.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\MipMapFlt.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\ResamplerFlt.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="resampler\StopWatch.cpp">
+      <Filter>resampler</Filter>
+    </ClCompile>
+    <ClCompile Include="stream_file.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="mixer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plugins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream_info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream_plugin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stream_wavetable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\BaseVoiceState.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\def.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Downsampler2Flt.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Downsampler2Flt.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Fixed3232.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\fnc.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\fnc.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Int16.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Int32.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\Int64.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\InterpFlt.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\InterpFlt.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\InterpFltPhase.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\InterpFltPhase.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\InterpPack.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\MipMapFlt.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\MipMapFlt.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\ResamplerFlt.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\StopWatch.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\StopWatch.hpp">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="resampler\UInt32.h">
+      <Filter>resampler</Filter>
+    </ClInclude>
+    <ClInclude Include="stream_file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

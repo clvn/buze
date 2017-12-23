@@ -1,0 +1,137 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDT_HELP_MACHINEVIEW RCDATA "res\\keyboard_machines.txt"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+IDD_CONNECTION_EVENT DIALOGEX 0, 0, 200, 150
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Source Parameter",IDC_STATIC,7,27,90,8
+    LTEXT           "Target Parameter(s)",IDC_STATIC,103,27,90,8
+    LTEXT           "Plugin Name",IDC_EVENTCONNECTION_SOURCE_PLUGIN,7,17,40,8
+    LTEXT           "Plugin Name",IDC_EVENTCONNECTION_TARGET_PLUGIN,103,17,40,8
+	LTEXT           "Edit Controller Bindings (Enter accepts, Esc aborts):",IDC_STATIC,7,7,193,8
+    LISTBOX         IDC_CONNECTION_SOURCE_PARAM,7,38,90,105,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_CONNECTION_TARGET_PARAM,103,37,90,107,LBS_MULTIPLESEL | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_CONNECTION_AUDIO DIALOGEX 0, 0, 200, 150
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Source Channel(s)",IDC_STATIC,7,27,67,8
+    LISTBOX         IDC_AUDIO_SOURCE_CHANNEL,7,38,90,107,LBS_EXTENDEDSEL | LBS_MULTIPLESEL | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Target Channel(s)",IDC_STATIC,103,27,66,8
+    LISTBOX         IDC_AUDIO_TARGET_CHANNEL,103,38,90,107,LBS_EXTENDEDSEL | LBS_MULTIPLESEL | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Plugin Name",IDC_AUDIO_SOURCE_PLUGIN,7,17,40,8
+    LTEXT           "Plugin Name",IDC_AUDIO_TARGET_PLUGIN,103,17,40,8
+    LTEXT           "Edit Audio Connection Channel Mapping:",IDC_STATIC,7,7,130,8
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_MACHINE_MUTE "Mute this machine"
+    ID_MACHINE_SOLO "Solo this machine"
+END
+STRINGTABLE
+BEGIN
+    ID_EDIT_PASTE_NO_DATA "Paste stored machine selections set to their default states"
+    ID_MACHINE_DELETE_AND_RESTORE "Delete and restore selected machine(s)"
+    ID_MACHINE_ALIGN_DOWN "Align selected machine horizontally  to machines below"
+    ID_MACHINE_ALIGN_LEFT "Align selected machine vertically to machines to the left"
+    ID_MACHINE_ALIGN_RIGHT "Align selected machine vertically  to machines to the right"
+    ID_MACHINE_ALIGN_UP "Align selected machine horizontally to machines above"
+    ID_MACHINE_MOVE_DOWN "Move selected machine(s) down"
+    ID_MACHINE_MOVE_DOWN_STEP "Move selected machine(s) down in steps"
+    ID_MACHINE_MOVE_DOWN_LEFT "Move selected machine(s) left"
+    ID_MACHINE_MOVE_DOWN_LEFT_STEP "Move selected machine(s) left in steps"
+    ID_MACHINE_MOVE_DOWN_RIGHT "Move selected machine(s) down and right"
+    ID_MACHINE_MOVE_DOWN_RIGHT_STEP "Move selected machine(s) down and right in steps"
+    ID_MACHINE_MOVE_LEFT "Move selected machine(s) left"
+    ID_MACHINE_MOVE_LEFT_STEP "Move selected machine(s) left in steps"
+    ID_MACHINE_MOVE_RIGHT "Move selected machine(s) right"
+    ID_MACHINE_MOVE_RIGHT_STEP "Move selected machine(s) right in steps"
+    ID_MACHINE_MOVE_UP "Move selected machine(s) up"
+    ID_MACHINE_MOVE_UP_STEP "Move selected machine(s) up in steps"
+    ID_MACHINE_MOVE_UP_LEFT "Move selected machine(s) up and left"
+    ID_MACHINE_MOVE_UP_LEFT_STEP "Move selected machines(s) up and left in steps"
+    ID_MACHINE_MOVE_UP_RIGHT "Move selected machine(s) up and right"
+    ID_MACHINE_MOVE_UP_RIGHT_STEP "Move selected machine(s) up and right in steps"
+    ID_MACHINE_BYPASS "Bypass selected machine(s)"
+    ID_UNMUTE_ALL "Unmute all machines"
+    ID_MACHINE_TOGGLE_CONNECTION_TEXT "Toggle connection text"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

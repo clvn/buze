@@ -1,0 +1,70 @@
+<hlayout>
+	<vlayout>
+		<div class="border3d" style="height:20">
+			Widgets
+		</div>
+		<div style="height:20">
+			<span>
+				Checkbox: <checkbox></checkbox>
+			</span>
+		</div>
+		<div style="height:200">
+			<span style="height:20">
+				List:
+			</span>
+			<list>
+				<lbody>
+					<li>Hello</li>
+					<li>World</li>
+					<li>Hi</li>
+					<li>Universe</li>
+					<li>Hola</li>
+					<li>Multiverse</li>
+				</lbody>
+			</list>
+		</div>
+		<hlayout style="height:20">
+			<span style="width:20%">
+				Spin:
+			</span>
+			<spin style="height:20;width:80%">
+				<li>First</li>
+				<li>Second</li>
+				<li>Third</li>
+				<li>Fourth and last</li>
+			</spin>
+		</hlayout>
+		<hlayout style="height:20">
+			<span style="width:20%">
+				Slider:
+			</span>
+			<slider style="width:80%" slider-range="100" slider-page="1" scroll-position="50">
+				<sliderhandle></sliderhandle>
+			</slider>
+		</hlayout>
+		
+	</vlayout>
+	
+	<vlayout>
+		<div class="border3d" style="height:20">
+			Canvas
+		</div>
+		<div id="canvas"></div>
+
+		<div class="border3d" style="height:20">
+			Audio engine
+		</div>
+		<span>
+			<span id="numpluginloaders"></span> plugins scanned. 
+			<span id="numplugins"></span> plugins in the current project.
+			<span id="numpatterns"></span> pattern(s) in the current project.
+			<span id="numpatternformats"></span> patternformat(s) in the current project.
+			Orderlist has <span id="numorders"></span> entries, currently at index <span id="currentorder"></span>.
+			Currently playing pattern '<span id="currentpattern"></span>' at row <span id="currentrow"></span>.
+			The song is currently <span id="songstate"></span>.
+			Sample rate <span id="samplerate"></span>, buffer size <span id="buffersize"></span>.
+			Last changed parameter value was <span id="lastparam"></span>.
+		</span>
+
+	</vlayout>
+</hlayout>

@@ -1,0 +1,121 @@
+#include <windows.h>
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDT_HELP_PARAMETERVIEW RCDATA "res\\keyboard_parameters.txt"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_LEARNMIDICONTROLLER DIALOGEX 0, 0, 122, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Select MIDI-controller"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,79,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,65,79,50,14
+    LTEXT           "Move a MIDI-controller to select it",IDC_STATIC,7,7,110,8
+    LTEXT           "Controller:",IDC_STATIC,20,41,35,8
+    LTEXT           "Value:",IDC_STATIC,33,59,21,8
+    EDITTEXT        IDC_MIDI_CONTROLLER_EDIT,64,38,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MIDI_VALUE_EDIT,64,57,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MIDI_CHANNEL_EDIT,64,19,22,14,ES_AUTOHSCROLL
+    LTEXT           "Channel:",IDC_STATIC,26,23,30,8
+END
+
+IDD_PRESETS DIALOGEX 0, 0, 254, 114
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Presets"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Add",IDOK,94,93,50,14
+    PUSHBUTTON      "Close",IDCANCEL,197,93,50,14
+    EDITTEXT        IDC_PRESET_COMMENT_EDIT,94,7,153,81,ES_MULTILINE | ES_AUTOHSCROLL
+    EDITTEXT        IDC_PRESET_NAME,7,93,81,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Delete",IDC_PRESET_DELETE_BUTTON,146,93,50,14
+    LISTBOX         IDC_PRESET_LIST,7,7,81,81,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_PARAMETERS TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_PRESET_EDIT
+    BUTTON      ID_PRESET_COPY
+    BUTTON      ID_PRESET_RANDOMIZE
+    BUTTON      ID_PRESET_HUMANIZE
+    BUTTON      ID_PRESET_MODE
+    BUTTON      ID_PRESET_MACHINEHELP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_PARAMETERS          BITMAP                  "res\\machineparameters.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_PRESET_EDIT          "Edit presets"
+    ID_PRESET_COPY          "Copy parameters to clipboard"
+    ID_PRESET_RANDOMIZE     "Randomize parameters"
+    ID_PRESET_HUMANIZE      "Humanize parameters"
+	ID_PRESET_MODE			"Show internal/custom parameter view"
+	ID_PRESET_MACHINEHELP   "Show machine help"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PARAMETERVIEW_NEXTSLIDER "Move to next slider"
+    ID_PARAMETERVIEW_PREVIOUSSLIDER "Move to previous slider"
+    ID_PARAMETERVIEW_MOVERIGHT "Move slider value right"
+    ID_PARAMETERVIEW_MOVESOMERIGHT "Move slider value right fast"
+    ID_PARAMETERVIEW_MOVEPAGERIGHT "Move slider value right faster"
+    ID_PARAMETERVIEW_MOVELEFT "Move slider value left"
+    ID_PARAMETERVIEW_MOVESOMELEFT "Move slider value left fast"
+    ID_PARAMETERVIEW_MOVEPAGELEFT "Move slider value left faster"
+    ID_PARAMETERVIEW_ENTERVALUE "Enter value manually"
+    ID_PARAMETERVIEW_PRESETS "Display preset dropdown"
+    ID_PARAMETERVIEW_PREVIOUSPRESET "Cycle to previous preset"
+    ID_PARAMETERVIEW_NEXTPRESET "Cycle to next preset"
+END
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

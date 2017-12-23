@@ -1,0 +1,46 @@
+<html>
+<body>
+<h1>File Browser</h1>
+<p>The file browser shows audio files and archives of supported formats on the computer, supports live preview playback and can load samples into the 
+wavetable.</p>
+<p>
+	The file browser can be opened with Shift+F9. Or press ENTER when a slot in the wavetable has focus.
+</p>
+
+<h2>Supported file formats</h2>
+<p>
+	The file browser uses the stream plugins in Armstrong for live preview. The stream plugins use libsndfile or libmad to load and play
+	files directly from disk. libsndfile supports WAV, AIFF, FLAC, AU and many more formats, whereas libmad is a library for playing back MP3.
+</p>
+<p>
+	The file browser uses the sample import API in Armstrong for browsing sample archives and loading sample data into the project. 
+	The import API supports most regular wave formats via libsndfile and libmad, and also (non-previewable) samples from .mod/.s3m/.it/.xm and 
+	.drumkit files as archives.
+</p>
+<p>
+	Supported archive file formats can be browsed like any directory. In order to load a sample from disk or from an archive, just drag 
+	the file into a slot in the wavetable. Or press ENTER to load the sample into the currently selected wavetable slot.
+</p>
+
+<h2>The file browser toolbar</h2>
+<blockquote>
+	<p>
+		<b>Previous</b>: Goes to the previously visited path.
+	</p>
+	<p>
+		<b>Next</b>: Goes to the next visited path.
+	</p>
+	<p>
+		<b>Refresh</b>: Refreshes the contents of the current directory.
+	</p>
+	<p>
+		<b>Add path</b>: Adds the current directory to the shortcuts dropdown list.
+	</p>
+	<p>
+		<b>Remove path</b>: Removes the currently selected path from the shortcuts dropdown list.
+	</p>
+</blockquote>
+
+
+</body>
+</html>

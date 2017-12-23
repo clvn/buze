@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?if $(sys.BUILDARCH) = "x64" ?>
+    <?define ProductName = "Buzé Tracker (64 bits)" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFiles64Folder" ?>
+    <?define SolutionDir = "..\..\x64\$(var.CONFIGURATION)" ?>
+  <?else ?>
+    <?define ProductName = "Buzé Tracker ($(var.CONFIGURATION))" ?>
+    <?define PlatformProgramFilesFolder = "ProgramFilesFolder" ?>
+    <?define SolutionDir = "..\..\$(var.CONFIGURATION)" ?>
+  <?endif ?>
+  <Product Id="*" Name="$(var.ProductName)" Language="1033" Version="0.9.0.0" Manufacturer="Buze Developers" UpgradeCode="4A723341-3C94-4853-89D2-FBEAE51170DC">
+    <Package Description="Buze Tracker" Comments="Contains Buze" InstallerVersion="200" Compressed="yes" InstallPrivileges="elevated" />
+    <Media Id="1" Cabinet="buze.cab" EmbedCab="yes" />
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="$(var.PlatformProgramFilesFolder)" Name="PFiles">
+        <Directory Name="Buze" Id="INSTALLDIR">
+          <Component Id="BUZE.EXE" DiskId="1" Guid="C622DAAB-657D-469D-8D5F-EE0BBB6D1D22">
+            <File Id="BUZE.EXE" Name="buze.exe" Source="$(var.SolutionDir)\buze.exe" KeyPath="yes">
+                <Shortcut Id="StartMenuBuze" Directory="ProgramMenuDir" Name="$(var.ProductName)" WorkingDirectory='INSTALLDIR' Icon="BUZE.EXE" IconIndex="0" Advertise="yes" />
+                <Shortcut Id="DesktopBuze" Directory="DesktopFolder" Name="$(var.ProductName)" WorkingDirectory='INSTALLDIR' Icon="BUZE.EXE" IconIndex="0" Advertise="yes" />
+            </File>
+          </Component>
+          <Component Id="SID2ARMZ.EXE" DiskId="1" Guid="59E73359-3762-45AB-8639-B154713D288F">
+            <File Id="SID2ARMZ.EXE" Name="sid2armz.exe" Source="$(var.SolutionDir)\sid2armz.exe" />
+          </Component>
+          <Component Id="MID2ARMZ.EXE" DiskId="1" Guid="91ECC990-716E-4D2A-B3EE-9E25695372B9">
+            <File Id="MID2ARMZ.EXE" Name="mid2armz.exe" Source="$(var.SolutionDir)\mid2armz.exe" />
+          </Component>
+          <Component Id="BUZELIB.DLL" DiskId="1" Guid="E02D5E4A-41D0-4039-A21E-540D249F525D">
+            <File Id="BUZELIB.DLL" Name="buzelib.dll" Source="$(var.SolutionDir)\buzelib.dll" />
+          </Component>
+          <Component Id="ARMSTRONG.DLL" DiskId="1" Guid="13590826-6520-43E5-B109-C8937FCBA8B6">
+            <File Id="ARMSTRONG.DLL" Name="armstrong.dll" Source="$(var.SolutionDir)\armstrong.dll" />
+          </Component>
+          <Component Id="SQLITE3.DLL" DiskId="1" Guid="2743EECF-88DB-43C2-AE9B-1221B315C474">
+            <File Id="SQLITE3.DLL" Name="sqlite3.dll" Source="$(var.SolutionDir)\sqlite3.dll" />
+          </Component>
+          <Component Id="LIBSNDFILE_1.DLL" DiskId="1" Guid="EB5FA877-40E1-4B73-B74D-3663DAFD3DCA">
+            <File Id="LIBSNDFILE_1.DLL" Name="libsndfile-1.dll" Source="$(var.SolutionDir)\libsndfile-1.dll" />
+          </Component>
+          <Component Id="LIBMAD.DLL" DiskId="1" Guid="7C44C6B2-A087-4E3C-B540-CAACD3261B09">
+            <File Id="LIBMAD.DLL" Name="libmad.dll" Source="$(var.SolutionDir)\libmad.dll" />
+          </Component>
+          <Component Id="ZLIB1.DLL" DiskId="1" Guid="1B4BCC21-FAE7-41B6-98E9-355AE651AD26">
+            <File Id="ZLIB1.DLL" Name="zlib1.dll" Source="$(var.SolutionDir)\zlib1.dll" />
+          </Component>
+          <Component Id="DSPLIB.DLL" DiskId="1" Guid="FEB7E6D5-5C2D-440E-946E-E0B78BB9374F">
+            <File Id="DSPLIB.DLL" Name="Dsplib.dll" Source="$(var.SolutionDir)\Dsplib.dll" />
+          </Component>
+          <?if $(sys.BUILDARCH)="x86" ?>
+          <Component Id="SOUNDTOUCH.DLL" DiskId="1" Guid="2F53061D-3FBF-42C3-A38A-83C63CE3A1BA">
+            <File Id="SOUNDTOUCH.DLL" Name="SoundTouch.dll" Source="$(var.SolutionDir)\SoundTouch.dll" />
+          </Component>
+          <Component Id="AUXBUS.DLL" DiskId="1" Guid="2AC9C6E4-C7C9-4EDE-AF0D-8187C7D98EAF">
+            <File Id="AUXBUS.DLL" Name="Auxbus.dll" Source="$(var.SolutionDir)\Auxbus.dll" />
+          </Component>
+          <Component Id="GLEW32.DLL" DiskId="1" Guid="1B068A00-A875-404F-A8EC-B4BD8B660932">
+            <File Id="GLEW32.DLL" Name="glew32.dll" Source="$(var.SolutionDir)\glew32.dll" />
+          </Component>
+          <Component Id="MSVCP50.DLL" DiskId="1" Guid="9E6214D9-E5F0-406D-8CF7-8CF5C4240C4F">
+            <File Id="MSVCP50.DLL" Name="msvcp50.dll" Source="$(var.SolutionDir)\msvcp50.dll" />
+          </Component>
+          <Component Id="MSVCR70.DLL" DiskId="1" Guid="11300BA5-E208-4F02-9036-087A9AAD3458">
+            <File Id="MSVCR70.DLL" Name="msvcr70.dll" Source="$(var.SolutionDir)\msvcr70.dll" />
+          </Component>
+          <Component Id="MSVCP71.DLL" DiskId="1" Guid="89D025E5-8DD9-4324-A84C-8527C5D1C276">
+            <File Id="MSVCP71.DLL" Name="msvcp71.dll" Source="$(var.SolutionDir)\msvcp71.dll" />
+          </Component>
+          <Component Id="MSVCR71.DLL" DiskId="1" Guid="83EFE74B-4CE8-4EA7-BDD9-BB07A09522A4">
+            <File Id="MSVCR71.DLL" Name="msvcr71.dll" Source="$(var.SolutionDir)\MSVCR71.dll" />
+          </Component>
+          <Component Id="MSVCP100.DLL" DiskId="1" Guid="2AD2AD33-2D75-4688-A06B-BDD608F3F5B5">
+            <File Id="MSVCP100.DLL" Name="msvcp100.dll" Source="$(var.SolutionDir)\msvcp100.dll" />
+          </Component>
+          <Component Id="MSVCR100.DLL" DiskId="1" Guid="CB4E4EAF-A2DE-4A60-B332-F09769D751D9">
+            <File Id="MSVCR100.DLL" Name="msvcr100.dll" Source="$(var.SolutionDir)\MSVCR100.dll" />
+          </Component>
+          <Component Id="MSVCP110.DLL" DiskId="1" Guid="80FDFA7A-491B-45BB-BF2B-DAAE0977A868">
+            <File Id="MSVCP110.DLL" Name="msvcp110.dll" Source="$(var.SolutionDir)\msvcp110.dll" />
+          </Component>
+          <Component Id="MSVCR110.DLL" DiskId="1" Guid="F80B2877-9D82-471F-91C6-1DC92B33A986">
+            <File Id="MSVCR110.DLL" Name="msvcr110.dll" Source="$(var.SolutionDir)\MSVCR110.dll" />
+          </Component>
+          <?endif ?>
+          <Component Id="BUZZ2ZZUB.INI" DiskId="1" Guid="BFB6714F-F0F0-4735-B585-153586DE061D">
+            <File Id="BUZZ2ZZUB.INI" Name="buzz2zzub.ini" Source="..\..\buzz2zzub.ini" />
+          </Component>
+          <Component Id="HOTKEYS.JSON" DiskId="1" Guid="4FA7E518-0ECA-4031-A212-7ABD41EA717B">
+            <File Id="HOTKEYS.JSON" Name="hotkeys.json" Source="$(var.SolutionDir)\hotkeys.json" />
+          </Component>
+          <Directory Name="Docs" Id="Docs">
+              <Component Id="BUZE.CHM" DiskId="1" Guid="{E4128C4A-4794-454E-BC36-D3BA479602FE}">
+                <File Id="BUZE.CHM" Name="buze.chm" Source="..\..\doc\chm\buze.chm" KeyPath="yes">
+                  <Shortcut Id="StartMenuDocs" Directory="ProgramMenuDir" Name="Buzé Tracker Documentation" WorkingDirectory='INSTALLDIR' Icon="BUZE.EXE" IconIndex="0" Advertise="yes" />
+                </File>
+              </Component>
+          </Directory>
+          <Directory Name="Themes" Id="THEMES">
+              <Component Id="INPZL.COL" DiskId="1" Guid="071648DE-7044-436D-B5A8-2A9BF4CB8CBF">
+                <File Id="INPZL.COL" Name="Inpzl.col" Source="..\..\Themes\Inpzl.col" />
+              </Component>
+          </Directory>
+          <Directory Name="Gear" Id="GEAR">
+            <Component Id="INDEX.TXT" DiskId="1" Guid="006F7CCE-50FA-4D3F-8646-442D3BD41B2A">
+              <File Id="INDEX.TXT" Name="index.txt" Source="$(var.SolutionDir)\Gear\index.txt" />
+            </Component>
+            <Directory Name="Views" Id="VIEWS">
+              <Component Id="BUZEGUI.DLL" DiskId="1" Guid="2BF4CF30-AFBD-40B2-A4E0-2C26976A0AC9">
+                <File Id="BUZEGUI.DLL" Name="buzegui.dll" Source="$(var.SolutionDir)\Gear\Views\buzegui.dll" />
+              </Component>
+              <Component Id="MACHINEVIEW.DLL" DiskId="1" Guid="B0C8B15A-8CDB-4621-8DCA-067004B9B6D5">
+                <File Id="MACHINEVIEW.DLL" Name="machineview.dll" Source="$(var.SolutionDir)\Gear\Views\machineview.dll" />
+              </Component>
+              <Component Id="MIXERVIEW.DLL" DiskId="1" Guid="02F4BD10-89DA-433A-B1EB-7AC4B85CBE9D">
+                <File Id="MIXERVIEW.DLL" Name="mixerview.dll" Source="$(var.SolutionDir)\Gear\Views\mixerview.dll" />
+              </Component>
+              <Component Id="PARAMETERVIEW.DLL" DiskId="1" Guid="58AA2115-A8FC-45E5-B28C-57A93CC89665">
+                <File Id="PARAMETERVIEW.DLL" Name="parameterview.dll" Source="$(var.SolutionDir)\Gear\Views\parameterview.dll" />
+              </Component>
+              <Component Id="PATTERNVIEW.DLL" DiskId="1" Guid="85D357D2-89E1-4CB5-BC24-92E912EE8CE1">
+                <File Id="PATTERNVIEW.DLL" Name="patternview.dll" Source="$(var.SolutionDir)\Gear\Views\patternview.dll" />
+              </Component>
+              <Component Id="WAVETABLEVIEW.DLL" DiskId="1" Guid="FD5376B6-ACFB-41DB-92E1-77402BA030DD">
+                <File Id="WAVETABLEVIEW.DLL" Name="wavetableview.dll" Source="$(var.SolutionDir)\Gear\Views\wavetableview.dll" />
+              </Component>
+            </Directory>
+            <Directory Name="Generators" Id="GENERATORS">
+              <?if $(sys.BUILDARCH)="x86" ?>
+                <Component Id="FSM_INFECTOR.DLL" DiskId="1" Guid="F549BE2C-B580-4182-890E-C7332E9615EC">
+                  <File Id="FSM_INFECTOR.DLL" Name="FSM Infector.dll" Source="$(var.SolutionDir)\Gear\Generators\FSM Infector.dll" />
+                </Component>
+                <Component Id="FSM_INFECTOR.PRS" DiskId="1" Guid="5416DBD6-0A69-4F75-AF65-58400ED98E26">
+                  <File Id="FSM_INFECTOR.PRS" Name="FSM Infector.prs" Source="$(var.SolutionDir)\Gear\Generators\FSM Infector.prs" />
+                </Component>
+                <Component Id="FSM_INFECTOR.HTML" DiskId="1" Guid="DB0B04F4-4958-412C-8043-1B2D81CDD1D2">
+                  <File Id="FSM_INFECTOR.HTML" Name="FSM Infector.html" Source="$(var.SolutionDir)\Gear\Generators\FSM Infector.html" />
+                </Component>
+                <Component Id="MATILDE_TRACKER3.DLL" DiskId="1" Guid="7C8442C6-0B94-47B5-9E1B-D543F3109A56">
+                  <File Id="MATILDE_TRACKER3.DLL" Name="Matilde Tracker3.dll" Source="$(var.SolutionDir)\Gear\Generators\Matilde Tracker3.dll" />
+                </Component>
+              <?else ?>
+              <?endif ?>
+            </Directory>
+            <Directory Name="Effects" Id="EFFECTS">
+              <?if $(sys.BUILDARCH)="x86" ?>
+                <Component Id="FIRESLEDGE_PARAMEQ.DLL" DiskId="1" Guid="F24A724D-E5D6-4388-89CE-EC9B6234C1E5">
+                  <File Id="FIRESLEDGE_PARAMEQ.DLL" Name="FireSledge ParamEQ.dll" Source="$(var.SolutionDir)\Gear\Effects\FireSledge ParamEQ.dll" />
+                </Component>
+                <Component Id="FIRESLEDGE_PARAMEQ.HTML" DiskId="1" Guid="35DB5D83-5B84-4603-B647-1BB8022F3878">
+                  <File Id="FIRESLEDGE_PARAMEQ.HTML" Name="FireSledge ParamEQ.html" Source="$(var.SolutionDir)\Gear\Effects\FireSledge ParamEQ.html" />
+                </Component>
+                <Component Id="FSM_PHATMAN.DLL" DiskId="1" Guid="70DF3D77-D469-4D7C-B21C-D5D64EEE2B69">
+                  <File Id="FSM_PHATMAN.DLL" Name="FSM PhatMan.dll" Source="$(var.SolutionDir)\Gear\Effects\FSM PhatMan.dll" />
+                </Component>
+                <Component Id="FSM_PHATMAN.PRS" DiskId="1" Guid="2C25754F-C20D-4F12-B412-48A73BB5D53C">
+                  <File Id="FSM_PHATMAN.PRS" Name="FSM PhatMan.prs" Source="$(var.SolutionDir)\Gear\Effects\FSM PhatMan.prs" />
+                </Component>
+                <Component Id="HD_COMBO_DELAY.DLL" DiskId="1" Guid="8BD8EC64-4ECA-4E26-A710-221CA4A085B4">
+                  <File Id="HD_COMBO_DELAY.DLL" Name="HD Combo Delay.dll" Source="$(var.SolutionDir)\Gear\Effects\HD Combo Delay.dll" />
+                </Component>
+                <Component Id="HD_HALYVERB.DLL" DiskId="1" Guid="C54BC1B0-E628-4624-B0CF-EE787D3A7767">
+                  <File Id="HD_HALYVERB.DLL" Name="HD HALYverb.dll" Source="$(var.SolutionDir)\Gear\Effects\HD HALYverb.dll" />
+                </Component>
+                <Component Id="HD_MOD_X.DLL" DiskId="1" Guid="63D0BA69-927C-4332-8023-B9AA2B6A4B42">
+                  <File Id="HD_MOD_X.DLL" Name="HD Mod-X.dll" Source="$(var.SolutionDir)\Gear\Effects\HD Mod-X.dll" />
+                </Component>
+                <Component Id="HD_SATURATION.DLL" DiskId="1" Guid="CB69D2A7-AD2B-468D-ADF6-4F4DB779CEA5">
+                  <File Id="HD_SATURATION.DLL" Name="HD Saturation.dll" Source="$(var.SolutionDir)\Gear\Effects\HD Saturation.dll" />
+                </Component>
+                <Component Id="JOACHIMS_TETHYS_1.1.DLL" DiskId="1" Guid="17DF8931-C1AD-4A87-97B5-45E406220F6D">
+                  <File Id="JOACHIMS_TETHYS_1.1.DLL" Name="Joachims Tethys 1.1.dll" Source="$(var.SolutionDir)\Gear\Effects\Joachims Tethys 1.1.dll" />
+                </Component>
+                <Component Id="OOMEK_EXCITER.DLL" DiskId="1" Guid="97144EDD-15ED-4F64-B14D-75A740AD73F9">
+                  <File Id="OOMEK_EXCITER.DLL" Name="Oomek Exciter.dll" Source="$(var.SolutionDir)\Gear\Effects\Oomek Exciter.dll" />
+                </Component>
+                <Component Id="OOMEK_MASTERIZER.DLL" DiskId="1" Guid="5D87B256-1A45-41A2-B5D5-A5698C9C9373">
+                  <File Id="OOMEK_MASTERIZER.DLL" Name="Oomek Masterizer.dll" Source="$(var.SolutionDir)\Gear\Effects\Oomek Masterizer.dll" />
+                </Component>
+                <Component Id="ZEPHOD_GREEN_FILTER.DLL" DiskId="1" Guid="5A938F3F-0470-4FBA-959C-51528BE85C7A">
+                  <File Id="ZEPHOD_GREEN_FILTER.DLL" Name="Zephod Green Filter.dll" Source="$(var.SolutionDir)\Gear\Effects\Zephod Green Filter.dll" />
+                </Component>
+              <?else ?>
+              <?endif ?>
+            </Directory>
+            <Directory Name="Vst" Id="VST">
+              <?if $(sys.BUILDARCH)="x86" ?>
+                <Component Id="TB4005.DLL" DiskId="1" Guid="368EEF0C-BFDE-40D0-AC42-AB4491CE2349">
+                  <File Id="TB4005.DLL" Name="TB4005.dll" Source="$(var.SolutionDir)\Gear\Vst\TB4005.dll" />
+                </Component>
+              <?else ?>
+              <?endif ?>
+            </Directory>
+          </Directory>
+          <Directory Name="include" Id="INCLUDE">
+            <Directory Name="buze" Id="INCLUDE_BUZE">
+              <Component Id="BUZE.H" DiskId="1" Guid="3AAD75B4-C9B8-454A-B389-53808829FE2D">
+                <File Id="BUZE.H" Name="buze.h" Source="..\..\include\buze\buze.h" />
+              </Component>
+              <Component Id="BUZESDK.H" DiskId="1" Guid="86BD7EC0-667C-4358-8782-BAC276A7D450">
+                <File Id="BUZESDK.H" Name="buzesdk.h" Source="..\..\include\buze\buzesdk.h" />
+              </Component>
+              <Component Id="HOSTMODULE.H" DiskId="1" Guid="F1497E26-DAD8-422D-8449-99841FBDA9F3">
+                <File Id="HOSTMODULE.H" Name="HostModule.h" Source="..\..\include\buze\HostModule.h" />
+              </Component>
+              <Component Id="VIEW.H" DiskId="1" Guid="46D7A40E-113E-4567-A4B1-A541684B3760">
+                <File Id="VIEW.H" Name="view.h" Source="..\..\include\buze\view.h" />
+              </Component>
+              <Component Id="WTLDLLMODULE.H" DiskId="1" Guid="210B7C28-364C-4622-9521-32086A72DCE3">
+                <File Id="WTLDLLMODULE.H" Name="WtlDllModule.h" Source="..\..\include\buze\WtlDllModule.h" />
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Name="lib" Id="LIB">
+              <Component Id="BUZELIB.LIB" DiskId="1" Guid="ACA43CCA-B9A9-470D-806F-883219275D77">
+                <File Id="BUZELIB.LIB" Name="buzelib.lib" Source="$(var.SolutionDir)\buzelib.lib" />
+              </Component>
+              <Component Id="ARMSTRONG.LIB" DiskId="1" Guid="1809B664-BB24-4B56-8E55-61558559FC0A">
+                <File Id="ARMSTRONG.LIB" Name="armstrong.lib" Source="$(var.SolutionDir)\armstrong.lib" />
+              </Component>
+          </Directory>
+          <Directory Name="src" Id="SRC">
+            <Directory Name="armstrong" Id="ARMSTRONG">
+              <Directory Name="include" Id="ARMSTRONG_INCLUDE">
+                <Directory Name="zzub" Id="INCLUDE_ZZUB">
+                  <Component Id="ZZUB.H" DiskId="1" Guid="BA9F05C4-B356-48E4-8E41-77AB7FA8071F">
+                    <File Id="ZZUB.H" Name="zzub.h" Source="..\..\src\armstrong\include\zzub\zzub.h" />
+                  </Component>
+                  <Component Id="TYPES.H" DiskId="1" Guid="8EFD78EC-DA07-49D7-8AEF-486ABCB94493">
+                    <File Id="TYPES.H" Name="types.h" Source="..\..\src\armstrong\include\zzub\types.h" />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+            <Directory Name="skeletonview" Id="SKELETONVIEW">
+            </Directory>
+            <Directory Name="buzecommon" Id="BUZECOMMON">
+            </Directory>
+            <Component Id="BUZE_PLUGIN.DEF" DiskId="1" Guid="98D86CC8-81BF-471E-A628-FF35D94390C8">
+              <File Id="BUZE_PLUGIN.DEF" Name="buze_plugin.def" Source="..\..\src\buze_plugin.def" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuDir" Name="Buze">
+          <Component Id="StartMenuShortcuts" Guid="2E6CA6BC-FD4D-4211-BF4C-C9E71FAC91FB">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall" />
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" />
+            <Shortcut Id="UninstallProduct" Name="Uninstall $(var.ProductName)" Description="Uninstalls $(var.ProductName)" Target="[System64Folder]msiexec.exe" Arguments="/x [ProductCode]" />
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="SystemFolder" Name="System">
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+    <Feature Id="Complete" Title="Buzé" Description="The full package." Display="expand" Level="1" ConfigurableDirectory='INSTALLDIR'>
+    <Feature Id="DefaultFeature" Title="Main Application" Description="Executables and documentation." Level="1" Absent="disallow">
+      <ComponentRef Id="BUZE.EXE" />
+      <ComponentRef Id="SID2ARMZ.EXE" />
+      <ComponentRef Id="MID2ARMZ.EXE" />
+      <ComponentRef Id="BUZE.CHM" />
+      <ComponentRef Id="BUZELIB.DLL" />
+      <ComponentRef Id="ARMSTRONG.DLL" />
+      <ComponentRef Id="SQLITE3.DLL" />
+      <ComponentRef Id="LIBSNDFILE_1.DLL" />
+      <ComponentRef Id="LIBMAD.DLL" />
+      <ComponentRef Id="ZLIB1.DLL" />
+      <ComponentRef Id="DSPLIB.DLL" />
+      <?if $(sys.BUILDARCH)="x86" ?>
+      <ComponentRef Id="SOUNDTOUCH.DLL" />
+      <ComponentRef Id="AUXBUS.DLL" />
+      <ComponentRef Id="GLEW32.DLL" />
+      <ComponentRef Id="MSVCP110.DLL" />
+      <ComponentRef Id="MSVCR110.DLL" />
+      <?endif ?>
+      <ComponentRef Id="INPZL.COL" />
+      <ComponentRef Id="BUZZ2ZZUB.INI" />
+      <ComponentRef Id="HOTKEYS.JSON" />
+      <ComponentRef Id="BUZEGUI.DLL" />
+      <ComponentRef Id="MACHINEVIEW.DLL" />
+      <ComponentRef Id="MIXERVIEW.DLL" />
+      <ComponentRef Id="PARAMETERVIEW.DLL" />
+      <ComponentRef Id="PATTERNVIEW.DLL" />
+      <ComponentRef Id="WAVETABLEVIEW.DLL" />
+      <ComponentRef Id="INDEX.TXT" />
+      <ComponentRef Id="StartMenuShortcuts" />
+    </Feature>
+    <Feature Id="PluginsFeature" Title="Audio Plugins" Description="A selection of free VST, Buzz, Psycle and VAMP plugins." Level="1">
+      <?if $(sys.BUILDARCH)="x86" ?>
+      <ComponentRef Id="FSM_INFECTOR.DLL" />
+      <ComponentRef Id="FSM_INFECTOR.PRS" />
+      <ComponentRef Id="FSM_INFECTOR.HTML" />
+      <ComponentRef Id="MATILDE_TRACKER3.DLL" />
+      <ComponentRef Id="TB4005.DLL" />
+      <ComponentRef Id="FIRESLEDGE_PARAMEQ.DLL" />
+      <ComponentRef Id="FIRESLEDGE_PARAMEQ.HTML" />
+      <ComponentRef Id="FSM_PHATMAN.DLL" />
+      <ComponentRef Id="FSM_PHATMAN.PRS" />
+      <ComponentRef Id="HD_COMBO_DELAY.DLL" />
+      <ComponentRef Id="HD_HALYVERB.DLL" />
+      <ComponentRef Id="HD_MOD_X.DLL" />
+      <ComponentRef Id="HD_SATURATION.DLL" />
+      <ComponentRef Id="JOACHIMS_TETHYS_1.1.DLL" />
+      <ComponentRef Id="OOMEK_EXCITER.DLL" />
+      <ComponentRef Id="OOMEK_MASTERIZER.DLL" />
+      <ComponentRef Id="ZEPHOD_GREEN_FILTER.DLL" />
+      <?endif ?>
+    </Feature>
+    <?if $(sys.BUILDARCH)="x86" ?>
+    <Feature Id="PluginsCompatibilityFeature" Title="Plugin Compatibility Libraries" Description="Redistributables for older versions of Visual C++. Some plugins will not work without these." Level="1">
+      <ComponentRef Id="MSVCP50.DLL" />
+      <ComponentRef Id="MSVCR70.DLL" />
+      <ComponentRef Id="MSVCP71.DLL" />
+      <ComponentRef Id="MSVCR71.DLL" />
+      <ComponentRef Id="MSVCP100.DLL" />
+      <ComponentRef Id="MSVCR100.DLL" />
+    </Feature>
+    <?endif ?>
+    <Feature Id="DevelopmentFeature" Title="Development Files" Description="C headers and libraries for interfacing with the audio engine and user interface." Level="1000">
+      <ComponentRef Id="BUZELIB.LIB" />
+      <ComponentRef Id="ARMSTRONG.LIB" />
+      <ComponentRef Id="BUZE.H" />
+      <ComponentRef Id="BUZESDK.H" />
+      <ComponentRef Id="HOSTMODULE.H" />
+      <ComponentRef Id="VIEW.H" />
+      <ComponentRef Id="WTLDLLMODULE.H" />
+      <ComponentRef Id="BUZE_PLUGIN.DEF" />
+      <ComponentRef Id="ZZUB.H" />
+      <ComponentRef Id="TYPES.H" />
+    </Feature>
+    </Feature>
+    <UI />
+    <!-- todo: sjekk for nyere versjon http://wix.tramontana.co.hu/tutorial/upgrades-and-modularization/checking-for-oldies -->
+    <!-- select vst path: 
+        http://www.kvraudio.com/forum/printview.php?t=319194&start=0 
+        http://www.juce.com/forum/topic/default-vst-plugin-folder-locations
+    -->
+    <CustomAction Id="PreventDowngrading" Error="Newer version already installed." />
+    <InstallExecuteSequence>
+      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+      <WriteEnvironmentStrings/>
+    </InstallExecuteSequence>
+    <InstallUISequence>
+      <Custom Action="PreventDowngrading" After="FindRelatedProducts">NEWPRODUCTFOUND</Custom>
+    </InstallUISequence>
+    <Property Id="LicenseAccepted" Value="1"/>
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="dialog.bmp" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_FeatureTree" />
+    <!--UIRef Id="WixUI_Mondo" /-->
+    <!--UIRef Id="WixUI_InstallDir" /-->
+    <UIRef Id="WixUI_ErrorProgressText" />
+    <Icon Id="BUZE.EXE" SourceFile="$(var.SolutionDir)\buze.exe" />
+    <MajorUpgrade
+        Schedule="afterInstallFinalize"
+        DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />
+    <Upgrade Id="4A723341-3C94-4853-89D2-FBEAE51170DC">
+	<!-- 
+		product id 0.8.5: 8B58DFC2-5CD1-408E-8FA8-AFA522923F97 
+		product id 0.8.6: 61CB5907-F750-46D0-808B-0BBD9027AA2A
+		product id 0.8.7: 668A80C5-2DAF-4771-8EEA-E6B9123B2BF0
+		product id 0.8.8: CCDAC7C7-3CF7-47D3-AAA8-9956F5CE0C17
+		product id 0.8.9: ADD009C1-2BCF-4B8B-B226-F69AB9F8E81C
+		product id 0.9.0+: *
+	-->
+      <UpgradeVersion Minimum="0.9.0" IncludeMinimum="no" OnlyDetect="yes" Language="1033" Property="NEWPRODUCTFOUND" />
+
+      <!--UpgradeVersion Minimum="$(var.RTMProductVersion)"
+                      IncludeMinimum="yes"
+                      Maximum="$(var.ProductVersion)"
+                      IncludeMaximum="no"
+                      Language="1033"
+                      Property="UPGRADEFOUND" /-->
+    </Upgrade>
+  </Product>
+</Wix>

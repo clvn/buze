@@ -1,0 +1,453 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "../buze/resource.h"
+#include "../buzegui/resource.h"
+#include "../machineview/resource.h"
+#include "../parameterview/resource.h"
+#include "../patternview/resource.h"
+#include "../wavetableview/resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "atlres.h"
+#include "buze_help.rc"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""atlres.h""\r\n"
+    "#include ""buze_help.rc""\r\n"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+/*IDR_CONTEXTMENU MENU 
+BEGIN
+    POPUP "ClientViewList"
+    BEGIN
+        MENUITEM "Dockable",                    ID_CLIENTVIEWLIST_DOCKABLE
+        MENUITEM "Hide",                        ID_CLIENTVIEWLIST_HIDE
+        MENUITEM "Floating",                    ID_CLIENTVIEWLIST_FLOATING
+    END
+END
+*/
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 192
+    END
+
+    IDD_MISSINGMACHINE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+	IDD_LOADSUMMARYDIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 358
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 133
+    END
+
+    IDD_LEARNMIDICONTROLLER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 115
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 93
+    END
+
+    IDD_CPU_MONITOR, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 169
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 178
+    END
+
+    IDD_WAVE_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_WAVE_RECORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 88
+    END
+
+    IDD_VALUE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 89
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 21
+    END
+
+    IDD_PRESETS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 247
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 107
+    END
+
+    IDD_PATTERNCONVERTER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 327
+    END
+
+    IDD_TRANSFORM_REPEAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 32
+    END
+
+    IDD_TRANSFORM_NOTELENGTH, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 81
+    END
+
+    IDD_TRANSFORM_THIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 32
+    END
+
+    IDD_TRANSFORM_SCALE, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 124
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_TRANSFORM_FADE, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 69
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 51
+    END
+
+    IDD_TRANSFORM_CURVEMAP, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 47
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_TRANSFORM_ROTATEROWS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 32
+    END
+
+    IDD_TRANSFORM_ROTATEVALS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 32
+    END
+
+    IDD_TRANSFORM_ROTATERHYTHMS, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 70
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 32
+    END
+
+    IDD_PATTERNVIEW_NOTEMASK, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 163
+        TOPMARGIN, 4
+        BOTTOMMARGIN, 90
+    END
+
+    IDD_PATTERNVIEW_HARMONICTRANSPOSE, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 147
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 190
+    END
+
+    IDD_TRANSFORM_VOLUMES, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 47
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 52
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "buze"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_DEVICE_RESET         "Reset Audio Device\nReset"
+    ID_PLAY_FROM_START      "Play from Start\nPlay From Start"
+    ID_PLAY_REPEAT          "Toggle Repeating On/Off\nRepeat"
+    ID_PLAY_SYNC            "Sync To External MIDI Device\nSync To External MIDI Device"
+END
+
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_TOGGLE_AUTOSAVE "Toggle autosaving\nToggle Autosave"
+    ID_EDIT_RENDER_SEQUENCE "Render sequencer selection\nRender Sequence"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_PLAY                 "Resume Playing\nResume"
+    ID_STOP                 "Stop Playing"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_RECORD               "Record Parameter Movements\nRecord"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+/*
+STRINGTABLE 
+BEGIN
+    ID_VIEW_PRIMARYPATTERNEDITOR 
+                            "Show the primary pattern editor\nPrimary Pattern Editor"
+END
+*/
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCSIZE          "Change the window size"
+    ATL_IDS_SCMOVE          "Change the window position"
+    ATL_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    ATL_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    ATL_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    ATL_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_SCRESTORE       "Restore the window to normal size"
+    ATL_IDS_SCTASKLIST      "Activate Task List"
+    ATL_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "Ready to rok"
+END
+
+STRINGTABLE 
+BEGIN
+    ATL_IDS_MRU_FILE        "Open this document"
+END
+
+/*
+STRINGTABLE 
+BEGIN
+    ID_VIEW_ORDERLIST       "Show the order list"
+END
+*/
+
+STRINGTABLE
+BEGIN
+    ID_PLAYFROMCURSOR "Play from cursor"
+//    ID_REPLAY "Replay"
+    ID_VIEW_HELP "Display global documentation"
+    /*ID_VIEW_PATTERNFORMAT "Display pattern format panel"
+    ID_VIEW_ALLMACHINES "Display all machines panel"
+    ID_VIEW_FILES "Display file browser"
+    ID_VIEW_SHOWHIDEALLPARAMETERFRAMES "Toggle visibility of all parameter windows"
+    ID_VIEW_ANALYZER "Display analyzer view"
+    ID_VIEW_CPUMETER "Display cpu usage meter panel"
+    ID_VIEW_HISTORY "Display action history panel"
+    ID_VIEW_PREFERENCES "Display preferences window"*/
+    ID_CLOSEPANE "Close currently focused pane"
+    ID_SCREENSET_RECALL_0 "Recall screenset 0"
+    ID_SCREENSET_RECALL_1 "Recall screenset 1"
+    ID_SCREENSET_RECALL_2 "Recall screenset 2"
+    ID_SCREENSET_RECALL_3 "Recall screenset 3"
+    ID_SCREENSET_RECALL_4 "Recall screenset 4"
+    ID_SCREENSET_RECALL_5 "Recall screenset 5"
+    ID_SCREENSET_RECALL_6 "Recall screenset 6"
+    ID_SCREENSET_RECALL_7 "Recall screenset 7"
+    ID_SCREENSET_RECALL_8 "Recall screenset 8"
+    ID_SCREENSET_RECALL_9 "Recall screenset 9"
+    ID_SCREENSET_STORE_0 "Store screenset 0"
+    ID_SCREENSET_STORE_1 "Store screenset 1"
+    ID_SCREENSET_STORE_2 "Store screenset 2"
+    ID_SCREENSET_STORE_3 "Store screenset 3"
+    ID_SCREENSET_STORE_4 "Store screenset 4"
+    ID_SCREENSET_STORE_5 "Store screenset 5"
+    ID_SCREENSET_STORE_6 "Store screenset 6"
+    ID_SCREENSET_STORE_7 "Store screenset 7"
+    ID_SCREENSET_STORE_8 "Store screenset 8"
+    ID_SCREENSET_STORE_9 "Store screenset 9"
+    ID_KEYJAZZ_OCTAVE_UP "Transpose keyjazz octave up 1 octave"
+    ID_KEYJAZZ_OCTAVE_DOWN "Transpose keyjazz octave down 1 octave"
+    ID_MAINFRAME_BPM_UP "Increase global BPM by 1"
+    ID_MAINFRAME_BPM_DOWN "Decrease global BPM by 1"
+END
+STRINGTABLE
+BEGIN
+    ID_HELP "Display pattern view documentation"
+END
+
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

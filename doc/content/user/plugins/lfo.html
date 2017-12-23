@@ -1,0 +1,55 @@
+<html>
+<body>
+<h1>LFO Value Generators</h1>
+
+<p>
+	The LFO Value Generator emits LFO values to other plugins' parameters at specified intervals.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Interval type</td>
+		<td>byte</td>
+		<td>The type of interval. 0=ticks, 1=ticks/256, 2=sec/16</td>
+	</tr>
+	<tr>
+		<td>Interval length</td>
+		<td>byte</td>
+		<td>The interval length in units set by the interval type.</td>
+	</tr>
+	<tr>
+		<td>Frequency</td>
+		<td>byte</td>
+		<td>Valid range ~0-8hz</td>
+	</tr>
+	<tr>
+		<td>Amplitude</td>
+		<td>word</td>
+		<td>Output value scale</td>
+	</tr>
+	<tr>
+		<td>Minimum</td>
+		<td>word</td>
+		<td>Output value minimum/center</td>
+	</tr>
+	<tr>
+		<td>LFO Type</td>
+		<td>byte</td>
+		<td>0=sine, 1=square, 2=saw, 3=triangle, 4=random</td>
+	</tr>
+	<tr>
+		<td>Seed</td>
+		<td>word</td>
+		<td>Seeds the random number generator when the LFO type is random.</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

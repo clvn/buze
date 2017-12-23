@@ -1,0 +1,75 @@
+#encoding: latin-1
+
+# libzzub, Buzé, Aldrin
+# Modular Sequencer
+# Copyright (C) 2006 The Aldrin Development Team
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+Import('env', 'mac', 'posix', 'win32', 'install_lib', 'cl', 'gcc', 'install_plugin', 'install_plugin_help')
+import glob, os
+
+# replace this business with LoadableModule in SCONS 0.96.91 later:
+def ZzubPlugin(self, target, source):
+#	if mac:
+#		self['SHLINKFLAGS'] = '$LINKFLAGS -bundle -flat_namespace -undefined suppress'
+#		self['SHLIBSUFFIX'] = '.so'
+	return self.StaticLibrary(target, source)
+
+#######################################
+#
+# zzub plugins
+#
+#######################################
+
+# this code basically just scans subdirectories for additional sconscript files
+# and also provides a context for that sconscript to build a plugin.
+# this allows the plugin sconscript to be as tiny as possible, and still
+# enables us to generate project files and the like.
+
+plugin_dir_path = ""
+base_plugin_path = ""
+pluginenv = None
+def build_plugin(localenv, libname, files, helpfiles=None, deffile='zzub_plugin.def'):
+	files = [plugin_dir_path + "/" + filename for filename in files]
+	#if win32:
+		#files.append(os.path.join(base_plugin_path, deffile))
+	plugin = ZzubPlugin(localenv, '${LIB_BUILD_PATH}/'+libname, files)
+	install_plugin(plugin)
+	if helpfiles:
+		helpsrcdir = '${ROOTPATH}/share/doc/zzub/plugins/'+libname+'/'
+		install_plugin_help(libname, [helpsrcdir+filename for filename in helpfiles])
+	return plugin
+
+Export('build_plugin')
+
+base_plugin_path = os.getcwd()
+for filename in os.listdir('.'):
+	plugin_dir_path = os.path.abspath(filename)
+	if os.path.isfile(os.path.join(plugin_dir_path,'SConscript')):
+		pluginenv = env.Clone()
+		pluginenv.Append(CPPPATH=[
+			'../..',
+		])
+
+		Export('plugin_dir_path','pluginenv')
+		env.SConscript(os.path.join(plugin_dir_path,'SConscript'))
+	elif filename == "buzz_ports":
+		for fname in os.listdir(os.path.abspath(filename)):
+			plugin_dir_path = os.path.join(os.path.abspath(filename), fname)
+			if os.path.isfile(os.path.join(plugin_dir_path,'SConscript')):
+				pluginenv = env.Copy()
+				Export('plugin_dir_path','pluginenv')
+				env.SConscript(os.path.join(plugin_dir_path,'SConscript'))

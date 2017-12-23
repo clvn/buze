@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	040FADF91008D6A40069D47C /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+		scmType = "";
+	};
+	040FADFA1008D6A40069D47C /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	040FADFF1008D72E0069D47C /* storage */ = {
+		activeExec = 0;
+	};
+	040FAE051008D7670069D47C /* database.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {819, 560}}";
+			sepNavSelRange = "{262, 18}";
+			sepNavVisRect = "{{0, 119}, {819, 169}}";
+			sepNavWindowFrame = "{{38, 162}, {750, 558}}";
+		};
+	};
+	040FAE061008D7670069D47C /* database.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 434}}";
+			sepNavSelRange = "{95, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{84, 120}, {750, 558}}";
+		};
+	};
+	040FAE071008D7670069D47C /* document.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1478, 7112}}";
+			sepNavSelRange = "{2727, 0}";
+			sepNavVisRect = "{{0, 1165}, {711, 429}}";
+			sepNavWindowFrame = "{{61, 141}, {750, 558}}";
+		};
+	};
+	040FAE091008D7670069D47C /* documentgenimpl.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {3698, 21350}}";
+			sepNavSelRange = "{38642, 0}";
+			sepNavVisRect = "{{0, 12841}, {711, 429}}";
+			sepNavWindowFrame = "{{15, 183}, {750, 558}}";
+		};
+	};
+	040FAE0A1008D7670069D47C /* documentimpl.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1898, 21602}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{199, 15}, {750, 558}}";
+		};
+	};
+	040FAE281008D7FC0069D47C /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = "Project Breakpoints";
+		objects = (
+		);
+	};
+	040FAFA11008E4A40069D47C /* mixer */ = {
+		activeExec = 0;
+	};
+	040FAFA91008E4DD0069D47C /* connections.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 429}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{15, 183}, {750, 558}}";
+		};
+	};
+	040FAFAF1008E4DD0069D47C /* mixer.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1220, 19222}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{38, 162}, {750, 558}}";
+		};
+	};
+	040FAFB41008E4DD0069D47C /* song.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1004, 7140}}";
+			sepNavSelRange = "{15560, 0}";
+			sepNavVisRect = "{{0, 409}, {711, 429}}";
+			sepNavWindowFrame = "{{61, 141}, {750, 558}}";
+		};
+	};
+	040FAFE11008EBB00069D47C /* player */ = {
+		activeExec = 0;
+	};
+	040FAFF81008EBF50069D47C /* module.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {819, 532}}";
+			sepNavSelRange = "{1001, 46}";
+			sepNavVisRect = "{{0, 362}, {819, 169}}";
+		};
+	};
+	040FB04B1009511C0069D47C /* core */ = {
+		activeExec = 0;
+	};
+	040FB072100954E40069D47C /* armstrong_driver.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1010, 2436}}";
+			sepNavSelRange = "{5241, 0}";
+			sepNavVisRect = "{{0, 70}, {819, 42}}";
+			sepNavWindowFrame = "{{334, 111}, {750, 558}}";
+		};
+	};
+	040FB077100954E40069D47C /* armstrong_plugin.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1052, 9478}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {819, 42}}";
+		};
+	};
+	040FB078100954E40069D47C /* armstrong_wave.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1028, 4256}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {819, 42}}";
+		};
+	};
+	040FB07B100954E40069D47C /* bmxreader.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1364, 15946}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {861, 168}}";
+		};
+	};
+	042F8CE21009587000C55511 /* minizip */ = {
+		activeExec = 0;
+	};
+	042F8D831009664200C55511 /* stream */ = {
+		activeExec = 0;
+	};
+	042F8D8B1009668D00C55511 /* resample.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 3206}}";
+			sepNavSelRange = "{43, 23}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{15, 183}, {750, 558}}";
+		};
+	};
+	042F8D8C1009668D00C55511 /* resample.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {776, 1120}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{38, 162}, {750, 558}}";
+		};
+	};
+	042F8DB01009668E00C55511 /* stream_mp3.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {776, 8162}}";
+			sepNavSelRange = "{77, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{84, 120}, {750, 558}}";
+		};
+	};
+	042F8DB11009668E00C55511 /* stream_mp3.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {711, 429}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{61, 141}, {750, 558}}";
+		};
+	};
+	042F8E29100969E500C55511 /* midi */ = {
+		activeExec = 0;
+	};
+	042F8E2E100969F200C55511 /* lunar */ = {
+		activeExec = 0;
+	};
+	042F8E4D10096A8900C55511 /* lunar.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {944, 22946}}";
+			sepNavSelRange = "{22325, 34}";
+			sepNavVisRect = "{{0, 10192}, {819, 42}}";
+			sepNavWindowFrame = "{{130, 78}, {750, 558}}";
+		};
+	};
+	0867D690FE84028FC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeTarget = 8DC2EF4F0486A6940098B216 /* armstrong */;
+		addToTargets = (
+			042F8E29100969E500C55511 /* midi */,
+		);
+		breakpointsGroup = 040FAE281008D7FC0069D47C /* XCBreakpointsBucket */;
+		codeSenseManager = 040FADFA1008D6A40069D47C /* Code sense */;
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXExecutablesDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXExecutablesDataSource_NameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					22,
+					300,
+					66,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXExecutablesDataSource_ActiveFlagID,
+					PBXExecutablesDataSource_NameID,
+					PBXExecutablesDataSource_CommentsID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					178,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXSymbolsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXSymbolsDataSource_SymbolNameID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					16,
+					200,
+					50,
+					118.2085,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXSymbolsDataSource_SymbolTypeIconID,
+					PBXSymbolsDataSource_SymbolNameID,
+					PBXSymbolsDataSource_SymbolTypeID,
+					PBXSymbolsDataSource_ReferenceNameID,
+				);
+			};
+			PBXConfiguration.PBXTargetDataSource.PBXTargetDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					200,
+					10,
+					20,
+					48,
+					43,
+					43,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXTargetDataSource_PrimaryAttribute,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = "-974326691";
+			PBXWorkspaceStateSaveDate = "-974326691";
+		};
+		sourceControlManager = 040FADF91008D6A40069D47C /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8DC2EF4F0486A6940098B216 /* armstrong */ = {
+		activeExec = 0;
+	};
+}

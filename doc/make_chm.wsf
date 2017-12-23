@@ -1,0 +1,23 @@
+<job>
+<!-- 
+
+Generates html for generating a chm from the documentation
+
+-->
+	<script type="text/javascript" src="templatetools.js"></script>
+	<script type="text/javascript">
+
+var WFile = new ActiveXObject("Scripting.FileSystemObject");
+
+var scriptPath = WFile.GetParentFolderName(WFile.GetFile(WScript.ScriptFullName));
+
+var xsl = createTemplate(scriptPath + "\\chm\\template\\template.xslt");
+processTemplateDir(scriptPath + "\\content\\user", scriptPath + "\\chm\\output\\user", 1);
+processTemplateDir(scriptPath + "\\content\\developer", scriptPath + "\\chm\\output\\developer", 1);
+processTemplateFile(scriptPath + "\\content\\index.html", scriptPath + "\\chm\\output", 0);
+processTemplateFile(scriptPath + "\\content\\introduction.html", scriptPath + "\\chm\\output", 0);
+processAssetDir(scriptPath + "\\chm\\template\\assets", scriptPath + "\\chm\\output\\assets");
+
+	</script>
+
+</job>

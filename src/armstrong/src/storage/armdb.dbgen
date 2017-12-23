@@ -1,0 +1,500 @@
+{
+	"events" : { 
+		"barrier" : [
+			[ "type", "int" ],
+			[ "description", "text" ]
+		], 
+		"insert_samples" : [],
+		"delete_samples" : [],
+		"orderlist_timeshift" : [
+			[ "song_id", "int" ],
+			[ "index", "int" ],
+			[ "timeshift", "int" ]
+		],
+		"ensure_plugin_parameters" : []
+	}, 
+
+	"tables" : {
+		"song" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "version", "int" ],
+				[ "title", "text" ],
+				[ "comment", "blob" ],
+				[ "loopbegin", "int" ],
+				[ "loopend", "int" ],
+				[ "loopenabled", "bit" ],
+				[ "samplerate", "int" ],
+				[ "bpm", "int" ],
+				[ "tpb", "int" ],
+				[ "swing", "float" ],
+				[ "swingticks", "int" ],
+				[ "machineview_x", "float" ],
+				[ "machineview_y", "float" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+
+		"plugin" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "flags", "int" ],
+				[ "song_id", "int", "not null", { 
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "name", "varchar(64)" ],
+				[ "data", "blob" ],
+				[ "trackcount", "int" ],
+				[ "x", "float" ],
+				[ "y", "float" ],
+				[ "streamsource", "varchar(64)" ],
+				[ "is_muted", "bit" ],
+				[ "is_bypassed", "bit" ],
+				[ "is_solo", "bit" ],
+				[ "is_minimized", "bit" ],
+				[ "plugininfo_id", "int", { 
+					"reftable":"plugininfo", "refkey": "id",
+					"cascade":false
+				} ],
+				[ "timesource_plugin_id", "int" ],
+				[ "timesource_group", "int" ],
+				[ "timesource_track", "int" ],
+				[ "latency", "int" ],
+				[ "plugingroup_id", "int",  { 
+					"reftable":"plugingroup", "refkey": "id"
+				} ]
+			],
+			"before_insert":true,
+			"after_insert":true,
+			"before_update":true,
+			"after_update":true,
+			"before_delete":true,
+			"after_delete":true
+		}, 
+		
+		"plugininfo" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", { 
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "flags", "int" ],
+				[ "uri", "varchar(64)" ],
+				[ "name", "varchar(64)" ],
+				[ "short_name", "varchar(64)" ],
+				[ "author", "varchar(64)" ],
+				[ "mintracks", "int" ],
+				[ "maxtracks", "int" ],
+				[ "input_count", "int" ],
+				[ "output_count", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true,
+			"undo":false
+		}, 
+		
+		"parameterinfo" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugininfo_id", "int", "not null", { 
+					"reftable":"plugininfo", "refkey": "id" 
+				} ],
+				[ "paramgroup", "int" ],
+				[ "paramcolumn", "int" ],
+				[ "name", "varchar(64)" ],
+				[ "description", "varchar(128)" ],
+				[ "flags", "int" ],
+				[ "type", "int" ],
+				[ "minvalue", "int" ],
+				[ "maxvalue", "int" ],
+				[ "novalue", "int" ],
+				[ "defaultvalue", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true,
+			"undo":false
+		}, 
+
+		"attributeinfo" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugininfo_id", "int", "not null", { 
+					"reftable":"plugininfo", "refkey": "id" 
+				} ],
+				[ "attrindex", "int" ],
+				[ "name", "varchar(64)" ],
+				[ "minvalue", "int" ],
+				[ "maxvalue", "int" ],
+				[ "defaultvalue", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true,
+			"undo":false
+		}, 
+		
+		"attribute" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugin_id", "int", "not null", { 
+					"reftable":"plugin", "refkey": "id" 
+				} ],
+				[ "attrindex", "int" ],
+				[ "value", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+		
+		"patternorder" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", { 
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "pattern_id", "int", { 
+					"reftable":"pattern", "refkey": "id" 
+				} ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+
+		"pluginparameter" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugin_id", "int", "not null", { 
+					"reftable":"plugin", "refkey": "id" 
+				} ],
+				[ "parameterinfo_id", "int", "not null", { 
+					"reftable":"parameterinfo", "refkey": "id" 
+				} ],
+				[ "paramtrack", "int" ],
+				[ "value", "int" ],
+				[ "interpolator", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+
+		"connection" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugin_id", "int", "not null", { 
+					"reftable":"plugin", "refkey": "id" 
+				} ],
+				[ "from_plugin_id", "int" ],
+				[ "to_plugin_id", "int" ],
+				[ "type", "int" ],
+				[ "first_input", "int" ],
+				[ "first_output", "int" ],
+				[ "input_count", "int" ],
+				[ "output_count", "int" ],
+				[ "mididevice", "varchar(512)" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+
+		"pattern" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", { 
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "name", "varchar(64)" ],
+				[ "length", "int" ],
+				[ "resolution", "int" ],
+				[ "beginloop", "int" ],
+				[ "endloop", "int" ],
+				[ "loopenabled", "int" ],
+				[ "display_resolution", "int" ],
+				[ "display_verydark_row", "int" ],
+				[ "display_dark_row", "int" ],
+				[ "patternformat_id", "int", "not null", { 
+					"reftable":"patternformat", "refkey": "id" 
+				} ],
+				[ "replay_row", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":true,
+			"after_update":true,
+			"before_delete":true,
+			"after_delete":true
+		}, 
+
+		"patternevent" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "pattern_id", "int", "not null", {
+					"reftable":"pattern", "refkey": "id" 
+				} ],
+				[ "time", "int" ],
+				[ "pluginparameter_id", "int", "not null", {
+					"reftable":"pluginparameter", "refkey": "id" 
+				} ],
+				[ "value", "int" ],
+				[ "meta", "int" ]
+			],
+			"indices" : [
+				[ "idx_patternevent_pattern", "pattern_id" ]
+			],
+			"before_insert":true,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"wave" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", {
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "name", "varchar(64)" ],
+				[ "filename", "varchar(64)" ],
+				[ "flags", "int" ],
+				[ "volume", "float" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"wavelevel" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "wave_id", "int", "not null", {
+					"reftable":"wave", "refkey": "id" 
+				} ],
+				[ "basenote", "int" ],
+				[ "samplerate", "int" ],
+				[ "samplecount", "int" ],
+				[ "beginloop", "int" ],
+				[ "endloop", "int" ],
+				[ "format", "int" ],
+				[ "filename", "varchar(64)" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":true,
+			"after_delete":true
+		},
+		
+		"slice" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "wavelevel_id", "int", "not null", {
+					"reftable":"wavelevel", "refkey": "id" 
+				} ],
+				[ "sampleoffset", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"envelope" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "wave_id", "int", "not null", {
+					"reftable":"wave", "refkey": "id" 
+				} ],
+				[ "attack", "int" ],
+				[ "decay", "int" ],
+				[ "sustain", "int" ],
+				[ "release", "int" ],
+				[ "subdivision", "int" ],
+				[ "flags", "int" ],
+				[ "disabled", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}, 
+		
+		"envelopepoint" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "envelope_id", "int", "not null", {
+					"reftable":"envelope", "refkey": "id" 
+				} ],
+				[ "x", "int" ],
+				[ "y", "int" ],
+				[ "flags", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"midimapping" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "plugin_id", "int", "not null", {
+					"reftable":"plugin", "refkey": "id" 
+				} ],
+				[ "paramgroup", "int" ],
+				[ "paramtrack", "int" ],
+				[ "paramcolumn", "int" ],
+				[ "midichannel", "int" ],
+				[ "midicontroller", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"eventconnectionbinding" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "connection_id", "int", "not null", {
+					"reftable":"connection", "refkey": "id" 
+				} ],
+				[ "sourceindex", "int" ],
+				[ "targetparamgroup", "int" ],
+				[ "targetparamtrack", "int" ],
+				[ "targetparamcolumn", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"patternformat" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", {
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "name", "varchar(64)" ],
+				[ "scroller_width", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"patternformatcolumn" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "patternformat_id", "int", "not null", {
+					"reftable":"patternformat", "refkey": "id" 
+				} ],
+				[ "pluginparameter_id", "int", "not null", {
+					"reftable":"pluginparameter", "refkey": "id" 
+				} ],
+				[ "mode", "int" ],
+				[ "is_collapsed", "int" ],
+				[ "idx", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":true,
+			"after_delete":true
+		},
+		
+		"patternformattrack" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "patternformat_id", "int", "not null", {
+					"reftable":"patternformat", "refkey": "id" 
+				} ],
+				[ "plugin_id", "int", "not null", {
+					"reftable":"plugin", "refkey": "id" 
+				} ],
+				[ "paramgroup", "int" ],
+				[ "paramtrack", "int" ],
+				[ "label", "varchar(256)" ],
+				[ "is_muted", "int" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		},
+		
+		"plugingroup" : {
+			"fields" : [
+				[ "id", "int", "primary", "not null" ],
+				[ "song_id", "int", "not null", {
+					"reftable":"song", "refkey": "id" 
+				} ],
+				[ "name", "varchar(256)" ],
+				[ "parent_plugingroup_id", "int", "null", { 
+					"reftable":"plugingroup", "refkey": "id"
+				}],
+				[ "position_x", "float" ],
+				[ "position_y", "float" ]
+			],
+			"before_insert":false,
+			"after_insert":true,
+			"before_update":false,
+			"after_update":true,
+			"before_delete":false,
+			"after_delete":true
+		}
+	}
+}

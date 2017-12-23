@@ -1,0 +1,12 @@
+<vlayout>
+	<div style="height:20">
+		<span>
+			World Hello @ <span id="bpm">126</span> BPM 
+		</span>
+	</div>
+	<div>
+		<span id="heart" style="position:relative; width:100%; height:100%;">
+			<div style="width:100%;height:100%;background-image:'Gear/Scripts/LuaView/heart/heart.png';"></div>
+		</span>
+	</div>
+</vlayout>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseChecked|Win32">
+      <Configuration>ReleaseChecked</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{73B699CB-5898-4424-B99B-87A86AB35FD1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../include;../..;vamp-plugin-sdk-v2.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../include;../..;vamp-plugin-sdk-v2.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../../include;../..;vamp-plugin-sdk-v2.2.1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NNDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="vamp2zzub.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginBufferingAdapter.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginChannelAdapter.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginHostAdapter.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginInputDomainAdapter.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginLoader.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginSummarisingAdapter.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginWrapper.cpp" />
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\RealTime.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vamp2zzub.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\hostguard.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\Plugin.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginBase.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginBufferingAdapter.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginChannelAdapter.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginHostAdapter.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginInputDomainAdapter.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginLoader.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginSummarisingAdapter.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginWrapper.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\RealTime.h" />
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\vamp-hostsdk.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

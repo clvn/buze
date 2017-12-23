@@ -1,0 +1,133 @@
+# Parts of the zzub interface available to plugins
+
+cheader "zzub/pluginenum.h"
+
+namespace zzub:
+
+	enum:
+		set version = 15
+		set buffer_size = 256
+	
+	enum PlayerState:
+		set playing = 0
+		set stopped = 1
+		set muted = 2
+		set released = 3
+	
+	enum ParameterType:
+		# parameter types
+		set note	= 0
+		set switch	= 1
+		set byte	= 2
+		set word	= 3
+		set meta    = 4
+
+	enum WaveBufferType:
+		set si16	= 0    # signed int 16bit
+		set f32		= 1    # float 32bit
+		set si32	= 2    # signed int 32bit
+		set si24	= 3    # signed int 24bit
+
+	enum OscillatorType:
+		set sine	= 0
+		set sawtooth	= 1
+		set pulse	= 2
+		set triangle	= 3
+		set noise	= 4
+		set sawtooth_303 = 5
+
+	enum NoteValue:
+		# predefined values for notes
+		set none	= 0
+		set off	= 255
+		set cut	= 254
+		set min	= 1
+		set max	= 156 # ((16 * 9) + 12)
+		set c4 = 65 # ((16 * 4) + 1)
+
+	enum SwitchValue:
+		# predefined values for switches
+		set none	= 255
+		set off	= 0
+		set on	= 1
+
+	enum WavetableIndexValue:
+		# predefined values for wavetable indices
+		set none	= 0
+		set min	= 1
+		set max	= 200
+
+	enum ParameterFlag:
+		# parameter flags
+		set wavetable_index	 = bit 0
+		set state			 = bit 1
+		set event_on_edit	 = bit 2
+		set pattern_index	 = bit 3
+		set velocity_index	 = bit 4
+		set delay_index		 = bit 5
+		set compound		 = bit 6
+		set char_index		 = bit 7
+		set harmony_index    = bit 8
+		set meta_note        = bit 9
+		set meta_wave        = bit 10
+
+	"Plugin flags"
+	enum PluginFlag:
+		set plays_waves			= bit 1 # plugin has envelopes
+		set uses_lib_interface	= bit 2 # buzz legacy instrument preloading
+		set does_input_mixing	= bit 4 # buzz legacy input mixing
+		set is_singleton		= bit 15 # only one plugin per song
+		set is_root				= bit 16 # master plugin only
+		set has_audio_input		= bit 17 # for audio effects
+		set has_audio_output	= bit 18 # for audio generators and effects
+		set is_offline			= bit 19 # offline processing
+		set has_event_output	= bit 20 # for event generators and effects
+		set stream				= bit 22 # stream plugin
+		set has_midi_input		= bit 23 # for midi effects
+		set has_midi_output		= bit 24 # for midi generators and effects
+		set has_group_input     = bit 25 # for group input
+		set has_group_output    = bit 26 # for group output
+		set is_sequence			= bit 27 # for sequence plugins
+		set is_connection		= bit 28 # for connection plugins
+		set is_interval			= bit 29 # for dynamic chunk sizes
+		set is_encoder			= bit 30 # for processing in the encoder thread
+		set has_note_output		= bit 31 # for note generators
+
+	enum WaveFlag:
+		set loop	= bit 0
+		set extended	= bit 2
+		set stereo = bit 3
+		set pingpong	= bit 4
+		set envelope	= bit 7
+
+	enum EnvelopeFlag:
+		set sustain	= bit 0
+		set loop	= bit 1
+
+	enum ProcessMode:
+		# processing modes
+		set no_io	= 0
+		set read	= bit 0
+		set write	= bit 1
+		set read_write = bit 0,1
+	
+	enum EncoderState:
+		set playing = bit 0
+		set stopped = bit 1
+		set deleted = bit 2
+		set seeking = bit 3
+		set created = bit 4
+
+	enum ConnectionType:
+		set audio = 0
+		set event = 1
+		set midi = 2
+		set note = 3
+		
+	enum ParameterGroup:
+		set internal = 0
+		set global = 1
+		set track = 2
+		set controller = 3
+		set virtual = 4
+	

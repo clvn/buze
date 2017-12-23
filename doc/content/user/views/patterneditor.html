@@ -1,0 +1,445 @@
+<html>
+<body>
+<h1>Pattern Editor</h1>
+
+<p>
+	The pattern editor is basically a tool to edit numbers in a grid. The numbers are organized in distinct columns refering to plugin parameters, repeated by rows for each step of time. 
+	Columns can be rendered in different ways, depending on the type of parameter.
+</p>
+<p>
+	<img src="patternsnip.png" alt="Part of a pattern" /><br />
+	<i>Part of a pattern with sliders, raw values and notes columns.</i>
+</p>
+
+<h2>Working with patterns</h2>
+<ul>
+	<li>Use Enter and Esc to navigate into and out of subpatterns. Pressing Esc in the root pattern focuses the <a href="orderlist.html">orderlist</a>.</li>
+	<li>Press Shift+F2 or choose "Pattern Format Editor" from the context menu to add or remove columns in the current <a href="patternformatview.html">pattern format</a>.</li>
+	<li>Press Alt+Backspace to change pattern properties such as name, length, resolution and looping</li>
+	<li>Press Ctrl+H to toggle horizontal (like IT) or vertical (like FT) editing modes</li>
+	<li>Press Alt+| to cycle automatic column entry modes for note editing. Toggles between none/either/both of wave and volume.</li>
+	<li>Press Ctrl+Num plus/Ctrl+Num minus to add/remove tracks (voices). Note that this modifies the pattern format and will affect all patterns of the same pattern format</li>
+	<li>Press Ctrl+F5 to play the current pattern only</li>
+	<li>Press Ctrl+F6 to set the replay row - indicated by the little arrow pointing downwards next to the row number - and play the current pattern only from the current position</li>
+	<li>Press Ctrl+Shift+F5 to play the current pattern from the replay row</li>
+	<li>Press Alt+Enter to bring up the parameter view for the plugin under the cursor</li>
+	<li>Colors can be modified in theme files.</li>
+</ul>
+
+<h2>Working with trigger columns</h2>
+<ul>
+	<li>Make sure the Infopane is enabled in the pattern editor toolbar to display the embedded pattern list while the cursor is on a trigger column.</li>
+	<li>To navigate in the embedded infopane, use Alt+Up/Down/Page Up/Page Down to move the cursor.</li>
+	<li>When a pattern format is selected in the infopane, press space to insert a new pattern at the cursor location. Or make a selection first to create the pattern of a given length.</li>
+	<li>When a pattern is selected in the infopane, press space to insert the selected pattern at the cursor location. Or make a selection first to insert the pattern repeatedly throughout the selection.</li>
+	<li>Press Ctrl+Num plus/Ctrl+Num minus to add/remove trigger columns tracks (voices).</li>
+	<li>Trigger columns can be added to any pattern format by adding the "Trigger" parameter of a Pattern plugin to the pattern format.</li>
+</ul>
+<p>
+	Trigger columns are accommodated by the right pane showing a list of all formats and patterns that can be triggered, 
+	including itself. This means a pattern could trigger itself - don't!
+</p>
+<p>
+	<img src="petrig.png" />
+</p>
+
+<h2>Working with the pianoroll</h2>
+<ul>
+	<li>To enable the per-plugin pianoroll, add a "Note Meta" parameter from a plugin with notes to a pattern format.</li>
+	<li>Voices for the pianoroll must be allocated manually; add at least one note parameter to the pattern format "as usual", and use "Add track" in the pattern for more voices.</li>
+	<li>Click and drag in the pianoroll background to paint new notes.</li>
+	<li>Click the top or bottom of a note to stretch the duration of a note.</li>
+	<li>Click and drag a note to change its pitch and time.</li>
+	<li>Shift+Click to select and work with more than one note.</li>
+	<li>Note that pianoroll editing will cause reorganization of the underlying pattern data, and may not always lead to the desirable results.</li>
+</ul>
+
+<h2>Working with envelopes</h2>
+<ul>
+	<li>Any numeric pattern column can be rendered as and have its values interpolated linearly in realtime:</li>
+	<li>To enable interpolation for a column, choose "Column Interpolation" -&gt; "Envelope (Linear)" from the pattern editor context menu.</li>
+	<li>To enable the envelope editor for a column, choose "Column Editor" -&gt; "Envelope" from the pattern editor context menu.</li>
+</ul>
+
+<h3>Basic keyboard and mouse operations</h3>
+<table border="1" width="100%">
+	<tr>
+		<th>Operation</th>
+		<th>Action</th>
+	</tr>
+	<tr><td>Arrows</td><td>Move cursor</td></tr>
+	<tr><td>Arrow up/down+Arrow left/right</td><td>Move cursor diagonally</td></tr>
+	<tr><td>Page Up</td><td>Move cursor up 16 rows</td></tr>
+	<tr><td>Page Down</td><td>Move cursor down 16 rows</td></tr>
+	<tr><td>TAB</td><td>Move cursor to next track</td></tr>
+	<tr><td>Shift+TAB</td><td>Move cursor to previous track</td></tr>
+	<tr><td>Home</td><td>Move to beginning of line</td></tr>
+	<tr><td>Ctrl+Home</td><td>Move to beginning of loop</td></tr>
+	<tr><td>End</td><td>Move to last column</td></tr>
+	<tr><td>Ctrl+End</td><td> Move to end of loop</td></tr>
+	<tr><td>(keyboard notes)</td><td>Edit notes </td></tr>
+	<tr><td>Shift+(keyboard notes)</td><td>Edit notes, chord mode</td></tr>
+	<tr><td>Ctrl+Scroll wheel</td><td>Change pattern display resolution</td></tr>
+	<tr><td>Shift+Scroll wheel</td><td>Change font size</td></tr>
+	<tr><td>Drag+Drop selection</td><td>Move selected pattern data</td></tr>
+	<tr><td>Drag+Ctrl+Drop selection</td><td>Copy selected pattern data</td></tr>
+	<tr><td>Drag selection+Right click</td><td>Stamp selected pattern data</td></tr>
+
+</table>
+
+<!--h2>Primary and secondary pattern editors</h2>
+<p>
+	For new users, it may be less confusing to keep the secondary pattern editor closed, and use the primary pattern editor exclusively. 
+</p>
+<p>
+	The idea behind the secondary pattern editor was to implement a replacement for the historic "sequence view", which no longer exists in Buze. 
+	The assumption is that some users might want to retain the dual view ability provided by the sequence/pattern views in earlier versions (and still Buzz).
+</p>
+<p>
+	When the secondary pattern editor is open, the behavior of Enter/Esc is slightly modified: subpatterns will consequently open in the secondary pattern editor.
+	When only the primary pattern editor is open, navigating into subpatterns will show the pattern directly and not change the active editor.
+</p>
+<p>
+	When navigating subpatterns, pressing Esc on the last level will focus the <a href="orderlist.html">orderlist</a>. To ensure the orderlist is enabled, check for "Show Order List" in the 
+	right click pattern editor context menu. The orderlist is the main difference between the primary and secondary pattern editors.
+</p-->
+
+<h2>Column types</h2>
+<p>
+	Pattern columns are usually rendered as value columns or trigger columns by default. Select different rendering modes via right click -> Column Editor or Ctrl+T.
+	Any column can be collapsed with Ctrl+K, and uncollapsed with Ctrl+Shift+K.
+</p>
+
+
+<table border="1">
+	<tr>
+		<th>Column type</th>
+		<th>Parameter types</th>
+		<th>&#160;</th>
+		<th>Special actions</th>
+	</tr>
+	<tr>
+		<td><b>Value column</b></td>
+		<td>Note, switch, byte, word</td>
+		<td>
+			<img src="col-value.png" />
+		</td>
+		<td>Space toggles note meta on notes, or pastes the current parameter value. Ctrl+Drag mouse to slide the value.</td>
+	</tr>
+	<tr>
+		<td><b>Trigger column</b></td>
+		<td>Any column with pattern trigger flag</td>
+		<td>
+			<img src="col-trigger.png" />
+		</td>
+		<td>Space pastes pattern from pattern list. Special2 clones the pattern under the cursor. Special3 expands/collapses. Special5 goes to the pattern under the cursor. Special6 clones the pattern under the cursor and goes to the new pattern.</td>
+	</tr>
+	<tr>
+		<td><b>Slider column</b></td>
+		<td>Byte, word</td>
+		<td>
+			<img src="col-slider.png" />
+		</td>
+		<td>Ctrl+Click to draw slider values.</td>
+	</tr>
+	<tr>
+		<td><b>Button column</b></td>
+		<td>Switch</td>
+		<td>
+			<img src="col-button.png" />
+		</td>
+		<td>Ctrl+Click or space toggles the button state</td>
+	</tr>
+	<tr>
+		<td><b>Envelope column</b></td>
+		<td>Byte, word</td>
+		<td>
+			<img src="col-envelope.png" />
+		</td>
+		<td>Ctrl+Click to insert/move envelope points. This column type is only a visual representation for the underlying numbers, linear column interpolation must be enabled for playback.</td>
+	</tr>
+	<tr>
+		<td><b>Pianoroll</b></td>
+		<td>Note meta</td>
+		<td>
+			&#160;
+		</td>
+		<td>
+			Click+drag to insert new note, or click to select+move single notes. Shift+click to select+move multiple notes. Drag from near the note edges to move the start/end of the selected notes.
+		</td>
+	</tr>
+	<tr>
+		<td><b>Note Matrix</b></td>
+		<td>Note meta</td>
+		<td>
+			&#160;
+		</td>
+		<td>
+			Click to toggle single-hit notes.
+		</td>
+	</tr>
+</table>
+
+<h2>Pattern properties</h2>
+<p>
+	Press Alt-Backspace to display and edit properties of the current pattern.
+</p>
+
+<blockquote>
+	<p>
+		<b>Name</b>: Changes the pattern name
+	</p>
+	<p>
+		<b>Length</b>: Changes the pattern length
+	</p>
+	<p>
+		<b>Resolution</b>: Changes the pattern resolution. Also known as rows per tick, or lines per row. Determines how fast the pattern is played back.
+	</p>
+	<p>
+		<b>Looping</b>: Toggles pattern looping. Looping patterns should not be put in the order list as this would make the song of infinite length, causing hard disk recorders to fail.
+	</p>
+	<p>
+		<b>Loop Begin</b>: Sets pattern loop begin row.
+	</p>
+	<p>
+		<b>Loop End</b>: Sets pattern loop end row.
+	</p>
+	<p>
+		<b>Track parameter: Name</b>: Sets the label used to describe this track in the pattern editor.
+	</p>
+	<p>
+		<b>Track parameter: Mute</b>: Stops playing pattern events in this track.
+	</p>
+</blockquote>
+
+<h2>Pattern editor toolbars</h2>
+<p>
+	Right click in the pattern editor toolbar area to toggle visibility of individual toolbars.
+</p>
+<p>
+	<img src="patterntoolbars.png" alt="Pattern toolbars" />
+</p>
+
+<blockquote>
+	<p>
+		<b>Wave toolbar</b>: Changes the currently selected waveform
+	</p>
+	<p>
+		<b>Format/Pattern toolbar</b>: Two dropdowns: the first lists all pattern formats, the other lists patterns based on the selected pattern format. For navigating other patterns.
+	</p>
+	<p>
+		<b>Octave toolbar</b>: Changes the current octave for note editing. 
+	</p>
+	<p>
+		<b>Step toolbar</b>: Changes the number of rows the cursor will skip when entering a value.
+	</p>
+	<p>
+		<b>Play Notes toolbar</b>: Toggles whether to play notes when a note is entered in a note column.
+	</p>
+	<p>
+		<b>Info toolbar</b>: Toggles whether to display the info pane.
+	</p>
+	<p>
+		<b>Follow toolbar</b>: Toggles whether the primary pattern editor should follow the order list.
+	</p>
+	<p>
+		<b>Pattern Loop toolbar</b>: Toggles looping of the current pattern.
+	</p>
+	<p>
+		<b>Pattern Scale toolbar</b>: Hides rows in the current pattern.
+	</p>
+	<p>
+		<b>Pattern Beat toolbar</b>: Sets the current pattern beat coloring.
+	</p>
+	<p>
+		<b>Pattern Rows toolbar</b>: Changes the current pattern length.
+	</p>
+	<p>
+		<b>Pattern Name toolbar</b>: Renames the current pattern.
+	</p>
+</blockquote>
+
+<h2>Pattern context menu</h2>
+<p>
+	Right+click on a pattern to bring up the context menu:
+</p>
+<blockquote>
+	<p>
+		<b>Pattern Create</b>: Creates a new pattern.
+	</p>
+	<p>
+		<b>Pattern Clone</b>: Creates a new pattern as a copy of the current.
+	</p>
+	<p>
+		<b>Pattern Delete</b>: Deletes current pattern.
+	</p>
+	<p>
+		<b>Pattern Properties</b>: Displays editable pattern properties for length, resolution, track names, etc.
+	</p>
+	<p>
+		<b>Pattern List</b>: Opens the pattern list view.
+	</p>
+	<p>
+		<b>Pattern Format Create</b>: Create a new, blank pattern format.
+	</p>
+	<p>
+		<b>Pattern Format Clone</b>: Create a new pattern format based on the current.
+	</p>
+	<p>
+		<b>Pattern Format Delete</b>: Delete the current pattern format and all patterns.
+	</p>
+	<p>
+		<b>Pattern Format Editor</b>: Add or remove columns in the current pattern format.
+	</p>
+	<p>
+	<b>Add Trigger Column</b>: Inserts a column for triggering sub patterns from the current pattern format. Choose to create a new pattern player and/or a new track, or reuse an existing.
+	</p>
+	<p>
+	<img src="pepf1.png" />
+	</p>
+
+	<p>
+	<b>Add Note/Velocity Columns</b>: Inserts only note and velocity parameters from a specific plugin into the current pattern format.<br />
+	</p>
+	<p>
+	<b>Add All Columns</b>: Inserts all parameters from a specific plugin into the current pattern format.<br />
+	<img src="pepf3.png" />
+	</p>
+	<p>
+		<b>Double Rows</b>: Inserts a blank row after every row.
+	</p>
+	<p>
+		<b>Halve Rows</b>: Deletes every second row.
+	</p>
+	<p>
+		<b>Double Length</b>: Makes the pattern twice as long.
+	</p>
+	<p>
+		<b>Halve Length</b>: Cuts off half of the pattern.
+	</p>
+	<p>
+		<b>Editor in New Pattern Editor</b>: Opens a new pattern editor
+	</p>
+	<p>
+		<b>Link Scrollbars To</b>: Select another open pattern editor which will have its scrollbars locked against this pattern editor.
+	</p>
+	<p>
+		<b>Column Editor</b>: Toggles column rendering mode. See the column type table above.
+	</p>
+	<p>
+		<b>Column Interpolation</b>: Toggles column interpolation mode. Determines how the pattern player interprets parameter values in patterns:
+		Normal (Absolute) is the default and means pattern values are effective immediately. 
+		Normal (Inertia) slides towards the current pattern value value over 4 rows. 
+		Linear (Envelope) interpolates the value between the two nearest pattern events before and after the current position.
+		The column interpolation update frequency is the same as the current pattern resolution.
+	</p>
+	<p>
+		<b>Machine Parameters</b>: Shows the machine parameter view for the plugin under the cursor.
+	</p>
+	<p>
+		<b>Show Orderlist</b>: Only in the primary pattern editor.
+	</p>
+</blockquote>
+
+<h2>Transform context menu</h2>
+<p>
+	Press Ctrl+Right Click to bring up the transform context menu. Quick rundown on the transforms:
+</p>
+<blockquote>
+	<p>
+		<b>Random From</b> -- randomizes the selection from the set of all values existing in that column currently.
+		So easy to set a constraint, just type some values in. But if you type one value in twice, it will be twice as
+		      likely to appear.
+	</p>
+	
+	<p>
+		<b>Shuffle</b> -- takes all values in selection and randomizes which time-event has that value.
+		The positions dont change, just the values
+	</p>
+	
+	<p>
+		<b>Gradiate</b> fills in between all points in the selection existing.
+	</p>
+	
+	<p>
+		<b>Thin</b> does the "window blinds" effect. deletes stuff at a modulo
+	</p>
+	
+	<p>
+		<b>Repeat</b> is like "Echo"
+		stuff repeats at a phase, each new event becomes the repeater
+	</p>
+	
+	<p>
+		<b>Unique</b> removes repeats
+	</p>
+	
+	<p>
+		<b>Scale</b> takes a "In Range" and maps it to an "Out range"
+	</p>
+	
+	<p>
+		<b>Fade</b> does the obvious.. needs a toolbar thingy for some of this stuff to select if it works on volume[greens] or not
+	</p>
+	
+	<p>
+		<b>Rotate</b> rows moves N chunks to the top and wraps around.
+		rotate rhythms rotates the set of distances between each event.
+		so if you hold down the hotkey for it, it will give all rhythmic permutations possible given those distances, and will wrap around eventually depending on how many columns it is
+	</p>
+	
+	<p>
+		<b>All To First</b> sets all values in the selection to be the value at the top of the selection
+	</p>
+	
+	<p>
+		<b>First To Last</b> replaces all instances of the value at the top of the selection, with the value at the bottom of the selection.
+		IF the value at the top of the selection is a novalue.. nothing there, then all blank values get filled in by the value at the bottom of the selection
+	</p>
+	
+	<p>
+		<b>Remove First</b> deletes all of one at top of selection.
+		If you have multiple columns selected, the previous three will skip all columns that dont have the same [pluginid, group, column]. because the "top" value only applies to same column types.
+	</p>
+	<p>
+		<b>Replace waves</b> uses the wave from the toolbar.
+	</p>
+	<p>
+		<b>Notelengths</b> will clip stuff... min, or max even
+	</p>
+	<p>
+		<b>Track swap</b> has some special behaviour and its gonna be real useful. If you make a selection and track swap it, only columns that are shared in both the leftmost and rightmost track,
+		      get swapped so if you selected in MTrk... starting on track 1's note column, ending on track 4's volume column then three columns would be swapped between track 1 and 4 note, wave, volume.
+		works in reverse too. like if you selected all of track 4 and only part of track 1. so for trigger cols, same .. just select the edges.
+	</p>
+	<p>
+		<b>Row swap</b> .. swaps the row at top of the selection with the bottom.
+	</p>
+	<p>
+		<img src="curvemap.png" title="Click to view full image" align="right" onload="if (!this.origWidth) this.origWidth = this.width; this.width=200;" onclick="this.width=(this.width==this.origWidth) ? 200 : this.origWidth" />
+		<b>Curvemap</b> is hardcoded .. you dont enter strings (im not sure if anyone is crazy enough to want to even) , but the 8 presets should be alright.  The curve index # in the dlg  is from top to bottom same as screenshot:<br />
+	</p>
+</blockquote>
+
+<h2>The K transposer</h2>
+<pre>
+&lt; zeffii_&gt; also i have no idea how to use the K tranposer :)
+&lt; Megz&gt; there is 2 modes you can be in
+&lt; Megz&gt; chromatic and harmonic
+&lt; Megz&gt; if the checkbox is unchecked, you are in chromatic
+&lt; Megz&gt; if it's checked you're in harmonic
+&lt; Megz&gt; when it is unchecked, the key always has 12 tones
+&lt; Megz&gt; so if its unchecked and you choose a key signature, it loads that signature then inserts any missing degrees
+&lt; Megz&gt; from a default 12-tone set called "chromatic keyed"
+&lt; Megz&gt; when it is Checked, you can have less than 12 tones selected
+&lt; Megz&gt; the Rightmost radial group which has no label means an inactive tone
+&lt; Megz&gt; when in harmonic mode and you transpose, each note in the set moves to the next note in the set
+&lt; Megz&gt; so to do a simple test
+&lt; Megz&gt; check the box, and set it to "C", "Ionian (Major)"
+&lt; Megz&gt; then transpose C E G. will become D F A.
+&lt; Megz&gt; notice that when it's unchecked you cannot select inactive tones
+&lt; Megz&gt; cause their radials are grayed out
+</pre>
+
+</body>
+</html>

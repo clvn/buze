@@ -1,0 +1,64 @@
+<html>
+<body>
+<h1>The default project</h1>
+<p>
+	When starting a new project, either upon program startup or selecting File -&gt; New from the menu, an empty, default song is created from a template.
+	The template chosen for the default document depends on the Preferences setting for "Create Default Pattern Player".
+</p>
+<h2>The default startup template: No default pattern player</h2>
+<p>
+	The default setting for "Create Default Pattern Player" is "Off", which creates the simplest possible setup: a Master plugin, an empty pattern format and pattern of length 16. 
+	This mode is suitable if there is no need or desire for immediate pattern nesting, and/or maximum control. Naturally, the user can create pattern players manually 
+	when the need to use nested patterns arises.
+</p>
+<h2>The advanced startup template: With a default pattern player</h2>
+<p>
+	When "Create Default Pattern Player" is turned on, the default document is prepared for using nested patterns. 
+	In addition to the master, a Pattern Player plugin is created, its trigger parameter is added on the default pattern format, 
+	and the default pattern length is set to 8192. This default pattern is ready for nested pattern sequencing.
+</p>
+<!--ul>
+	<li>An instance of the <a href="../plugins/master.html">Master plugin</a></li>
+	<li>An instance of the <a href="../plugins/sequence.html">Sequence plugin</a></li>
+	<li>An instance of the <a href="../plugins/patternplayer.html">Pattern Player plugin</a></li>
+	<li>A pattern format with a trigger column for the Pattern plugin</li>
+	<li>A pattern with length 8192, scale 16 based on the Pattern plugin format</li>
+	<li>An order list with a length of 1, with the first entry pointing at the Pattern plugin pattern</li>
+</ul-->
+<p>
+	<img src="mvstartup.png" title="Click to view full image" onload="if (!this.origWidth) this.origWidth = this.width; this.width=200;" onclick="this.width=(this.width==this.origWidth) ? 200 : this.origWidth" />
+	<img src="pestartup.png" title="Click to view full image" onload="if (!this.origWidth) this.origWidth = this.width; this.width=200;" onclick="this.width=(this.width==this.origWidth) ? 200 : this.origWidth" />
+	<img src="pfstartup.png" title="Click to view full image" onload="if (!this.origWidth) this.origWidth = this.width; this.width=200;" onclick="this.width=(this.width==this.origWidth) ? 200 : this.origWidth" />
+</p>
+
+
+<h2>Pattern formats and patterns</h2>
+<p>
+	A pattern format is, in its simplest form, a list of selected parameters from any of the plugins in the project. This list defines what columns will be visible in the pattern editor.
+	There can be any number of pattern formats in a project, and any number of patterns based on each of the pattern formats. The user decides length and resolution per pattern.
+</p>
+<p>
+	Patterns can be triggered from the order list, or from trigger-columns in other patterns.
+</p>
+
+<h2>The order list</h2>
+<p>
+	The order list contains a list of patterns to play in order, with looping points.
+</p>
+
+
+
+<h2>The Sequence plugin</h2>
+<p>
+	The sequence plugin is a user interface "handle" to control the tempo of patterns playing in the order list. There should never be more than one Sequence plugin in a project. 
+</p>
+
+<h2>Pattern Player plugins</h2>
+<p>
+	A Pattern Player plugin has global parameters for tempo and track (voice) parameters for pattern triggers and transposing. Each track (voice) can play and transpose a pattern. By adding more tracks (voices), it can play more patterns. 
+</p>
+<p>
+	By default, a pattern player inherits its tempo from the global sequence tempo, but offers parameters for setting BPM and TPB independent of the global tempo. There can be more than one pattern player in a project, each with optionally different tempo.
+</p>
+</body>
+</html>

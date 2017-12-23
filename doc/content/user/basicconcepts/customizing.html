@@ -1,0 +1,89 @@
+﻿<html>
+<body>
+<h1>Customizing Buzé</h1>
+
+<p>
+	Buzé is configurable via several external resources.
+</p>
+
+<h2>Keyboard bindings</h2>
+<p>
+	Most keyboard bindings can be changed by editing a text file called hotkeys.json in the application directory. Please refer to this file for more information.
+	The keyboard bindings are parsed on program startup, so remember to restart Buze after editing hotkeys.json.
+</p>
+
+<h2>Machine index hierarchy (index.txt)</h2>
+<ul>
+	<li>Gear/index.txt</li>
+	<li>Gear/index.plur</li>
+	<li>Gear/Include_native_ladspa_psycle.txt</li>
+</ul>
+<p>
+	Displayed in the All Machines-view and in the Machine View's "right click -&gt; New" context menu.
+</p>
+<p>
+	Buzé is compatible with Buzz' and Overloader's extended index.txt. Additionally, Buzé's index-parser supports including external files.
+</p>
+<p>
+	(TODO: examples and information about how to write traditional and overloaded index.txt's. add links to popular indexes)
+</p>
+
+<h2>Song templates in the machine index hierarchy</h2>
+<p>
+	Gear/Templates/*.armz
+</p>
+<p>
+	Create a directory called Gear/Templates and place songs here. They will show up in under Template in the machine view right-click menu after restarting Buze.
+</p>
+
+<h2>Themes</h2>
+<p>
+	Themes/*
+</p>
+<p>
+	Buzé supports exactly the same theme files as Buzz, with some extensions.
+</p>
+<p>
+	<a href="theme_parameters.html">Theme Parameters</a>
+</p>
+
+<h2>Buzz machine compatibility</h2>
+<p>
+	buzz2zzub.ini
+</p>
+<p>
+	Controls blacklisting and dynamic patching of hacked plugins. Please refer to buzz2zzub.ini directly for detailed information.
+</p>
+
+<h2>MIDI output device aliases</h2>
+<p>
+	Gear/midi_aliases.txt
+</p>
+
+<h2>GUI layout</h2>
+<p>
+	Gear/gui.xml
+</p>
+<p>
+	The state of the windowing dock-tab-framework is saved to this path on exit. Not really intended to be edited by users.
+</p>
+
+<h2>Fonts</h2>
+<p>
+	Download and install alternative monospaced fonts for increased readability in the pattern editor.
+</p>
+<ul>
+	<li><a href="http://en.wikipedia.org/wiki/Andal%C3%A9_Mono">Andalé Mono</a></li>
+	<li><a href="http://en.wikipedia.org/wiki/Consolas">Consolas</a></li>
+</ul>
+
+
+<h2>Everything else: registry</h2>
+<p>
+	Audio device settings, MIDI settings, GUI tweaks, toolbar positions. All registry settings should be editable in Preferences.
+</p>
+<p>
+	HKEY_CURRENT_USER\Software\zzub\buze
+</p>
+</body>
+</html>

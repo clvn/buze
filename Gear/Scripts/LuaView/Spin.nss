@@ -1,0 +1,3 @@
+spin {
+	layout:horizontal;
+}

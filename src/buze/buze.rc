@@ -1,0 +1,258 @@
+#include <windows.h>
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 0,9,0,0
+ PRODUCTVERSION 0,9,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "BuzeCorp"
+            VALUE "FileDescription", "buzé beta"
+            VALUE "FileVersion", "0, 9, 0, 0"
+            VALUE "InternalName", "buzé"
+            VALUE "LegalCopyright", "Copyright 2003-2015"
+            VALUE "OriginalFilename", "buze.exe"
+            VALUE "ProductName", "buzé"
+            VALUE "ProductVersion", "0.9.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 187, 199
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,130,178,50,14
+    CONTROL         "",IDC_ABOUTVERSION,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,49,16,105,27
+    ICON            IDR_MAINFRAME,IDC_STATIC,20,19,20,20
+    GROUPBOX        "",IDC_STATIC,7,3,173,47
+    EDITTEXT        IDC_ABOUTTEXT,7,56,173,114,ES_MULTILINE | ES_READONLY | NOT WS_BORDER | WS_VSCROLL
+END
+
+IDD_ERRORDIALOG DIALOGEX 0, 0, 237, 117
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Program Error"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,180,96,50,14
+    CONTROL         "Close open audio and midi devices and exit",
+                    IDC_EXCEPTIONDIALOG_CLOSERADIO,"Button",
+                    BS_AUTORADIOBUTTON,7,38,153,10
+    CONTROL         "Exit immediately",IDC_EXCEPTIONDIALOG_EXITRADIO,"Button",
+                    BS_AUTORADIOBUTTON,7,50,67,10
+    CONTROL         "Ignore",IDC_EXCEPTIONDIALOG_IGNORERADIO,"Button",
+                    BS_AUTORADIOBUTTON,7,62,37,10
+    LTEXT           "There was an unhandled program error in Buzé or one of its plugins.\n\nWhat do you want to do?",
+                    IDC_STATIC,7,7,223,25
+    PUSHBUTTON      "Save Current Song",IDC_EXCEPTIONDIALOG_SAVESONGBUTTON,7,
+                    79,74,14
+    PUSHBUTTON      "Save Debug Dump",IDC_EXCEPTIONDIALOG_SAVEDEBUGBUTTON,7,
+                    96,73,14
+END
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+//    SEPARATOR
+//    BUTTON      ID_EDIT_TOGGLE_AUTOSAVE
+//    BUTTON      ID_EDIT_RENDER_SEQUENCE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_EDIT_UNDO
+    BUTTON      ID_EDIT_REDO
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+/*
+IDR_VIEWS TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_VIEW_PRIMARYPATTERNEDITOR
+    BUTTON      ID_VIEW_SECONDARYPATTERNEDITOR
+    BUTTON      ID_VIEW_MACHINES
+    BUTTON      ID_VIEW_WAVETABLE
+    BUTTON      ID_VIEW_COMMENT
+END*/
+
+IDR_TRANSPORT TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_PLAY_FROM_START
+    BUTTON      ID_PLAY
+    BUTTON      ID_STOP
+    BUTTON      ID_RECORD
+    BUTTON      ID_PLAY_REPEAT
+    SEPARATOR
+    BUTTON      ID_DEVICE_RESET
+    BUTTON      ID_PLAY_SYNC
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\maintoolbar.bmp"
+IDR_VIEWS               BITMAP                  "res\\views.bmp"
+IDR_TRANSPORT           BITMAP                  "res\\playback.bmp"
+IDR_SPLASH              BITMAP                  "res\\bze3.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                        ID_FILE_NEW
+        MENUITEM "&Open...",                    ID_FILE_OPEN
+        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent Files",                ID_FILE_RECENT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo",                       ID_EDIT_UNDO
+        MENUITEM "&Redo",                       ID_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t",                        ID_EDIT_CUT
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Paste",                      ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Toolbar",                     ID_VIEW_TOOLBAR
+        MENUITEM "Status Bar",                  ID_VIEW_STATUS_BAR
+        MENUITEM "Lock Toolbars",               ID_LOCK_TOOLBARS
+        MENUITEM SEPARATOR
+        POPUP "&Recall Screenset"
+        BEGIN
+            MENUITEM "&0",                          ID_SCREENSET_RECALL_0
+            MENUITEM "&1",                          ID_SCREENSET_RECALL_1
+            MENUITEM "&2",                          ID_SCREENSET_RECALL_2
+            MENUITEM "&3",                          ID_SCREENSET_RECALL_3
+            MENUITEM "&4",                          ID_SCREENSET_RECALL_4
+            MENUITEM "&5",                          ID_SCREENSET_RECALL_5
+            MENUITEM "&6",                          ID_SCREENSET_RECALL_6
+            MENUITEM "&7",                          ID_SCREENSET_RECALL_7
+            MENUITEM "&8",                          ID_SCREENSET_RECALL_8
+            MENUITEM "&9",                          ID_SCREENSET_RECALL_9
+        END
+        POPUP "Stor&e Screenset"
+        BEGIN
+            MENUITEM "&0",                          ID_SCREENSET_STORE_0
+            MENUITEM "&1",                          ID_SCREENSET_STORE_1
+            MENUITEM "&2",                          ID_SCREENSET_STORE_2
+            MENUITEM "&3",                          ID_SCREENSET_STORE_3
+            MENUITEM "&4",                          ID_SCREENSET_STORE_4
+            MENUITEM "&5",                          ID_SCREENSET_STORE_5
+            MENUITEM "&6",                          ID_SCREENSET_STORE_6
+            MENUITEM "&7",                          ID_SCREENSET_STORE_7
+            MENUITEM "&8",                          ID_SCREENSET_STORE_8
+            MENUITEM "&9",                          ID_SCREENSET_STORE_9
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Themes",                      ID_VIEW_THEMES
+        MENUITEM SEPARATOR
+
+/*        MENUITEM "&Primary Pattern Editor",     ID_VIEW_PRIMARYPATTERNEDITOR
+        MENUITEM "&Secondary Pattern Editor",   ID_VIEW_SECONDARYPATTERNEDITOR
+        MENUITEM "&New Pattern Editor",         ID_VIEW_NEWPATTERNEDITOR
+        MENUITEM "&Machines",                   ID_VIEW_MACHINES
+        MENUITEM "&Wavetable",                  ID_VIEW_WAVETABLE
+        MENUITEM "C&omment",                    ID_VIEW_COMMENT
+        MENUITEM "Pattern &Format Editor",      ID_VIEW_PATTERNFORMAT
+        MENUITEM "A&nalyzer",                   ID_VIEW_ANALYZER
+        MENUITEM SEPARATOR
+        MENUITEM "&All Machines",               ID_VIEW_ALLMACHINES
+        MENUITEM "&Files",                      ID_VIEW_FILES
+        MENUITEM "&CPU Meter",                  ID_VIEW_CPUMETER
+        MENUITEM "&History",                    ID_VIEW_HISTORY
+        MENUITEM SEPARATOR
+        MENUITEM "Themes",                      ID_VIEW_THEMES
+        MENUITEM "&Preferences...",             ID_VIEW_PREFERENCES*/
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&Help",						ID_VIEW_HELP
+		MENUITEM "&Manual",                     ID_VIEW_MANUAL
+//		MENUITEM "Check For &Updates",          ID_APP_UPDATE
+        MENUITEM "&About Buzé...",              ID_APP_ABOUT
+    END
+END
+
+IDR_MAINFRAME_TOOLBARS MENU 
+BEGIN
+    POPUP "Main Toolbars"
+    BEGIN
+        MENUITEM "Master Toolbar",              ID_VIEW_MASTERTOOLBAR
+        MENUITEM "Transport Toolbar",           ID_VIEW_TRANSPORTTOOLBAR
+        MENUITEM "Time Toolbar",                ID_VIEW_TIMETOOLBAR
+        //MENUITEM "Views Toolbar",               ID_VIEW_VIEWS
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\buze.ico"
+IDR_MIDILOCK_LOCKED     ICON                    "res\\ie_lock_1.ico"
+IDR_MIDILOCK_UNLOCKED   ICON                    "res\\ie_lock_2.ico"
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////

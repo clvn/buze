@@ -1,0 +1,6 @@
+# Assumes PATH contains hhc.exe - set PATH=%PATH%;"c:\Program Files (x86)\HTML Help Workshop"
+# hhcwrap.bat fixes hhc.exe returns errorlevel 1 as success and creates chm file on error
+
+buze.chm: buze.hhp buze.hhk buze.hhc
+	cscript ..\make_chm.wsf
+	hhcwrap buze.hhp

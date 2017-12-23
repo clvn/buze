@@ -1,0 +1,3 @@
+EXPORTS
+	zzub_get_plugincollection
+	zzub_get_signature

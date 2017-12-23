@@ -1,0 +1,36 @@
+Import('env', 'posix', 'win32', 'install_lib', 'cl', 'vs_projects')
+import glob
+
+#######################################
+#
+# libmodfile
+#
+#######################################
+
+localenv = env.Copy()
+
+files = [
+	'itsex.c',
+	'module.cpp',
+	'module_enum_samples.cpp',
+	'module_it.cpp',
+	'module_xm.cpp',
+	'module_mod.cpp',
+	'module_s3m.cpp',
+]
+
+localenv.Append(CCFLAGS=[
+])
+	
+libmodfile_static = localenv.StaticLibrary('${LIB_BUILD_PATH}/libmodfile_static', files)
+
+if hasattr(localenv, 'MSVSProject'):
+	localenv.MSVSProject(target = 'libmodfile' + localenv['MSVSPROJECTSUFFIX'],
+		srcs = glob.glob('*.cpp'),
+		incs = glob.glob('*.h'),
+		buildtarget = libmodfile_static[0],   # len(libmodfile_static)==3, but we need only 1
+		variant = 'Debug',
+		auto_build_solution=0)
+	vs_projects+=['src/libmodfile/libmodfile' + localenv.subst('$MSVSPROJECTSUFFIX') ] 
+	
+Export('libmodfile_static')

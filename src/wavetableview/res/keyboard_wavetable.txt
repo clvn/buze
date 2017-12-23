@@ -1,0 +1,7 @@
+
+Wave table standard keyboard operations
+
+    (keyboard notes)                    Play notes with selected wave
+
+Wave table configurable keyboard shortcuts
+

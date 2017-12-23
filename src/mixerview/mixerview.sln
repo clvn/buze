@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mixerview", "mixerview.vcproj", "{F171BFEB-5F8F-42F8-B5ED-C3760899004E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.Debug.ActiveCfg = Debug|Win32
+		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.Debug.Build.0 = Debug|Win32
+		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.Release.ActiveCfg = Release|Win32
+		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

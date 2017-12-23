@@ -1,0 +1,90 @@
+﻿<html>
+<body>
+<h1>Buzé 0.6 (aka Lillebu) Introduction</h1>
+
+<h2>Powerful audio and event engine</h2>
+<p>
+	The audio engine is a tickless, multithreaded, lock-/waitfree DSP graph. It is organized in a modular fashion, offering many exciting features and possibilities.
+</p>
+
+<h2>Pattern-based sequencer</h2>
+<p>
+	The most important tool for composition and automation is the Pattern Editor which offers a large amount of keyboard shortcuts, transformation operations and visual helpers for working with patterns. 
+	The Pattern Editor sports a regular tracker grid with optional envelope editors, pianorolls and harmony notation for harmony-based transposes and note coloring.
+</p>
+
+<h2>Pattern formats</h2>
+<p>
+	Patterns are no longer bound to specific plugins, but are instead separate entities defined by a "pattern format". Pattern are triggered from trigger columns or the order list, and there are no restrictions
+	which patterns can be triggered from where.
+</p>
+
+<h2>Wavetable</h2>
+<p>
+	By using Buzz or built-in tracker-plugins (aka samplers), there are 200 shared wavetable slots. A vast number of file formats is supported, through the use of libsndfile and libmad.
+</p>
+
+<h2>Plugin support</h2>
+<p>
+	Supports VST, Buzz, Psycle, LADSPA plugins natively.
+</p>
+
+<h2>Connection types</h2>
+<p>
+	MIDI and event connections have matured greatly since earlier versions of Buze. MIDI wires send MIDI data around in the graph. Event connections offer support for 
+	a native peering mechanism, where event plugins can alter parameters or modify parameters on the fly. Plugins that support event connections can also be chained with no problems.
+	Audio connections supports multi channel inputs/outputs, and works with both Buzz machines and VSTs with multi-io capabilities.
+</p>
+
+<h2>New SQLite file format</h2>
+<p>
+	Relies heavily on SQLite for internal data storage, undo/redo and file format. The new native file format - armz - is a zipped SQLite database with raw waveform files.
+	Support for saving BMX has been dropped due to the new requirements. Loading BMX still works.
+</p>
+
+<h2>Native VST support</h2>
+<p>
+	All VST parameters can be used in patterns, recorded, bound to MIDI controllers, accept event connections etc as with all other supported plugin formats.
+	Supports multi-IO VSTs, and takes advantage of the new MIDI connections. Depending on the VST,  sending and receiving both audio and MIDI are supported.
+</p>
+
+<h2>New old school tracker</h2>
+<p>
+	Buze includes a new, built-in native tracker based on the core of 
+	Modplug (aka OpenMPT) which provides MOD/S3M/IT/XM-compatible playback.
+	Support for loading .MODs from the Open File dialog.
+</p>
+
+<h2>Major pattern editor updates</h2>
+<ul>
+	<li>Uses a scheme with Primary and Secondary pattern editors</li>
+	<li>20+ new transforms, f.ex randomize, shuffle, humanize, gradiate, repeat, fill, rotate</li>
+	<li>Harmonic transpose</li>
+	<li>Supports trigger and envelope columns</li>
+	<li>New "rokscroll" pattern preview panel replaces the vertical scrollbar</li>
+	<li>Rewritten rendering, much faster, less flicker</li>
+</ul>
+
+<h2>And more ...</h2>
+<ul>
+	<li>Reorganized hotkeys</li>
+	<li>Can save and restore screensets</li>
+	<li>Patterns have separate resolutions (rows per tick)</li>
+	<li>Patterns have looping points</li>
+	<li>Can rename pattern tracks</li>
+	<li>Can mute/solo pattern tracks</li>
+	<li>Optional horizontal pattern editing cursor movement mode</li>
+	<li>Info pane in the pattern editor shows valid values, value-ranges or patterns</li>
+	<li>Enter/Esc (or Alt+Left/Alt+Right) to descend and ascend from nested patterns</li>
+	<li>Type to search for and create plugins in the machine view</li>
+	<li>New ways to create and insert plugins before/after connections</li>
+	<li>Selective randomize in parameter view</li>
+	<li>MIDI hardware plugin wrapper</li>
+	<li>Supports "New Buzz" pattern editor and multi-io features</li>
+	<li>The "Save .WAV"-button works from the wavetable</li>
+	<li>Improved documentation</li>
+	<li>Undo/redo works everywhere, including wave editing in the wavetable</li>
+	<li>New ways to play current pattern</li>
+</ul>
+</body>
+</html>

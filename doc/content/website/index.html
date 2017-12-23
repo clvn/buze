@@ -1,0 +1,124 @@
+﻿<html>
+<body>
+<script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery.cycle.all.min.js"></script>
+<script type="text/javascript" src="jquery.lightbox-0.5.min.js"></script>
+<link rel="stylesheet" type="text/css" href="jquery.lightbox-0.5.css" media="screen" />
+<div style="background:#686868 url('images/buze_wave.png') repeat-x 0px 27px; border-radius:30px; -moz-border-radius:30px; height:580px">
+	<div style="position:absolute; margin-left:37px; margin-top:5px">
+		<!--img src="images/buze_websiteheader_video.png" border="0" style="" /-->
+		<img src="images/bze.png" />
+	</div>
+	<div style="position:absolute; margin-left:610px; margin-top:25px">
+		Screenshots
+		<div class="slideshow">
+			<div>
+				<a href="screenshots/buze-pianoroll.png">
+				<img src="screenshots/buze-pianoroll.png" width="192" border="0" title="Pattern editor with pianoroll" alt="Pattern editor with pianoroll" />
+				</a>
+			</div>
+			<div style="display:none">
+				<a href="screenshots/buze-plugins.png">
+				<img src="screenshots/buze-plugins.png" width="192" border="0" title="Machine View" alt="Machine view" />
+				</a>
+			</div>
+			<div style="display:none">
+				<a href="screenshots/buze-wave.png">
+				<img src="screenshots/buze-wave.png" width="192" border="0" title="Wavetable" alt="Wavetable" />
+				</a>
+			</div>
+			<div style="display:none">
+				<a href="screenshots/buze-sequencer.png">
+				<img src="screenshots/buze-sequencer.png" width="192" border="0" title="Pattern editor with Buzz-style sequencer" alt="Pattern editor with Buzz-style sequencer" />
+				</a>
+			</div>
+		</div>
+	</div>
+	<!--div style="position:absolute; margin-left:238px; margin-top:192px">
+		The most powful tracker on planet Earth.
+	</div-->
+	<div style="position:absolute; margin-left:280px; margin-top:15px">
+		<a href="http://www.youtube.com/watch?v=hXp3szpQc3I" style="display:block;text-decoration:none">
+			<div style="width:200px; height: 200px">
+				<img src="images/play.png" style="opacity:0.5" />
+			</div>
+		</a>
+	</div>
+	
+	<div style="position:absolute; margin-left:50px; margin-top:196px; padding-bottom:10px; width:760px">
+		<div style="width:100%">
+			<h1 style="display:none">
+				Buzé 0.8 (redux)
+			</h1>
+			<ul style="padding-top:10; padding-bottom:10px; margin:0">
+				<li>100% pattern-based sequencer with envelopes and pianorolls ++</li>
+				<li>Supports a wide range of plugins for generating and processing audio, MIDI, value and note signals. 30+ built-in plugins</li>
+				<li>Supports VST, Buzz, Psycle, LADSPA and Lunar plugins natively</li>
+				<li>Imports ARMZ, BMX, IT, S3M, MOD, MID, SID song file formats</li>
+				<li>Wavetable can import WAV, MP3, FLAC, IFF and many more file formats. Features a basic wave editor.</li>
+				<li>Full undo/redo, scripting support, configurable keyboard shortcuts and window layouts</li>
+			</ul>
+		</div>
+		<div style="width:100%; top:0">
+			<!--h1>Download</h1-->
+			
+			<div style="background-color:#676767">
+				<img src="images/32x32_folder_5.png" />
+				<a href="http://www.batman.no/buze/buze-0.8.7.msi">Download latest version: Buzé 0.8.7</a>
+			</div>
+			
+			<p>
+				As always: this is BETA software under development! Beware of bugs!
+				Includes a minimal install with a couple of plugins for testing.
+			</p>
+			<p>
+				Buzé 0.6, 0.7 and 0.8 are fundamentally different programs from earlier versions. If you are looking for an earlier version, please check the <a href="oldsite">old site</a>.
+			</p>
+		
+			<p>
+				<a href="videos.html">Videos</a> -
+				<a href="06intro.html">Introduction</a> -
+				<a href="https://sourceforge.net/u/anders-e/buze/tickets/">Bugtracker</a> -
+				<a href="https://sourceforge.net/u/anders-e/buze/discussion/general/">Forum</a> -
+				<a href="user/index.html">User documentation</a> -
+				<a href="developer/index.html">Developer documentation</a>
+			</p>
+			<p>
+						Stay updated: <a href="https://twitter.com/Buze_Tracker">Twitter</a>, <a href="http://anders-e.com/buze/log">local commit log</a>, <a href="news.xml">news feed RSS</a>
+			</p>
+			<p>
+						IRC: #buze / EFnet
+			</p>
+		</div>
+	</div>
+</div>
+
+
+
+<div style="margin-left:50px; margin-right:20px; padding-top:20px; padding-bottom:10px">
+	<div>
+
+		<div>
+			<h1 style="margin:0; padding:0">News</h1>
+			<rss src="news.xml"/>
+		</div>
+	</div>
+		
+	<div style="clear:both">
+	</div>
+</div>
+
+
+<script type="text/javascript"><![CDATA[
+	$('.slideshow').cycle({
+		fx: 'fade' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+	});
+	$('.slideshow a').lightBox();
+]]></script>
+
+<a href="http://www.hitsquad.com/smm/">Hitsquad Music Software Downloads</a>
+<!-- Hitsquad Conf = 9667978352.3f24839e97525bdeca22bf63ac9a980adca057d9 -->
+
+
+</body>
+</html>

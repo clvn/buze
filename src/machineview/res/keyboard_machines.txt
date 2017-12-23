@@ -1,0 +1,13 @@
+
+Machine view standard keyboard and mouse operations
+
+    (keyboard notes)                    Play notes in selected machine
+    Ctrl+Scroll wheel                   Zoom
+    Shift+Drag machine                  Create connection, release button on machine to connect to
+    Ctrl+Drag background                Move all machines 
+    Ctrl+Drag machine                   Move selected machines
+    Ctrl+Click machine                  Select machine
+    Ctrl+Shift+Click machine            Unselect machine
+
+Machine view configurable keyboard shortcuts
+

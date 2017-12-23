@@ -1,0 +1,58 @@
+<html>
+<body>
+<h1>Writing plugins</h1>
+
+<p>
+	Our general attitude is: find a compatible plugin wrapper SDK that offers the capabilities you need and go with it.
+</p>
+
+<p>
+	No one plugin format offers every capability of Armstrong, except in the very rare cases a plugin belongs in the core plugin set.
+	So as to picking a plugin format, there are the following things to consider:
+</p>
+
+<h2>VST</h2>
+<ul>
+	<li>Custom GUI allowed</li>
+	<li>Multi-IO (VST 2.x, not 3)</li>
+	<li>Receive MIDI</li>
+	<li>Allows saving custom data in presets</li>
+	<li>Parameters support byte values in the range 0..127</li>
+</ul>
+
+<h2>Buzz</h2>
+<ul>
+	<li>Custom GUI allowed</li>
+	<li>Multi-IO (Newbuzz)</li>
+	<li>Custom pattern editors (newbuzz)</li>
+	<li>Does input mixing</li>
+	<li>Receive MIDI</li>
+</ul>
+
+<h2>Psycle and LADSPA</h2>
+<ul>
+	<li>Cross platform - no GUI</li>
+	<li>Stereo only</li>
+	<li>No MIDI capabilities</li>
+</ul>
+
+<h2>Lunar</h2>
+<ul>
+	<li>Cross platform</li>
+	<li>Multi-IO</li>
+	<li>Interval, value and note controllers (native peer)</li>
+	<li>Send/receive MIDI</li>
+	<li>Supports OpenGL for GUI</li>
+	<li>Minimal environment and libraries support</li>
+</ul>
+
+<h2>Native plugins</h2>
+<ul>
+	<li>Native plugins support everything supported by Armstrong and the host OS</li>
+	<li>Should not depend on any specific GUI toolkits, beyond supporting wrapped plugin GUIs</li>
+	<li>Compiled directly into the Armstrong shared library, no external plugin DLLs supported</li>
+	<li>Should be essential and/or versatile - getting included in the core should be hard</li>
+</ul>
+
+</body>
+</html>

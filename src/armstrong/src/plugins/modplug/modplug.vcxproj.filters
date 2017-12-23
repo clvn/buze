@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="modpluglib">
+      <UniqueIdentifier>{22f9aac0-a09d-4e25-b6d2-16acf1a87321}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="modplug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plugins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Fastmix.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Mmx_mix.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\mod_specifications.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Snd_dsp.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Snd_eq.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Snd_flt.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Snd_fx.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Snd_rvb.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Sndfile.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Sndmix.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\SoundFilePlayConfig.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\Tables.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\tuning.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\tuningbase.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\tuningCollection.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+    <ClCompile Include="modpluglib\WindowedFIR.cpp">
+      <Filter>modpluglib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="modplug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plugins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\MainFrm.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\mod_specifications.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\modcommand.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\Snd_defs.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\snd_rvb.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\Sndfile.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\SoundFilePlayConfig.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\stdafx.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\tuning.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\tuningbase.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\tuningcollection.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\typedefs.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+    <ClInclude Include="modpluglib\WindowedFIR.h">
+      <Filter>modpluglib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

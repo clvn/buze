@@ -1,0 +1,28 @@
+<html>
+<body>
+<h1>Buzz Wrapper</h1>
+<p>
+	Refer to <a href="http://www.buzzmachines.com/">http://www.buzzmachines.com/</a> for more information and plugins download. 
+</p>
+<h2>General</h2>
+<p>
+	All Buzz plugins can receive MIDI notes and control changes via MIDI connections.
+</p>
+<p>
+	The wrapper fully supports machines that use hacks. Hacks are enabled per-machine in buzz2zzub.ini and should be updated regularily, either manually or by downloading a newer version from the Buze website.
+</p>
+<p>
+	The wrapper has been updated with partial support of some "new Buzz" features which have been added to the original Buzz since 2008.
+</p>
+<p>
+	If buzz.exe and its DLL dependencies are present in the Buze program directory, the wrapper will also attempt to load built-in machines directly from the executable binary.
+	This allows for using Jeskola Qsamo on Windows XP (and Wine?) without .NET 4.0. However, it is also an experimental and unsupported feature, and may break at any time, as it makes
+	certain assumptions about the code layout and linker switches used when compiling the Buzz executable.
+</p>
+
+<h2>Installing new plugins</h2>
+<p>
+	Copy new plugin DLLs to Gear/Generators or Gear/Effects. New plugins will be detected on program startup.
+</p>
+</body>
+</html>

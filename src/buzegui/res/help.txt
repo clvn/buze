@@ -1,0 +1,11 @@
+
+The built-in help system provides a quick mouse and keyboard reference for each of the primary editors application windows.
+
+All keyboard shortcuts can be customized by editing hotkeys.json in the application directory.
+
+Global standard keyboard and mouse operations
+
+    Ctrl+Drag Window                    Dock window
+
+Global configurable keyboard shortcuts
+

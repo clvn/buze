@@ -1,0 +1,10 @@
+libmodfile 0.0.2
+
+libmodfile is a C++ library for reading patterns, orders and wave data from
+modules in MOD, S3M, IT and XM formats.
+
+Copyright (C) 2010-2014 Anders Ervik <calvin@countzero.no>
+
+IT 2.14/2.15 sample decompression routines, itsex.c
+Copyright (C) 1998 Tammo Hinrichs <kb@nwn.de> 
+

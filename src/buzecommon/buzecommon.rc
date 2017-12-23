@@ -1,0 +1,35 @@
+#include "resource.h"
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+IDD_WAITDIALOG DIALOGEX 0, 0, 175, 33
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_DLGFRAME | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CTEXT           "Please Wait",IDC_STATIC,7,7,161,8
+    CTEXT           "Loading...",IDC_WAITTEXT,7,17,161,8
+END
+
+IDD_VALUE_DIALOG DIALOGEX 0, 0, 96, 28
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_SYSMENU | WS_THICKFRAME
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_SLIDER_EDIT,49,7,40,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    LTEXT           "Enter Value:",IDC_STATIC,7,10,40,8
+END
+
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+

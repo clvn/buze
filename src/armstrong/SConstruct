@@ -1,0 +1,710 @@
+#encoding: latin-1
+
+# libzzub
+# Modular Tracker Library
+# Copyright (C) 2006 The libzzub Development Team
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
+# MA    02110-1301, USA.
+
+VERSION = "0.4"
+
+import os, glob, sys, time, platform
+import distutils.sysconfig
+
+posix = os.name == 'posix'
+win32 = os.name == 'nt'
+mac = (os.name == 'mac') or (sys.platform == 'darwin')
+linux = sys.platform == 'linux2'
+x86_64 = platform.machine() == 'x86_64'
+
+
+######################################
+#
+# init environment and define options
+#
+######################################
+
+def tools_converter(value):
+	return value.split(',')
+	
+def bool_converter(value):
+	value = value.lower()
+	if value in ('true','enabled','on','yes','1'):
+		return True
+	elif value in ('false','disabled','off','no','0'):
+		return False
+	return bool(value)
+	
+def audioengine_converter(value):
+	value = value.lower()
+	if not value in ('rtaudio','portaudio'):
+			print "invalid option for AUDIOENGINE:",value
+			Exit(1)
+	return value
+
+opts = Variables( 'options.conf', ARGUMENTS )
+opts.Add("PREFIX", 'Set the install "prefix" ( /path/to/PREFIX )', "/usr/local")
+opts.Add("LIBDIR", 'Set the install "libdir", will be concatenated to PREFIX', "/lib") 
+opts.Add("DESTDIR", 'Set the root directory to install into ( /path/to/DESTDIR )', "")
+opts.Add("ASIO", 'Support ASIO', win32 == True, None, bool_converter)
+opts.Add("USE_SIGNATURE", 'Use signature to bond plugins and host (strongly recommended)', True, None, bool_converter)
+opts.Add("SNDFILE", 'Support loading of waves via libsndfile', True, None, bool_converter)
+opts.Add("DEBUG", "Compile everything in debug mode if true", True, None, bool_converter)
+opts.Add("BUZZ2ZZUB", "Compile buzz2zzub", win32 == True, None, bool_converter)
+opts.Add("ZZUB_MODULE", "Compile module loading plugin (experimental)", False, None, bool_converter)
+opts.Add("ZZUB_STREAM", "Compile stream plugins", True, None, bool_converter)
+opts.Add("BMPCCM", "Compile bmp-ccm plugin", False, None, bool_converter)
+opts.Add("REVISION", 'Revision number (will be set automatically)', '0')
+opts.Add("SIGNATURE", 'Host signature (will be set automatically)', '')
+opts.Add("CONFIGURED", 'Version for which the build is configured (will be set automatically)', '')
+opts.Add("TOOLS", 'Compiler suite to use', 'default', None, tools_converter)
+opts.Add("LUNAR", 'Support Lunar plugins', posix or mac, None, bool_converter)
+opts.Add("LLVMGCCPATH", 'Path to llvm-gcc', '')
+opts.Add("COREAUDIO", 'Support CoreAudio', False, None, bool_converter)
+opts.Add("JACK", 'Support Jack Audio Connection Kit', False, None, bool_converter)
+opts.Add("AUDIOENGINE", 'Support Portaudio', "rtaudio", None, audioengine_converter)
+opts.Add("OSS", 'Support OSS', False, None, bool_converter)
+opts.Add("ALSA", 'Support ALSA', False, None, bool_converter)
+opts.Add("LUNARTARGET", 'Target for Lunar (llvm,gcc)', 'gcc')
+opts.Add("SSE", "Support SSE instructions", False, None, bool_converter)
+opts.Add("SSE2", "Support SSE2 instructions", False, None, bool_converter)
+opts.Add("MP3", "Support loading of MP3 samples", linux, None, bool_converter)
+opts.Add("LADSPA", "Support LADSPA plugins", False, None, bool_converter)
+opts.Add("RUBBERBAND", "Support timestretching with librubberband", True, None, bool_converter)
+opts.Add("DSSI", "Support DSSI plugins", False, None, bool_converter)
+opts.Add("JOBS", "Number of threads to compile with", '2') 
+opts.Add("PYZZUB", "Support pyzzub",True,None,bool_converter)
+opts.Add(EnumVariable('MSVS_VERSION', 'MS Visual C++ version', None,
+    allowed_values=('7.1', '8.0', '9.0')))
+
+env = Environment(ENV = os.environ, options = opts)
+
+def get_revision():
+	# if this is a repository, take the string from hg
+	hgpath = env.WhereIs('hg', os.environ['PATH'])
+	if os.path.isdir('.hg') and (hgpath != None):
+		rev = os.popen('hg id -ni').readline().strip()
+		if rev != "" and rev != "exported":
+			revid, revn = rev.split(' ')
+			return '%s:%s' % (revn, revid)
+	# its a release build, take the string from a special file
+	if os.path.isfile('REVISION'):
+		rev = file('REVISION').readline().strip()
+		if rev != "" and rev != "exported":
+			return rev
+	return env['REVISION']
+
+revision = get_revision()
+print >> file('REVISION','w'), revision
+env['REVISION'] = revision
+
+env.SConsignFile()
+
+######################################
+#
+# build settings
+#
+######################################
+
+
+env['ROOTPATH'] = os.getcwd()
+
+env.Append(CCFLAGS=['-D__SCONS__'])
+env.Append(LIBPATH=['${ROOTPATH}/lib'])
+
+SetOption('num_jobs', env['JOBS'].replace('-j', '')) 
+
+if posix:
+	env.Append(CCFLAGS=[
+		'-DPOSIX',
+	])
+	env.Append(LINKFLAGS=[
+		'--rpath%s' % str(env.Dir('${PREFIX}${LIBDIR}')),
+	])
+	if os.uname()[0] == 'FreeBSD':
+		env.Append(CCFLAGS=[ '-I/usr/local/include' ])
+		env.Append(LINKFLAGS=[ '-L/usr/local/lib' ])
+		env['LIB_DL'] = env['LIB_RT'] = ''
+		env['LIB_COMPAT'] = 'compat'
+	else:
+		env['LIB_DL'] = 'dl'
+		env['LIB_RT'] = 'rt'
+		env['LIB_COMPAT'] = ''
+
+if win32:
+	env.Append(CCFLAGS=[
+		'-D_WIN32',
+		'-DWIN32',
+		'-DSTRICT',
+		'-D_WINDOWS',
+		'-D_WIN32_WINNT=0x0500',
+		'-D_CRT_SECURE_NO_WARNINGS',
+	])
+	if env['DEBUG'] == False:
+		env.Append(CCFLAGS=['-DNDEBUG' ])
+	else:
+		env.Append(CCFLAGS=['-DDEBUG', '-D_DEBUG' ])
+
+	env.Append(LIBS=[
+		'kernel32',
+		'user32',
+		'comdlg32' # for recorder::GetSaveFileName
+	])
+	env['LIB_DL'] = ''
+	env['LIB_RT'] = ''
+	env['LIB_COMPAT'] = ''
+
+gcc = env['CC'] == 'gcc'
+cl = env['CC'] == 'cl'
+
+if gcc:
+	#env['CXXFLAGS'] += ['--no-rtti']
+	if env['DEBUG'] == False:
+		env.Append(CCFLAGS=[
+			'-O1', # O2 O3 break infector and a few others
+			'-fomit-frame-pointer',
+			'-funroll-loops',
+			'-DNDEBUG',
+		])
+		env.Append(CCFLAGS=ARGUMENTS.get('CCFLAGS')) 
+	else:
+		env.Append(CCFLAGS=[
+			'-g',
+			'-DDEBUG',
+			'-D_DEBUG',
+		])
+	if env['SSE2'] == True:
+		if not x86_64:
+			env.Append(CCFLAGS=[
+				'-march=i686',
+			])
+		env.Append(CCFLAGS=[
+			'-mfpmath=sse',
+			'-msse2',
+		])
+	elif env['SSE'] == True:
+		if not x86_64:
+			env.Append(CCFLAGS=[
+				'-march=i686',
+			])
+		env.Append(CCFLAGS=[
+			'-mfpmath=sse',
+			'-msse',
+		])
+
+if cl:
+	env.Append(CCFLAGS=[
+		'-nologo',
+		'-EHsc',
+		'-W3',
+		
+	])
+	env.Append(LINKFLAGS=[
+		'-DEBUG',
+	])
+	if env['DEBUG'] == False:
+		env.Append(CCFLAGS=['-MT', '-O2' ])
+	else:
+		env.Append(CCFLAGS=['-MTd', '-Zi' ])
+
+######################################
+# 64-bit fixes
+######################################
+
+import platform
+
+if x86_64:
+	picLibBuilder = Builder(action = Action('$ARCOM'),
+							emitter = '$LIBEMITTER',
+							prefix = '$LIBPREFIX',
+							suffix = '$LIBSUFFIX',
+							src_suffix = '$OBJSUFFIX',
+							src_builder = 'SharedObject')
+	env['BUILDERS']['StaticLibrary'] = picLibBuilder
+	env['BUILDERS']['Library'] = picLibBuilder
+	env.Append(CCFLAGS=[
+		'-D__X86_64__'
+	])
+
+######################################
+#
+# signature
+#
+######################################
+
+import stat
+import socket
+
+
+env['LIBZZUB_VERSION'] = VERSION
+env['SIGNATURE'] = 'armstrong %s r%s %s-%s %s' % (env['LIBZZUB_VERSION'],env['REVISION'],env['CC'],sys.platform,socket.gethostname())
+
+######################################
+#
+# install paths
+#
+######################################
+
+try:
+	umask = os.umask(022)
+	#print 'setting umask to 022 (was 0%o)' % umask
+except OSError:         # ignore on systems that don't support umask
+	pass
+
+import SCons
+from SCons.Script.SConscript import SConsEnvironment
+SConsEnvironment.Chmod = SCons.Action.ActionFactory(os.chmod,
+		lambda dest, mode: 'Chmod: "%s" with 0%o' % (dest, mode))
+def ldconfig(dir):
+	# execute only if installing into root
+	if not str(env['DESTDIR']):
+		os.system('ldconfig %s' % dir)
+SConsEnvironment.LdConfig = SCons.Action.ActionFactory(ldconfig, lambda dir: 'LdConfig: "%s"' % dir)
+
+def InstallPerm(env, dir, source, perm):
+	obj = env.Install(dir, source)
+	for i in obj:
+		env.AddPostAction(i, env.Chmod(str(i), perm))
+	return dir
+
+SConsEnvironment.InstallPerm = InstallPerm
+
+rootpath = "${DESTDIR}${PREFIX}"
+binpath = "${DESTDIR}${PREFIX}/bin"
+libpath = "${DESTDIR}${PREFIX}${LIBDIR}"
+includepath = "${DESTDIR}${PREFIX}/include"
+pluginpath = "${DESTDIR}${PREFIX}${LIBDIR}/zzub"
+pyextpath = distutils.sysconfig.get_python_lib(prefix="${DESTDIR}${PREFIX}")
+
+def install(target, source, perm=None, symlink=False):
+	if not perm:
+		return env.Install(dir=target, source=source)
+	else:
+		return env.InstallPerm(dir=target, source=source, perm=perm)
+
+env.Alias(target='install', source=rootpath)
+env.Alias(target='install', source=pyextpath)
+
+def install_root(source):
+	return install(rootpath, source)
+
+def install_lib(source):
+	result = install(libpath, source)
+	if posix and (not mac) and (not env['DESTDIR']):
+		env.AddPostAction(result, env.LdConfig(libpath))
+	return result
+def install_python_extension(name,files):
+	return install(pyextpath + "/"+name, files)
+def install_bin(source):
+	return install(binpath, source)
+def install_plugin(source):
+	return install(pluginpath, source)
+def install_plugin_help(name, files):
+	return install("${DESTDIR}${PREFIX}/share/doc/zzub/plugins/"+name, files, 0644)
+
+env['DSPLIB_SRC_PATH'] = '${ROOTPATH}/src/dsplib'
+env['ASIOSDK_SRC_PATH'] = '${ROOTPATH}/src/ASIOSDK2'
+env['PORTMIDI_SRC_PATH'] = '${ROOTPATH}/src/portmidi'
+env['LIBZZUB_SRC_PATH'] = '${ROOTPATH}/src/armstrong'
+env['MINIZIP_SRC_PATH'] = '${ROOTPATH}/src/minizip'
+env['PLUGINS_SRC_PATH'] = '${ROOTPATH}/src/plugins'
+env['RUBBERBAND_SRC_PATH'] = '${ROOTPATH}/src/rubberband'
+env['CCMPLAYER_SRC_PATH'] = '${ROOTPATH}/src/ccmplayer'
+env['BMPCCM_SRC_PATH'] = '${ROOTPATH}/src/bmp-ccm'
+env['LUNAR_SCRIPT_PATH'] = '${ROOTPATH}/share/zzub/lunar'
+env['PYZZUB_SRC_PATH'] = '${ROOTPATH}/src/pyzzub'
+
+env['LIB_BUILD_PATH'] = '${ROOTPATH}/lib'
+env['BIN_BUILD_PATH'] = '${ROOTPATH}/bin'
+
+######################################
+#
+# configure
+#
+######################################
+
+env.Append(CPPPATH=['${ROOTPATH}/include'])
+if win32:
+	env.Append(CPPPATH=['${ROOTPATH}/include/win32'])
+
+######################################
+#
+# configuration
+#
+######################################
+
+USE_SNDFILE = env['SNDFILE']
+USE_ASIO = env['ASIO']
+
+def check_has_executable(conf, name):
+	if win32:
+		name += '.exe'
+	conf.Message("Checking for %s in PATH... " % name)
+	for path in os.environ['PATH'].split(os.pathsep):
+		fullpath = os.path.join(path,name)
+		if os.path.isfile(fullpath):
+			conf.Result(fullpath)
+			return fullpath
+	conf.Result("missing")
+	return None
+	
+def check_command_is_version(conf, command, version):
+	conf.Message("Checking for version of '%s'... " % command)
+	ver = os.popen(command).read().strip()
+	if ver[:len(version)] == version:
+		conf.Result(ver)
+		return ver
+	conf.Result(ver)
+	return None
+	
+def check_cpu_flag(conf, flag):
+	conf.Message("Checking for '%s' CPU flag... " % flag)
+	if linux:
+		for line in file('/proc/cpuinfo','r'):
+			if ':' in line:
+				v = line.index(':')
+				key,value = line[:v],line[v+1:]
+				key = key.strip()
+				value = value.strip()
+				if key == 'flags':
+					if flag in value.split(' '):
+						conf.Result("yes")
+						return True
+		conf.Result('no')
+		return False
+	# XXX: add cpu flag check for other platforms
+	conf.Result('ERROR: not supported for this platform.')
+	return False
+
+if env['LUNARTARGET'] == '':
+	env['CONFIGURED'] = ''
+
+def is_cleaning():
+	import SCons.Script.Main 
+	try: return SCons.Script.Main.GetOption('clean')
+	except: return SCons.Script.Main.options.clean
+
+if (not is_cleaning()) and ('configure' in COMMAND_LINE_TARGETS):
+	import os
+	
+	env['CONFIGURED'] = ''
+	yesno = {True:'yes', False:'no'}
+	conf = Configure(env,
+		custom_tests = {
+			'HasExecutable' : check_has_executable,
+			'CommandIsVersion' : check_command_is_version,
+			'CheckCPUFlag' : check_cpu_flag,
+		}
+	)
+	if not win32:
+		if not conf.CheckCHeader('zlib.h'):
+			print "Error: no zlib development files seem to be installed."
+			print "zlib libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('sndfile.h'):
+			print "Error: no libsndfile development files seem to be installed."
+			print "libsndfile libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('samplerate.h'):
+			print "Error: no libsamplerate (libsrc) development files seem to be installed."
+			print "libsamplerate (libsrc) libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('fftw3.h'):
+			print "Error: no libfftw3 development files seem to be installed."
+			print "libfftw3 libraries and headers are required for building."
+			Exit(1)
+		boostgraphheaders = [
+			'boost/graph/adjacency_list.hpp',
+			'boost/graph/visitors.hpp',
+			'boost/graph/depth_first_search.hpp',
+		]
+		for header in boostgraphheaders:
+			if not conf.CheckCXXHeader(header):
+				print "Error: no libboost-graph development files seem to be installed."
+				print "libboost-graph libraries and headers are required for building."
+				Exit(1)
+		if not conf.CheckCHeader('portaudio.h'):
+			print "Error: no portaudio development files seem to be installed."
+			print "portaudio19 libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('portmidi.h'):
+			print "Error: no midi development files seem to be installed."
+			print "libportmidi libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('sqlite3.h'):
+			print "Error: no sqlite development files seem to be installed."
+			print "libsqlite3 libraries and headers are required for building."
+			Exit(1)
+		if not conf.CheckCHeader('mad.h'):
+			print "Error: no mad development files seem to be installed."
+			print "libmad libraries and headers are required for building."
+			Exit(1)
+		if conf.CheckCHeader('CoreAudio/CoreAudio.h'):
+			env['COREAUDIO'] = True
+		if conf.CheckCHeader('alsa/asoundlib.h'):
+			env['ALSA'] = True
+		if conf.CheckCHeader('jack/jack.h'):
+			env['JACK'] = True
+		if conf.CheckCHeader('sys/soundcard.h'):
+			env['OSS'] = True
+		if conf.CheckCHeader('ladspa.h'):
+			env['LADSPA'] = True
+		if conf.CheckCHeader('dssi.h'):
+			env['DSSI'] = True
+		if not sum([env['COREAUDIO'],env['ALSA'],env['JACK'],env['OSS']]):
+			print "Error: no sound library development files seem to be installed."
+			print "Libraries and headers for either ALSA, OSS, JACK or CoreAudio are required for building."
+			Exit(1)
+	
+	if conf.CheckCPUFlag('sse'):
+		env['SSE'] = True
+	if conf.CheckCPUFlag('sse2'):
+		env['SSE'] = False
+		env['SSE2'] = True
+	
+	if env['LUNAR'] == True: # user wants to build lunar
+		# needs LLVM for that
+		wantversion = '1.9'
+		target = env['LUNARTARGET']
+		if target == 'llvm':
+			llvmcfgpath = None
+			llvmcfgname = 'llvm-config'
+			llvmcfgpath = conf.HasExecutable(llvmcfgname)
+			if not llvmcfgpath:
+				print "Error: %s not found in PATH." % llvmcfgname
+				print "You need to install LLVM %s from http://www.llvm.org" % wantversion
+				Exit(1)
+			# LLVM 1.9 needed
+			ver = conf.CommandIsVersion('%s --version' % llvmcfgpath, wantversion)
+			if not ver:
+				print "Error: LLVM %s required." % wantversion
+				print "You need to install LLVM %s from http://www.llvm.org" % wantversion
+				Exit(1)
+			# /home/paniq/devel/sources/llvm-gcc4-1.9-x86-linux-RHEL4/bin
+			if env['LLVMGCCPATH'] == '':
+				llvmgccpath = conf.HasExecutable("llvm-gcc")
+				if not llvmgccpath:
+					print "Error: can not find llvm-gcc."
+					print "Run configure with the path that llvm-gcc is installed to, e.g."
+					print "\tscons configure LLVMGCCPATH=/home/paniq/bin"
+					Exit(1)
+			else:
+				llvmgccpath = str(env.File('${LLVMGCCPATH}/llvm-gcc'))
+				if win32:
+					llvmgccpath += '.exe'
+				if not os.path.isfile(llvmgccpath):
+					print "Error: can not find llvm-gcc in %s" % env['LLVMGCCPATH']
+					print "Run configure with the path that llvm-gcc is installed to, e.g."
+					print "\tscons configure LLVMGCCPATH=/home/paniq/bin"
+					Exit(1)
+		elif target == 'gcc':
+			pass
+		else:
+			print "Error: Please pick a backend for Lunar:"
+			print "    'scons configure LUNARTARGET=llvm' to pick LLVM %s as target." % wantversion
+			print "    'scons configure LUNARTARGET=gcc' to pick GCC as target."
+			Exit(1)
+		
+	print "Finished configuration."
+	print
+	print "=== Using ===".center(50)
+	print "CoreAudio:".rjust(30),yesno[env['COREAUDIO'] == True]
+	print "JACK:".rjust(30),yesno[env['JACK'] == True]
+	print "ALSA:".rjust(30),yesno[env['ALSA'] == True]
+	print "OSS:".rjust(30),yesno[env['OSS'] == True]
+	print "Use SSE CPU Extension:".rjust(30),yesno[env['SSE'] == True]
+	print "Use SSE2 CPU Extension:".rjust(30),yesno[env['SSE2'] == True]
+	print "Use Timestretching:".rjust(30),yesno[env['RUBBERBAND'] == True]
+	print
+	print "=== Components ===".center(50)
+	print "Lunar DSP Host:".rjust(30),yesno[env['LUNAR'] == True]
+	print "Lunar Target:".rjust(30),env['LUNARTARGET']
+	print "DSSI:".rjust(30),yesno[env['DSSI'] == True]
+	print "LADSPA:".rjust(30),yesno[env['LADSPA'] == True]
+	print "pyzzub (zubb for Python):".rjust(30),yesno[env['PYZZUB'] == True]
+	print
+	print "=== Directories ===".center(50)
+	if env['LUNARTARGET'] == 'llvm':
+		print "llvm-gcc:".rjust(30),env['LLVMGCCPATH']
+	print "Prefix:".rjust(30),env['PREFIX']
+	print "Install into:".rjust(30),env.Dir("${DESTDIR}${PREFIX}")
+	print "Library Directory:".rjust(30),env.Dir("${PREFIX}${LIBDIR}")
+	print
+	print "Generate Debug Info:".rjust(30),env['DEBUG']
+
+	env = conf.Finish()
+	env['CONFIGURED'] = VERSION
+	opts.Save('options.conf', env)
+	print
+	print "Please check if above settings reflect what you want, then build Armstrong using"
+	print "\tscons"
+	print "To install scons, run"
+	print "\t[sudo] scons install"
+	Exit(0)
+
+######################################
+# save config
+######################################
+
+opts.Save('options.conf', env)
+Help( opts.GenerateHelpText( env ) )
+
+if (not is_cleaning()) and (env['CONFIGURED'] != VERSION):
+	print "Armstrong is not configured for version %s yet." % VERSION
+	print
+	print "Please run 'scons configure' to configure Armstrong."
+	Exit(1)
+
+
+#######################################
+#
+# custom builders
+#
+#######################################
+
+copyright_notice = """
+// Armstrong signature header
+// Copyright (C) 2006 The Armstrong Development Team
+//
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, 
+// MA    02110-1301, USA.
+"""
+
+def build_signature(target, source, env):
+	outfilepath = str(target[0])
+	optionsconfpath = str(source[0])
+
+	exec (file(optionsconfpath,"r").read())
+
+	ofile = file(outfilepath,"w")
+	print >> ofile, copyright_notice
+	print >> ofile, "// generated by scons, do not touch"
+	print >> ofile, "const char ZZUB_SIGNATURE[] = \"%s\";" % SIGNATURE
+	ofile.close()
+	
+def build_buildconfig(target, source, env):
+	outfilepath = str(target[0])
+	optionsconfpath = str(source[0])
+
+	REVISION = '??'
+	LIBDIR = "/lib"
+
+	exec (file(optionsconfpath,"r").read())
+
+	ext = os.path.splitext(os.path.basename(outfilepath))[1].lower()
+	if ext == '.py':
+		ofile = file(outfilepath,"w")
+		print >> ofile, "# generated by scons, do not touch"
+		print >> ofile, "REVISION = %r" % REVISION
+		print >> ofile, "LIBDIR = %r" % LIBDIR
+		print >> ofile, "SIGNATURE = %r" % SIGNATURE
+		ofile.close()
+	elif ext in ('.cpp','.c','.h','.hh'):
+		ofile = file(outfilepath,"w")
+		print >> ofile, "// generated by scons, do not touch"
+		print >> ofile, '#define ZZUB_REVISION "%s"' % REVISION
+		print >> ofile, '#define ZZUB_LIBDIR "%s"' % LIBDIR
+		print >> ofile, '#define ZZUB_SIGNATURE "%s"' % SIGNATURE
+		print >> ofile, '#define ZZUB_LIB_DIR_PATH "%s"' % str(env.Dir("${DESTDIR}${PREFIX}${LIBDIR}/zzub"))
+		print >> ofile, '#define ZZUB_SHARE_DIR_PATH "%s"' % str(env.Dir("${DESTDIR}${PREFIX}/share/zzub"))
+		ofile.close()
+
+def build_python_extension(target, source, env):
+	pass
+	
+builders = dict(
+	BuildConfig = Builder(action = build_buildconfig),
+	Signature = Builder(action = build_signature),
+	PyExtension = Builder(action = build_python_extension),
+	ZIDLCHeader = Builder(action = 'python ${ROOTPATH}/tools/zidl --c-header $TARGET $SOURCE'),
+	ZIDLCDef = Builder(action = 'python ${ROOTPATH}/tools/zidl --c-def $TARGET $SOURCE'),
+	ZIDLPyCtypes = Builder(action = 'python ${ROOTPATH}/tools/zidl --libversion $LIBZZUB_VERSION --py-ctypes $TARGET $SOURCE'),
+)
+
+env['BUILDERS'].update(builders)
+
+#######################################
+#
+# zidl
+#
+#######################################
+
+output = []
+output.append(env.ZIDLCHeader('${ROOTPATH}/include/zzub/zzub.h', '${ROOTPATH}/include/zzub/zzub.zidl'))
+output.append(env.ZIDLCDef('${LIBZZUB_SRC_PATH}/libzzub.def', '${ROOTPATH}/include/zzub/zzub.zidl'))
+# output.append(env.ZIDLPyCtypes('${PYZZUB_SRC_PATH}/zzub/__init__.py', '${ROOTPATH}/include/zzub/zzub.zidl'))
+
+# make targets dependent from script
+env.Depends(output, '${ROOTPATH}/tools/zidl')
+
+#######################################
+#
+# SConscripts
+#
+#######################################
+
+Export(
+	'install_lib',
+	'install_plugin',
+	'install_bin',
+	'install',
+	'install_root',
+	'install_plugin_help',
+	'install_python_extension',
+	
+	'gcc','cl',
+	
+	'posix','win32','mac',
+	
+	'env',
+)
+
+# generate signature
+env.Signature(target='include/zzub/signature.h',source='options.conf')
+
+env.SConscript('${LIBZZUB_SRC_PATH}/../mixing/SConscript')
+env.SConscript('${LIBZZUB_SRC_PATH}/../storage/SConscript')
+env.SConscript('${LIBZZUB_SRC_PATH}/../player/SConscript')
+env.SConscript('${LIBZZUB_SRC_PATH}/../minizip/SConscript')
+env.SConscript('${LIBZZUB_SRC_PATH}/SConscript')
+env.SConscript('${PLUGINS_SRC_PATH}/SConscript')
+#env.SConscript('${CCMPLAYER_SRC_PATH}/SConscript')
+#env.SConscript('${BMPCCM_SRC_PATH}/SConscript')
+#env.SConscript('${PYZZUB_SRC_PATH}/SConscript')
+
+#######################################
+#
+# Rest
+#
+#######################################
+
+# install zzub plugin and type headers
+install(includepath+'/zzub', 'include/zzub/plugin.h')
+install(includepath+'/zzub', 'include/zzub/types.h')
+install(includepath+'/zzub', 'include/zzub/zzub.h')
+install(includepath+'/zzub', 'include/zzub/signature.h')

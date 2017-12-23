@@ -1,0 +1,160 @@
+﻿<html>
+<body>
+<h1>Build instructions</h1>
+<h2>Required tools</h2>
+<ul>
+	<li><a href="http://www.visualstudio.com/products/visual-studio-express-vs">Visual Studio Express 2012 for Desktop</a> with at least Update 1. Non-express and newer versions are assumed to work</li>
+	<li><a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> or your preferred Subversion client</li>
+</ul>
+<p>
+	VS2010 works, but only after editing the project files to use the correct platform toolset. 
+	Project files for VS2008 and older are no longer maintained.
+</p>
+<h2>Install Boost</h2>
+<p>
+	Download and install precompiled 32 bit library binaries of latest Boost from 
+	<a href="http://sourceforge.net/projects/boost/files/boost-binaries/">the Boost download page</a>. For VS2012, choose the msvc-11.0-32 build.
+</p>
+<p>
+	<b>Armstrong requires Boost version 1.53 or newer!</b> Armstrong depends on boost::lockfree and boost::atomic which were adopted in
+	Boost version 1.53.
+</p>
+<p>
+	All other dependencies on Windows except Boost are kept in the repository and must be copied into the working directory as described below.
+</p>
+
+<h2>Download source codes and other dependencies from the repository</h2>
+
+Using the command line - note the very important steps where win32deps is <i>*exported*</i> from trunk and manually <i>*copied*</i> into the working directory:
+<pre style="background-color:black; color:white; font-family:'courier new'; font-size:13px">
+	C:\Users\clvn\Code> md buzesrc
+	C:\Users\clvn\Code> cd buzesrc
+	C:\Users\clvn\Code\buzesrc> svn co svn://anders-e.com/buze/trunk/buze buze
+	...
+	C:\Users\clvn\Code\buzesrc> svn export svn://anders-e.com/buze/trunk/win32deps depfiles
+	...
+	C:\Users\clvn\Code\buzesrc> xcopy depfiles buze /s
+	...
+</pre>
+
+
+Optionally checkout the docs, website and installer files:
+<pre style="background-color:black; color:white; font-family:'courier new'; font-size:13px">
+	C:\Users\clvn\Code\buzesrc> svn co svn://anders-e.com/buze/trunk/docs docs
+	...
+	C:\Users\clvn\Code\buzesrc> svn co svn://anders-e.com/buze/trunk/installer installer
+	...
+</pre>
+
+<!--
+Using explorer:
+<p>
+	<img src="new_dir_and_checkout.png" width="280" align="left" alt="Right-clicked inside c:\buzesrc\buze in Explorer" />
+	<img src="checkout.png" width="280" align="left" alt="Ready to check out Buzé from SVN" />
+	<img src="copied_extra_dlls.png" width="280" align="left" />
+</p>
+<p style="clear:left">
+</p>
+
+<p style="clear:left">
+</p>
+
+<h2>Install additional dependencies</h2>
+<p>
+	In addition to Boost and the DirectX SDK, there are also several other mandatory libraries required for Armstrong.
+	Pre-built dependency binaries for Windows exist in the win32deps directory in the trunk. This directory must be exported separately and moved into the working copy directory:
+</p>
+<p>
+	Go to c:\buzesrc in Explorer and create a new directory called "deps". Right-click the new directory and choose TortoiseSVN -> Export...Enter
+	svn://anders-e.com/buze/trunk/win32deps as URL for the repository to export. Click OK and wait while TortoiseSVN downloads the dependencies.
+</p>
+<p>
+	When the export is finished, the next step is to move the contents of deps into the buze folder: Go to c:\buzesrc\deps in Explorer and select all the files. Right-click the selected files and choose "Cut". 
+	Now go to c:\buzesrc\buze, right-click and select "Paste" to move all files from the deps-directory into the Buze-directory. Answer "Yes to all" to the following question on whether you'd like to overwrite.
+</p-->
+
+
+<!--h2>Configure Armstrong before first build</h2>
+<p>
+	Open a Visual Studio command prompt, and change directory to c:\buzesrc\buze\src\armstrong. Enter the following command:
+</p>
+<pre>
+	# scons configure PREFIX=c:\buzesrc\buze\src\armstrongbuilder
+</pre>
+<p>
+	The output should look something like this:
+</p>
+<pre>
+	scons: Reading SConscript files ...
+	Checking for 'sse' CPU flag... (cached) ERROR: not supported for this platform.
+	Checking for 'sse2' CPU flag... (cached) ERROR: not supported for this platform.
+	
+	Finished configuration.
+	
+			  === Using ===
+			    CoreAudio: no
+				 JACK: no
+				 ALSA: no
+				  OSS: no
+		Use SSE CPU Extension: no
+	       Use SSE2 CPU Extension: no
+		   Use Timestretching: yes
+	
+			=== Components ===
+		       Lunar DSP Host: no
+			 Lunar Target: gcc
+				 DSSI: no
+			       LADSPA: no
+	     pyzzub (zubb for Python): yes
+	
+		       === Directories ===
+			       Prefix: c:\buzesrc\buze\src\armstrongbuilder
+			 Install into: C:\buzesrc\buze\src\armstrongbuilder
+		    Library Directory: C:\buzesrc\buze\src\armstrongbuilder\lib
+	
+		  Generate Debug Info: True
+	
+	Please check if above settings reflect what you want, then build libzzub using
+		scons
+	To install scons, run
+		[sudo] scons install
+</pre-->
+
+
+<h2>Configure Boost paths in Visual Studio</h2>
+<p>
+	If Boost was installed in the step above, Visual Studio needs to know where to locate its headers and libraries.
+</p>
+<p>
+	First start Visual Studio and open buzesrc\buze\buze.sln. Go to the Property Manager and view the properties of "Microsoft.Cpp.Win32.user" 
+	under one of the project configurations.
+</p>
+<p>
+	In VS Express, this is in the menu under View -> Other Windows -> Property Manager. 
+	Also note that in VS Express the Property Manager is hidden by default. It can be enabled via Tools -> Setting -> Expert settings. (<a href="http://social.msdn.microsoft.com/Forums/en-US/e7b6559e-b0c2-453a-bae6-4234a408fe4e/cannot-open-property-manager-in-visual-c-2010-express-edition">here</a> and <a href="http://blog.gockelhut.com/2009/11/visual-studio-2010-property-sheets-and.html">here</a>)
+</p>
+<p>
+	The following paths should be updated to match where Boost was installed. This example assumes Boost version 1.55 with prebuilt binaries for VS2012:
+</p>
+<p>
+<b>Include Directories:</b><br />
+c:\boost_1_55_0\
+</p>
+<p>
+<b>Library Directories:</b><br />
+c:\boost_1_55_0\lib32-msvc-11.0
+</p>
+
+
+<h2>Build with Visual Studio</h2>
+<p>
+	With all the source code and dependencies in place, building should be a matter of opening buzesrc\buze\buze.sln in Visual Studio and choose Build -> Build Solution.
+</p>
+<p>
+	If you get build errors on the first attempt, first check under Build -> Configuration Manager and make sure the "Build" checkboxes are checked for all projects.
+</p>
+<p>
+	After successful compilation, buzesrc\buze contains new binaries for a core Buzé install with all standard GUI plugins. 
+</p>
+</body>
+</html>

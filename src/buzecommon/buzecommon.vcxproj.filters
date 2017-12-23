@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="PropertyList">
+      <UniqueIdentifier>{d7e64aca-5c9e-488f-b894-2bdb608a6d44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{38fd4718-a363-4b03-abb7-d9952f0d8fe2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="XhtmlTreeView">
+      <UniqueIdentifier>{a6e3d440-e208-4c62-92b6-fb4cc6b7653e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{3fc537f2-ca00-49da-ad1e-2de41910c0bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WTL">
+      <UniqueIdentifier>{f5124af8-a119-4822-8625-df33312adb78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{2db8cc43-2972-4adb-9416-874cecad4aca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BuzeConfiguration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EnvelopeCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineDropTarget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mixdown.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParametersControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ParameterSliderBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PrefGlobals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaitWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\CreateCheckboxImageList.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\ResourceFile.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\ResourceTextFile.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\XHtmlDraw.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\XHtmlDrawLink.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\XHtmlTree.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\XNamedColors.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="XHtmlTreeWTL\XString.cpp">
+      <Filter>XhtmlTreeView</Filter>
+    </ClCompile>
+    <ClCompile Include="DragDropImpl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fft.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileVersionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Keymaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MachineIndex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PresetManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PvstMachines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemeManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStylesXP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BuzeConfiguration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="envelope_h.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnvelopeCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineDropTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mixdown.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParametersControl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParameterSliderBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PrefGlobals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Properties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaitWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyList\PropertyItem.h">
+      <Filter>PropertyList</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyList\PropertyItemEditors.h">
+      <Filter>PropertyList</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyList\PropertyItemImpl.h">
+      <Filter>PropertyList</Filter>
+    </ClInclude>
+    <ClInclude Include="PropertyList\PropertyList.h">
+      <Filter>PropertyList</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\CreateCheckboxImageList.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\ResourceFile.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\ResourceTextFile.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XHtmlDraw.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XHtmlDrawLink.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XHtmlTree.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XNamedColors.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XString.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="XHtmlTreeWTL\XTrace.h">
+      <Filter>XhtmlTreeView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlapp.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlcrack.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlctrls.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlctrlw.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlctrlx.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlddx.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atldlgs.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlframe.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlgdi.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlmisc.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlprint.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlres.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlresce.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlscrl.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlsplit.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atltheme.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atluser.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\wtl\atlwinx.h">
+      <Filter>WTL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\buze.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\buzesdk.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\HostModule.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\View.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\WtlDllModule.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\ViewFrame.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\buze\ViewImpl.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="atlgdix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cpputils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DragDropImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileVersionInfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Keymaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MachineIndex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="plur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PresetManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pugxml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PvstMachines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SearchBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SplitterWindowKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolbarBands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolbarWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisualStylesXP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WtlExt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WTLTabViewCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WtlUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="buzecommon.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\include\buze\buze.zidl">
+      <Filter>include</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

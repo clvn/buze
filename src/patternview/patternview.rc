@@ -1,0 +1,695 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include <windows.h>
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE  
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE  
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE  
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDT_HELP_PATTERNVIEW RCDATA "res\\keyboard_patterneditor.txt"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+/*
+IDD_MISSINGMACHINE DIALOGEX 0, 0, 186, 156
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Missing Machine"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,75,133,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,129,133,50,14
+    LTEXT           "The following machine was attempted loaded, but was not found on your system:",IDC_INFOSTATIC,7,7,172,20
+    LTEXT           "(machine name)",IDC_MACHINENAME,25,30,53,8
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,57,109,50
+    PUSHBUTTON      "Query Server",IDC_BUTTON1,120,57,59,14
+    PUSHBUTTON      "Install",IDC_BUTTON2,120,93,59,14
+    LTEXT           "Machines returned from server query:",IDC_STATIC,7,46,123,8
+    LTEXT           "Current Server:",IDC_STATIC,7,115,52,8
+    LTEXT           "http://www.countzero.no/buzz/machines/query.php",IDC_STATIC,64,115,115,8
+    EDITTEXT        IDC_EDIT1,19,125,40,12,ES_AUTOHSCROLL | NOT WS_BORDER
+END
+
+IDD_LOADSUMMARYDIALOG DIALOGEX 0, 0, 365, 140
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Load Summary"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,157,119,50,14
+    EDITTEXT        IDC_EDIT1,7,21,351,92,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "The following problems were found while loading this song:",IDC_STATIC,7,7,188,8
+END
+
+IDD_CPU_MONITOR DIALOGEX 0, 0, 176, 186
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "CPU Monitor"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_MACHINE_CPU_MONITOR_LIST,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,162,171
+END
+
+IDD_WAVE_EDIT DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Fade In",IDC_BUTTON1,7,7,50,14
+    PUSHBUTTON      "Fade Out",IDC_BUTTON2,7,26,50,14
+    PUSHBUTTON      "Silence",IDC_BUTTON3,7,44,50,14
+    PUSHBUTTON      "Trim",IDC_BUTTON4,129,7,50,14
+END
+
+IDD_WAVE_RECORD DIALOGEX 0, 0, 186, 95
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Record Via Wave Plugin",IDC_STATIC,7,7,76,8
+    COMBOBOX        IDC_RECORDPLUGIN_COMBO,7,15,172,230,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_PATTERNCONVERTER DIALOGEX 0, 0, 350, 334
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,241,313,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,293,313,50,14
+    LISTBOX         IDC_LIST1,7,16,165,128,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST2,178,16,165,129,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Source Pattern",IDC_STATIC,7,7,49,8
+    LTEXT           "Target Pattern",IDC_STATIC,178,7,48,8
+    LTEXT           "Track-To-Global Discarding:",IDC_STATIC,7,199,88,8
+    CONTROL         "Discard all but last value",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,7,209,93,10
+    CONTROL         "Discard all but first value",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,7,221,95,10
+    LTEXT           "Map Column Value:",IDC_STATIC,7,150,62,8
+    CONTROL         "Scale To Fit",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,7,160,53,10
+    CONTROL         "Direct Mapping (discard over/underflow)",IDC_RADIO4,
+                    "Button",BS_AUTORADIOBUTTON,7,171,145,10
+    CONTROL         "Value Map",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,7,183,49,10
+    LISTBOX         IDC_LIST3,178,161,165,129,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Mappings",IDC_STATIC,179,151,31,8
+    PUSHBUTTON      "Define Mapping",IDC_BUTTON3,7,269,76,14
+    LTEXT           "Wavetable:",IDC_STATIC,7,239,38,8
+    LTEXT           "Shift wave indices by",IDC_STATIC,7,251,68,8
+    EDITTEXT        IDC_EDIT1,78,248,25,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Values...",IDC_BUTTON1,58,182,45,10
+END
+*/
+IDD_TRANSFORM_REPEAT DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Repeat Every",IDC_STATIC,6,6,47,8
+    LTEXT           "Rows",IDC_STATIC,52,19,18,8
+END
+
+IDD_TRANSFORM_ECHO DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Echo At",IDC_STATIC,6,6,47,8
+    LTEXT           "Rows",IDC_STATIC,52,19,18,8
+END
+
+IDD_TRANSFORM_NOTELENGTH DIALOGEX 0, 0, 76, 87
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Note Length",IDC_STATIC,6,6,40,8
+    LTEXT           "Rows",IDC_STATIC,52,19,18,8
+    CONTROL         "Absolute",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,6,36,44,10
+    CONTROL         "Maximum",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,6,48,45,10
+    CONTROL         "Minimum",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,6,60,43,10
+    CONTROL         "Remove Offs",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,6,72,58,10
+END
+
+IDD_TRANSFORM_THIN DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Allow Every",IDC_STATIC,6,6,38,8
+    LTEXT           "Rows",IDC_STATIC,52,19,18,8
+END
+
+IDD_TRANSFORM_SCALE DIALOGEX 0, 0, 130, 57
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT4,50,36,32,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT1,6,18,32,14,ES_AUTOHSCROLL
+    LTEXT           "Scale Values",IDC_STATIC,6,6,40,8
+    LTEXT           "In Range",IDC_STATIC,88,20,30,8
+    EDITTEXT        IDC_EDIT2,50,18,32,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,6,36,32,14,ES_AUTOHSCROLL
+    LTEXT           "Out Range",IDC_STATIC,88,38,36,8
+    LTEXT           "-",IDC_STATIC,42,20,8,8
+    LTEXT           "-",IDC_STATIC,42,38,8,8
+END
+
+IDD_TRANSFORM_FADE DIALOGEX 0, 0, 75, 57
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Fade Values",IDC_STATIC,6,6,40,8
+    LTEXT           "From",IDC_STATIC,52,19,17,8
+    EDITTEXT        IDC_EDIT2,6,36,40,14,ES_AUTOHSCROLL
+    LTEXT           "To",IDC_STATIC,52,37,9,8
+END
+
+IDD_TRANSFORM_CURVEMAP DIALOGEX 0, 0, 53, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Curve Map",IDC_STATIC,6,6,36,8
+    CONTROL         "Curve 1",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,6,18,41,10
+    CONTROL         "Curve 2",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,6,30,41,10
+    CONTROL         "Curve 3",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,6,42,41,10
+    CONTROL         "Curve 4",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,6,54,41,10
+    CONTROL         "Curve 5",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,6,66,41,10
+    CONTROL         "Curve 6",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,6,78,41,10
+    CONTROL         "Curve 7",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,6,90,41,10
+    CONTROL         "Curve 8",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,6,102,41,10
+END
+
+IDD_TRANSFORM_ROTATEROWS DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Rotate Rows",IDC_STATIC,6,6,42,8
+    LTEXT           "Rows",IDC_STATIC,52,19,18,8
+END
+
+IDD_TRANSFORM_ROTATEVALS DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Rotate Values",IDC_STATIC,6,6,46,8
+    LTEXT           "Rots",IDC_STATIC,52,19,18,8
+END
+
+IDD_TRANSFORM_ROTATERHYTHMS DIALOGEX 0, 0, 76, 38
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,6,18,40,14,ES_AUTOHSCROLL
+    LTEXT           "Rotate Rhythms",IDC_STATIC,6,6,53,8
+    LTEXT           "Rots",IDC_STATIC,52,19,18,8
+END
+
+IDD_PATTERNVIEW_NOTEMASK DIALOGEX 0, 0, 167, 94
+STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION " Transpose Mask"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "All",IDC_BUTTON1,32,75,34,14
+    PUSHBUTTON      "None",IDC_BUTTON2,66,75,34,14
+    PUSHBUTTON      "Select",IDC_BUTTON3,100,75,34,14
+    CONTROL         "Cd",IDC_CHECK_NOTE_C_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,5,20,10
+    CONTROL         "Dd",IDC_CHECK_NOTE_D_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,15,20,10
+    CONTROL         "Ed",IDC_CHECK_NOTE_E_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,24,20,10
+    CONTROL         "Fd",IDC_CHECK_NOTE_F_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,33,20,10
+    CONTROL         "Gd",IDC_CHECK_NOTE_G_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,43,20,10
+    CONTROL         "Ad",IDC_CHECK_NOTE_A_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,52,20,10
+    CONTROL         "Bd",IDC_CHECK_NOTE_B_FLATFLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,62,20,10
+    CONTROL         "Cb",IDC_CHECK_NOTE_C_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,5,20,10
+    CONTROL         "Db",IDC_CHECK_NOTE_D_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,15,20,10
+    CONTROL         "Eb",IDC_CHECK_NOTE_E_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,24,20,10
+    CONTROL         "Fb",IDC_CHECK_NOTE_F_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,33,20,10
+    CONTROL         "Gb",IDC_CHECK_NOTE_G_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,43,20,10
+    CONTROL         "Ab",IDC_CHECK_NOTE_A_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,52,20,10
+    CONTROL         "Bb",IDC_CHECK_NOTE_B_FLAT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,47,62,20,10
+    CONTROL         "C",IDC_CHECK_NOTE_C,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,5,20,10
+    CONTROL         "D",IDC_CHECK_NOTE_D,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,15,20,10
+    CONTROL         "E",IDC_CHECK_NOTE_E,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,24,20,10
+    CONTROL         "F",IDC_CHECK_NOTE_F,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,33,20,10
+    CONTROL         "G",IDC_CHECK_NOTE_G,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,43,20,10
+    CONTROL         "A",IDC_CHECK_NOTE_A,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,52,20,10
+    CONTROL         "B",IDC_CHECK_NOTE_B,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,80,62,20,10
+    CONTROL         "C#",IDC_CHECK_NOTE_C_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,5,20,10
+    CONTROL         "D#",IDC_CHECK_NOTE_D_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,15,20,10
+    CONTROL         "E#",IDC_CHECK_NOTE_E_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,24,20,10
+    CONTROL         "F#",IDC_CHECK_NOTE_F_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,33,20,10
+    CONTROL         "G#",IDC_CHECK_NOTE_G_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,43,20,10
+    CONTROL         "A#",IDC_CHECK_NOTE_A_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,52,20,10
+    CONTROL         "B#",IDC_CHECK_NOTE_B_SHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,110,62,20,10
+    CONTROL         "Cx",IDC_CHECK_NOTE_C_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,5,20,10
+    CONTROL         "Dx",IDC_CHECK_NOTE_D_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,15,20,10
+    CONTROL         "Ex",IDC_CHECK_NOTE_E_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,24,20,10
+    CONTROL         "Fx",IDC_CHECK_NOTE_F_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,33,20,10
+    CONTROL         "Gx",IDC_CHECK_NOTE_G_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,43,20,10
+    CONTROL         "Ax",IDC_CHECK_NOTE_A_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,52,20,10
+    CONTROL         "Bx",IDC_CHECK_NOTE_B_SHARPSHARP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,143,62,20,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_C_FLATFLAT,4,4,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_D_FLATFLAT,4,14,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_E_FLATFLAT,4,24,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_F_FLATFLAT,4,33,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_G_FLATFLAT,4,43,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_A_FLATFLAT,4,52,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_B_FLATFLAT,4,62,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_C_FLAT,37,4,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_D_FLAT,37,14,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_E_FLAT,37,24,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_F_FLAT,37,33,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_G_FLAT,37,43,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_A_FLAT,37,52,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_B_FLAT,37,62,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_C,70,4,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_D,70,14,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_E,70,24,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_F,70,33,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_G,70,43,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_A,70,52,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_B,70,62,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_C_SHARP,100,4,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_D_SHARP,100,14,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_E_SHARP,100,24,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_F_SHARP,100,33,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_G_SHARP,100,43,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_A_SHARP,100,52,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_B_SHARP,100,62,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_C_SHARPSHARP,133,4,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_D_SHARPSHARP,133,14,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_E_SHARPSHARP,133,24,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_F_SHARPSHARP,133,33,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_G_SHARPSHARP,133,43,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_A_SHARPSHARP,133,52,10,10
+    PUSHBUTTON      ">",IDC_BUTTON_NOTE_B_SHARPSHARP,133,62,10,10
+END
+
+IDD_PATTERNVIEW_HARMONICTRANSPOSE DIALOGEX 0, 0, 150, 196
+STYLE DS_SETFONT | DS_3DLOOK | DS_FIXEDSYS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION " Transpose Set"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Dd",IDC_RADIO_NOTE_D_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,8,20,10
+    CONTROL         "C",IDC_RADIO_NOTE_C,"Button",BS_AUTORADIOBUTTON,60,8,20,10
+    CONTROL         "B#",IDC_RADIO_NOTE_B_SHARP,"Button",BS_AUTORADIOBUTTON,83,8,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_0,"Button",BS_AUTORADIOBUTTON,137,8,10,10
+    CONTROL         "Db",IDC_RADIO_NOTE_D_FLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,21,20,10
+    CONTROL         "C#",IDC_RADIO_NOTE_C_SHARP,"Button",BS_AUTORADIOBUTTON,83,21,20,10
+    CONTROL         "Bx",IDC_RADIO_NOTE_B_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,21,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_1,"Button",BS_AUTORADIOBUTTON,137,21,10,10
+    CONTROL         "Ed",IDC_RADIO_NOTE_E_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,35,20,10
+    CONTROL         "D",IDC_RADIO_NOTE_D,"Button",BS_AUTORADIOBUTTON,60,35,20,10
+    CONTROL         "Cx",IDC_RADIO_NOTE_C_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,35,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_2,"Button",BS_AUTORADIOBUTTON,137,35,10,10
+    CONTROL         "Fd",IDC_RADIO_NOTE_F_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,49,20,10
+    CONTROL         "D#",IDC_RADIO_NOTE_D_SHARP,"Button",BS_AUTORADIOBUTTON,83,49,20,10
+    CONTROL         "Eb",IDC_RADIO_NOTE_E_FLAT,"Button",BS_AUTORADIOBUTTON,36,49,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_3,"Button",BS_AUTORADIOBUTTON,137,49,10,10
+    CONTROL         "Fb",IDC_RADIO_NOTE_F_FLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,63,20,10
+    CONTROL         "E",IDC_RADIO_NOTE_E,"Button",BS_AUTORADIOBUTTON,60,63,20,10
+    CONTROL         "Dx",IDC_RADIO_NOTE_D_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,63,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_4,"Button",BS_AUTORADIOBUTTON,137,63,10,10
+    CONTROL         "Gd",IDC_RADIO_NOTE_G_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,77,20,10
+    CONTROL         "F",IDC_RADIO_NOTE_F,"Button",BS_AUTORADIOBUTTON,60,77,20,10
+    CONTROL         "E#",IDC_RADIO_NOTE_E_SHARP,"Button",BS_AUTORADIOBUTTON,83,77,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_5,"Button",BS_AUTORADIOBUTTON,137,77,10,10
+    CONTROL         "Gb",IDC_RADIO_NOTE_G_FLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,91,20,10
+    CONTROL         "F#",IDC_RADIO_NOTE_F_SHARP,"Button",BS_AUTORADIOBUTTON,83,91,20,10
+    CONTROL         "Ex",IDC_RADIO_NOTE_E_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,91,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_6,"Button",BS_AUTORADIOBUTTON,137,91,10,10
+    CONTROL         "Ad",IDC_RADIO_NOTE_A_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,105,20,10
+    CONTROL         "G",IDC_RADIO_NOTE_G,"Button",BS_AUTORADIOBUTTON,60,105,20,10
+    CONTROL         "Fx",IDC_RADIO_NOTE_F_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,105,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_7,"Button",BS_AUTORADIOBUTTON,137,105,10,10
+    CONTROL         "Ab",IDC_RADIO_NOTE_A_FLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,119,20,10
+    CONTROL         "G#",IDC_RADIO_NOTE_G_SHARP,"Button",BS_AUTORADIOBUTTON,83,119,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_8,"Button",BS_AUTORADIOBUTTON,137,119,10,10
+    CONTROL         "Bd",IDC_RADIO_NOTE_B_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,133,20,10
+    CONTROL         "A",IDC_RADIO_NOTE_A,"Button",BS_AUTORADIOBUTTON,60,133,20,10
+    CONTROL         "Gx",IDC_RADIO_NOTE_G_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,133,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_9,"Button",BS_AUTORADIOBUTTON,137,133,10,10
+    CONTROL         "Cd",IDC_RADIO_NOTE_C_FLATFLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,147,20,10
+    CONTROL         "Bb",IDC_RADIO_NOTE_B_FLAT,"Button",BS_AUTORADIOBUTTON,35,147,20,10
+    CONTROL         "A#",IDC_RADIO_NOTE_A_SHARP,"Button",BS_AUTORADIOBUTTON,83,147,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_10,"Button",BS_AUTORADIOBUTTON,137,147,10,10
+    CONTROL         "Cb",IDC_RADIO_NOTE_C_FLAT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,35,161,20,10
+    CONTROL         "B",IDC_RADIO_NOTE_B,"Button",BS_AUTORADIOBUTTON,60,161,20,10
+    CONTROL         "Ax",IDC_RADIO_NOTE_A_SHARPSHARP,"Button",BS_AUTORADIOBUTTON,108,161,20,10
+    CONTROL         "",IDC_RADIO_NOTE_NONE_11,"Button",BS_AUTORADIOBUTTON,137,161,10,10
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,6,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,48,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,62,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,76,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,90,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,104,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,118,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,132,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,146,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,160,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,34,128,13,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDFRAME,6,20,128,13,WS_EX_TRANSPARENT
+    COMBOBOX        IDC_COMBO1,6,177,26,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO2,33,177,78,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "S",IDC_BUTTON1,112,177,12,13
+    CONTROL         "",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,137,179,9,10
+    PUSHBUTTON      "X",IDC_BUTTON2,124,177,12,13
+END
+
+IDD_TRANSFORM_VOLUMES DIALOGEX 0, 0, 53, 58
+STYLE DS_SETFONT | DS_MODALFRAME | DS_3DLOOK | DS_FIXEDSYS | WS_POPUP
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Volumes",IDC_STATIC,6,6,27,8
+    CONTROL         "Insert",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,6,18,35,10
+    CONTROL         "Remove",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,6,30,42,10
+    CONTROL         "Allow",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,6,42,33,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_PATTERNVIEW_TOOLBARS MENU 
+BEGIN
+    POPUP "Pattern Editor Toolbars"
+    BEGIN
+        MENUITEM "Wave Toolbar",                ID_PATTERNVIEW_WAVETOOLTOOLBAR
+        MENUITEM "Machine/Pattern Toolbar",     ID_PATTERNVIEW_MACHINEPATTERNTOOLBAR
+        MENUITEM "Octave Toolbar",              ID_PATTERNVIEW_OCTAVETOOLBAR
+        MENUITEM "Step Toolbar",                ID_PATTERNVIEW_STEPTOOLBAR
+        MENUITEM "Play Notes Toolbar",          ID_PATTERNVIEW_PLAYNOTESTOOLBAR
+        MENUITEM "Info Toolbar",                ID_PATTERNVIEW_INFOTOOLBAR
+        MENUITEM "Follow Toolbar",              ID_PATTERNVIEW_FOLLOWTOOLBAR
+        MENUITEM "Button Toolbar",              ID_PATTERNVIEW_BUTTONBAR
+        MENUITEM "Pattern Loop Toolbar",        ID_PATTERNVIEW_PATTERNLOOPTOOLBAR
+        MENUITEM "Pattern Scale Toolbar",       ID_PATTERNVIEW_PATTERNSCALETOOLBAR
+        MENUITEM "Pattern Beat Toolbar",        ID_PATTERNVIEW_PATTERNBEATTOOLBAR
+        MENUITEM "Pattern Rows Toolbar",        ID_PATTERNVIEW_PATTERNROWSTOOLBAR
+        MENUITEM "Pattern Name Toolbar",        ID_PATTERNVIEW_PATTERNNAMETOOLBAR
+    END
+END
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_PATTERNVIEW         BITMAP                  "res\\patterneditor.bmp"
+IDB_PATTERNLIST_IMAGES  BITMAP                  "res\\listimages.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_PATTERNVIEW TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_PATTERNVIEW_PATTERNSTACK_BACK
+    BUTTON      ID_PATTERNVIEW_PATTERNSTACK_FORWARD
+    BUTTON      ID_PATTERNVIEW_PATTERNSTACK_RESET
+    SEPARATOR
+    BUTTON      ID_PATTERN_DOUBLEROWS
+    BUTTON      ID_PATTERN_HALVEROWS
+    //BUTTON      ID_PATTERN_HELP
+    BUTTON      ID_MACHINE_ADDTRACK
+    BUTTON      ID_MACHINE_REMOVETRACK
+    SEPARATOR
+    BUTTON      ID_PATTERN_CLONE
+    BUTTON      ID_PATTERN_DELETE
+    SEPARATOR
+    BUTTON      ID_PATTERNVIEW_SHOWPATTERNFORMAT
+    BUTTON      ID_PATTERN_PLAY
+    BUTTON      ID_PATTERN_REPLAY
+    BUTTON      ID_PATTERN_STOP
+    SEPARATOR
+    BUTTON      ID_PATTERNVIEW_SHOWNOTEMASK
+    BUTTON      ID_PATTERNVIEW_SHOWHARMONICTRANSPOSE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    ID_PATTERNVIEW_PATTERNSTACK_BACK "Go Back"
+    ID_PATTERNVIEW_PATTERNSTACK_FORWARD "Go Forward"
+    ID_PATTERNVIEW_PATTERNSTACK_RESET "Reset Stack to Current Pattern"
+    ID_PATTERN_DOUBLEROWS   "Double Pattern Length"
+    ID_PATTERN_HALVEROWS    "Halve Pattern Length"
+    ID_PATTERNVIEW_SHOWPATTERNFORMAT "Pattern Format"
+
+    ID_PATTERN_PLAYFROMCURSOR "Play this pattern from cursor position"
+    ID_PATTERNVIEW_PLAY_TRACKROW "Trigger this track"
+    ID_PATTERNVIEW_PLAY_ROW "Trigger all tracks on this row"
+    ID_PATTERNVIEW_CUT_SPLICE "Cuts the data and moves data after the selection upwards"
+    ID_PATTERNVIEW_PASTE_SPLICE "Pastes and pushes data downwards by the length of the buffer"
+    ID_PATTERNVIEW_PASTE_STEP "Repeat pastes using the length of pattern data stored as a step value"
+    ID_PATTERNVIEW_PASTE_MIXOVER "Mix paste, gives priority to the paste buffer"
+    ID_PATTERNVIEW_PASTE_MIXUNDER "Mix paste, gives priority to the pattern data"
+    ID_PATTERNVIEW_CLEARVALUE "Clear the value in this position"
+    ID_PATTERNVIEW_CLEARTRACKROW "Remove data on this row in the current track"
+    ID_PATTERNVIEW_CLEARPATTERNROW "Remove all data on this row"
+    ID_PATTERNVIEW_INSERTCOLUMNROW "Insert empty value at cursor"
+    ID_PATTERNVIEW_INSERTTRACKROW "Insert empty value at cursor in all columns of the current track"
+    ID_PATTERNVIEW_INSERTPATTERNROW "Insert empty value at cursor in all columns of the current pattern"
+    ID_EDIT_DELETE "Pull data below cursor upwards"
+    ID_PATTERNVIEW_DELETETRACKROW "Pull data in all columns of current track below cursor upwards"
+    ID_PATTERNVIEW_DELETEPATTERNROW "Pull data in all columns of the current pattern below cursor upwards"
+    ID_PATTERNVIEW_BACKSPACECOLUMNROW "Deletes the data above the cursor, and moves the cursor up"
+    ID_PATTERNVIEW_BACKSPACETRACKROW "Deletes the data of the current track above the cursor, and moves the cursor up"
+    ID_PATTERNVIEW_BACKSPACEPATTERNROW "Deletes the data of all columns of current pattern above the cursor, and moves the cursor up"
+    ID_PATTERNVIEW_SELECTBEGIN "Mark selection beginning"
+    ID_PATTERNVIEW_SELECTEND "Mark selection end"
+    ID_PATTERNVIEW_SELECTDOWN "Select from cursor to end of pattern, or extend selection to end of pattern"
+    ID_PATTERNVIEW_SELECTBEAT "Select to next beat, double selection on subsequent presses"
+    ID_PATTERNVIEW_SELECTCOLUMNS "Select columns toggle"
+    ID_EDIT_SELECTALL "Select all pattern data"
+    ID_PATTERNVIEW_UNSELECT "Unselect all data"
+    ID_PATTERNVIEW_TRACKMUTE "Mute this track"
+    ID_PATTERNVIEW_TRACKSOLO "Solo this track"
+
+	    ID_PATTERNVIEW_SETLOOPBEGIN "Set start loop point"
+    ID_PATTERNVIEW_SETLOOPEND "Set end loop point"
+    ID_PATTERNVIEW_SETLOOPPATTERN "Set whole pattern to loop"
+    ID_PATTERNVIEW_SETLOOPSELECTION "Set loop points using selection"
+    ID_PATTERNVIEW_FORMATUP "Move to next pattern format above"
+    ID_PATTERNVIEW_FORMATDOWN "Move to next pattern format below"
+    ID_PATTERNVIEW_PATTERNUP "Move to next pattern above"
+    ID_PATTERNVIEW_PATTERNDOWN "Move to next pattern below"
+    ID_PATTERNVIEW_DROPDOWNWAVE "Display wavetable dropdown"
+    ID_PATTERNVIEW_DROPDOWNFORMAT "Display pattern format dropdown"
+    ID_PATTERNVIEW_DROPDOWNPATTERN "Display associated patterns dropdown"
+    ID_PATTERNVIEW_DROPDOWNOCTAVE "Display octave dropdown"
+    ID_PATTERNVIEW_DROPDOWNSTEP "Display cursor step dropdown"
+    ID_PATTERNVIEW_TOGGLEPLAYNOTES "Toggle play notes while entering"
+    ID_PATTERNVIEW_TOGGLESHOWINFO "Cycle showing the infopane between on, off, auto-hide"
+    ID_PATTERNVIEW_TOGGLEFOLLOW "Toggle playback follow"
+    ID_PATTERNVIEW_SHOWNOTEMASK "Display the note mask"
+    ID_PATTERNVIEW_SHOWHARMONICTRANSPOSE "Display harmonic transpose options"
+    ID_PATTERNVIEW_TOGGLEPATTERNLOOP "Toggle pattern loop mode"
+    ID_PATTERNVIEW_DROPDOWNPATTERNSCALE "Display pattern scale dropdown"
+    ID_PATTERNVIEW_DROPDOWNPATTERNBEAT "Display pattern beat dropdown"
+    ID_PATTERNVIEW_DROPDOWNPATTERNROWS "Display pattern row dropdown"
+    ID_PATTERNVIEW_DROPDOWNPATTERNNAME "Display pattern name"
+    ID_PATTERNVIEW_STEP_SET_0 "Set pattern step value to 0"
+    ID_PATTERNVIEW_STEP_SET_1 "Set pattern step value to 1"
+    ID_PATTERNVIEW_STEP_SET_2 "Set pattern step value to 2"
+    ID_PATTERNVIEW_STEP_SET_3 "Set pattern step value to 3"
+    ID_PATTERNVIEW_STEP_SET_4 "Set pattern step value to 4"
+    ID_PATTERNVIEW_STEP_SET_5 "Set pattern step value to 5"
+    ID_PATTERNVIEW_STEP_SET_6 "Set pattern step value to 6"
+    ID_PATTERNVIEW_STEP_SET_7 "Set pattern step value to 7"
+    ID_PATTERNVIEW_STEP_SET_8 "Set pattern step value to 8"
+    ID_PATTERNVIEW_STEP_SET_9 "Set pattern step value to 9"
+    ID_PATTERNVIEW_STEP_UP "Move cursor up by step value"
+    ID_PATTERNVIEW_STEP_DOWN "Move cursor down by step value"
+    ID_PATTERNVIEW_OCTAVE_UP "Increase pattern keyjazz 1 octave"
+    ID_PATTERNVIEW_OCTAVE_DOWN "Decrease pattern keyjazz 1 octave"
+    ID_PATTERNVIEW_WAVE_NEXT "Select next wave"
+    ID_PATTERNVIEW_WAVE_PREVIOUS "Select previous wave"
+    ID_PATTERNVIEW_TOGGLE_HORIZONTALENTRY "Toggle horizontal entry mode"
+    ID_PATTERNVIEW_CYCLE_NOTESAFFECT "Cycle automatic column entry modes for note editing"
+    ID_PATTERNVIEW_TOGGLE_TRANSPOSESET "Switch between chromatic transpose and harmonic transpose"
+    ID_PATTERNVIEW_TOGGLE_VOLMASK "Toggle transforms applying to volume columns only"
+    ID_PATTERN_DOUBLELENGTH "Double current pattern length"
+    ID_PATTERN_HALVELENGTH "Half current pattern length"
+    ID_PATTERNVIEW_TRANSPOSENOTESUP "Transpose notes in selection up 1 semitone"
+    ID_PATTERNVIEW_TRANSPOSENOTESDOWN "Transpose notes in selection down 1 semitone"
+    ID_PATTERNVIEW_TRANSPOSENOTESOCTAVEUP "Transpose notes in selection up 1 octave"
+    ID_PATTERNVIEW_TRANSPOSENOTESOCTAVEDOWN "Transpose notes in selection down 1 octave"
+    ID_PATTERNVIEW_TRANSPOSESELECTIONUP "Transpose all values in selection up 1 unit"
+    ID_PATTERNVIEW_TRANSPOSESELECTIONDOWN "Transpose all values in selection down 1 unit"
+    ID_TRANSPOSESET_REKEY "Changes note accidentals to fit the accidentals used in the transpose set"
+    ID_PATTERNVIEW_RANDOMIZE_SELECTION "Randomize selection"
+    ID_PATTERNVIEW_RANDOMIZERANGE_SELECTION "Randomizes in between range of top and bottom values in selection"
+    ID_PATTERNVIEW_RANDOMIZEUSING_SELECTION "Randomizes only from the set of values found within the selection"
+    ID_PATTERNVIEW_HUMANIZE_SELECTION "Deviate values a little"
+    ID_PATTERNVIEW_SHUFFLE_SELECTION "Shuffles up the order of the values only, does not create new values"
+    ID_PATTERNVIEW_INTERPOLATE_SELECTION "Interpolate between values"
+    ID_PATTERNVIEW_GRADIATE_SELECTION "Interpolates between all points found in the selection range"
+    ID_PATTERNVIEW_SMOOTH_SELECTION "Smooth the variation"
+    ID_PATTERNVIEW_REVERSE_SELECTION "Reverse the selection set"
+    ID_PATTERNVIEW_COMPACT_SELECTION "Compacts data to half size, deleting odd row"
+    ID_PATTERNVIEW_EXPAND_SELECTION "Doubles data length"
+    ID_PATTERNVIEW_THIN_SELECTION "Deletes all values except, but allows one per N to remain (modulo)"
+    ID_PATTERNVIEW_REPEAT_SELECTION "Repeats the value constantly, stops when a new value occurs in the pattern"
+    ID_PATTERNVIEW_ECHO_SELECTION "Repeats the value one time only, but does not get clipped when a new value occurs"
+    ID_PATTERNVIEW_UNIQUE_SELECTION "Removes duplicate entries which occur in order"
+    ID_PATTERNVIEW_SCALE_SELECTION "Remap the values into a new range"
+    ID_PATTERNVIEW_FADE_SELECTION "Fades values in or out over time"
+    ID_PATTERNVIEW_CURVEMAP_SELECTION "Apply various curves over time to the values in the selection"
+    ID_PATTERNVIEW_INVERT_SELECTION "Inverts values relative to their maximum and minimum"
+    ID_PATTERNVIEW_ROTATEROWS_SELECTION "Rotates all rows and brings the clipped portion back to the top/bottom of the selection"
+    ID_PATTERNVIEW_ROTATEROWS_UP_SELECTION "Rotate up by a single row"
+    ID_PATTERNVIEW_ROTATEROWS_DOWN_SELECTION "Rotate down by a single row)"
+    ID_PATTERNVIEW_ROTATEVALUES_SELECTION "Rotate selected values"
+    ID_PATTERNVIEW_ROTATEVALUES_UP_SELECTION "Rotate selected values upwards"
+    ID_PATTERNVIEW_ROTATEVALUES_DOWN_SELECTION "Rotate selected values downwards"
+    ID_PATTERNVIEW_ROTATERHYTHMS_SELECTION "Cycle through rhythmic permutations by rotating the distances between values"
+    ID_PATTERNVIEW_ROTATERHYTHMS_UP_SELECTION "Cycle through rhythmic permutations upwards"
+    ID_PATTERNVIEW_ROTATERHYTHMS_DOWN_SELECTION "Cycle through rhythmic permutations downwards"
+    0 "Rotate selected note values"
+    ID_PATTERNVIEW_NOTELENGTH_SELECTION "Change the lengths of notes, or remove note offs"
+    ID_PATTERNVIEW_VOLUMES_SELECTION "Insert default volumes at every note event, allow volumes only when they're next to notes, or remove all volumes"
+    ID_PATTERNVIEW_ALLTOFIRST_SELECTION "All values occuring in the selection are changed to be the same as the value on the first row"
+    ID_PATTERNVIEW_FIRSTTOLAST_SELECTION "All values in the selection which are the same as the one on the first row, are replaced to become the value on the last row"
+    ID_PATTERNVIEW_REMOVEFIRST_SELECTION "All values matching the one on the first row are removed"
+    ID_PATTERNVIEW_REPLACEWAVES_SELECTION "All waves in the selection are replaced by the wave selected in the dropdown menu"
+    ID_PATTERNVIEW_INVERTCHORDUP_SELECTION "Performs a harmonic inversion of chord selections"
+    ID_PATTERNVIEW_INVERTCHORDDOWN_SELECTION "Performs a harmonic inversion of chord selections"
+    ID_PATTERNVIEW_TRACKSWAP_SELECTION "Swaps the data in the selection's leftmost and rightmost tracks"
+    ID_PATTERNVIEW_ROWSWAP_SELECTION "Swaps the data in the selections top and bottom row"
+    ID_PATTERNVIEW_CLEARSAMECOLUMN_SELECTION "Removes all data in selection, from columns which are of the same plugin, group, and column type, of the leftmost column (ie, clear all FX columns if your leftmost selection was FX)"
+    ID_PATTERNVIEW_SPECIAL1 "Context sensitive. If a patternformat is selected, create a new pattern and insert trigger, optionally with the size of selection. If a pattern is selected, insert a pattern trigger. Optionally repeated within selection."
+    ID_PATTERNVIEW_SPECIAL2 "Context sensitive. Duplicate pattern at cursor or selected patterns and insert new patterns"
+    ID_PATTERNVIEW_SPECIAL3 "Collapse all branches in infopane, except the selected patternformat"
+    ID_PATTERNVIEW_SPECIAL4 "(pending description)"
+    ID_PATTERNVIEW_SPECIAL5 "Open pattern at cursor for editing."
+    ID_PATTERNVIEW_SPECIAL6 "(pending description)"
+    ID_PATTERNVIEW_TOGGLECOLUMNCONTROL "Toggle column control"
+    ID_PATTERNVIEW_COLLAPSESELECTION "Collapse selected columns"
+    ID_PATTERNVIEW_UNCOLLAPSESELECTION "Uncollapse selection"
+    ID_PATTERNVIEW_PICKUPVALUE "Picks up and autoselects a wave, a pattern, etc"
+    ID_PATTERNVIEW_INFOPANE_UP "Move selection in infopane upwards"
+    ID_PATTERNVIEW_INFOPANE_DOWN "Move selection in infopane downwards"
+    ID_PATTERNVIEW_TRACKSWAPRIGHT "Swap track right"
+    ID_PATTERNVIEW_TRACKSWAPLEFT "Swap track left"
+    ID_PATTERNVIEW_FORMATLAYOUTPLUGINRIGHT "Move layout plugin right"
+    ID_PATTERNVIEW_FORMATLAYOUTPLUGINLEFT "Move layout plugin left"
+    ID_PATTERNVIEW_CREATEPATTERN "Create new pattern"
+    ID_VIEW_PROPERTIES "Display pattern properties"
+    ID_PATTERN_CREATEFORMAT "Create new pattern format"
+    ID_PATTERNVIEW_CLONE_FORMAT "Clone selected pattern format"
+    ID_PATTERN_DELETEFORMAT "Delete selected pattern format"
+    ID_PATTERN_FORMATPROPERTIES "Display pattern format properties"
+    ID_MACHINE_PARAMETERS "Display machine parameter view"
+    ID_MACHINE_PROPERTIES "Display machine properties"
+    ID_PATTERNVIEW_ORDERLIST_RIGHT "Go to next pattern in orderlist"
+    ID_PATTERNVIEW_ORDERLIST_LEFT "Go to previous pattern in orderlist"
+    ID_PATTERNVIEW_NUDGEBACKWARD "Nudges line backward"
+    ID_PATTERNVIEW_NUDGEFORWARD "Nudges line forward"
+    ID_PATTERNVIEW_NUDGEBACKWARDSMALL "Nudges line backward somewhat"
+    ID_PATTERNVIEW_NUDGEFORWARDSMALL "Nudges line forward somewhat"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_PATTERN_CLONE        "Clone Pattern"
+    ID_PATTERN_DELETE       "Delete Pattern"
+    ID_PATTERN_STOP         "Stop"
+    ID_PATTERN_PLAY         "Play"
+    ID_PATTERN_REPLAY       "Play from Replay row"
+    ID_MACHINE_REMOVETRACK  "Delete Track"
+    ID_MACHINE_ADDTRACK     "Add Track"
+    ID_MACHINE_MUTE "Mute this machine"
+    ID_MACHINE_SOLO "Solo this machine"
+END
+
+STRINGTABLE
+BEGIN
+    ID_ORDERLIST_INSERT "Insert an empty position"
+    ID_ORDERLIST_DUPLICATE "Duplicate selected pattern and insert new order"
+    ID_ORDERLIST_NEW "Create new"
+    ID_ORDERLIST_REMOVE "Remove current"
+    ID_ORDERLIST_REMOVE_DELETE "Delete selected pattern and order"
+    ID_ORDERLIST_BACKSPACE "Remove previous order"
+    ID_ORDERLIST_BACKSPACE_DELETE "Remove previous pattern and order"
+    ID_ORDERLIST_SETBEGINLOOP "Set loop begin"
+    ID_ORDERLIST_SETENDLOOP "Set loop end"
+    ID_ORDERLIST_SETSELECTIONLOOP "Loop selection"
+    ID_ORDERLIST_TOGGLEFOLLOW "Toggle follow playback position"
+    ID_ORDERLIST_PLAYORDER "Play order list"
+    ID_ORDERLIST_QUEUE "Queue order"
+    ID_ORDERLIST_DESELECT "Focus pattern editor"
+    ID_ORDERLIST_GOTO_EDITOR "Focus order list"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

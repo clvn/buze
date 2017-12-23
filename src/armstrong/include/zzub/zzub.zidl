@@ -1,0 +1,2029 @@
+# zzub modular tracker/sequencer library interface
+
+cheader "zzub/zzub.h"
+include "zzub/types.h"
+
+import "pluginenum.zidl"
+
+namespace zzub:
+	dlname "armstrong"
+
+	"Event codes"
+	enum EventType:
+
+		# plugin events
+		set double_click = 0
+		set update_song = 60
+		set insert_plugin = 1
+		set before_delete_plugin = 5
+		set delete_plugin = 2
+		set update_plugin = 30
+
+		set insert_connection = 4
+		set delete_connection = 3
+		set update_connection = 68
+		
+		set update_pluginparameter = 7
+
+		set insert_pattern = 25
+		set update_pattern = 31
+		set delete_pattern = 26
+
+		set insert_patternevent = 27
+		set update_patternevent = 48
+		set delete_patternevent = 49
+
+		set insert_orderlist = 32
+		set delete_orderlist = 33
+		set update_orderlist = 41
+		
+		set insert_patternformat = 52
+		set update_patternformat = 61
+		set delete_patternformat = 53
+		set insert_patternformatcolumn = 54
+		set update_patternformatcolumn = 62
+		set delete_patternformatcolumn = 55
+		set insert_patternformattrack = 63
+		set update_patternformattrack = 64
+		set delete_patternformattrack = 65
+		
+		set insert_plugin_group = 71
+		set update_plugin_group = 72
+		set delete_plugin_group = 73
+
+		set envelope_changed = 37
+		set slices_changed = 38
+		set insert_wave = 56
+		set update_wave = 39
+		set delete_wave = 40
+		set insert_wavelevel = 12
+		set update_wavelevel = 57
+		set delete_wavelevel = 58
+		set update_wavelevel_samples = 59
+
+		# global/master events
+		set user_alert		= 8
+		set midi_control	= 11
+	
+		set player_state_changed = 20
+		set osc_message = 21
+		set vu = 22
+		set player_order_changed = 69
+		set player_order_queue_changed = 70
+	
+		set custom = 44
+		set samplerate_changed = 50
+		set latency_changed = 76
+		set device_reset = 77
+		set barrier = 51
+		
+		set player_save = 74
+		set player_load = 75
+
+		# catch all event
+		set all = 255
+	
+	"Alert codes sent in the event data for events with their type set to 'user_alert'."
+	enum AlertType:
+		set EnumeratingPlugins = 1
+		set EnumeratingPluginsDone = 2
+		set MixdownProgress = 20
+		set LoadingPlugins = 100
+		set LoadingPatterns = 101
+		set LoadingWaves = 102
+		set PatternRecursion = 400
+	
+	"Event data sent to callbacks. The 'type' member indicates an event code and which data fields are valid."
+	class EventData:
+
+		class DoubleClick:
+			member Plugin plugin
+	
+		class InsertPlugin:
+			member Plugin plugin
+	
+		class DeletePlugin:
+			member Plugin plugin
+	
+		class UpdatePlugin:
+			member Plugin plugin
+		
+		class InsertConnection:
+			member Plugin from_plugin
+			member Plugin to_plugin
+			member Plugin connection_plugin
+			member int type
+
+		class UpdateConnection:
+			member Plugin connection_plugin
+			member Plugin from_plugin
+			member Plugin to_plugin
+			member int type
+
+		class DeleteConnection:
+			member Plugin connection_plugin
+			member Plugin from_plugin
+			member Plugin to_plugin
+			member int type
+
+		class InsertPattern:
+			member Pattern pattern
+
+		class UpdatePattern:
+			member Pattern pattern
+
+		class DeletePattern:
+			member Pattern pattern
+
+		class InsertPatternEvent:
+			member PatternEvent patternevent
+
+		class UpdatePatternEvent:
+			member PatternEvent patternevent
+
+		class DeletePatternEvent:
+			member PatternEvent patternevent
+
+		class InsertPatternFormat:
+			member PatternFormat patternformat
+
+		class UpdatePatternFormat:
+			member PatternFormat patternformat
+
+		class DeletePatternFormat:
+			member PatternFormat patternformat
+
+		class InsertPatternFormatColumn:
+			member PatternFormatColumn patternformatcolumn
+
+		class UpdatePatternFormatColumn:
+			member PatternFormatColumn patternformatcolumn
+
+		class DeletePatternFormatColumn:
+			member PatternFormatColumn patternformatcolumn
+
+		class MidiMessage:
+			member uchar status
+			member uchar data1
+			member uchar data2
+		
+		class UpdatePluginParameter:
+			member Plugin plugin
+			member int group
+			member int track
+			member int param
+			member int value
+			
+		class PlayerStateChanged:
+			member int player_state
+			
+		class PlayerOrderChanged:
+			member int orderindex
+
+		class PlayerLoad:
+			member Archive userdata
+						
+		class PlayerSave:
+			member Archive userdata
+						
+		class Vu:
+			member int size
+			member float left_amp
+			member float right_amp
+			member float time
+			
+		class Serialize:
+			member char mode
+			member Archive archive
+			
+		class Unknown:
+			member pvoid param
+
+		class OscMessage:
+			member string path
+			member string types
+			member pvoid[argc] argv
+			member int argc
+			member pvoid msg
+		
+		class InsertWave:
+			member Wave wave
+		
+		class UpdateWave:
+			member Wave wave
+			
+		class DeleteWave:
+			member Wave wave
+			
+		class InsertWavelevel:
+			member Wavelevel wavelevel
+		
+		class UpdateWavelevel:
+			member Wavelevel wavelevel
+		
+		class UpdateWavelevelSamples:
+			member Wavelevel wavelevel
+		
+		class DeleteWavelevel:
+			member Wavelevel wavelevel
+
+		class InsertPluginGroup:
+			member PluginGroup group
+	
+		class DeletePluginGroup:
+			member PluginGroup group
+	
+		class UpdatePluginGroup:
+			member PluginGroup group
+		
+		class Custom:
+			member int id
+			member pvoid data
+		
+		class UserAlert:
+			member int type
+			union:
+				member Plugincollection collection
+				member Pluginloader plugin
+				member Wave wave
+				member int progress
+
+		member int type
+		member pvoid userdata
+		union:
+			member noref DoubleClick double_click
+			member noref MidiMessage midi_message
+			member noref PlayerStateChanged player_state_changed
+			member noref PlayerOrderChanged player_order_changed
+			member noref PlayerLoad player_load
+			member noref PlayerSave player_save
+			member noref OscMessage osc_message
+			member noref Vu vu
+			member noref Serialize serialize
+			member noref InsertPlugin insert_plugin
+			member noref UpdatePlugin update_plugin
+			member noref DeletePlugin delete_plugin
+			member noref UpdatePluginParameter update_pluginparameter
+			member noref InsertConnection insert_connection
+			member noref UpdateConnection update_connection
+			member noref DeleteConnection delete_connection
+			member noref InsertPattern insert_pattern
+			member noref UpdatePattern update_pattern
+			member noref DeletePattern delete_pattern
+			member noref InsertPatternEvent insert_patternevent
+			member noref UpdatePatternEvent update_patternevent
+			member noref DeletePatternEvent delete_patternevent
+			member noref InsertPatternFormat insert_pattern_format
+			member noref UpdatePatternFormat update_pattern_format
+			member noref DeletePatternFormat delete_pattern_format
+			member noref InsertPatternFormatColumn insert_pattern_format_column
+			member noref UpdatePatternFormatColumn update_pattern_format_column
+			member noref DeletePatternFormatColumn delete_pattern_format_column
+			member noref InsertWave insert_wave
+			member noref UpdateWave update_wave
+			member noref DeleteWave delete_wave
+			member noref InsertWavelevel insert_wavelevel
+			member noref UpdateWavelevel update_wavelevel
+			member noref DeleteWavelevel delete_wavelevel
+			member noref UpdateWavelevelSamples update_wavelevel_samples
+			member noref InsertPluginGroup insert_plugin_group
+			member noref UpdatePluginGroup update_plugin_group
+			member noref DeletePluginGroup delete_plugin_group
+			member noref UserAlert alert
+			member noref Custom custom
+			member noref Unknown unknown
+
+	pdef callback(Player player, Plugin plugin, EventData data, pvoid tag): int
+	
+	"Codes for validation warnings and errors after a song load."
+	enum ValidationErrorType:
+		set parameter_count_mismatch = 1
+		set parameter_type_mismatch = 2
+		set parameter_flags_mismatch = 3
+		set parameter_value_min_mismatch = 4
+		set parameter_value_max_mismatch = 5
+		set parameter_value_none_mismatch = 6
+		set parameter_value_default_mismatch = 7
+		set plugin_not_found_using_dummy = 8
+		set plugin_validation_failed_using_dummy = 9
+		set plugin_not_found = 10
+		set plugin_inputs_mismatch = 11
+		set plugin_outputs_mismatch = 12
+
+	"Description of an audio device."
+	"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+	class DeviceInfo:
+		"Returns an identifier of the device API (ASIO, DS, etc)"
+		def get_api(): int
+
+		"Returns the name of the audio device"
+		def get_name(): string
+
+		"Returns an array of supported buffersizes."
+		"This returns nothing for input devices, which always use the same buffer size as the output device."
+		def get_supported_buffersizes(out int[maxsizes] result, int maxsizes): int
+
+		"Returns an array of supported sample rates."
+		"This returns nothing for input devices, which always use the same samplerate as the output device."
+		def get_supported_samplerates(out int[maxrates] result, int maxrates): int
+		
+		"Returns the number of supported output channels as reported by the driver."
+		def get_supported_output_channels(): int
+
+		"Returns the number of supported input channels as reported by the driver."
+		def get_supported_input_channels(): int
+
+
+	"Iterator for audio device infos."
+	class DeviceInfoIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): DeviceInfo
+		
+		"Resets the iterator to the start."
+		def reset()
+
+		"Destroys the iterator."
+		def destroy()
+
+
+	"Methods for enumerating, configuring and creating an audio driver instance."
+	class Audiodriver:
+		"Create a silent, non-processing audio driver that has one device with the specified properties."
+		"This driver has no audio thread. Samples must be generated manually by calling the work_stereo method on the Player object."
+		def static create_silent(Player player, string name, int out_channels, int in_channels, out int[num_rates] supported_rates, int num_rates): Audiodriver
+
+		"Creates an audio driver for enumerating audio devices provided by the operating system."
+		def static create(Player player): Audiodriver
+
+		"Get number of detected input and output audio devices."
+		def get_count(): int
+
+		"Returns info for the device at the specified index."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_device_info(int index): DeviceInfo
+
+		"Returns info for the device at the specified index."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_device_info_by_name(string name): DeviceInfo
+
+		"Returns an iterator for all output devices."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_output_iterator(): DeviceInfoIterator
+
+		"Returns an iterator for all input devices."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_input_iterator(): DeviceInfoIterator
+
+		"Returns an iterator with devices suitable as input for the specified output device."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_input_iterator_for_output(DeviceInfo info): DeviceInfoIterator
+
+		"Create specified audio device. Audio device is disabled by default."
+		def create_device(string input_name, string output_name, int buffersize, int samplerate): int
+
+		"Returns a DeviceInfo object for the current device. Returns NULL if no device was created."
+		"The engine sends a device_reset-event when the DeviceInfo objects become invalid and must be re-enumerated."
+		def get_current_device(bool for_input):DeviceInfo
+
+		"Enable or disable current audio driver."
+		def enable(bool state)
+
+		"Returns whether current audio driver is enabled or disabled."
+		def get_enabled(): bool
+
+		"Disassociate audio driver and player."
+		def destroy()
+
+		"De-allocate the current device."
+		def destroy_device()
+
+		"Configuration: Retreive audio driver sample rate."
+		def get_samplerate(): uint
+
+		"Configuration: Retreive audio driver buffer size/latency."
+		def get_buffersize(): uint
+
+		"Returns CPU load of the audio drivers callback."
+		def get_cpu_load(): double
+		
+		"Configuration: The audio device channel on which the Master plugin sends it output. Usually 0, but can be greater for audio devices that support more than two output channels."
+		def get_master_channel(): int
+
+		"Configuration: The audio device channel on which the Master plugin sends it output. Usually 0, but can be greater for audio devices that support more than two output channels."
+		def set_master_channel(int index)
+		
+		"Open the configuration user interface for the active driver."
+		"Does nothing if the driver does not implement a user interface."
+		"When the user presses OK, the driver might request a device reset with the new settings and issue a samplerate_changed-event."
+		"This is only used with ASIO devices and will do nothing on other devices."
+		def configure()
+		
+	"Methods for enumerating and opening MIDI input and output devices."
+	class Mididriver:
+		"Returns the number of detected input and output MIDI devices."
+		def static get_count(Player player): int
+		
+		"Returns the name of a MIDI device."
+		def static get_name(Player player, int index): string
+		
+		"Returns true if the device is an input device."
+		def static is_input(Player player, int index): bool
+
+		"Returns true if the device is an output device."
+		def static is_output(Player player, int index): bool
+
+		"Opens the MIDI device."
+		def static open(Player player, int index): int
+	
+		"Closes all MIDI devices."
+		def static close_all(Player player): int
+	
+	"For enumerating and configuring plugin collections."
+	class Plugincollection:
+		def static get_by_uri(Player player, string uri): Plugincollection
+
+		"Returns the name of the plugin collection. E.g 'VST' for the VST wrapper."
+		def get_name(): string
+		
+		"Passes a key/value-pair to the plugin collection. Used to set e.g VST scanning paths."
+		def configure(string key, string value)
+
+	"Methods for working with file- or memory-based input streams. E.g reading from a file or buffer."
+	class Input:
+		"Create an input stream that reads from a file."
+		def static open_file(string filename): Input
+
+		"Closes an input stream created with zzub_create_output_XXX."
+		def destroy()
+
+		"Reads bytes from the stream."
+		def read(out char[bytes] buffer, int bytes): int
+		
+		"Returns the total number of bytes that can be read from the stream."
+		def size(): int
+		
+		"Returns the current read position in the stream."
+		def position(): int
+		
+		"Seeks to a specified offset in the stream."
+		def seek(int pos, int mode)
+	
+	"Methods for working with file- or memory-based output streams. E.g writing to a file or buffer."
+	class Output:
+		"Create an output stream that writes to a file."
+		def static create_file(string filename): Output
+
+		"Closes an output stream created with zzub_create_output_XXX."
+		def destroy()
+		
+		"Writes bytes to the stream."
+		def write(char[bytes] buffer, int bytes)
+		
+		"Returns the current write position in the stream."
+		def position(): int
+		
+		"Seeks to a specified offset in the stream."
+		def seek(int pos, int mode)
+
+	"Methods for working with in-memory streams."
+	class Archive:
+		"Create an in-memory archive of keyed input and output streams."
+		def static create_memory(): Archive
+		
+		"Returns an output stream object for writing."
+		def get_output(string path): Output
+
+		"Returns an input stream object for reading."
+		def get_input(string path): Input
+
+		"Destroys the archive and frees allocated resources."
+		def destroy()
+	
+	"Represents a binding between a MIDI controller and a plugin parameter."
+	"To create a MIDI mapping, see zzub_player_add_midimapping()."
+	class Midimapping:
+		"Bound plugin."
+		def get_plugin(): int
+
+		"Bound plugin group."
+		def get_group(): int
+
+		"Bound plugin track."
+		def get_track(): int
+
+		"Bound plugin column."
+		def get_column(): int
+
+		"Bound MIDI channel."
+		def get_channel(): int
+
+		"Bound MIDI controller."
+		def get_controller(): int
+
+	"Represents an event in a pattern."
+	class PatternEvent:
+		"Event ID."
+		def get_id(): int
+
+		"Event plugin id."
+		def get_pluginid(): int
+
+		"Returns the pattern in which the event occurs."
+		def get_pattern(): Pattern
+		
+		"Event plugin group."
+		def get_group(): int
+
+		"Event plugin track."
+		def get_track(): int
+
+		"Event plugin column."
+		def get_column(): int
+
+		"Event timestamp. The unit of the timestamp depends on the context in which the pattern is being played."
+		def get_time(): int
+		
+		"Returns the event value."
+		def get_value(): int
+		
+		"Returns the events meta value. Used with notes."
+		def get_meta(): int
+		
+		"Set a new value on this event."
+		def set_value(int value): int
+
+		"Set a new meta value on this event."
+		def set_meta(int meta): int
+
+		"Set a new timestamp on this event."
+		def set_time(int value): int
+
+	"Helper iterator for a range of patterns."
+	class PatternIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): Pattern
+		
+		"Destroys the iterator."
+		def destroy()
+
+	"Helper iterator for a range of pattern events."
+	class PatternEventIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+
+		"Returns the current item."
+		def current(): PatternEvent
+
+		"Destroys the iterator."
+		def destroy()
+
+	"Methods for working with a pattern."
+	"The format of a pattern is completely dynamic, defined by a zzub_pattern_format."
+	"To create a new pattern, see zzub_player_create_pattern()."
+	class Pattern:
+		"Destroys the pattern and frees all resources."
+		def destroy()
+		
+		"Returns the pattern name."
+		def get_name(): string
+		
+		"Set the pattern name."
+		def set_name(string name)
+		
+		"Returns length of pattern."
+		def get_row_count(): int
+
+		"Sets length of pattern."
+		def set_row_count(int length)
+		
+		"Pattern ID."
+		def get_id(): int
+		
+		"Returns the pattern format."
+		def get_format(): PatternFormat
+		
+		"Sets the pattern format."
+		def set_format(PatternFormat format)
+
+		"Returns the pattern resolution - rows per tick."
+		def get_resolution():int
+		
+		"Sets the pattern resolution."
+		def set_resolution(int resolution)
+		
+		"Display resolution. Has no effect on the audio output."
+		def get_display_resolution():int
+
+		"Display resolution. Has no effect on the audio output."
+		def set_display_resolution(int resolution)
+
+		"Display beat coloring. Has no effect on the audio output."
+		def get_display_beat_rows(out int verydarkrow, out int darkrow)
+
+		"Display beat coloring. Has no effect on the audio output."
+		def set_display_beat_rows(int verydarkrow, int darkrow)
+
+		"Returns where the pattern starts looping."
+		def get_loop_start(): int
+
+		"Sets where the pattern starts looping."
+		def set_loop_start(int pos)
+
+		"Returns where the pattern ends looping."
+		def get_loop_end(): int
+
+		"Sets where the pattern ends looping."
+		def set_loop_end(int pos)
+
+		"Returns whether pattern looping is enabled."
+		def get_loop_enabled(): int
+
+		"Sets whether pattern looping is enabled."
+		def set_loop_enabled(int enable)
+
+		"Returns the position from where pattern replay starts."
+		def get_replay_row(): int
+
+		"Sets the position from where pattern replay starts."
+		def set_replay_row(int row)
+
+		# void zzub_pattern_get_bandwidth_digest(out float[digestsize] digest, int digestsize): int
+
+		"Retreive the currently playing row for a pattern."
+		def get_currently_playing_row(): int
+		
+		"Sets the value of a pattern event."
+		"This checks for the existence of an existing event at the specified timestamp, and updates the value if it exists. For a faster version, see zzub_pattern_insert_value()."
+		def set_value(int row, Plugin plugin, int group, int track, int column, int value, int meta)
+
+		"Returns the value of a pattern event."
+		def get_value(int row, int pluginid, int group, int track, int column, out int value, out int meta): int
+
+		"Returns an iterator for iterating over pattern events. Pass NULL for the plugin parameter to retreive all events. -1 can be sent to group, track and column to return only a selected group/track/column."
+		def get_event_iterator(Plugin plugin, int group, int track, int column): PatternEventIterator
+
+		"Like get_event_iterator, but not sorted by time. Performs faster."
+		def get_event_unsorted_iterator(Plugin plugin, int group, int track, int column): PatternEventIterator
+
+		"Inserts a value into the pattern without checking if an event already exists. This should only be used for new patterns: the behavior of multiple events at the same timestamp is undefined."
+		def insert_value(int pluginid, int group, int track, int column, int time, int value, int meta)
+
+		"Deletes an event from the pattern."
+		def delete_value(int id)
+		
+		"Changes the time stamp and values of an event."
+		def update_value(int id, int time, int value, int meta)
+
+		"Changes the parameter, time stamp and values of an event."
+		def update_value_full(int id, int pluginid, int group, int track, int column, int time, int value, int meta)
+
+		"Transform: Compact pattern by a factor."
+		def compact_pattern(int factor)
+
+		"Transform: Expand pattern by a factor."
+		def expand_pattern(int factor)
+
+		"Transform: Shift events by time."
+		def timeshift_events(int pluginid, int group, int track, int column, int fromtime, int timeshift)
+
+		"Transform: Delete events."
+		def delete_events(int pluginid, int group, int track, int column, int fromtime, int length)
+
+		"Transform."
+		def move_scale_events(int src_idx, int src_time, int dst_idx, int dst_time, int width, int length, int mode, int makecopy)
+
+		"Accepts a stream of pattern events and pastes them at a location in the pattern. All parameter ranges will be scaled."
+		def paste_stream_events(int fromidx, int fromtime, int mode, string charbuf)
+
+		"Transform."
+		def transpose_events(int pluginid, int group, int track, int column, int fromtime, int length, int delta, out int[holecount] holes, int holecount, out int[metacount] metas, int metacount, int chromatic)
+
+		"Transform."
+		def randomize_events(int pluginid, int group, int track, int column, int fromtime, int length, int skip)
+
+		"Transform."
+		def randomize_range_events(int pluginid, int group, int track, int column, int fromtime, int length, int from_val, int to_val, int skip)
+
+		"Transform."
+		def randomize_from_events(int pluginid, int group, int track, int column, int fromtime, int length, int skip)
+
+		"Transform."
+		def humanize_events(int pluginid, int group, int track, int column, int fromtime, int length, int deviation)
+
+		"Transform."
+		def shuffle_events(int pluginid, int group, int track, int column, int fromtime, int length)
+
+		"Transform."
+		def interpolate_events(int pluginid, int group, int track, int column, int fromtime, int length, int skip)
+
+		"Transform."
+		def gradiate_events(int pluginid, int group, int track, int column, int fromtime, int length, int skip)
+
+		"Transform."
+		def smooth_events(int pluginid, int group, int track, int column, int fromtime, int length, int strength)
+
+		"Transform."
+		def reverse_events(int pluginid, int group, int track, int column, int fromtime, int length)
+
+		"Transform."
+		def compact_events(int pluginid, int group, int track, int column, int fromtime, int length, int factor)
+
+		"Transform."
+		def expand_events(int pluginid, int group, int track, int column, int fromtime, int length, int factor)
+
+		"Transform."
+		def thin_events(int pluginid, int group, int track, int column, int fromtime, int length, int major)
+
+		"Transform."
+		def repeat_events(int pluginid, int group, int track, int column, int fromtime, int length, int major)
+
+		"Transform."
+		def echo_events(int pluginid, int group, int track, int column, int fromtime, int length, int major)
+
+		"Transform."
+		def unique_events(int pluginid, int group, int track, int column, int fromtime, int length)
+
+		"Transform."
+		def scale_events(int pluginid, int group, int track, int column, int fromtime, int length, double min1, double max1, double min2, double max2)
+
+		"Transform."
+		def fade_events(int pluginid, int group, int track, int column, int fromtime, int length, double fromvalue, double tovalue)
+
+		"Transform."
+		def curvemap_events(int pluginid, int group, int track, int column, int fromtime, int length, int mode)
+
+		"Transform."
+		def invert_events(int pluginid, int group, int track, int column, int fromtime, int length)
+
+		"Transform."
+		def rotate_rows_events(int pluginid, int group, int track, int column, int fromtime, int length, int offset)
+
+		"Transform."
+		def rotate_vals_events(int pluginid, int group, int track, int column, int fromtime, int length, int offset)
+
+		"Transform."
+		def rotate_dist_events(int pluginid, int group, int track, int column, int fromtime, int length, int offset)
+
+		"Transform."
+		def set_events(int pluginid, int group, int track, int column, int fromtime, int length, int value, int meta)
+
+		"Transform."
+		def replace_events(int pluginid, int group, int track, int column, int fromtime, int length, int from_value, int from_meta, int to_value, int to_meta)
+
+		"Transform."
+		def remove_events(int pluginid, int group, int track, int column, int fromtime, int length, int value, int meta)
+
+		"Transform."
+		def notelength_events(int pluginid, int group, int track, int column, int fromtime, int length, int desired_len, int mode, int off_value)
+
+		"Transform."
+		def volumes_events(int pluginid, int group, int track, int note_column, int vol_column, int fromtime, int length, int mode)
+
+		"Transform."
+		def swap_track_events(int left_idx, int right_idx, int fromtime, int length)
+
+		"Transform."
+		def swap_rows_events(int pluginid, int group, int track, int column, int top_row, int bottom_row)
+
+		"Transform."
+		def invert_chord_events(int left_idx, int right_idx, int fromtime, int length, int direction, int mode)
+		
+		"Edits notes independently of voice."
+		"mode 0 = move entire notes, mode 1 = move beginning of notes, mode 2 = move end of notes"
+		def move_and_transpose_notes(PatternEvent[numevents] events, int numevents, int timeshift, int pitchshift, int mode)
+		
+		"Inserts a voice-independent note."
+		def insert_note(Plugin plugin, int time, int note, int length)
+		
+		"Updates a voice-independent note."
+		def update_note(PatternEvent patternevent, int time, int note, int length)
+
+	"Container class for which columns to refer in a pattern."
+	"To create a new pattern format, see zzub_player_create_pattern_format()."
+	"@SEEALSO: Pattern, PatternFormatIterator, PatternFormatColumn, PatternFormatColumnIterator"
+	class PatternFormat:
+		"Adds a column to the pattern format."
+		def add_column(Plugin plugin, int group, int track, int column, int idx): PatternFormatColumn
+
+		"Removes a column from the pattern format."
+		def delete_column(Plugin plugin, int group, int track, int column)
+		
+		"Returns an iterator over the columns in the pattern format."
+		def get_iterator():PatternFormatColumnIterator
+		
+		"Returns the pattern format column for a specified parameter."
+		def get_column(Plugin plugin, int group, int track, int column):PatternFormatColumn
+		
+		"Returns the pattern format name."
+		def get_name(): string
+
+		"Sets the pattern format name."
+		def set_name(string name)
+
+		"Pattern format ID."
+		def get_id(): int
+
+		"Sets the name of a pattern format track."
+		def set_track_name(Plugin plugin, int group, int track, string name)
+		
+		"Returns the name of a pattern format track."
+		def get_track_name(Plugin plugin, int group, int track): string
+
+		"Sets the mute state for a pattern format track. Causes pattern events on this track to be ignored during playback."
+		def set_track_mute(Plugin plugin, int group, int track, int state)
+		
+		"Returns the mute state for a pattern format track."
+		def get_track_mute(Plugin plugin, int group, int track):int
+
+		"Unused."
+		def add_column_filter(Plugin plugin, int group, int track, int column, PatternFormat filterformat)
+
+		"Unused."
+		def remove_column_filter(Plugin plugin, int group, int track, int column, PatternFormat filterformat)
+
+		"Unused."
+		def get_column_filters(Plugin plugin, int group, int track, int column):PatternFormatIterator
+
+		"Returns the display width of the pattern preview scroller."
+		def get_scroller_width(): int
+
+		"Sets the display width of the pattern preview scroller."
+		def set_scroller_width(int width)
+		
+		"Destroys the pattern format and releases allocated resources."
+		def destroy()
+
+	"Helper iterator for a range of pattern formats."
+	class PatternFormatIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+
+		"Returns the current item."
+		def current(): PatternFormat
+
+		"Destroys the iterator."
+		def destroy()
+
+	"Represents a column in a pattern."
+	class PatternFormatColumn:
+		"Plugin referenced by this column."
+		def get_plugin():Plugin
+		
+		"Plugin group referenced by this column."
+		def get_group():int
+		
+		"Plugin track referenced by this column."
+		def get_track():int
+		
+		"Plugin column referenced by this column."
+		def get_column():int
+		
+		"Returns the pattern format where the column is referenced."
+		def get_format():PatternFormat
+		
+		"Return column rendering mode."
+		"mode 0: default, 1: note, 2: switch, 3: byte, 4: word, 5: slider, 6: button, 7: pianoroll, 8: pattern, 9: collapsed, 10: envelope, 11: character, 12: harmonic"
+		def get_mode():int
+		
+		"Set column rendering mode."
+		"mode 0: default, 1: note, 2: switch, 3: byte, 4: word, 5: slider, 6: button, 7: pianoroll, 8: pattern, 9: collapsed, 10: envelope, 11: character, 12: harmonic"
+		def set_mode(int mode)
+		
+		"Returns true if column is visually collapsed."
+		def get_collapsed():int
+
+		"Set whether column is visually collapsed."
+		def set_collapsed(int is_collapsed)
+		
+		"Returns the index of the column in the current format."
+		def get_index():int
+		
+		"Sets the index of the column in the current format."
+		"This is used for sorting purposes when enumerating pattern format columns."
+		"Columns from the same plugin should be grouped, and a format should contain columns only with indexes between between 0 and the number of columns minus one."
+		"None of these rules are enforced, index management must be implemented by the host."
+		def set_index(int idx)
+
+	"Helper iterator for a range of pattern format columns."
+	class PatternFormatColumnIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+
+		"Returns the current item."
+		def current(): PatternFormatColumn
+
+		"Destroys the iterator."
+		def destroy()
+	
+	"Represents a plugin parameter."
+	class Parameter:
+		"Returns one of the values in the zzub_parameter_type enumeration."
+		def get_type(): int
+
+		"The parameter name."
+		def get_name(): string
+		
+		"Parameter description."
+		def get_description(): string
+		
+		"Parameter minimum value."
+		def get_value_min(): int
+
+		"Parameter maximum value."
+		def get_value_max(): int
+
+		"Parameter novalue, a value to indicate there is no value."
+		def get_value_none(): int
+
+		"Parameter default value."
+		def get_value_default(): int
+
+		"A parameter flag is combined by zero or more values in the zzub_parameter_flag enumeration."
+		def get_flags(): int
+	
+	"Represents a plugin attribute."
+	"Attributes are similar to plugin parameters, but they cannot be automated."
+	class Attribute:
+		"Attribute name."
+		def get_name(): string
+
+		"Attribute minimum value."
+		def get_value_min(): int
+
+		"Attribute maximum value."
+		def get_value_max(): int
+
+		"Attribute default value."
+		def get_value_default(): int
+	
+	"Represents the description of a plugin type."
+	"Provides access to static properties of a plugin, such as parameter descriptions, attributes, tracks and channel descriptions."
+	class Pluginloader:
+		"Returns the name of the plugin type."
+		def get_name(): string
+
+		"Returns the short name of the plugin. Used to generate names for new instances of this plugin type."
+		def get_short_name(): string
+		
+		"Returns number of parameters. Group 1 = global parameters, group 2 = track parameters, group 3 = event parameters"
+		def get_parameter_count(int group): int
+
+		"Returns the parameter for a group and column. See also zzub_plugin_get_parameter() which also returns parameters in group 0."
+		def get_parameter(int group, int index): Parameter
+
+		"Returns the number of attributes."
+		def get_attribute_count(): int
+		
+		"Returns an attribute."
+		def get_attribute(int index): Attribute
+		
+		iterator get_attribute_list: for get_attribute in get_attribute_count
+
+		"Returns the flags for this plugin loader. Combined by zero or more values in the zzub_plugin_flag enumeration."
+		def get_flags(): int
+
+		"Returns a string uniquely identifying this plugin type."
+		def get_uri(): string
+		
+		"Returns the name of the plugin author."
+		def get_author(): string
+
+		"Returns a list of plugin-defined instruments."
+		def get_instrument_list(out char[maxbytes] result, int maxbytes): int
+
+		"Returns the minimum number of tracks."
+		def get_tracks_min(): int
+
+		"Returns the maximum number of tracks."
+		def get_tracks_max(): int
+
+		"Returns the number of supported stream formats. Used with plugins flagged zzub_plugin_flag_stream."
+		def get_stream_format_count(): int
+
+		"Returns a supported stream file format extension stream. Used with plugins flagged zzub_plugin_flag_stream."
+		def get_stream_format_ext(int index): string
+
+		"Returns the maximum number of output audio channels the plugin intends to use."
+		def get_output_channel_count() : int
+
+		"Returns the maximum number of input audio channels the plugin intends to use."
+		def get_input_channel_count() : int
+
+		"Returns the full path to the wrapped plugin. Returns blank for built-in plugins."
+		def get_plugin_file() : string
+		
+		"Returns the plugin collection where this pluginloader belongs"
+		def get_plugincollection() : Plugincollection
+		
+	"Plugin methods"
+	"Retreive more details about plugins."
+	class Plugin:
+		"Deletes a plugin"
+		def destroy(): int
+
+		"Load plugin state."
+		def load(Input input): int
+
+		"Save plugin state."
+		def save(Output ouput): int
+
+		"Renames a plugin. Should fail and return -1 if the name already exists."
+		def set_name(string name): int
+
+		"Retreive the name of a plugin."
+		def get_name(): string
+
+		"Retreive the unique per-session id of a plugin. See also zzub_player_get_plugin_by_id()."
+		def get_id(): int
+
+		"Returns the screen position coordinates for the plugin. Values are expected to be in the range -1..1."
+		def get_position_x():float
+		def get_position_y():float
+
+		"Sets the plugin screen position. Values are expected to be in the range -1..1."
+		def set_position(float x, float y)
+
+		"Sets the plugin screen position. Values are expected to be in the range -1..1. This method is not undoable."
+		def set_position_direct(float x, float y)
+
+		"Returns flags for this plugin. Shorthand for using zzub_pluginloader_get_flags(). Combined by zero or more values in the zzub_plugin_flag enumeration."
+		def get_flags(): int
+
+		"Returns the number of tracks."
+		def get_track_count(int group): int
+
+		"Sets the number of tracks. Will call plugin::set_track_count() from the player thread."
+		def set_track_count(int count)
+
+		"Returns 1 if plugin is muted, otherwise 0."
+		def get_mute(): int
+
+		"Set whether plugin is muted. 1 for muted, 0 for normal."
+		"A muted machine does not produce any sound."
+		def set_mute(int muted)
+
+		"Returns 1 if plugin is bypassed, otherwise 0."
+		def get_bypass(): int
+		
+		"Set whether plugin is bypassed. 1 for bypass, 0 for normal."
+		"Bypass causes no processing to occur in the given machine."
+		def set_bypass(int muted)
+
+		"Returns true if the plugin is (visually) minimized."
+		def get_minimize(): int
+
+		"Display the plugin as (visually) minimized."
+		def set_minimize(int minimized)
+
+		"Configure a plugin option. this is e.g. used by the recorder plugin to"
+		"specify a file path to write to."
+		def configure(string key, string value)
+
+		"Returns a string of \\\\n-separated command strings"
+		def get_commands(out string[maxlen] commands, int maxlen=1024): no_python int
+
+		"When a plugin command string starts with the char '\\', it has subcommands."
+		"Unexpectedly, zzub_plugin_get_sub_commands returns a \\\\n-separated string (like get_commands)."
+		"Some plugins need to be ticked before calling get_sub_commands."
+		def get_sub_commands(int i, out string[maxlen] commands, int maxlen=1024): no_python int
+
+		"Invoke a command on the plugin."
+		def command(int i)
+
+		"Returns the pluginloader used to create this plugin."
+		def get_pluginloader(): Pluginloader
+
+		"Returns the number of virtual MIDI devices implemented by the plugin."
+		def get_midi_output_device_count(): int
+
+		"Returns the name of a virtual MIDI device."
+		def get_midi_output_device(int index): string
+
+		"Returns the number of envelopes the plugin supports."
+		def get_envelope_count(): int
+
+		"Returns envelope flags."
+		def get_envelope_flags(int index): int
+
+		"Returns envelope name."
+		def get_envelope_name(int index): string
+
+		"Sets an audio stream resource identifier."
+		"E.g a filename, url or wavetable index. Supported by plugins flagged zzub_plugin_flag_stream."
+		def set_stream_source(string resource)
+
+		"Returns an audio stream resource identifier."
+		"E.g a filename, url or wavetable index. Supported by plugins flagged zzub_plugin_flag_stream."
+		def get_stream_source(): string
+
+		"Sets the plugin instrument (d'oh!)"
+		def set_instrument(string name): int
+
+		# Plugin parameter methods
+
+		"Creates a textual description of the given value. ."
+		def describe_value(int group, int column, int value): string
+
+		"Returns the last written value of the requested parameter."
+		def get_parameter_value(int group, int track, int column): int
+
+		"Sets the value of a plugin parameter. The method will wait for the player thread to pick up the modified value and call process_events()."
+		def set_parameter_value(int group, int track, int column, int value, int record)
+
+		"Sets the value of a plugin parameter. Unlike zzub_plugin_set_parameter_value(), this method returns immediately. The parameter will be changed later when the player thread notices the modified value. Is also not undoable."
+		def set_parameter_value_direct(int group, int track, int column, int value, int record)
+
+		"Returns number of parameters in a given plugin group. Shortcut for zzub_pluginloader_get_parameter_count()."
+		def get_parameter_count(int group, int track): int
+
+		"Returns a parameter description."
+		def get_parameter(int group, int track, int column): Parameter
+		
+		"Returns the parameter interpolation mode."
+		"Mode 0 = absolute, 1 = inertial, 2 = linear"
+		def get_parameter_interpolator(int group, int track, int column): int
+		
+		"Sets the parameter interpolation mode."
+		"Mode 0 = absolute, 1 = inertial, 2 = linear"
+		def set_parameter_interpolator(int group, int track, int column, int mode)
+
+		# Plugin connection methods
+
+		"Returns the number of input connections for given plugin."
+		def get_input_connection_count(): int
+
+		"Returns an index-based connection object."
+		def get_input_connection(int index):Connection
+
+		"Returns the input connection index for given plugin and connection type."
+		def get_input_connection_by_type(Plugin from_plugin, int type): Connection
+
+		"Returns the number of output connections for given plugin."
+		def get_output_connection_count(): int
+
+		"Returns an index-based connection object."
+		def get_output_connection(int index):Connection
+
+		"Returns the output connection index for given plugin and connection type."
+		def get_output_connection_by_type(Plugin from_plugin, int type): Connection
+
+		"Connects two audio plugins. Feedback loops permitted."
+		"Use zzub_connection_destroy() to disconnect."
+		def create_audio_connection(Plugin from_plugin, int first_input, int input_count, int first_output, int output_count): Connection
+
+		"Connects two MIDI plugins. Feedback loops not permitted."
+		"Use zzub_connection_destroy() to disconnect."
+		def create_midi_connection(Plugin from_plugin, string midi_device): Connection
+
+		"Connects a controller plugin to another plugin."
+		"Use zzub_connection_add_event_connection_binding() to map parameters. Use zzub_connection_destroy() to disconnect."
+		def create_event_connection(Plugin from_plugin): Connection
+
+		"Connects two plugins with note parameters."
+		"Use zzub_connection_destroy() to disconnect."
+		def create_note_connection(Plugin from_plugin): Connection
+
+		# Plugin statistics 
+
+		"Returns a value from the mixer between 0..1 for right/left to indicate current peak levels."
+		def get_last_peak(int channel):float
+
+		"Returns a value from the mixer between 0..1 for a current estimated CPU load."
+		def get_last_cpu_load(): double
+		
+		"Returns non-zero if the plugin recently outputted MIDI."
+		def get_last_midi_result(): int
+		
+		"Returns non-zero if the plugin recently outputted audio."
+		def get_last_audio_result(): int
+
+		# Other plugin methdos"
+
+		"Process changed parameters. immediate == true is only allowed on a plugin after create_plugin() and before the following barrier(). When immediate==false, the plugin will be processed after barrier()."
+		def tick(bool immediate)
+		
+		"Retreives a plugin attribute value. Refer to zzub_pluginloader_t for attribute counts and descriptions."
+		def get_attribute_value(int index): int
+
+		"Sets a plugin attribute value. Refer to zzub_pluginloader_t for attribute counts and descriptions."
+		def set_attribute_value(int index, int value)
+		
+		"Plays a note."
+		def play_midi_note(int note, int prevNote, int velocity)
+		
+		"Sets the current time source for this plugin."
+		def set_timesource(Plugin timesource, int group, int track)
+		
+		"Returns the current time source plugin for this plugin."
+		def get_timesource_plugin(): Plugin
+
+		"Returns the current time source plugin parameter group for this plugin."
+		def get_timesource_group():int
+
+		"Returns the current time source plugin parameter track for this plugin."
+		def get_timesource_track():int
+		
+		"Returns the actual number of output audio channels the plugin intends to use."
+		def get_output_channel_count() : int
+
+		"Returns the actual number of input audio channels the plugin intends to use."
+		def get_input_channel_count() : int
+		
+		"Returns the designated name of this output channel."
+		def get_output_channel_name(int index) : string
+
+		"Returns the designated name of this input channel."
+		def get_input_channel_name(int index) : string
+
+		"Request out-of-graph float data from a plugin. Used by e.g a visualizer plugin to return raw visualizer data to the host for rendering."
+		"When buffers is NULL, the chunk size is returned."
+		def get_encoder_digest(int type, out float[2][numsamples] buffers, int numsamples):int
+		
+		"Returns the associated connection object on plugins with with the is_connection flag."
+		def get_connection() : Connection
+		
+		"Returns true if the plugin implements an embeddable user interface."
+		def has_embedded_gui() : bool
+
+		"Attaches an embedded user interface to the provided parent window handle."
+		"Returns false if the plugin does not support embeddable user interface."
+		"This method exists as a common way to implement plugin-specific content in parameter views."
+		"The implementation depends on the plugin wrapper and the host operating system."
+		def create_embedded_gui(pvoid hwnd): bool
+		
+		"Request resize of the embedded user interface."
+		"The plugin receives a suggested target size in the width and height parameters, but can choose to resize itself to any size and return the final width and height in the respective output parameters. These could differ from the target size when the user interface has a minimum or fixed size in any direction."
+		def resize_embedded_gui(pvoid hwnd, out int width, out int height)
+		
+		"Sets the plugins latency compensation in number of samples. -1 = let plugin decide"
+		def set_latency(int samplecount)
+		
+		"Returns the plugins latency compensation in samples. If the return value is -1, the plugin decides the latency. Use get_latency_actual() to retrieve the actual plugin latency compensation."
+		def get_latency() : int
+
+		"Returns the actual plugins latency compensation in samples."
+		def get_latency_actual() : int
+		
+		"Returns a group object in which this plugin resides."
+		def get_plugin_group() : PluginGroup
+		
+		"Moves the plugin to the group. Use group=NULL to set to the root group."
+		def set_plugin_group(PluginGroup group)
+
+
+	"Helper iterator for a range of plugins."
+	class PluginIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): Plugin
+		
+		"Destroys the iterator."
+		def destroy()
+
+	"Describes a connection between two plugins."
+	"There are three kinds of connections: Audio, MIDI and event connections."
+	"To create a connection, see zzub_player_create_audio_connection(), zzub_player_create_midi_connection() and zzub_player_create_event_connection()."
+	class Connection:
+		"Destroys the connection and frees all resources."
+		def destroy()
+
+		"Returns the type of connection. See <see>zzub_connection_type</see> enumeration."
+		def get_type():int
+
+		"Returns the 'from'-plugin. The plugin whose input signal this connection relates to."
+		def get_from_plugin():Plugin
+
+		"Returns the 'to'-plugin. The receiver plugin of signals going through this connection."
+		def get_to_plugin():Plugin
+
+		"Returns the underlying connection plugin which was created when the connection was made."
+		"E.g the audio connection plugin has automatable parameters for controlling amp on each channel."
+		def get_connection_plugin():Plugin
+
+		"Audio connections: Returns the first input channel."
+		def get_first_input():int
+
+		"Audio connections: Set the first input channel."
+		def set_first_input(int value)
+
+		"Audio connections: Returns the number of input channels."
+		def get_input_count():int
+
+		"Audio connections: Set the number of input channels."
+		def set_input_count(int value)
+
+		"Audio connections: Returns the first output channel."
+		def get_first_output():int
+
+		"Audio connections: Set the first output channel."
+		def set_first_output(int value)
+
+		"Audio connections: Returns the number of output channels."
+		def get_output_count():int
+
+		"Audio connections: Set the number of output channels."
+		def set_output_count(int value)
+		
+		"MIDI connections: Sets the name of the receiving MIDI device"
+		def set_midi_device(string midi_device)
+		
+		"MIDI connections: Returns the name of the receiving MIDI device"
+		def get_midi_device():string
+
+		"Event connections: Returns the number of event connection bindings."
+		def get_event_binding_count():int
+
+		"Event connections: Adds an event connection binding."
+		def add_event_connection_binding(int sourceparam, int targetgroup, int targettrack, int targetparam)
+
+		"Event connections: Removes the event connection binding."
+		def remove_event_connection_binding(int sourceparam, int targetgroup, int targettrack, int targetparam)
+
+		"Event connections: Returns all current event bindings for an event connection."
+		def get_event_binding_iterator():ConnectionBindingIterator
+
+	"Event connection binding between a controller plugin and a parameter on the connected plugin."
+	class ConnectionBinding:
+		"Returns the owner connection of this event binding."
+		def get_connection():Connection
+	
+		"Returns the parameter in group 3 on the source plugin being mapped."
+		def get_source_column():int
+		
+		"Returns the target parameter group."
+		def get_target_group():int
+
+		"Returns the target parameter track."
+		def get_target_track():int
+
+		"Returns the target parameter column."
+		def get_target_column():int
+
+	"Collection of event connection bindings."
+	class ConnectionBindingIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): ConnectionBinding
+		
+		"Resets the iterator to the start."
+		def reset()
+
+		"Destroys the iterator."
+		def destroy()
+
+	"Wave table"
+	class Wave:
+		def get_id(): int
+		def get_index(): int
+		def clear(): int
+		def get_name(): string
+		def set_name(string name)
+		def get_path(): string
+		def set_path(string path)
+		def get_flags(): int
+		def set_flags(int flags)
+		def get_volume(): float
+		def set_volume(float volume)
+		def get_envelope_count(): int
+		def set_envelope_count(int count)
+		def get_envelope(int index): Envelope
+		def set_envelope(int index, Envelope env)
+		def get_level_count(): int
+		def get_level(int index): Wavelevel
+		iterator get_level_list: for get_level in get_level_count
+		def add_level():Wavelevel
+		def remove_level(int level)
+
+	"Wavelevel"
+	class Wavelevel:
+		def get_id(): int
+		def get_wave(): Wave
+		def clear(): int
+		def get_sample_count(): int
+		def set_sample_count(int count)
+		def get_root_note(): int
+		def set_root_note(int note)
+		def get_samples_per_second(): int
+		def set_samples_per_second(int sps)
+		def get_loop_start(): int
+		def set_loop_start(int pos)
+		def get_loop_end(): int
+		def set_loop_end(int pos)
+		def get_format(): int
+		def set_format(int format)
+		
+		"Loads a .WAV from a file or memory stream."
+		def load_wav(int offset, int clear, Input datastream): int
+		
+		"Saves the entire wavelevel to a .WAV on file or memory."
+		def save_wav(Output datastream): int
+		
+		"Saves a range of the wavelevel to a .WAV on file or in memory."
+		def save_wav_range(Output datastream, int start, int numsamples): int
+		
+		def insert_sample_range(int start, pvoid buffer, int channels, int format, int numsamples)
+		def remove_sample_range(int start, int numsamples)
+		def replace_sample_range(int start, pvoid buffer, int channels, int format, int numsamples)
+		def get_samples_digest(int channel, int start, int end, out float[digestsize] mindigest, out float[digestsize] maxdigest, out float[digestsize] ampdigest, int digestsize)
+		def get_slices(out int slicecount, out int[slicecount] slices)
+		def set_slices(int slicecount, int[slicecount] slices)
+		
+		"Applies an offline plugin effect to the wave range. Requires the plugin_flag_is_offline."
+		def process_sample_range_offline(int start, int numsamples, Plugin plugin)
+	
+	"Envelopes"
+	class Envelope:
+		def get_attack(): ushort
+		def get_decay(): ushort
+		def get_sustain(): ushort
+		def get_release(): ushort
+		def set_attack(ushort attack)
+		def set_decay(ushort decay)
+		def set_sustain(ushort sustain)
+		def set_release(ushort release)
+		def get_subdivision(): byte
+		def set_subdivision(byte subdiv)
+		def get_flags(): byte
+		def set_flags(byte flags)
+		def is_enabled(): int
+		def enable(int enable)
+		def get_point_count(): int
+		def get_point(int index, out ushort x, out ushort y, out byte flags)
+		iterator get_point_list: for get_point in get_point_count
+		def set_point(int index, ushort x, ushort y, byte flags)
+		def insert_point(int index)
+		def delete_point(int index)
+
+	"Mixer Methods - provides access to the mixer in native plugins"
+	class Mixer:
+
+	"Contains validation warnings and errors."
+	"Validation errors are created when plugin incompabilities are detected."
+	"E.g if an older plugin was used to save a song, or was in the plugin cache."
+	class ValidationErrorIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): ValidationError
+		
+		"Resets the iterator to the start."
+		def reset()
+
+		"Destroys the iterator."
+		def destroy()
+
+	"Used by song importers for details about compatibility problems with plugins and parameters during load."
+	class ValidationError:
+		"Returns a value from the ValidationErrorType enum."
+		def get_type(): int
+		
+		"Returns the parameter group."
+		"Used for parameter validation errors, otherwise undefined."
+		def get_group(): int
+		
+		"Returns the parameter column."
+		"Used for parameter validation errors, otherwise undefined."
+		def get_column(): int
+
+		"Returns the original parameter value loaded from a song or the cache."
+		"Used for parameter validation errors, otherwise undefined."
+		def get_found_value(): int
+
+		"Returns the expected parameter value as reported by the plugin itself."
+		"Used for parameter validation errors, otherwise undefined."
+		def get_expected_value(): int
+
+		"Returns the original name of the parameter as loaded from a song or the cache."
+		"Used for parameter validation errors, otherwise undefined."
+		def get_parameter_name(): string
+
+		"Returns the original name of the affected plugin as loaded from a song or the cache."
+		def get_plugin_name(): string
+
+		"Returns the affected plugin loader. Could be a dummy."
+		"The returned pluginloader should not be used to create new plugin instances, but is rather intended for informational purposes. Such as displaying a load report to the user or inline song fixing."
+		def get_pluginloader(): Pluginloader
+
+	"Player Methods"
+	class Player:
+		"Creates a new player instance and specifies optional directories for plugins and data."
+		"hostpath: the root directory from where to scan for plugins, location of buzz2zzub.ini. Defaults to the same directory as the host executable."
+		"userpath: directory to save plugin enumeration cache files. Defaults to %APPDATA%\Armstrong on Windows and ~/.armstrong on POSIX systems."
+		"temppath: used for wave data in the undo buffer and temporary files during armz import. Defaults to %TEMP% or /tmp."
+		def static create(string hostpath, string userpath, string temppath): Player
+
+		"Destroys the player instance and all its resources."
+		def destroy()
+
+		"Inititializes the player."
+		"Enumerates plugins, initializes the mixer component, MIDI driver and the default storage document."
+		"After creating the player instance, but before initialize:"
+		"  - Set up and initialize the audio driver"
+		"  - Configure specific plugincollections, f.ex set custom VST directories"
+		"  - Add event handlers to process plugin enumeration events"
+		def initialize(int samplesPerSecond): int
+
+		"Connects to an armserve server."
+		def remote_connect(string host, string port): int
+
+		"Disconnects from an active armserve connection."
+		def remote_disconnect()
+
+		"Loads a project from the connected armserve server."
+		"Multiple clients can connect to the same project and keep their editors in sync."
+		def remote_open(string project, string password): int
+
+		"Saves the current project on the connected armserve server."
+		"Fails if the password is wrong or project name already exists."
+		def remote_create(string project, string password): int
+
+		"Deletes a project from the connected armserve server."
+		def remote_delete(string project, string password): int
+
+		"Returns the number of clients on the connected armserve server."
+		def get_remote_client_count():int
+
+		"Returns true when the armserve server connection is active."
+		def is_remote_connected():bool
+
+		"Load an ARMZ project from disk."
+		"The filename can be a waveless uncompressed database, or a zipped .armz."
+		"mode=0: clear+load  mode=1: import, optionally into a plugin group"
+		def load_armz(string fileName, int mode, PluginGroup plugingroup): int
+
+		"Saves current project to disk."
+		"If the filename has extension .armdb it is saved as waveless database."
+		"Unless the plugins array is empty, only data associated with the specified plugins is saved."
+		"If a plugins array is specified and a plugin group is given, plugins will be moved relative to the group parameter."
+		"Load warnings and error messages can be retreived with get_validation_errors()."
+		def save_armz(string fileName, Plugin[plugincount] plugins, int plugincount, PluginGroup plugingroup): int
+
+		"Imports a BMX from memory or file."
+		"Load warnings and error messages can be retreived with get_validation_errors()."
+		def load_bmx(Input datastream, int flags, float x, float y): int
+
+		"Imports an oldschool tracker module from disk. Supports MOD, IT, S3M."
+		"Imported songs use the built-in modplug plugin."
+		def load_module(string fileName): int
+		
+		"Returns an iterator for all plugin validation errors."
+		"The caller must destroy the iterator."
+		def get_validation_errors() : ValidationErrorIterator
+
+		"Returns one of the values in the state enumeration."
+		def get_state(): int
+
+		"Sets the player state. Takes one of the values in the state enumeration as parameter."
+		def set_state(int state, int stoprow)
+
+		"Returns number of plugin loaders."
+		def get_pluginloader_count(): int
+
+		"Returns a zzub_pluginloader_t handle by index."
+		def get_pluginloader(int index): Pluginloader
+
+		"Finds a zzub_pluginloader_t handle by uri."
+		def get_pluginloader_by_name(string name): Pluginloader
+		
+		iterator get_pluginloader_list: for get_pluginloader in get_pluginloader_count
+
+		"Returns number of plugins in the current song."
+		def get_plugin_count(): int
+
+		def static add_midimapping(Plugin plugin, int group, int track, int param, int channel, int controller): Midimapping
+		def static remove_midimapping(Plugin plugin, int group, int track, int param): int
+
+		"Returns the plugin object given the plugins name."
+		def get_plugin_by_name(string name): Plugin
+
+		"Returns the plugin object given the plugin id. See also zzub_plugin_get_id()."
+		def get_plugin_by_id(int id): Plugin
+
+		"Returns the plugin object given the plugins index in the graph."
+		def get_plugin(int index): Plugin
+		
+		"Returns an iterator for all plugins. Faster than get_plugin_count()/get_plugin()."
+		def get_plugin_iterator() : PluginIterator
+		
+		iterator get_plugin_list: for get_plugin in get_plugin_count
+
+		"Returns an iterator for all patterns. Faster than get_pattern_count()/get_pattern()."
+		def get_pattern_iterator() : PatternIterator
+		
+		"Returns a pattern by its id."
+		def get_pattern_by_id(int id): Pattern
+		
+		"Returns a pattern by its index, oldest first."
+		def get_pattern_by_index(int index): Pattern
+		
+		"Returns a pattern event by its id."
+		def get_pattern_event_by_id(int id): PatternEvent
+		
+		"Returns a suggested name for a new pattern"
+		def get_new_pattern_name(PatternFormat format, string description): string
+		
+		"Returns total count of patterns."
+		def get_pattern_count(): int
+		
+		"Returns the index of the pattern with the given name"
+		def get_pattern_by_name(string name): Pattern
+		
+		"Returns the number of pattern formats."
+		def get_pattern_format_count(): int
+
+		"Generates a name for a new pattern format."
+		def get_new_pattern_format_name(string description): string
+		
+		"Returns a pattern format by name."
+		def get_pattern_format_by_name(string name) : PatternFormat
+
+		"Returns a pattern format by its index."
+		def get_pattern_format_by_index(int index): PatternFormat
+		
+		"Returns a pattern format by its id."
+		def get_pattern_format_by_id(int id): PatternFormat
+		
+		"Returns an iterator for all pattern formats. Faster than get_pattern_format_count()/get_pattern_format_by_index()."
+		def get_pattern_format_iterator() : PatternFormatIterator
+
+		"For silent processing. ."
+		def work_stereo(float[inchannels][numsamples] inbuffers, out float[outchannels][numsamples] outbuffers, int inchannels, int outchannels, int numsamples)
+
+		"Resets everything and clears the current project."
+		def clear()
+
+		"Returns the number of waves in the wavetable (hardcoded to 200)."
+		def get_wave_count(): int
+
+		"Returns the wave by index in the range 0-199."
+		def get_wave(int index): Wave
+		
+		iterator get_wave_list: for get_wave in get_wave_count
+
+		# def play_wave(Wave, int level, int note)
+		# def stop_wave()
+		# def set_wave_amp(float amp)
+		# def get_wave_amp(): float
+
+		"Adds a function that receives events."
+		def add_callback(callback callback, pvoid tag)
+		
+		"Removes a function that receives events."
+		def remove_callback(callback callback, pvoid tag)
+		
+		"Process player events."
+		"Intended to be called by the host in a timer or on idle processing to receive events about parameter changes etc."
+		def handle_events()
+
+		"Returns the MIDI mapping by index."
+		def get_midimapping(int index): Midimapping
+		
+		"Returns the number of MIDI mappings."
+		def get_midimapping_count(): int
+		
+		iterator get_midimapping_list: for get_midimapping in get_midimapping_count
+
+		"Returns true if parameters are currently being recorded into patterns."
+		def get_automation(): bool
+		
+		"Set to true to begin recording parameter changes into patterns."
+		"Recording will reset on song stop."
+		def set_automation(bool enable)
+
+		"Returns true if the engine handles play/stop/seek MIDI messages on any open MIDI input devices."
+		def get_midi_transport(): bool
+
+		"Set to true to handle MIDI play/stop/seek messages on any open MIDI input devices."
+		def set_midi_transport(bool enable)
+
+		"Returns the song comment."
+		def get_infotext(): string
+		
+		"Sets the song comment."
+		def set_infotext(string text)
+
+		"Sets the plugin to receive MIDI data if the plugin's internal MIDI channel is set to the special channel 17 (\"Play if selected\")."
+		def set_midi_plugin(Plugin plugin)
+
+		"Returns the current MIDI plugin."
+		def get_midi_plugin(): Plugin
+
+		"Returns true if the mixer has midi lock (will ignore set_midi_plugin()-calls)"
+		def get_midi_lock(): bool
+ 
+		"Enables/disables midi locks, which will ignore/enable set_midi_plugin-calls"
+		def set_midi_lock(bool state)
+
+		"Generates a new plugin name that can be used in a call to create_plugin()."
+		def get_new_plugin_name(string uri): string
+
+		"Resets all internal keyjazz buffers."
+		def reset_keyjazz()
+
+		"Create a new plugin"
+		"If there was a problem during plugin creation, such as having an older version in the cache, warnings and error messages can be retreived with get_validation_errors()."
+		def create_plugin(Input input, int dataSize, string instanceName, Pluginloader loader, PluginGroup group=0): Plugin
+		
+		"Create a new pattern"
+		def create_pattern(PatternFormat format, string description, int rows): Pattern
+
+		"Clone a pattern"
+		def clone_pattern(Pattern pattern, string description): Pattern
+
+		"Create a new pattern description"
+		def create_pattern_format(string description) : PatternFormat
+
+		"Clone a pattern format"
+		def clone_pattern_format(PatternFormat format, string description): PatternFormat
+
+		"Rolls back all editing operations one step. Each step is defined with a call to zzub_player_history_commit()."
+		def undo()
+
+		"Redoes all editing operations since last call to zzub_player_history_commit()."
+		def redo()
+
+		"Enable/disable undo/redo recording. Returns the previous state."
+		def history_enable(bool state):bool
+		
+		"Sets user data for events sent by the engine. User data is valid until it is cleared in history_commit()."
+		def history_begin(pvoid userdata)
+		
+		"Commits the last operations to the mixer and undo buffer and marks a new undo step."
+		def history_commit(int redo_id, int undo_id, string description)
+		
+		"Returns the count of uncomitted operations."
+		def history_get_uncomitted_operations(): int
+
+		"Clears the undo buffer and frees all associated resources."
+		def history_reset()
+
+		"Returns the size of the undo buffer."
+		def history_get_size(): int
+
+		"Returns the current position in the undo buffer."
+		def history_get_position(): int
+
+		"Returns the description of an operation in the undo buffer."
+		def history_get_description(int position): string
+	
+		#/*@}*/
+		#/** @name Event connection binding methods"
+		#/*@{*/
+
+		# 0.3: DEAD # int zzub_event_connection_binding_get_group(zzub_event_connection_binding_t *binding)
+		# 0.3: DEAD # int zzub_event_connection_binding_get_track(zzub_event_connection_binding_t *binding)
+		# 0.3: DEAD # int zzub_event_connection_binding_get_column(zzub_event_connection_binding_t *binding)
+		# 0.3: DEAD # int zzub_event_connection_binding_get_controller(zzub_event_connection_binding_t *binding)
+
+		"Set versioned, host-specific data. Plugins can retreive a pointer to this information with _host->get_host_info()."
+		"Use and/or dependence on the host's version is regarded as bad practise and should not be used in new code."
+		def set_host_info(int id, int version, pvoid host_ptr)
+
+		"Invokes event handlers for an internal event."
+		def invoke_event(EventData data, int immediate): int
+		
+		"Sets the order list length."
+		def set_order_length(int length)
+		
+		"Returns the order list length."
+		def get_order_length(): int
+		
+		"Sets a pattern in the order list by index."
+		def set_order_pattern(int index, Pattern pattern)
+		
+		"Returns a pattern from the order list by index."
+		def get_order_pattern(int index):Pattern
+		
+		"Returns an iterator over all patterns in the orderlist. The iterator might contain NULLs for blank entries in the order list."
+		def get_order_iterator():PatternIterator
+		
+		"Returns the order list loop start index."
+		def get_order_loop_start(): int
+
+		"Sets the order list loop start index."
+		def set_order_loop_start(int pos)
+
+		"Returns the order list loop end index."
+		def get_order_loop_end(): int
+
+		"Sets the order list loop end index."
+		def set_order_loop_end(int pos)
+
+		"Returns true if order list looping is enabled."
+		def get_order_loop_enabled(): int
+
+		"Sets whether order list looping is enabled."
+		def set_order_loop_enabled(int enable)
+
+		"Sets the order list queue index."
+		"The order list will skip to the queue index when the current pattern ends."
+		def set_queue_order_index(int pos)
+
+		"Returns the current queue index."
+		def get_queue_order_index(): int
+		
+		"Timeshifts the orderlist play position. Does not actually change the order list contents."
+		"Adds a cookie on the undo buffer which adjusts the currently playing order list index accordingly, handling any race issues in the audio thread."
+		def timeshift_order(int fromindex, int timeshift)
+
+		"Returns the current order list position."
+		def get_position_order(): int
+
+		"Returns the current pattern position in the current order list pattern."
+		def get_position_row(): int
+		
+		"Returns the number of samples played since playback started."
+		def get_position_samples(): int
+		
+		"Sets the song position at an order list index and a pattern row."
+		def set_position(int orderindex, int tick)
+		
+		"Redundant?"
+		def adjust_position_order(int orderindex)
+		
+		"Returns the global sequence BPM."
+		def get_bpm(): float
+		
+		"Returns the global sequence TBP."
+		def get_tpb(): int
+				
+		"Returns the global sequence swing amount."
+		def get_swing(): float
+
+		"Sets the global sequence BPM."
+		def set_bpm(float bpm)
+		
+		"Sets the global sequence TPB."
+		def set_tpb(int tpb)
+
+		"Sets the global sequence swing."
+		def set_swing(float swing)
+
+		"Sets the global sequence ticks per swing."
+		def set_swing_ticks(int swing_ticks)
+
+		"Returns the number of available time sources in the project."
+		def get_timesource_count():int
+		
+		"Returns the plugin for a time source."
+		def get_timesource_plugin(int index):Plugin
+
+		"Returns the plugin parameter group for a time source."
+		def get_timesource_group(int index):int
+
+		"Returns the plugin parameter track for a time source."
+		def get_timesource_track(int index):int
+
+		"Plays a single pattern."
+		"This merely starts playback for a single pattern and does not affect the global song state or counters."
+		def play_pattern(Pattern pat, int row, int stoprow)
+
+		"Rendering hint; all plugins should be offset by this amount when rendered."
+		def get_machineview_offset_x():double
+		def get_machineview_offset_y():double
+
+		"Rendering hint; sets how much all plugins should be offset in the machine view."
+		def set_machineview_offset(double x, double y)
+
+		"Returns the current number of mixer worker threads. Returns 1 by default."
+		def get_thread_count():int
+
+		"Changes the number of mixer worker threads. The threads argument must be greater than or equal to 1."
+		"When the thread count is 1, the engine processes one-by-one plugin sequentially."
+		"When the thread count is > 1, the engine distributes plugin processing across the requested number of threads."
+		def set_thread_count(int threads)
+		
+		"Returns max peak values for all channels from the most recent frame sent to the audio driver."
+		def get_peaks(out float[peakcount] peaks, out int peakcount)
+
+		"Returns the number of registrered wave importers."
+		def get_waveimporter_count() : int
+		
+		"Returns the number of supported file extensions on a wave importer."
+		def get_waveimporter_format_ext_count(int index) : int
+		
+		"Returns a supported file extension."
+		def get_waveimporter_format_ext(int index, int extindex) : string
+		
+		"Returns true if the importers get_instrument_count() can return more than 1."
+		def get_waveimporter_format_is_container(int index) : bool
+
+		"Returns type of importer. 0: single sample, 1: collection of samples, 2: single instrument, 3: collection of instruments"
+		def get_waveimporter_format_type(int index) : int
+		
+		"Creates a waveimporter instance."
+		def create_waveimporter(int index) : WaveImporter
+		
+		"Convenience function for creating a waveimporter from a filename."
+		def create_waveimporter_by_file(string filename) : WaveImporter
+		
+		"Creates a new plugin group."
+		def create_plugin_group(PluginGroup parent, string name) : PluginGroup
+
+		"Returns a plugin group based on its identifier."		
+		def get_plugin_group_by_id(int id) : PluginGroup
+
+		"Returns an iterator object for enumerating all plugin groups contained inside a plugin group. Use parent = NULL for the root."
+		def get_plugin_group_iterator(PluginGroup parent) : PluginGroupIterator
+	
+	"A container for plugins."
+	class PluginGroup:
+		"Deletes and disconnects the plugin group and moves all plugins to the parent group."
+		def destroy()
+		
+		"Returns an identifier for the plugin group."
+		def get_id(): int
+		
+		"Returns the name of the plugin group."
+		def get_name(): string
+		
+		"Sets the name of the plugin group."
+		def set_name(string name)
+		
+		"Returns the parent plugin group, or NULL if the parent is the root."
+		def get_parent(): PluginGroup
+		
+		"Moves the plugin group to another plugin group."
+		"Pass NULL to move the plugin group to the root."
+		def set_parent(PluginGroup newparent)
+		
+		"Returns the x position of the plugin group."
+		def get_position_x(): float
+
+		"Returns the y position of the plugin group."
+		def get_position_y(): float
+		
+		"Sets the position of the plugin group."
+		def set_position(float x, float y)
+		
+		"Returns an iterator for plugins contained directly in this plugin group."
+		def get_plugins() : PluginIterator
+
+	"Helper iterator for a range of groups."
+	class PluginGroupIterator:
+		"Iterates to the next item."
+		def next()
+
+		"Returns true if the iterator is valid and it is safe to call current()"
+		def valid(): bool
+		
+		"Returns the current item."
+		def current(): PluginGroup
+		
+		"Destroys the iterator."
+		def destroy()
+
+	"Values returned by get_waveimporter_format_type()"
+	enum WaveImporterType:
+		set wave_file = 0
+		set wave_archive = 1
+		set instrument_file = 2
+		set instrument_archive = 3
+
+	class WaveImporter:
+
+		def open(string filename, Input strm) : bool
+		def destroy()
+
+		def get_instrument_count() : int
+		def get_instrument_name(int index): string
+		def get_instrument_sample_count(int index) : int
+		def get_instrument_sample_info(int index, int sample, out string[namelen] name, int namelen, out int samplecount, out int channels, out int format, out int samplerate)
+
+		def load_instrument(int index, Wave dest) : bool
+		def load_instrument_sample(int index, int sample, Wavelevel dest) : bool

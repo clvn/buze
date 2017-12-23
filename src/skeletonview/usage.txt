@@ -1,0 +1,11 @@
+rename the filecontent and filenames respectively to match your
+new project. Rename these keywords:
+
+- Skeleton
+- SKELETON
+- skeleton
+
+In VC open buze.sln like always, and rightclick the solution in the
+right pane, and rightclick -> Add -> Existing project
+
+(select yourproject.vcproj)

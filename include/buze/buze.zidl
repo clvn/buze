@@ -1,0 +1,326 @@
+import "../../src/armstrong/include/zzub/zzub.zidl"
+cheader "buze/buze.h"
+
+namespace buze:
+	dlname "buzelib"
+
+	enum:
+		set version = 1
+		
+	"These map 1:1 to CDocument::UpdateHint. Eventually this should become the only place to define gui events"
+	enum EventType:
+		set update_new_document = 8192
+		set update_pre_save_document = 8193
+		set update_post_save_document = 8194
+		set update_pre_clear_document = 8195
+		set update_post_clear_document = 8196
+		set update_pre_open_document = 8197
+		set update_post_open_document = 8198
+		set update_pre_mixdown = 8199
+		set update_post_mixdown = 8200
+
+		set update_properties = 8201
+		set update_theme = 8202
+		set update_settings = 8203
+		set update_index = 8204
+
+		set change_pattern_order = 8300
+		set change_pattern_row = 8301
+		
+		# view-specific events:
+		set show_parameter_view = 9000
+		set show_pattern_view = 9001
+		set show_pattern_format_view = 9002
+		set show_machine_view = 9003
+		set show_wavetable_view = 9004
+		set show_analyzer = 9006
+		set show_comment_view = 9007
+		set show_cpu_view = 9008
+		set show_filebrowser = 9009
+		set show_help_view = 9010
+		set show_history = 9011
+		set show_preferences = 9012
+		set show_properties = 9005
+		set show_all_machines = 9013
+
+	enum PropertyType:
+		set plugin = 0
+		set connection = 1
+		set pattern = 2
+		set pattern_format = 3
+		set wave = 4
+		set wave_level = 5
+		set plugin_group = 6
+
+	"Values for buze_application_map_path() path type parameter"
+	enum PathType:
+		set AppPath = 0
+		set UserPath = 1
+
+	"EventDatas can be passed as pvoid arguments to document_notify_views() and used by agreeing parties"
+	class EventData:
+		class ChangePatternOrder:
+			member int index
+
+		class ChangePatternRow:
+			member int row
+
+		class ShowMachineParameter:
+			member zzub.Plugin plugin
+			member int mode
+			member int x
+			member int y
+
+		class ShowPattern:
+			member zzub.Pattern pattern
+			member bool change_pattern
+			member bool reset_stack
+			member int editor_id
+
+		class ShowPatternFormat:
+			member zzub.PatternFormat pattern_format
+
+		class ShowProperties:
+			union:
+				member zzub.Plugin plugin
+				member zzub.PluginGroup plugin_group
+				member zzub.Connection connection
+				member zzub.Pattern pattern
+				member zzub.PatternFormat pattern_format
+				member zzub.Wave wave
+				member zzub.Wavelevel wavelevel
+			member int type # PropertyType enum
+			member Window return_view
+
+		union:
+			member noref ChangePatternOrder change_pattern_order
+			member noref ChangePatternRow change_pattern_row
+			member noref ShowProperties show_properties
+			member noref ShowMachineParameter show_parameters
+			member noref ShowPattern show_pattern
+			member noref ShowPatternFormat show_pattern_format
+
+	class Application:
+	
+		"Creates an application instance."
+		def static create(HostModule module, string globalPath, string userPath, string tempPath):Application
+		
+		def get_host_module():HostModule
+
+		"Frees all application resources, including shutting down the armstrong audio and midi drivers."
+		def destroy()
+
+		"Initializes the application with the supplied Armstrong handles."
+		def initialize(zzub.Player player, zzub.Audiodriver driver)
+		
+		"Initializes a device on the Armstrong audio driver using settings from the Buze configuration."
+		def open_midi_devices_from_config(): bool
+		
+		"Initializes a device on the Armstrong audio driver using settings from the Buze configuration."
+		def create_audio_device_from_config(): bool
+		
+		"Initializes a device on the Armstrong audio driver."
+		def create_audio_device(string outdevicename, string indevicename, int rate, int buffersize, int masterchannel, bool save): bool
+		
+		"Enables or disables silent processing."
+		def enable_silent_driver(bool enable)
+
+		"Returns an Armstrong handle to the active audio driver. If silent processing is enabled, the silent driver is returned."
+		def get_audio_driver():zzub.Audiodriver
+		
+		"Releases the audio device, driver and all resources."
+		def release_audio_driver()
+
+		"Returns the Buze configuration object."
+		def get_configuration():Configuration
+		
+		"Returns a full path relative to path type. The path type indicates either the application or user profile directory."
+		def map_path(string path, int type): string
+		def show_wait_window()
+		def set_wait_text(string text)
+		def hide_wait_window(pvoid focusWnd)
+		
+		def get_theme_color(string name): uint
+		def get_theme_name(int index): string
+		def get_theme_count(): int
+		def load_theme(string name)
+
+	"The main application window of a Buze instance."
+	"The main frame is implemented by the host by deriving from the CViewFrame interface."
+	class MainFrame:
+		"Initialize the main frame: enumerate views and create the frame window."
+		def initialize(pvoid parentwnd, zzub.Player player):bool
+		
+		"Destroys the mainframe and all its resources."
+		def destroy()
+		
+		def register_window_factory(WindowFactory info)
+
+		"Returns the mainframes window handle."
+		def get_wnd():pvoid
+		
+		"Adds the view to the mainframe's list of timers."
+		"The timer calls CView::UpdateTimer() approx every 10 ms."
+		def add_timer_handler(Window wnd)
+		
+		"Removes the view from the list of timers."
+		def remove_timer_handler(Window wnd)
+		
+		"Makes the view CTRL+TAB-able."
+		def viewstack_insert(Window wnd)
+		
+		"Returns an accelerator handle for the specified view."
+		def get_accelerators(string viewname):pvoid
+		
+		"Returns the document instance."
+		def get_document():Document
+		
+		"Returns the application instance."
+		def get_application():Application
+
+		"Returns the Armstrong player instance."
+		def get_player(): zzub.Player
+
+		def get_focused_view(): Window
+		def is_float_view(Window wnd): bool
+		def set_focus_to(Window wnd)
+		def get_view(string viewname, int viewid): Window
+		def open_view(string viewname, string label, int viewid, int x, int y): Window
+		def close_view(Window wnd)
+		def get_open_filename(): string
+		def get_save_filename(): string
+		def get_plugin_menu_create(): pvoid
+		def get_plugin_menu_insert_after(): pvoid
+		def get_plugin_menu_insert_before(): pvoid
+		def get_plugin_menu_replace(): pvoid
+		def get_main_menu(): pvoid
+		def add_menu_keys(string viewname, pvoid menu)
+		def register_event() : int
+		def register_accelerator_event(string viewname, string defaulthotkey, int evcode): ushort
+		def register_accelerator(string viewname, string name, string defaulthotkey, ushort id)
+		def show_plugin_parameters(zzub.Plugin p, int modehint, int x, int y)
+		def get_keyjazz_map(): pvoid
+		def get_view_by_wnd(pvoid wnd): Window
+		def get_program_name(): string
+	
+	class WindowFactory:
+
+	"A view, floating or docked in the main frame"
+	class Window:
+		def get_wnd(): pvoid
+	
+	"Interface for internal events via CEventHandler::Update"
+	class EventHandler:
+	
+	"Interface for WTL events via CMessageFilter::PreTranslateMessage"
+	class MessageFilter:
+	
+	"Interface for WTL events CIdleHandler::OnIdle"
+	class IdleHandler:
+
+	"Interface for the host's WTL CMessageLoop"
+	class MessageLoop:
+	
+	"Interface for the host's CAppModule, used to forward _Module features to the DLL plugins"
+	class HostModule:
+
+	pdef callback(Window sender, int hint, pvoid param, pvoid tag): int
+
+	class Document:
+		def add_view(EventHandler view)
+		def remove_view(EventHandler view)
+		def notify_views(Window sender, int hint, pvoid param)
+		def add_callback(callback callback, pvoid tag)
+		def remove_callback(callback callback, pvoid tag)
+		def get_octave(): int
+		def set_octave(int oct)
+		def get_plugin_non_song(zzub.Plugin plugin):bool
+		def set_plugin_non_song(zzub.Plugin plugin, bool state)
+		def get_plugin_parameter_view_mode(zzub.Plugin plugin):int
+		def set_plugin_parameter_view_mode(zzub.Plugin plugin, int mode)
+		def get_plugin_last_preset(zzub.Plugin plugin): string
+		def set_plugin_last_preset(zzub.Plugin plugin, string preset)
+		def get_player(): zzub.Player
+		def get_stream_plugin_uri_for_file(string path): string
+		def play_plugin_note(zzub.Plugin plugin, int note, int prevnote)
+		def play_stream(int note, int offset, int length, string pluginuri, string dataurl)
+		def keyjazz_key_down(zzub.Plugin plugin, int wParam, int note)
+		def keyjazz_key_up(int wParam, out int note, out zzub.Plugin plugin): bool
+		def keyjazz_release(bool sendnoteoffs)
+		def get_stream_plugin(): zzub.Plugin
+		def delete_stream_plugin()
+
+		"Returns the Buze configuration object."
+		def get_configuration():Configuration
+
+		def get_solo_plugin():zzub.Plugin
+		def set_solo_plugin(zzub.Plugin plugin, bool state)
+		def get_plugin_helpfile(zzub.Pluginloader loader):string
+		def import_song(string filename, int flags, float x, float y, out string[outsize] errormessages, int outsize): bool
+		
+		"Initializes the plugin index: Loads Gear/index.txt and enumerates songs in Gear/Templates."
+		def load_plugin_index(): bool
+		def get_plugin_index_item_by_index(int index):PluginIndexItem
+		def get_plugin_index_root(): PluginIndexItem
+
+		def is_dirty(): bool
+		def set_current_file(string fullpath)
+		def get_current_filename(): string
+		def get_current_path(): string
+		def get_current_extension(): string
+		def clear_song()
+		def save_file(string filename, bool withwaves): bool
+		def create_plugin(string uri, string instrumentname, float x, float y, zzub.PluginGroup plugingroup): zzub.Plugin
+		def create_plugin_between(zzub.Plugin to_plugin, zzub.Plugin from_plugin, string uri, string instrumentname): zzub.Plugin
+		def create_plugin_before(zzub.Plugin srcplugin, string uri, string instrumentname): zzub.Plugin
+		def create_plugin_after(zzub.Plugin srcplugin, string uri, string instrumentname): zzub.Plugin
+		def create_plugin_replace(zzub.Plugin srcplugin, string uri, string instrumentname): zzub.Plugin
+		def create_default_document()
+		def create_default_format(zzub.Plugin plugin, bool simple): zzub.PatternFormat
+		def extend_pattern_format(zzub.PatternFormat format, zzub.Plugin plugin, bool simple)
+		def delete_plugin_smart(zzub.Plugin plugin)
+		def get_current_plugin(): zzub.Plugin
+		def get_current_pattern(): zzub.Pattern
+		def get_current_pattern_format(): zzub.PatternFormat
+		def get_current_connection(): zzub.Connection
+		def get_current_wave(): zzub.Wave
+		def get_current_wavelevel(): zzub.Wavelevel
+		def import_wave(string filename, zzub.Wave target): bool
+		def get_current_order_index(): int
+		def get_current_order_pattern_row(): int
+		def get_current_pattern_row(): int
+	
+	class PluginIndexItem:
+		"Index type, 0 = folder, 1 = plugin/template, 2 = separator"
+		def get_type(): int
+		def get_name(): string
+		def is_hidden(): bool
+		def is_preloaded(): bool
+		def get_filename(): string
+		def get_instrumentname(): string
+		def get_sub_item(int index): PluginIndexItem
+		def get_sub_item_count(): int
+		
+		"Returns an identifier to a .plur image to use in place of the separator"
+		def get_separator_id(): string
+	
+	class Configuration:
+		#def get_mixer_threads():int
+		#def set_mixer_threads(int num)
+		
+		#def get_theme():string
+		#def set_theme(string str)
+		
+		#def get_vst_paths():string
+		#def set_vst_paths(string str)
+		
+		def add_sample_path(string path)
+		def remove_sample_path(int index)
+		def get_sample_path_count():int
+		def get_sample_path(int index): string
+
+		def get_fixed_width_font(): string
+		#def set_fixed_width_font(string str)
+
+		"Returns true if the toolbars are locked."
+		def get_toolbars_locked(): bool

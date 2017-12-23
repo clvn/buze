@@ -1,0 +1,336 @@
+﻿<html>
+<body>
+<h1>Frequently Asked Questions</h1>
+<p>
+	Answers to questions and solutions to problems that have come up.
+</p>
+	<hr size="1px" color="#ccc" />
+    <h2>Q: Where can I get (human) help?</h2>
+	<p>
+		<b>A:</b> Goto #buze of EFNET with your IRCclient (like mIRC), we will be there .
+	</p>
+	<hr size="1px" color="#ccc" />
+    <h2>Q: What are the keyboard shortcuts?</h2>
+	<p>
+		<b>A:</b>Hit F1 to show the keyboard shortcut overview for the focused view. Hit F1 twice to see global keyboard shortcuts.
+	</p>
+	<hr size="1px" color="#ccc" />
+    <h2>Q: How to get not confused by pattern(formats)?</h2>
+	<p>
+		<b>A:</b> Remember, hitting ESC will always take you back to the main/default pattern.
+
+	</p>
+
+	<hr size="1px" color="#ccc" />
+   <h2>Q: How can I nest patterns like in Buzz?</h2>
+	<p>
+		<b>A:</b> Add a 'Pattern Player'-machine. Go to the patternformat editor (shift-F2), and tick the 'Trigger' checkbox of the 'Pattern Player'-machine. A column appears, and if you enter '00', a nested patternblock will appear. Hit enter to enter the pattern, and ESC to leave. Once you are inside your nested patternblock, you can hit shift-F2 again to add columns to it.
+
+	</p>
+
+	<hr size="1px" color="#ccc" />
+    <h2>Q: How do I render audio?</h2>
+	<p>
+		<b>A:</b> Rightclick the master (or any machine), and choose 'Render To'. From there you can render the machine's output to a file, or a wave in the wavetable.
+	</p>
+	<hr size="1px" color="#ccc" />
+    <h2>Q: My VST instrument does not make sound?</h2>
+	<p>
+		<b>A:</b> You forgot to connect a 'Note Generator'-machine to it. By doing so, you will also be able to send notes to your plugin in the patterneditor. Optionally a 'MIDI Tracker' can be used. Remember it once, and you're done.
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+    <h2>Q: Can Buzé co-exist with Buzz?</h2>
+	<p>
+		<b>A: </b> Yes, theoretically, although the programs have grown apart to such as a degree it may be considered beneficial to maintain two installations.
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: How to install?</h2>
+	<p>
+		<b>A: </b> Unpack the zip, add plugins and start buze.exe. Check out the <a href="plugins/index.html">documentation</a> for the individual plugin wrappers on how and where to install plugins.
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+
+    <!--h2>Q: Can you recommend a good Buzz pack?</h2>
+	<p>
+		<b>A: </b>These are the Buzz distributions I know of:
+		<ul>
+			<li>
+				<b><a href="http://www.buzzmachines.com/getbuzz.php">buzzmachines.com</a></b><br />
+				The original Buzz packs. Massive (655 machines) and Stealth (72 machines) packs.
+			</li>
+			<li>
+				<b><a href="http://www.buzzformat.com/">buzzformat.com</a></b><br />
+				CyanPhase's distros with Overloader. Mini (46 machines) and Tiny (14 machines) packs.
+			</li>
+			<li>
+				<b><a href="http://ekral.com/?page_id=4">ekral.com</a></b><br />
+				Ekral's Buzz From Scratch. Contains all you need to install Buzz with many machines in a single archive, but you 
+				have to unpack and install them yourself.
+			</li>
+			<li>
+				<b><a href="http://www.plosive.net/buzz/install.html">plosive.net</a></b><br />
+				Mute's Buzz Installer. Features a selective collection of Buzz machines.
+			</li>
+			<li>
+				<b><a href="http://www.djlaser.com/buzz/">djlaser.com</a></b><br />
+				DJ Laser's Jeskola Buzz Starter Pack.
+			</li>
+		</ul>
+	</p>
+	<p>
+		There will probably be an official Buzé distribution some time in the future, but right now other things have higher priority.
+	</p>
+
+	<hr size="1px" color="#ccc" /-->
+	
+	<h2>
+		Q: Where can I get Psycle and LADSPA plugins?
+	</h2>
+	<ul>
+		<li>
+			<a href="http://psycle.pastnotecut.org/database.php?action=view&amp;fid=89&amp;cid=1">Psycle</a> comes with 58 plugins. Install and copy the contents of PsyclePlugins into Gear\Psycle.
+		</li>
+		<li>
+			There are <a href="http://downloads.sourceforge.net/audacity/LADSPA_plugins-win-0.4.15.exe">90 precompiled LADSPA plugins</a> for Windows
+			on the <a href="http://sourceforge.net/project/showfiles.php?group_id=6235">Audacity download page</a>. Install to Gear\Ladspa.
+		</li>
+	</ul>
+
+	<hr size="1px" color="#ccc" />
+    <h2>
+    Q: I get this error message when Buzé starts: MI.H: GetInfo() called
+    </h2>
+	<p>
+		<img src="load-error-3.png" alt="MI.H: GetInfo() called"/>
+	</p>
+	<p>
+		<b>A: </b> This message appears when Paniq's Plutonium is initialized. While it is a harmless message, this machine is defunct
+		and can safely be deleted.
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: I get the error message above (or some other error message), but I cannot press OK or X...</h2>
+	<p>
+		<b>A: </b> You might have (an older version of) Gear/Generators/CyanPhase Buzz Overloader.dll. Please delete it - Buzé will not work when it is there.
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+
+    <h2>
+    Q: What is the deal with the text mode console window that opens on startup?
+    </h2>
+	<p>
+		<b>A: </b> Unless you started Buzé with a /debug parameter, this window appears when Paniq's Pybuzz is initialized. Whenever Pybuzz is used, it will print debug messages and
+		other output to this window. 
+	</p>
+	
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: Buzé crashes on startup...</h2>
+	<p>
+		<b>A: </b> Buzz and Buzé normally crashes on startup for the same reason: unstable machines. While we have attempted to put the most well-known broken machines in blacklist.txt, you will occasionally
+		need to track down unstable machines by yourself. Use a tool such as Dependency Walker or buze.exe /debug to help finding problem DLLs. If you encounter a machine that you think ought to be placed in the blacklist, please let us know by logging a bug report.
+	</p>
+	<p>
+		<b>Known startup problems:</b>
+	</p>
+	<ul>
+		<li>The presence of Gear/Generators/CyanPhase Buzz Overloader.dll crashes on startup (solution: delete file)</li>
+		<li>Drivers for Samson C01U USB Mic are reported to cause startup crashes (solution: uninstall driver)</li>
+		<li>Device named "ASIO DirectX Full Duplex Driver" is known to cause problems, and may crash on startup unless audio driver buffer size is set to 512 (solution: use another driver)</li>
+		<li>Audio driver initialization may halt if there are non-existent (USB) ASIO devices in the registry. (solution: delete unused ASIO device entries in the registry under HKEY_LOCAL_MACHINE\SOFTWARE\ASIO)</li>
+	</ul>
+
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: I get noise bursts...</h2>
+	<p>
+		<b>A: </b> You are apparently using a broken machine. Don't do that. Find out which machine causes the noise and delete it.
+		If you encounter a machine that causes noise bursts, please let us know by logging a bug report.
+	</p>
+
+	<hr size="1px" color="#ccc" />
+
+	<h2>Q: Can Buzé use VSTs?</h2>
+	<p>
+		<b>A: </b> Yes. Buzé now supports VST and VSTi natively, with access to most parameters and features directly. By default, plugins are loaded from Gear/VST, but this can be 
+		changed in Preferences -> Plugins -> VST Paths.
+	</p>
+	<p>
+		Buzé also supports VSTs through the Buzz wrapper: The Polac VST plugins enable both VST and VSTI. Make sure you have <a href="http://www.xlutop.com/buzz">latest 
+		version</a> though.
+	</p>
+
+	<hr size="1px" color="#ccc" />
+	
+    <h2>Q: I have problems with a machine I use a lot in Buzz...</h2>
+	<p>
+		First make sure you have all DLLs the machine needs. Some machines use runtime libraries from Visual Studio, such as
+		msvcp60.dll, msvcrt.dll and these must exist on your system, either in Buzés program folder or in c:\windows\system32.
+	</p>
+	<p>
+		<b>Polac VST &amp; Polac VSTi:</b>
+	</p>
+	<ul>
+		<li>The index.txt entries are not expanded with subdirectories like in original Buzz.</li>
+		<li>When selecting a VST instrument from its right click menu, the machine changes its name in Buzz. This hack has not been successfully implemented in Buzé.</li>
+		<li>If PVST crashes when you connect it to the master, make sure you are using the latest version of both PVST and Buzé.</li>
+	</ul>
+	<p>
+		<b>All WaveOut/WaveIn machines, Jeskola/Polac ASIO In/Out machines:</b><br />
+		These machines depend on functionality in Buzz' native wave output drivers, which are not available in libzzub.
+		Use the built-in Audio Input and Audio Output plugins instead.
+	</p>
+	<p>
+		<b>BTDSys PeerCtrl, BTDSys PeerCtrl 'Basic', BTDSys LiveJumpHACK:</b><br />
+		These machines use known offset hacks and were attempted patched, but caused the wrapper to fail altogether. Therefore, they
+		are currently blacklisted as they will cause trouble no matter what.
+	</p>
+	
+	<p>
+		<b><a href="ldmixer.html">ld mixer</a>:</b><br />
+		Please see the separate <a href="ldmixer.html">ld mixer 1.03 checklist</a> page.
+	</p>
+
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: I have problems with a VST I use a lot in another sequencer...</h2>
+	<p>
+		Please report any problematic VSTs in our bugtracker. Our VST wrapper is a work in progress.
+	</p>
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: Does Buzé crash if I use any of the machines utilizing hacks?</h2>
+	<p>
+		<b>A: </b> No, most likely not. The Buzz machine wrapper patches several known hacks to prohibit crashes.
+	</p>
+	<p>
+		For a list of the currently patched plugins, have a look at Gear/Native/buzz2zzub.ini, which controls patching options per DLL.
+		The .ini-file has some documentation, which shortly explains the purpose of each patch option.
+		Patched plugins are probably safe to use, although if their core functionality is based on hacks they may not (yet) function properly.
+	</p>
+	<p>
+		If you are a machine author using hacks in your Buzz machine (not recommended), make sure the supported patches
+		are enabled in buzz2zzub.ini for it to work as expected in Buzz. The wrapper does not support any direct GUI-hacks, such as responding
+		to correct window messages, but instead focuses on the memory offset hacks used by several popular plugins.
+	</p>
+
+	<hr size="1px" color="#ccc" />
+
+    <!--h2>Q: I can't get any sound after enabling a DirectSound recording device, only Elapsed Time counts, but nothing happens in the sequencer...</h2>
+	<p>
+		<b>A: </b> Try to reduce the hardware acceleration level to "Basic Acceleration". (start dxdiag.exe from Start->Run 
+		and check for a Hardware Sound Acceleration Level slider the Sound tab). Note that changing this setting may introduce problems 
+		later if you are using e.g the kX Project ASIO drivers with other audio applications.
+	</p>
+	
+	<hr size="1px" color="#ccc" /-->
+
+    <!--h2>Q: Buzé is slower than Buzz!</h2>
+	<p>
+		<b>A: </b> You are right, of course. And just to make it clear, the original Buzz will always run smoother than Buzé on the same hardware for several reasons:
+	</p>
+	<ul>
+		<li>Everything is stereo in libzzub: generators always produce a stereo signal, and effects only see stereo connections. Buzz allows parts of plugin chains to be processed in mono,
+		whereas this behaviour has been deprecated in libzzub. This makes it easier for developers to create new, native stereo plugins, but has the unfortunate side effect of 
+		spending twice the CPU in some Buzz plugins.</li>
+		<li>Everything is non-interleaved in libzzub: because the audio buffers in zzub and Buzz have different internal formats, there is a small overhead when the Buzz wrapper converts between them.</li>
+		<li>Oskari is better than us. At least he has put a good amount of work into optimizing Buzz. Our efforts have prioritized correctness over speed so far.</li>
+	</ul>
+	<hr size="1px" color="#ccc" /-->
+
+    <!--h2>Q: What is aliases.txt?</h2>
+	<p>
+		<b>A: </b> This file is meant for mapping plugin namespaces into each other, but no longer has any practical use. Buzé will auto-generate 
+		aliases for all DLLs in Gear/Generators and Gear/Effects to relieve the user of maintaining aliases.txt.
+		Currently, its only application is to allow using native zzub-plugins in place of missing Buzz machines. (Deprecated in Buzé 0.5.3 and newer)
+	</p>
+
+	<hr size="1px" color="#ccc" /-->
+
+    <h2>Q: How can I report a bug?</h2>
+	<p>
+		<b>A: </b> The one place to keep bug reports and feature requests is in the <a href="https://sourceforge.net/u/anders-e/buze/tickets/">ticket database</a>. 
+		To enter tickets, you will need a Sourceforge account.
+	</p>
+
+	<!--hr size="1px" color="#ccc" />
+    <h2>Q: What is signature.h and why is it missing from the SVN repository?</h2>
+	<p>
+		<b>A: </b> This is a file that is normally generated when building with SCons. At the moment, there is no mechanism
+		in place to generate it when building with Visual Studio. Meanwhile, get one <a href="http://www.batman.no/signature.h">here</a> and
+		copy it into src/zzub/include.
+
+		
+		The file contains a single constant string that
+		uniquely identifies the version of the build. In order for a plugin to load, it must be built with the same signature as the host.
+		
+	</p-->
+
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: Did you buy the Buzzlib license from Oskari Tammelin and is it possible to use libzzub in commercial projects?</h2>
+	<p>
+		A: The libzzub/Buzé project owns a Buzzlib license, which was aqcuired mainly to distribute binaries legally. None of the buzzlib code
+		has been used in libzzub or Buzé. Unfortunately the overall licensing scheme is quite messy. Buzé is released under the same license as WTL.
+		libzzub is LGPL, which means you can use the replayer engine in a commercial project as long as any changes you make to libzzub are returned to the 
+		community.
+	</p>
+	<p>
+		libzzub uses a Buzz-wrapper to provide support for original Buzz machines. The wrapper is GPL-licensed, except Oskaris original headers
+		which have the following notice: 
+<pre>
+// This header file may be used to write _freeware_ DLL "machines" for Buzz
+// Using it for anything else is not allowed without a permission from the author
+</pre>
+	</p>
+	
+	<p>
+		I am not a lawyer, but I think you should talk to <a href="http://jeskola.net/">Oskari</a> if you want to use libzzubs Buzz-wrapper commercially. 
+	</p>
+
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: What's the difference/purpose/relationship of all this Buzé, BuzzRMX, Aldrin, Neil, Armstrong, libzzub, libneil-stuff?</h2>
+	<p>
+		<b>A: </b> Aldrin, Buzé, Buzz RMX and Neil are different Buzz clones with entirely different design goals. All four are based on different versions of 
+		the same replayer engine. 
+	</p>
+	<p>
+		libzzub is the name of the replayer engine originally split off from an early version of Buzé. Later libzzub went through a major rewrite and renamed to Armstrong. 
+		Armstrong has gone through yet another major rewrite since then.
+	</p>
+	<p>
+		<a href="http://aldrin.sf.net/">Aldrin</a> is a successor of Jeskola Buzz developed mainly on and for the Linux operating system.
+	</p>
+	<p>
+		<a href="http://www.batman.no/buze/">Buzé</a> is a modern remake of Jeskola Buzz for Windows. 
+	</p>
+	<p>
+		<a href="http://www.buzzrmx.com/">Buzz RMX</a> is a 1:1 remake of Jeskola Buzz for Windows. It is forked from an an earlier version of Aldrin and is
+		intended as a pick-up point for developers that want to tweak and extend the original Buzz user interface.
+	</p>
+	<p>
+		<a href="http://www.batman.no/buze/">Armstrong</a> is an open source platform independent C/C++ music tracking and sequencing library.
+	</p>
+	<p>
+		<a href="http://sites.google.com/site/neilsequencer/">Neil</a> is an active open source fork of Aldrin.
+	</p>
+	<p>
+		libzzub is the former name of Armstrong. The "zzub" prefix is often seen in the source code still.
+	</p>
+
+	<hr size="1px" color="#ccc" />
+
+    <h2>Q: How do I pronounce Buzé?</h2>
+	<p>
+		<b>A: </b> It's pronounced with a french accent, preferably in a slightly gay tone. Try yourself: Buh-zeh, buh-zeh, buh-zeh.
+	</p>
+
+</body>
+</html>

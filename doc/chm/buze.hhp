@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=buze.chm
+Contents file=buze.hhc
+Default topic=output\index.html
+Display compile progress=No
+Index file=buze.hhk
+Language=0x409 English (United States)
+Title=Buzé Documentation
+
+
+[FILES]
+output\index.html
+output\user\index.html
+output\user\faq.html
+output\user\ldmixer.html
+output\developer\api\armstrong.xml
+output\developer\api\buze.xml
+output\developer\api\namespace.xsl
+output\developer\api\class.xsl
+output\developer\api\method.xsl
+
+[INFOTYPES]
+

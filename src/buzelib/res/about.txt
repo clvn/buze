@@ -1,0 +1,37 @@
+Main coding by Calvin and Megz
+Additional contributions by d98o, Halfo, Hiren Shah, hmaon, ld0d, Polac, sqz, Syncat, Zeffii and Zoner
+
+Armstrong (aka libzzub): Calvin and Paniq
+
+Buzz SDK and MDK: Oskari Tammelin
+
+Wave (de)compressor reverse engineering from original Buzz: MarC
+
+WTL: Microsoft Corporation
+
+CDotNetTabCtrl, CCustomTabCtrl: Bjarke Viksoe, Daniel Bowen
+
+DockTabFrame: Igor Katrayev
+
+Drag/drop code: Leon Finker
+
+FFT: Reliable Software, (c) 1996-2002 
+
+RtAudio: Copyright (c) 2001-2005 Gary P. Scavone
+
+libsndfile: Erik de Castro Lopo <erikd at mega-nerd+com>
+
+libmad: Copyright (c) 2000-2004 Underbit Technologies, Inc.
+
+PortMidi: Copyright (c) 1999-2000 Ross Bencina and Phil Burk, Copyright (c) 2001-2006 Roger B. Dannenberg
+
+SoundTouch: Copyright (c) Olli Parviainen 2001-2011
+
+JsonCpp: Baptiste Lepilleur
+
+ASIO is a trademark and software of Steinberg Media Technologies GmbH.
+
+VST PlugIn Interface Technology by Steinberg Media Technologies GmbH.
+
+
+Also thanks to everyone who sent feedback/bugreports, testers and donators!

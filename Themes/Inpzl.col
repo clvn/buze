@@ -1,0 +1,84 @@
+# Machine View
+MV Amp BG				080808
+MV Amp Handle			FFFFFF
+MV Arrow Volume High	FF0000
+MV Arrow				FFFFFF
+MV Arrow Volume Low		000000
+MV Background			000000
+MV Effect				101010
+MV Effect LED Off		008080
+MV Effect LED On		00FFFF
+MV Effect Mute			818B94
+MV Effect Pan BG		2B7676
+MV Generator			2A614B
+MV Generator LED Off	008000
+MV Generator LED On		00FF00
+MV Generator Mute		52595F
+MV Generator Pan BG		45A47F
+MV Machine Border		000000
+MV Machine Text			FFFFFF
+MV Master				5C704C
+MV Master LED Off		89A4C4
+MV Master LED On		E866B7
+MV Pan Handle			C0C0C0
+MV Line					00FF0C
+MV MIDI Line			000080
+MV Event Line			008000
+
+# Pattern Editor View
+PE BG					000000
+PE BG Dark				101010
+PE BG Very Dark			201820
+PE Sel BG				705E3A
+PE Text Value			B8BBBC
+PE Text Note			FFFFFF
+PE Text Note Off		FFFFFF
+PE Text Wave			A040A0
+
+PE Text Trigger			FFFFFF
+PE Trigger Highlight	101010
+PE Trigger				181818
+PE Trigger Shadow		404040
+
+PE Text Shade			222222
+PE Text Rows			D0E0F0
+PE Text Headers			D0E0F0
+PE Loop Points			404040
+PE Loop Points Disabled	181818
+PE Playback Pos			FF0000
+PE Divider				908080
+PE Hidden				908080
+PE Control				FFFFFF
+PE Selection			0000FF
+PE Cursor				FFFFFF
+
+# C
+PE Text Note 1			FFFF00
+# C#
+PE Text Note 2			
+# D
+PE Text Note 3			7CFC00
+# Eb
+PE Text Note 4			DC143C
+# E
+PE Text Note 5			A52A2A
+# F
+PE Text Note 6			2020FF
+# F#
+PE Text Note 7			8C41B7
+# G
+PE Text Note 8			F4A460
+# Ab
+PE Text Note 9			
+# A
+PE Text Note 10			FFFFFF
+# Bb
+PE Text Note 11			556B2F
+# B
+PE Text Note 12			8090A0
+
+# Signal Analysis
+SA Amp BG				2E3031
+SA Amp Line				D7A440
+SA Freq BG				2E3031
+SA Freq Line			CF6B6B

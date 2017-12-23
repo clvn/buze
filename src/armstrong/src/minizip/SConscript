@@ -1,0 +1,25 @@
+Import('env', 'posix', 'win32', 'install_lib', 'cl')
+import glob
+
+#######################################
+#
+# Minizip
+#
+#######################################
+
+localenv = env.Clone()
+
+files = [
+	'ioapi.c',
+	'mztools.c',
+	'unzip.c',
+	'zip.c',
+]
+
+#localenv.Append(CPPPATH=[
+#])
+
+minizip = localenv.StaticLibrary('${LIB_BUILD_PATH}/minizip', files)
+
+Export('minizip')
+

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="VampHostSDK">
+      <UniqueIdentifier>{8c91d4f4-c0f6-4f7a-bce9-7ed36e94c27b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="vamp2zzub.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginBufferingAdapter.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginChannelAdapter.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginHostAdapter.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginInputDomainAdapter.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginLoader.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginSummarisingAdapter.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\PluginWrapper.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+    <ClCompile Include="vamp-plugin-sdk-v2.2.1\src\vamp-hostsdk\RealTime.cpp">
+      <Filter>VampHostSDK</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="vamp2zzub.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\hostguard.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\Plugin.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginBase.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginBufferingAdapter.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginChannelAdapter.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginHostAdapter.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginInputDomainAdapter.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginLoader.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginSummarisingAdapter.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\PluginWrapper.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\RealTime.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="vamp-plugin-sdk-v2.2.1\vamp-hostsdk\vamp-hostsdk.h">
+      <Filter>VampHostSDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

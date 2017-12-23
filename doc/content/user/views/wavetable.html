@@ -1,0 +1,90 @@
+<html>
+<body>
+<h1>Wave Table</h1>
+
+<p>
+	The wavetable gives access to an internal cache of waveforms available to tracker plugins.
+</p>
+
+<p>
+	There are four sections in the wavetable view:
+</p>
+
+<p>
+	<b>The instrument list</b> has 200 slots for sample-based instruments.
+</p>
+<p>
+	<b>The wavelevel list</b> contains samples in an instrument.
+</p>
+<p>
+	<b>The wave editor</b> allows for basic editing of samples.
+</p>
+<p>
+	<b>The edit, envelope and slice tabs</b>.
+</p>
+
+<h2>Working with the wavetable</h2>
+<ul>
+	<li>Use a tracker plugin such as Matilde Tracker and FuzzPilz UnwieldyTracker to play samples from the wavetable in a project.</li>
+	<li>Drag files from Windows' Explorer, or open the File Browser inside Buze and drag waveforms from there.</li>
+	<li>Preview samples by double clicking or playing notes on the keyboard. The File Browser can also preview samples directly from disk.</li>
+</ul>
+
+<h2>The wavetable toolbar</h2>
+<blockquote>
+	<p>
+		<b>Clear wave</b>: Clears the currently selected instrument and all samples in it.
+	</p>
+	<p>
+		<b>Save wave</b>: Saves the first sample of the currently selected instrument as a WAV to disk.
+	</p>
+	<p>
+		<b>Scale: Samples</b>: Tells the wave editor to display the scales in samples.
+	</p>
+	<p>
+		<b>Scale: Time</b>: Tells the wave editor to display the scales in minutes and seconds.
+	</p>
+	<p>
+		<b>Scale: Ticks</b>: Tells the wave editor to display the scales in ticks, based on the global BPM/TPB.
+	</p>
+	<p>
+		<b>Scale: Hex</b>: Tells the wave editor to display the scales in hex-percent, compatible with Matilde and UnwieldyTracker's "sample offset" commands.
+		The hex scale always goes from 0-FFFF, relative to the sample length. The last two digits can be discarded on Matilde Tracker. I.e, for the scale xxyy, Mtrk: 09/xx, and Utrk: xxyy
+	</p>
+</blockquote>
+
+<h2>The instrument context menu</h2>
+<p>
+	Right click in the context menu to show the context menu:
+</p>
+<blockquote>
+	<p>
+		<b>Properties</b>: Opens the instrument properties.
+	</p>
+	<p>
+		<b>Export And Open With External Editor</b>: Saves the current instrument to disk and opens it with the wave editor specified under Preferences.
+	</p>
+	<p>
+		<b>Re-Import</b>: Used with the Export-feature above after editing in the external editor.
+	</p>
+</blockquote>
+
+
+<h2>The wavelevel context menu</h2>
+<p>
+	Right click in the context menu to show the context menu:
+</p>
+<blockquote>
+	<p>
+		<b>Properties</b>: Opens the wavelevel properties. For setting looping points, base note, etc.
+	</p>
+	<p>
+		<b>Delete</b>: Deletes the wavelevel.
+	</p>
+	<p>
+		<b>Add blank level</b>: Adds a new blank wavelevel.
+	</p>
+</blockquote>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<html>
+<body>
+<h1>Wavetable Recorder</h1>
+<p>
+	The wavetable recorder machine records its input to a stereo wavetable slot.
+</p>
+
+<h2>Global parameters</h2>
+<table>
+	<tr>
+		<th>Parameter name</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Enable</td>
+		<td>switch</td>
+		<td>Turn recording on/off</td>
+	</tr>
+	<tr>
+		<td>Record Mode</td>
+		<td>byte</td>
+		<td>Record mode (0=wait for play/stop, 1=continuous)</td>
+	</tr>
+	<tr>
+		<td>Format</td>
+		<td>byte</td>
+		<td>Output format (0=16bit, 1=32bit float, 2=32bit integer, 3=24bit)</td>
+	</tr>
+	<tr>
+		<td>Instrument</td>
+		<td>wavetable index</td>
+		<td>Wavetable instrument slot to use (01-C8)</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

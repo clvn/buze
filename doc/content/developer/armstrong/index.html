@@ -1,0 +1,427 @@
+<html>
+<body>
+<h1>Armstrong Sequencing Library 0.4</h1>
+
+<h2>Introduction</h2>
+<p>
+	Armstrong is a plugin-based, platform independent sequencing library for Windows, OSX and Linux, using C/C++ or Python.
+</p>
+<p>
+	There is some <a href="../api/index.html">documentation on the C API</a>, which is the only way to use Armstrong in your own applications.
+	This document aims to explain the workings of the internal C++ classes that make up Armstrong.
+</p>
+
+<p>
+	Armstrong is split into several components that talk to each other:
+</p>
+<ul>
+	<li><b>Armstrong</b>: A set of C methods that wraps the internal C++ classes. This is the only component exposed to application developers using Armstrong.</li>
+	<li><b>Storage</b>: A set of C++ classes that stores song data in a SQLite database.</li>
+	<li><b>Mixer</b>: Plugin processing and lock free interthread communication.</li>
+	<li><b>Player</b>: Responsible for updating the mixer in response to storage events.</li>
+	<li><b>Plugins</b>: Pattern processing, event recording, wrappers</li>
+</ul>
+
+<p>
+	<img src="armstrong.png" />
+	<br />
+	<i>Figure: Everybody loves diagrams: The most important classes and their relation to each other. <a href="armstrong.dia">.dia source</a></i>
+</p>
+
+<h2>Directory structure</h2>
+
+<table>
+<tr>
+	<td>src/armstrong</td>
+	<td>shared library</td>
+	<td>C interface implementation. .BMX import, waveform import. Includes all the static libraries below.</td>
+</tr><tr>
+	<td>src/storage</td>
+	<td>static library</td>
+	<td>SQLite storage, undo/redo</td>
+</tr><tr>
+	<td>src/mixing</td>
+	<td>static library</td>
+	<td>Lock free DSP graph mixer</td>
+</tr><tr>
+	<td>src/player</td>
+	<td>static library</td>
+	<td>Audio drivers, plugin enumeration, maintains mixer state from storage</td>
+</tr><tr>
+	<td>src/plugins/core</td>
+	<td>static library</td>
+	<td>Core plugins: Master, pattern playing, recording, input/output etc</td>
+</tr><tr>
+	<td>src/plugins/buzz2zzub</td>
+	<td>static library</td>
+	<td>Plugin wrapper for Jeskola Buzz plugins</td>
+</tr><tr>
+	<td>src/plugins/lunar</td>
+	<td>static library</td>
+	<td>Plugin wrapper for Lunar plugins</td>
+</tr><tr>
+	<td>src/plugins/psy2zzub</td>
+	<td>static library</td>
+	<td>Plugin wrapper for Psycle plugins</td>
+</tr><tr>
+	<td>src/plugins/lad2zzub</td>
+	<td>static library</td>
+	<td>Plugin wrapper for LADSPA plugins</td>
+</tr><tr>
+	<td>src/plugins/vst2zzub</td>
+	<td>static library</td>
+	<td>Plugin wrapper for VST plugins</td>
+</tr><tr>
+	<td>src/plugins/hw2zzub</td>
+	<td>static library</td>
+	<td>Plugin wrapper for external MIDI devices</td>
+</tr><tr>
+	<td>src/plugins/midi</td>
+	<td>static library</td>
+	<td>Various MIDI plugins; tracker, CC, time, etc</td>
+</tr><tr>
+	<td>src/plugins/modplug</td>
+	<td>static library</td>
+	<td>Native tracker based on OpenMPT/Modplug's audio engine</td>
+</tr><tr>
+	<td>src/plugins/stream</td>
+	<td>static library</td>
+	<td>Streaming plugins, WAV/MP3/AIFF/FLAC/etc</td>
+</tr><tr>
+	<td>src/modfile</td>
+	<td>static library</td>
+	<td>A helper library for loading .MOD/.IT/.XM/.S3M</td>
+</tr><tr>
+	<td>src/mid2armz</td>
+	<td>utility</td>
+	<td>Tool for converting .MID to .ARMZ</td>
+</tr><tr>
+	<td>src/sid2armz</td>
+	<td>utility</td>
+	<td>Tool for converting .SID to .ARMZ (based on <a href="http://covertbitops.c64.org/">SIDDump</a> by Cadaver)</td>
+</tr>
+</table>
+
+<h2>The C interface</h2>
+
+<p>
+	There are more than 400 public methods in Armstrongs C interface. For more in depth information, see the <a href="../api/index.html">C API documentation</a>.
+</p>
+<p>
+	The C API is a flat version of a class hierarchy which provide access to to the internal storage and mixer services through a unified interface. The classes
+	cover rougly these areas:
+</p>
+<ul>
+	<li>Audio and MIDI driver abstraction classes</li>
+	<li>File and memory IO classes</li>
+	<li>Song (document) and mixer state classes</li>
+</ul>
+
+<p>
+	All Armstrong APIs are prefixed with "zzub_", followed by the class name and the method name. 
+</p>
+
+<h3>A simple Armstrong client</h3>
+<p>
+	(TODO: does not work)
+</p>
+<pre>
+#include &lt;zzub/zzub.h&gt;
+#include &lt;iostream&gt;
+
+using namespace std;
+
+int main() {
+	zzub_player_t* player = zzub_player_create();
+	zzub_audiodriver_t* driver = zzub_audiodriver_create();
+	zzub_audiodriver_create_device(player, -1, -1);
+
+	zzub_player_initialize(player);
+
+	zzub_audiodriver_enable(driver, 1);
+
+	zzub_player_load_armz(player, "test.armz");
+	zzub_player_history_commit(player, 0, 0, "Loaded song");
+	zzub_player_set_state(player, zzub_player_state_playing);
+
+	cout &lt;&lt; "Press ENTER to quit" &lt;&lt; endl;
+	cin.getline();
+
+	zzub_player_set_state(player, zzub_player_state_stopped);
+	zzub_player_destroy(player);
+
+	zzub_audiodriver_enable(driver, 0);
+	zzub_audiodriver_destroy(driver);
+
+	return 0;
+}
+</pre>
+
+<h3>Flow of a Armstrong call that modifies the song</h3>
+<p>
+	Many public C API methods operate on the storage component, using methods that primarly generate and execute SQL commands. 
+	Lets see what happens when we try to rename a plugin. This call flow is similar for most calls that modify the storage database.
+</p>
+<ol>
+	<li>A client (such as Buze) calls one of the public C methods, let us say zzub_plugin_set_name()</li>
+	<li>The C method modifies storage::plugin::name and calls storage::plugin::update(), which executes an SQL UPDATE statement on the plugin table</li>
+	<li>SQL triggers in the database generate and save undo SQL statements in the (temporary) history table</li>
+	<li>SQL triggers generate storage events by calling storage::document::notify_listeners()</li>
+	<li>storage::notify_listeners() calls player::update_document(), which is a registered storage event listener</li>
+	<li>player::update_document() parses the event and calls player::on_update_plugin()</li>
+	<li>player::on_update_plugin() calls mixer::update_plugin()</li>
+	<li>mixer::update_plugin() creates a copy of the updated metaplugin and adds it to a queue of objects to be swapped in the audio thread later</li>
+	<li>... execution returns to the client, who can make more changes to the document, or commit the changes when done...<br /><br /></li>
+
+	<li>To commit changes, the client calls zzub_player_history_commit() which calls storage::document::barrier()</li>
+	<li>storage::document::barrier() creates an undo step, and generates a storage event by calling storage::document::notify_listeners()</li>
+	<li>storage::notify_listeners() calls player::update_document(), which is a registered storage event listener</li>
+	<li>player::update_document() parses the event and calls player::on_barrier()</li>
+	<li>player::on_barrier() calls mixer::commit()</li>
+	<li>mixer::commit() generates a user->audio event by calling mixer::invoke_audio_event()</li>
+	<li> ... execution returns to the client. At this point, the audio thread will begin handling the audio event:<br /><br /></li>
+
+	<li>In the audio thread, the mixer parses the event in mixer::process_audio_event_queue() and calls mixer::on_barrier()</li>
+	<li>mixer::on_barrier() swaps in the new metaplugin</li>
+</ol>
+<p>
+	When the client wants to undo, it calls zzub_player_undo(), which calls document::undo(). Simplified, this executes the undo SQL query saved in step 3, and then resumes at step 4.
+</p>
+
+<h2>Storage</h2>
+
+<p>
+	Armstrong uses an SQLite database for storing song state and temporary files for wave data. All operations on a song are ultimately executed as SQL statements on the database.
+	The storage library provides convenience methods and classes for most operations. Parts of the storage library is autogenerated by the documentgen-program.
+</p>
+
+<h3>Undo/Redo</h3>
+<p>
+	The basic concept for undo/redo with an SQL database is described on the <a href="http://www.sqlite.org/cvstrac/wiki?p=UndoRedo">SQLite wiki</a>.
+</p>
+<p>
+	Armstrong extends the technique in the article with support for multiple INSERT/UPDATE/DELETE per undo step, notification callbacks and the option to temporarily disable undo buffering.
+</p>
+<p>
+	The ability to temporarily disable undo buffering is important when the host wants to create and destroy plugins transparently. For example: during mixdown, a recorder plugin can be
+	created and used to record to disk. Or, the analyzer view can create a recorder plugin for streaming output to the display. Or, for previewing samples from disk or the wavetable, 
+	a temporary stream plugin can be used. This kind of "jacking the undo buffer" can lead to a broken undo buffer, and leaves a lot of responsibility on the host developer.
+</p>
+
+<h3>The .armz file format</h3>
+<p>
+	Armstrong saves to a new file format - .armz - which is a zipped archive containing the SQLite database file (song.armdb) and all waveforms (wavelevel_*.raw).
+</p>
+
+<h3>Song versioning</h3>
+<p>
+	The storage version number is stored in the version field in the song table. Upon loading, the version field is checked, and if the version number is lower than the current,
+	a series of upgrade scripts are executed. The upgrade scripts are kept as an array of hard coded SQL statements in document.cpp, and is maintained as the .armz
+	database schema changes over time. This approach has limitations, but has worked out nicely so far.
+</p>
+
+<h3>SQL Extensions</h3>
+<p>
+	Armstrong adds several helper-functions to the embedded SQLite engine for use in its internal SQL-queries.
+</p>
+<table border="1">
+	<tr>
+		<th align="left">Function name</th>
+		<th align="left">Description</th>
+	</tr>
+	<tr>
+		<td>noteutil_buzz_to_midi_note</td>
+		<td>Converts a Buzz note to a linear MIDI note (because notes are stored as Buzz notes)</td>
+	</tr>
+	<tr>
+		<td>noteutil_midi_to_buzz_note</td>
+		<td>Converts a MIDI note to a Buzz note</td>
+	</tr>
+	<tr>
+		<td>undoredo_enabled_callback</td>
+		<td>Returns 1 if undo is enabled</td>
+	</tr>
+	<tr>
+		<td>wavelevel_insert_samples</td>
+		<td>Intended for internal use only. Raw sample data helper</td>
+	</tr>
+	<tr>
+		<td>wavelevel_replace_samples</td>
+		<td>Intended for internal use only. Raw sample data helper</td>
+	</tr>
+	<tr>
+		<td>wavelevel_delete_samples</td>
+		<td>Intended for internal use only. Raw sample data helper</td>
+	</tr>
+	<tr>
+		<td>wavelevel_delete_file</td>
+		<td>Intended for internal use only. Raw sample data helper</td>
+	</tr>
+	<tr>
+		<td>XXX_notify_callback</td>
+		<td>Intended for internal use only. Used in INSERT/UPDATE/DELETE-triggers. Invokes document::notify_listeners() with row id and an event id</td>
+	</tr>
+</table>
+
+
+<h3>Database schema</h3>
+<pre style="overflow:scroll; border-left: 1px solid black; border-top: 1px solid black; padding:8px">
+CREATE TABLE attribute (id integer primary key, plugin_id integer, attrindex integer, value integer);
+CREATE TABLE attributeinfo (id integer primary key, plugininfo_id integer, attrindex integer, name varchar(64), minvalue integer, maxvalue integer, defaultvalue integer);
+CREATE TABLE connection (id integer primary key, from_plugin_id integer, to_plugin_id integer, type integer);
+CREATE TABLE envelope (id integer primary key, wave_id integer, attack integer, decay integer, sustain integer, release integer, subdivision integer, flags integer, disabled integer);
+CREATE TABLE envelopepoint (id integer primary key, envelope_id integer, x integer, y integer, flags integer);
+CREATE TABLE eventconnectionbinding (id integer primary key, connection_id integer, sourceindex integer, targetparamgroup integer, targetparamtrack integer, targetparamcolumn integer);
+CREATE TABLE midiconnection (id integer primary key, connection_id integer, mididevice varchar(512));
+CREATE TABLE midimapping (id integer primary key, plugin_id integer, paramgroup integer, paramtrack integer, paramcolumn integer, midichannel integer, midicontroller integer);
+CREATE TABLE parameterinfo (id integer primary key, plugininfo_id integer, paramgroup integer, paramtrack integer, paramcolumn integer, name varchar(64), description varchar(128), flags integer, type integer, minvalue integer, maxvalue integer, novalue integer, defaultvalue integer);
+CREATE TABLE pattern (id integer primary key, song_id integer, name varchar(64), length integer, resolution integer, display_resolution integer, display_verydark_row integer, display_dark_row integer, patternformat_id integer);
+CREATE TABLE patternevent (id integer primary key, pattern_id integer, time integer, plugin_id integer, paramgroup integer, paramtrack integer, paramcolumn integer, value integer);
+CREATE TABLE patternformat (id integer primary key, song_id integer, name varchar(64));
+CREATE TABLE patternformatcolumn (id integer primary key, patternformat_id integer, plugin_id integer, paramgroup integer, paramtrack integer, paramcolumn integer);
+CREATE TABLE plugin (id integer primary key, flags integer, song_id integer, name varchar(64), data blob, trackcount integer, x real, y real, streamsource varchar(64), is_muted integer, is_bypassed integer, is_solo integer, is_minimized integer, plugininfo_id integer);
+CREATE TABLE plugininfo (id integer primary key, song_id integer, uri varchar(64), name varchar(64), short_name varchar(64), author varchar(64), mintracks integer, maxtracks integer);
+CREATE TABLE pluginparameter (id integer primary key, plugin_id integer, paramgroup integer, paramtrack integer, paramcolumn integer, value integer);
+CREATE TABLE sequence (id integer primary key, plugin_id integer, pattern_id integer, position integer, width integer);
+CREATE TABLE song (id integer primary key, version integer, title varchar(64), comment blob, songbegin integer, songend integer, loopbegin integer, loopend integer, loopenabled integer);
+CREATE TABLE wave (id integer primary key, song_id integer, name varchar(64), filename varchar(64), flags integer, volume real);
+CREATE TABLE wavelevel (id integer primary key, wave_id integer, basenote integer, samplerate integer, samplecount integer, beginloop integer, endloop integer, format integer, filename varchar(64));
+</pre>
+
+<h2>Mixing</h2>
+
+<h3>Multithread mixing</h3>
+
+<p>
+	During mixing, Armstrong distributes the work load across a user-defined number of threads, executed by the operating system on any available CPUs. 
+	The number of worker threads must be one or more. When a single worker thread is specified, the mixer runs in "single-thread" mode, falling back to 
+	mixing on the audio thread.
+</p>
+<p>
+	Plugins in the graph are considered tasks, where connections define the dependencies. The dependencies are counted, and stored with each task.
+</p>
+<p>
+	The distributed mixer adds tasks on a lock free queue which is polled by the worker threads. Only tasks with a dependency count of zero are added to the queue.
+	When a task is done processing, it decreases the dependency counter of all of its dependent tasks, allowing the mixer to schedule new tasks.
+	The task counter and dependency counts are stored as atomic&lt;int&gt;s, ensuring lock free operation throughout the process.
+</p>
+
+<h3>Plugin processing order</h3>
+<p>
+	During processing, Armstrong uses a non-recursive loop to traverse the plugins. Every time the graph changes (a plugin or connection was inserted or deleted), 
+	the process order is updated. The following steps determine the final processing order: 
+</p>
+<ol>
+	<li>Create a graph with plugins as vertices and connections as edges in a boost::adjancency_list.</li>
+	<li>Run a depth_first_search to determine back edges. I.e which connections are used in feedback loops.</li>
+	<li>Remove the back edges from the graph.</li>
+	<li>Find roots in the graph. I.e plugins which do not send their output to any other plugins</li>
+	<li>Perform a topological sort for each root.</li>
+	<li>Results from each topological sort are prepended to the final work order, except the result containing the master; which is added at the end.</li>
+</ol>
+
+<h3>Message passing in the mixer</h3>
+<p>
+The mixer uses five ringbuffers for message passing between the threads.
+</p>
+<ul>
+	<li>user_event_queue - for audio->user thread events</li>
+	<li>audio_event_queue -> for immediate user->audio thread events</li>
+	<li>commit_event_queue -> for delayed user->audio thread events</li>
+	<li>encoder_user_event_queue -> for encoder->user thread events</li>
+	<li>encoder_event_queue -> for audio->encoder thread events</li>
+</ul>
+<h4>Audio to user thread events</h4>
+<p>
+The following types of messages originate in the audio thread, and are forwarded to the user thread via mixer::user_event_queue:
+</p>
+<ul>
+	<li>Parameter changes</li>
+	<li>State changes (e.g at the end of a song when looping is disabled)</li>
+	<li>MIDI control changes</li>
+</ul>
+<p>
+	User messages are polled by calling mixer::process_user_event_queue(). The equivalent C method is zzub_player_handle_events().
+</p>
+
+<h4>Immediate user to audio thread events</h4>
+<p>
+	The following types of events originate in the user thread, and are passed to the audio thread as fast as possible via mixer::audio_event_queue:
+</p>
+<ul>
+	<li>Start/stop state changes</li>
+	<li>Play note</li>
+	<li>Song position changes</li>
+	<li>MIDI plugin changes</li>
+	<li>Parameter changes</li>
+	<li>Editing barrier</li>
+	<li>Plugin process events</li>
+</ul>
+
+<h4>Delayed user to audio thread events</h4>
+<p>
+Delayed events are sent upon calling mixer::barrier(). A barrier indicates all the latest changes should be to updated to the running graph.
+The following events originate in the user thread, and are passed to the audio thread via mixer::commit_event_queue:
+</p>
+<ul>
+	<li>Parameter changes</li>
+	<li>Plugin process events</li>
+	<li>Plugin state format changes</li>
+	<li>Graph changes</li>
+</ul>
+
+<h4>Encoder to user thread events</h4>
+<p>
+	Encoder plugins could generate user events, usually for passing audio and slices to the wavetable.
+</p>
+
+<h4>Audio to encoder thread events</h4>
+<p>
+	For passing audio to encoders.
+</p>
+
+<h3>Tickless processing</h3>
+
+<p>
+	The mixer knows little of tempo or ticks, and instead provides a mechanism where plugins decide when to process plugin events. 
+</p>
+<p>
+	There are two modes for which a plugin can intercept processing, which is specified through a plugin flag:
+</p>
+<table border="1">
+	<tr>
+		<td valign="top">
+			zzub_plugin_flag_is_sequence
+		</td>
+		<td valign="top">
+			Effectively marks the plugin as a time source, which maintains its own tempo by associating with and using one or more pattern players. 
+		</td>
+	</tr>
+	<tr>
+		<td valign="top">
+			zzub_plugin_flag_has_interval
+		</td>
+		<td valign="top">
+			Used by plugins that want to intercept the processing at fixed intervals.
+			The engine calls plugin::process_sequence() to determine the number of samples to process before calling plugin::process_sequence() again.
+
+		</td>
+	</tr>
+</table>
+
+<h2>Player</h2>
+<p>
+	The player implements listener-interfaces for both the mixer and the storage and routes events internally.
+</p>
+
+<h2>Language bindings</h2>
+
+<p>
+	The Armstrong API is described in a spesial interface description language called zidl (Zzub IDL). The zidl-tool supports generating language bindings for Python.
+	It can also generate a C header file, a .def file for linking on Windows and HTML documentation.
+</p>
+<p>
+	The Zidl tool is currently undergoing a rewrite to accomodate for future requirements in a more satisfying manner.
+</p>
+</body>
+</html>
