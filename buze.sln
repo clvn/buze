@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "armstrong", "src\armstrong\src\armstrong\armstrong.vcxproj", "{FCB9F677-F820-42DF-BA2F-10DEE14B6E81}"
 EndProject
@@ -135,10 +135,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "engine", "engine", "{CC1F56
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "appcore", "appcore", "{03203628-3C4E-4778-AAA4-211B82C3D92C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "luaview", "src\luaview\luaview.vcxproj", "{FBA2BF79-DE4C-466E-8239-BD1444599441}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fbgui", "src\fbgui\src\fbgui\fbgui.vcxproj", "{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "armserve", "src\armstrong\src\armserve\armserve.vcxproj", "{F50789DE-732F-47D0-8703-BAA347A7D55C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "collaborationview", "src\collaborationview\collaborationview.vcxproj", "{75E4CE1D-2A60-4DAA-96A0-E5D0758148D3}"
@@ -152,7 +148,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "setup", "src\setup\setup.vc
 		{CE498F5D-E319-4596-BF05-E04D7F76F21A} = {CE498F5D-E319-4596-BF05-E04D7F76F21A}
 		{43821363-2F3D-49B4-8A6A-A64CFACF38B4} = {43821363-2F3D-49B4-8A6A-A64CFACF38B4}
 		{C8EDB3B4-1A49-430D-816D-462FDE597592} = {C8EDB3B4-1A49-430D-816D-462FDE597592}
-		{F171BFEB-5F8F-42F8-B5ED-C3760899004E} = {F171BFEB-5F8F-42F8-B5ED-C3760899004E}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "chm", "doc\chm\chm.vcxproj", "{CE498F5D-E319-4596-BF05-E04D7F76F21A}"
@@ -538,24 +533,6 @@ Global
 		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.ReleaseChecked|Win32.Build.0 = ReleaseChecked|Win32
 		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.ReleaseChecked|x64.ActiveCfg = ReleaseChecked|x64
 		{F171BFEB-5F8F-42F8-B5ED-C3760899004E}.ReleaseChecked|x64.Build.0 = ReleaseChecked|x64
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Debug|Win32.ActiveCfg = Debug|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Debug|Win32.Build.0 = Debug|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Debug|x64.ActiveCfg = Debug|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Release|Win32.ActiveCfg = Release|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Release|Win32.Build.0 = Release|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.Release|x64.ActiveCfg = Release|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.ReleaseChecked|Win32.ActiveCfg = Release|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.ReleaseChecked|Win32.Build.0 = Release|Win32
-		{FBA2BF79-DE4C-466E-8239-BD1444599441}.ReleaseChecked|x64.ActiveCfg = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Debug|Win32.ActiveCfg = Debug|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Debug|Win32.Build.0 = Debug|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Debug|x64.ActiveCfg = Debug|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Release|Win32.ActiveCfg = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Release|Win32.Build.0 = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.Release|x64.ActiveCfg = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.ReleaseChecked|Win32.ActiveCfg = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.ReleaseChecked|Win32.Build.0 = Release|Win32
-		{BEEF527D-BCAB-4F96-B87D-A270F2AC3D71}.ReleaseChecked|x64.ActiveCfg = Release|Win32
 		{F50789DE-732F-47D0-8703-BAA347A7D55C}.Debug|Win32.ActiveCfg = Debug|Win32
 		{F50789DE-732F-47D0-8703-BAA347A7D55C}.Debug|Win32.Build.0 = Debug|Win32
 		{F50789DE-732F-47D0-8703-BAA347A7D55C}.Debug|x64.ActiveCfg = Debug|x64
@@ -637,5 +614,8 @@ Global
 		{F50789DE-732F-47D0-8703-BAA347A7D55C} = {CC1F5676-9ACE-497F-8695-801DA86852B7}
 		{C3790F58-9378-441B-834F-66CDAE6FD78E} = {C12FB8D8-F704-4C9A-AAD8-6E78D6C4A30A}
 		{CE498F5D-E319-4596-BF05-E04D7F76F21A} = {C12FB8D8-F704-4C9A-AAD8-6E78D6C4A30A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7673D6F1-C579-4AF2-8DAC-0C9D8C4679AD}
 	EndGlobalSection
 EndGlobal
