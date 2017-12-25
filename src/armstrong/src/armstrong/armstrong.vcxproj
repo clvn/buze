@@ -183,7 +183,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>sndfile.lib;sqlite3.lib;dsound.lib;dsplib.lib;portmidi_s.lib;libmad.lib;zdll.lib;dinput8.lib;dxguid.lib;SoundTouchDLL.lib;opengl32.lib;glu32.lib;glew32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libsndfile-1.lib;sqlite3.lib;dsound.lib;dsplib.lib;portmidi_s.lib;mad.lib;zlib.lib;dinput8.lib;SoundTouchDLL.lib;opengl32.lib;glu32.lib;glew32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)lib;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>libzzub.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>

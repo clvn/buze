@@ -210,16 +210,16 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="armdb.dbgen">
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">documentgen %(FullPath)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">documentgen %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">dbgenpp %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">dbgenpp %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">documentgen %(FullPath)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">documentgen %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">dbgenpp %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">dbgenpp %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">documentgen %(FullPath)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">documentgen %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">dbgenpp %(FullPath)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">dbgenpp %(FullPath)</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename)_types.h;%(Filename)_types_cpp.h;%(Outputs)</Outputs>
     </CustomBuild>
