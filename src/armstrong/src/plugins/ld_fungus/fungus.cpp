@@ -27,6 +27,11 @@
 #include "lib.h"
 #include "pinknoise.h"
 
+#ifdef _MSC_VER
+#include <intrin.h>
+#pragma intrinsic(__emulu)
+#endif
+
 #define LINEAR_INTERPOLATION_OSCS
 //#define NONLINEAR_VCA
 
