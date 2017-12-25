@@ -22,6 +22,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #include <porttime.h>
 #include <portmidi.h>
 #include <pmutil.h>
+#if defined(_STDINT) && !defined(_STDINT_H)
+#define _STDINT_H
+#endif
 #include <jack/jack.h>
 #include <jack/midiport.h>
 #include <zzub/plugin.h>

@@ -15,6 +15,9 @@
 #include "dsound/dsounddriver.h"
 #endif
 #if !defined(HAVE_JACK) || HAVE_JACK == 1
+#if defined(_STDINT) && !defined(_STDINT_H)
+#define _STDINT_H
+#endif
 #include <jack/jack.h>
 #include "jack/jackdriver.h"
 #endif

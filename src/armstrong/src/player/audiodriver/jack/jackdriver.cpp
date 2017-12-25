@@ -2,6 +2,9 @@
 #include <sstream>
 #include <iostream>
 #include <cstring>
+#if defined(_STDINT) && !defined(_STDINT_H)
+#define _STDINT_H
+#endif
 #include <jack/jack.h>
 #include "../audiodriver.h"
 #include "jackdriver.h"

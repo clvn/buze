@@ -18,6 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <vector>
 #include <list>
+#if defined(_STDINT) && !defined(_STDINT_H)
+#define _STDINT_H
+#endif
 #if !defined(HAVE_PORTMIDI) || HAVE_PORTMIDI == 1
 #include <porttime.h>
 #include <portmidi.h>
