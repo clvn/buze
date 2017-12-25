@@ -563,6 +563,7 @@ Global
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.Release|Win32.ActiveCfg = Release|Win32
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.Release|Win32.Build.0 = Release|Win32
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.Release|x64.ActiveCfg = Release|x64
+		{C3790F58-9378-441B-834F-66CDAE6FD78E}.Release|x64.Build.0 = Release|x64
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.ReleaseChecked|Win32.ActiveCfg = ReleaseChecked|Win32
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.ReleaseChecked|Win32.Build.0 = ReleaseChecked|Win32
 		{C3790F58-9378-441B-834F-66CDAE6FD78E}.ReleaseChecked|x64.ActiveCfg = ReleaseChecked|x64

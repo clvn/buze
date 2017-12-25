@@ -39,8 +39,8 @@
           <Component Id="LIBSNDFILE_1.DLL" DiskId="1" Guid="EB5FA877-40E1-4B73-B74D-3663DAFD3DCA">
             <File Id="LIBSNDFILE_1.DLL" Name="libsndfile-1.dll" Source="$(var.SolutionDir)\libsndfile-1.dll" />
           </Component>
-          <Component Id="LIBMAD.DLL" DiskId="1" Guid="7C44C6B2-A087-4E3C-B540-CAACD3261B09">
-            <File Id="LIBMAD.DLL" Name="libmad.dll" Source="$(var.SolutionDir)\libmad.dll" />
+          <Component Id="MAD.DLL" DiskId="1" Guid="81AC2AE3-B2F3-43F6-B5A2-7021558C63A6">
+            <File Id="MAD.DLL" Name="mad.dll" Source="$(var.SolutionDir)\mad.dll" />
           </Component>
           <Component Id="ZLIB1.DLL" DiskId="1" Guid="1B4BCC21-FAE7-41B6-98E9-355AE651AD26">
             <File Id="ZLIB1.DLL" Name="zlib1.dll" Source="$(var.SolutionDir)\zlib1.dll" />
@@ -49,16 +49,16 @@
             <File Id="DSPLIB.DLL" Name="Dsplib.dll" Source="$(var.SolutionDir)\Dsplib.dll" />
           </Component>
           <?if $(sys.BUILDARCH)="x86" ?>
-          <Component Id="SOUNDTOUCH.DLL" DiskId="1" Guid="2F53061D-3FBF-42C3-A38A-83C63CE3A1BA">
-            <File Id="SOUNDTOUCH.DLL" Name="SoundTouch.dll" Source="$(var.SolutionDir)\SoundTouch.dll" />
+          <Component Id="SOUNDTOUCHDLL.DLL" DiskId="1" Guid="FB4B5A04-0038-43B7-8E80-8F45EC2B4132">
+            <File Id="SOUNDTOUCHDLL.DLL" Name="SoundTouchDLL.dll" Source="$(var.SolutionDir)\SoundTouchDLL.dll" />
           </Component>
-          <Component Id="AUXBUS.DLL" DiskId="1" Guid="2AC9C6E4-C7C9-4EDE-AF0D-8187C7D98EAF">
+          <!--Component Id="AUXBUS.DLL" DiskId="1" Guid="2AC9C6E4-C7C9-4EDE-AF0D-8187C7D98EAF">
             <File Id="AUXBUS.DLL" Name="Auxbus.dll" Source="$(var.SolutionDir)\Auxbus.dll" />
-          </Component>
+          </Component-->
           <Component Id="GLEW32.DLL" DiskId="1" Guid="1B068A00-A875-404F-A8EC-B4BD8B660932">
             <File Id="GLEW32.DLL" Name="glew32.dll" Source="$(var.SolutionDir)\glew32.dll" />
           </Component>
-          <Component Id="MSVCP50.DLL" DiskId="1" Guid="9E6214D9-E5F0-406D-8CF7-8CF5C4240C4F">
+          <!--Component Id="MSVCP50.DLL" DiskId="1" Guid="9E6214D9-E5F0-406D-8CF7-8CF5C4240C4F">
             <File Id="MSVCP50.DLL" Name="msvcp50.dll" Source="$(var.SolutionDir)\msvcp50.dll" />
           </Component>
           <Component Id="MSVCR70.DLL" DiskId="1" Guid="11300BA5-E208-4F02-9036-087A9AAD3458">
@@ -81,7 +81,7 @@
           </Component>
           <Component Id="MSVCR110.DLL" DiskId="1" Guid="F80B2877-9D82-471F-91C6-1DC92B33A986">
             <File Id="MSVCR110.DLL" Name="msvcr110.dll" Source="$(var.SolutionDir)\MSVCR110.dll" />
-          </Component>
+          </Component-->
           <?endif ?>
           <Component Id="BUZZ2ZZUB.INI" DiskId="1" Guid="BFB6714F-F0F0-4735-B585-153586DE061D">
             <File Id="BUZZ2ZZUB.INI" Name="buzz2zzub.ini" Source="..\..\buzz2zzub.ini" />
@@ -102,9 +102,9 @@
               </Component>
           </Directory>
           <Directory Name="Gear" Id="GEAR">
-            <Component Id="INDEX.TXT" DiskId="1" Guid="006F7CCE-50FA-4D3F-8646-442D3BD41B2A">
+            <!--Component Id="INDEX.TXT" DiskId="1" Guid="006F7CCE-50FA-4D3F-8646-442D3BD41B2A">
               <File Id="INDEX.TXT" Name="index.txt" Source="$(var.SolutionDir)\Gear\index.txt" />
-            </Component>
+            </Component-->
             <Directory Name="Views" Id="VIEWS">
               <Component Id="BUZEGUI.DLL" DiskId="1" Guid="2BF4CF30-AFBD-40B2-A4E0-2C26976A0AC9">
                 <File Id="BUZEGUI.DLL" Name="buzegui.dll" Source="$(var.SolutionDir)\Gear\Views\buzegui.dll" />
@@ -127,7 +127,7 @@
             </Directory>
             <Directory Name="Generators" Id="GENERATORS">
               <?if $(sys.BUILDARCH)="x86" ?>
-                <Component Id="FSM_INFECTOR.DLL" DiskId="1" Guid="F549BE2C-B580-4182-890E-C7332E9615EC">
+                <!--Component Id="FSM_INFECTOR.DLL" DiskId="1" Guid="F549BE2C-B580-4182-890E-C7332E9615EC">
                   <File Id="FSM_INFECTOR.DLL" Name="FSM Infector.dll" Source="$(var.SolutionDir)\Gear\Generators\FSM Infector.dll" />
                 </Component>
                 <Component Id="FSM_INFECTOR.PRS" DiskId="1" Guid="5416DBD6-0A69-4F75-AF65-58400ED98E26">
@@ -138,13 +138,13 @@
                 </Component>
                 <Component Id="MATILDE_TRACKER3.DLL" DiskId="1" Guid="7C8442C6-0B94-47B5-9E1B-D543F3109A56">
                   <File Id="MATILDE_TRACKER3.DLL" Name="Matilde Tracker3.dll" Source="$(var.SolutionDir)\Gear\Generators\Matilde Tracker3.dll" />
-                </Component>
+                </Component-->
               <?else ?>
               <?endif ?>
             </Directory>
             <Directory Name="Effects" Id="EFFECTS">
               <?if $(sys.BUILDARCH)="x86" ?>
-                <Component Id="FIRESLEDGE_PARAMEQ.DLL" DiskId="1" Guid="F24A724D-E5D6-4388-89CE-EC9B6234C1E5">
+                <!--Component Id="FIRESLEDGE_PARAMEQ.DLL" DiskId="1" Guid="F24A724D-E5D6-4388-89CE-EC9B6234C1E5">
                   <File Id="FIRESLEDGE_PARAMEQ.DLL" Name="FireSledge ParamEQ.dll" Source="$(var.SolutionDir)\Gear\Effects\FireSledge ParamEQ.dll" />
                 </Component>
                 <Component Id="FIRESLEDGE_PARAMEQ.HTML" DiskId="1" Guid="35DB5D83-5B84-4603-B647-1BB8022F3878">
@@ -179,15 +179,15 @@
                 </Component>
                 <Component Id="ZEPHOD_GREEN_FILTER.DLL" DiskId="1" Guid="5A938F3F-0470-4FBA-959C-51528BE85C7A">
                   <File Id="ZEPHOD_GREEN_FILTER.DLL" Name="Zephod Green Filter.dll" Source="$(var.SolutionDir)\Gear\Effects\Zephod Green Filter.dll" />
-                </Component>
+                </Component-->
               <?else ?>
               <?endif ?>
             </Directory>
             <Directory Name="Vst" Id="VST">
               <?if $(sys.BUILDARCH)="x86" ?>
-                <Component Id="TB4005.DLL" DiskId="1" Guid="368EEF0C-BFDE-40D0-AC42-AB4491CE2349">
+                <!--Component Id="TB4005.DLL" DiskId="1" Guid="368EEF0C-BFDE-40D0-AC42-AB4491CE2349">
                   <File Id="TB4005.DLL" Name="TB4005.dll" Source="$(var.SolutionDir)\Gear\Vst\TB4005.dll" />
-                </Component>
+                </Component-->
               <?else ?>
               <?endif ?>
             </Directory>
@@ -265,15 +265,15 @@
       <ComponentRef Id="ARMSTRONG.DLL" />
       <ComponentRef Id="SQLITE3.DLL" />
       <ComponentRef Id="LIBSNDFILE_1.DLL" />
-      <ComponentRef Id="LIBMAD.DLL" />
+      <ComponentRef Id="MAD.DLL" />
       <ComponentRef Id="ZLIB1.DLL" />
       <ComponentRef Id="DSPLIB.DLL" />
       <?if $(sys.BUILDARCH)="x86" ?>
-      <ComponentRef Id="SOUNDTOUCH.DLL" />
-      <ComponentRef Id="AUXBUS.DLL" />
+      <ComponentRef Id="SOUNDTOUCHDLL.DLL" />
+      <!--ComponentRef Id="AUXBUS.DLL" /-->
       <ComponentRef Id="GLEW32.DLL" />
-      <ComponentRef Id="MSVCP110.DLL" />
-      <ComponentRef Id="MSVCR110.DLL" />
+      <!--ComponentRef Id="MSVCP110.DLL" />
+      <ComponentRef Id="MSVCR110.DLL" /-->
       <?endif ?>
       <ComponentRef Id="INPZL.COL" />
       <ComponentRef Id="BUZZ2ZZUB.INI" />
@@ -284,12 +284,12 @@
       <ComponentRef Id="PARAMETERVIEW.DLL" />
       <ComponentRef Id="PATTERNVIEW.DLL" />
       <ComponentRef Id="WAVETABLEVIEW.DLL" />
-      <ComponentRef Id="INDEX.TXT" />
+      <!--ComponentRef Id="INDEX.TXT" /-->
       <ComponentRef Id="StartMenuShortcuts" />
     </Feature>
     <Feature Id="PluginsFeature" Title="Audio Plugins" Description="A selection of free VST, Buzz, Psycle and VAMP plugins." Level="1">
       <?if $(sys.BUILDARCH)="x86" ?>
-      <ComponentRef Id="FSM_INFECTOR.DLL" />
+      <!--ComponentRef Id="FSM_INFECTOR.DLL" />
       <ComponentRef Id="FSM_INFECTOR.PRS" />
       <ComponentRef Id="FSM_INFECTOR.HTML" />
       <ComponentRef Id="MATILDE_TRACKER3.DLL" />
@@ -305,17 +305,17 @@
       <ComponentRef Id="JOACHIMS_TETHYS_1.1.DLL" />
       <ComponentRef Id="OOMEK_EXCITER.DLL" />
       <ComponentRef Id="OOMEK_MASTERIZER.DLL" />
-      <ComponentRef Id="ZEPHOD_GREEN_FILTER.DLL" />
+      <ComponentRef Id="ZEPHOD_GREEN_FILTER.DLL" /-->
       <?endif ?>
     </Feature>
     <?if $(sys.BUILDARCH)="x86" ?>
     <Feature Id="PluginsCompatibilityFeature" Title="Plugin Compatibility Libraries" Description="Redistributables for older versions of Visual C++. Some plugins will not work without these." Level="1">
-      <ComponentRef Id="MSVCP50.DLL" />
+      <!--ComponentRef Id="MSVCP50.DLL" />
       <ComponentRef Id="MSVCR70.DLL" />
       <ComponentRef Id="MSVCP71.DLL" />
       <ComponentRef Id="MSVCR71.DLL" />
       <ComponentRef Id="MSVCP100.DLL" />
-      <ComponentRef Id="MSVCR100.DLL" />
+      <ComponentRef Id="MSVCR100.DLL" /-->
     </Feature>
     <?endif ?>
     <Feature Id="DevelopmentFeature" Title="Development Files" Description="C headers and libraries for interfacing with the audio engine and user interface." Level="1000">

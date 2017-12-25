@@ -104,4 +104,7 @@
   <ItemGroup>
     <ResourceCompile Include="buze.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\hotkeys.json" />
+  </ItemGroup>
 </Project>

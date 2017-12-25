@@ -302,6 +302,12 @@
   <ItemGroup>
     <ResourceCompile Include="buze.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\hotkeys.json">
+      <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
