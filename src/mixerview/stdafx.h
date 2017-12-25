@@ -20,11 +20,11 @@ using std::max;
 // --- include ATL headers first ---
 #include <atlbase.h>
 // --- include WTL headers after ---
-#include <atlapp.h>
-#include <atlcrack.h>
-#include <atlctrls.h>
-#include <atlsplit.h>
-#include <atlmisc.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlcrack.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlsplit.h>
+#include <wtl/atlmisc.h>
 
 // TODO: reference additional headers your program requires here
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <atlbase.h>
-#include <atlapp.h>
-#include <atlctrls.h>
-#include <atlctrlx.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlctrlx.h>
 
 class CMfxPluginGui
 	: public CWindowImpl<CMfxPluginGui>

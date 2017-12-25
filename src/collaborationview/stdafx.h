@@ -6,10 +6,10 @@
 #define _RICHEDIT_VER    0x0100
 
 #include <atlbase.h>
-#include <atlapp.h>
-#include <atlcrack.h>
-#include <atlctrls.h>
-#include <atlsplit.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlcrack.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlsplit.h>
 
 #include <cassert>
 #include <string>

@@ -10,7 +10,7 @@ using std::min;
 using std::max;
 
 #include <atlbase.h>
-#include <atlapp.h>
+#include <wtl/atlapp.h>
 #include <atlcom.h>
 
 #define NO_ZZUB_MIXER_TYPE

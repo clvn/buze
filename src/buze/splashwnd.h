@@ -1,6 +1,6 @@
 #pragma once
 
-#include <atlmisc.h>
+#include <wtl/atlmisc.h>
 
 class CSplashWnd :
 	public CWindowImpl<CSplashWnd, CWindow, CWinTraits<WS_POPUP|WS_VISIBLE, WS_EX_TOOLWINDOW> >

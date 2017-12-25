@@ -12,7 +12,7 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-#include "atlres.h"
+#include "wtl/atlres.h"
 #include "buze_help.rc"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ END
 
 2 TEXTINCLUDE 
 BEGIN
-    "#include ""atlres.h""\r\n"
+    "#include ""wtl/atlres.h""\r\n"
     "#include ""buze_help.rc""\r\n"
 END
 

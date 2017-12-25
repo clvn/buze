@@ -6,8 +6,8 @@
 #define _WTL_USE_CSTRING
 #include <atlbase.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlmisc.h> // CSize, CPoint, CRect, CString
+#include <wtl/atlapp.h>
+#include <wtl/atlmisc.h> // CSize, CPoint, CRect, CString
 #include "FileVersionInfo.h"
 
 //////////////////////////////////////////////////////////////////////

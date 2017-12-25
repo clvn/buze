@@ -3,9 +3,9 @@
 
 #include <atlbase.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlgdi.h>
-#include <atlmisc.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlgdi.h>
+#include <wtl/atlmisc.h>
 #include <atlgdix.h>
 #include <string>
 #include <map>

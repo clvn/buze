@@ -3,8 +3,8 @@
 
 #include <atlbase.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlctrls.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
 #include <buze/HostModule.h>
 #include <buze/WtlDllModule.h>
 #include "WaitWindow.h"

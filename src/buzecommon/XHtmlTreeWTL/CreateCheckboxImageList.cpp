@@ -20,10 +20,10 @@
 #include <atlbase.h>
 #include <atlcoll.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlctrls.h>
-#include <atlgdi.h>
-#include <atlmisc.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlgdi.h>
+#include <wtl/atlmisc.h>
 #include "CreateCheckboxImageList.h"
 #include "VisualStylesXP.h"
 

@@ -31,16 +31,16 @@ using std::max;
 //#include <atltypes.h> -- we're using atlmisc.h instead
 #include <atlwin.h>
 // --- include WTL headers after ---
-#include <atlapp.h>
-#include <atlcrack.h>
-#include <atlctrls.h>
-#include <atlctrlw.h>
-#include <atlctrlx.h>
-#include <atlddx.h>
-#include <atldlgs.h>
-#include <atlframe.h>
-#include <atlmisc.h> // CSize, CPoint, CRect, CString
-#include <atlsplit.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlcrack.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlctrlw.h>
+#include <wtl/atlctrlx.h>
+#include <wtl/atlddx.h>
+#include <wtl/atldlgs.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlmisc.h> // CSize, CPoint, CRect, CString
+#include <wtl/atlsplit.h>
 #include "atlgdix.h"
 #include "WtlUtils.h"
 

@@ -1,10 +1,10 @@
 #include <atlbase.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlctrls.h>
-#include <atlframe.h>
-#include <atldlgs.h>
-#include <atlctrlw.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlframe.h>
+#include <wtl/atldlgs.h>
+#include <wtl/atlctrlw.h>
 #include <string>
 #include "resource.h"
 #include "DragDropImpl.h"

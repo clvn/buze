@@ -1,8 +1,8 @@
 // --- include ATL headers first ---
 #include <atlbase.h>
-#include <atlapp.h>
+#include <wtl/atlapp.h>
 #include <atlwin.h>
-#include <atlctrls.h>
+#include <wtl/atlctrls.h>
 #include <cassert>
 #include <vector>
 #include <string>

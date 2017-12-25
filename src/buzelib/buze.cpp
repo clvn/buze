@@ -5,8 +5,8 @@ using std::max;
 #define NOMINMAX
 #include <atlbase.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlctrls.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
 #include <string>
 #include <vector>
 #include <map>

@@ -69,11 +69,11 @@ flickering when editing the CEdit
 #include <atlbase.h>
 #include <atlcoll.h>
 #include <atlwin.h>
-#include <atlapp.h>
-#include <atlctrls.h>
-#include <atlframe.h>
-#include <atlcrack.h>
-#include <atlmisc.h>
+#include <wtl/atlapp.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlcrack.h>
+#include <wtl/atlmisc.h>
 #include <buze/HostModule.h>
 #include <buze/WtlDllModule.h>
 

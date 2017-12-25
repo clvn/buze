@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include <atlframe.h>
-#include <atlctrls.h>
-#include <atldlgs.h>
-#include <atlctrlw.h>
+#include <wtl/atlframe.h>
+#include <wtl/atlctrls.h>
+#include <wtl/atldlgs.h>
+#include <wtl/atlctrlw.h>
 
 #include "DockTabFrame.h"
 
