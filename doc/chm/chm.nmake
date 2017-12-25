@@ -3,4 +3,4 @@
 
 buze.chm: buze.hhp buze.hhk buze.hhc
 	cscript ..\make_chm.wsf
-	hhcwrap buze.hhp
+	cscript hhcwrap.js buze.hhp
