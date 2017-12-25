@@ -10,7 +10,7 @@
 #if defined(_WIN32)
 #include "asio/asio.h"
 #include "asio/asiodriver.h"
-#include "dsound/dsound.h"
+#include <dsound.h>
 #include "dsound/dsoundbuffer.h"
 #include "dsound/dsounddriver.h"
 #endif

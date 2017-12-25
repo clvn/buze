@@ -13,6 +13,9 @@
 #include "dsoundbuffer.h"
 #include "../convertsample.h"
 
+// Instead of dxguid.lib:
+extern "C" const GUID IID_IDirectSoundNotify = { 0xB0210783, 0x89CD, 0x11D0,{ 0xAF, 0x08, 0x00, 0xA0, 0xC9, 0x25, 0xCD, 0x16 } };
+
 //
 // ds_output_buffer
 //

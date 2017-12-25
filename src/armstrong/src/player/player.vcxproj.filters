@@ -140,9 +140,6 @@
     <ClInclude Include="audiodriver\asio\asiodriver.h">
       <Filter>audiodriver\asio</Filter>
     </ClInclude>
-    <ClInclude Include="audiodriver\dsound\dsound.h">
-      <Filter>audiodriver\dsound</Filter>
-    </ClInclude>
     <ClInclude Include="audiodriver\dsound\dsoundbuffer.h">
       <Filter>audiodriver\dsound</Filter>
     </ClInclude>

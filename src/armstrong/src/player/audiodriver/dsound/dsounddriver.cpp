@@ -7,13 +7,12 @@
 #include <cmath>
 #include <limits>
 #include "../audiodriver.h"
-#include "dsound.h"
+#include <dsound.h>
 #include "dsoundutil.h"
 #include "dsoundbuffer.h"
 #include "dsounddriver.h"
 #include "../convertsample.h"
 
-#pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dsound.lib")
 
 using std::cerr;
