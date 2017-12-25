@@ -29,8 +29,8 @@ typedef enum {} lunar_parameter_names_t;
 
 #define WIN32_LEAN_AND_MEAN
 #include "windows.h"
-#include "include/GL/glew.h"
-#include "include/GL/wglew.h"
+#include <GL/glew.h>
+#include <GL/wglew.h>
 
 class lunar_opengl_context_t {
 public:
