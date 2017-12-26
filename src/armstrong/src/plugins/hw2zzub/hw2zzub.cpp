@@ -55,7 +55,7 @@ typedef zzub::mixer zzub_mixer_t;
 
 #include <zzub/plugin.h>
 
-#include "json/json.h"
+#include <json/json.h>
 
 //****************************************************************************************************************
 // setup

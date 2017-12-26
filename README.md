@@ -27,8 +27,8 @@ It is recommended to use `vcpkg` to manage dependencies required by the build.
 - Download, bootstrap and integrate [vcpkg](https://github.com/Microsoft/vcpkg)
 - Download [vcpkg_extras-master.zip](https://github.com/clvn/vcpkg_extras/archive/master.zip) from the [vcpkg_extras](https://github.com/clvn/vcpkg_extras) project, copy the unpacked ports directory contents to vcpkg/ports
 - Install dependencies using vcpkg:
-	- `vcpkg install zidl:x86-windows dbgenpp:x86-windows zlib:x86-windows libmad:x86-windows libsndfile:x86-windows sqlite3:x86-windows glew:x86-windows portmidi:x86-windows jack2:x86-windows soundtouch:x86-windows buzz-dsplib:x86-windows wtl:x86-windows`
-	- `vcpkg install zlib:x64-windows libmad:x64-windows libsndfile:x64-windows sqlite3:x64-windows portmidi:x64-windows jack2:x64-windows buzz-dsplib:x64-windows wtl:x64-windows`
+	- `vcpkg install zidl:x86-windows dbgenpp:x86-windows zlib:x86-windows libmad:x86-windows libsndfile:x86-windows sqlite3:x86-windows glew:x86-windows portmidi:x86-windows jack2:x86-windows soundtouch:x86-windows buzz-dsplib:x86-windows wtl:x86-windows jsoncpp:x86-windows`
+	- `vcpkg install zlib:x64-windows libmad:x64-windows libsndfile:x64-windows sqlite3:x64-windows portmidi:x64-windows jack2:x64-windows buzz-dsplib:x64-windows wtl:x64-windows jsoncpp:x64-windows`
 
 ### Boost
 

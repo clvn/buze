@@ -3,7 +3,7 @@
 #include <boost/unordered_map.hpp>
 
 /// Todo: this needs to be moved
-#include "../armstrong/src/plugins/hw2zzub/jsoncpp/include/json/json.h"
+#include <json/json.h>
 
 // ---------------------------------------------------------------------------------------------------------------
 
