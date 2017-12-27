@@ -265,23 +265,25 @@ void audio_connection::process_stereo_chunk(int offset, float** pout, int sample
 	} else {
 		int outcounts[mixer::max_channels] = {0};
 		// mono to stereo / wrap output channels when input>output by default
-		for (int i = 0; i < std::max(plugin_self.input_count, plugin_self.output_count); i++) {
-			//int out_channel = (plugin_self.first_input + i) % plugin_to.get_input_channel_count();
-			//int in_channel = (plugin_self.first_output + i) % plugin_from.get_output_channel_count();
-			int out_channel = plugin_self.first_input + (i % plugin_self.input_count);
-			int in_channel = plugin_self.first_output + (i % plugin_self.output_count);
-			int value_channel = (i) % plugin_from.get_output_channel_count();
-			if (plout[out_channel] != 0 && plin[in_channel] != 0) {
-				add_samples(plout[out_channel], plin[in_channel], sample_count, tvalues[value_channel].amp / (float)0x4000);
-				outcounts[out_channel]++;
+		int min_count = std::min(plugin_self.input_count, plugin_self.output_count);
+		if (min_count > 0) {
+			for (int i = 0; i < std::max(plugin_self.input_count, plugin_self.output_count); i++) {
+				int out_channel = plugin_self.first_input + (i % plugin_self.input_count);
+				int in_channel = plugin_self.first_output + (i % plugin_self.output_count);
+				int value_channel = (i) % plugin_from.get_output_channel_count();
+				if (plout[out_channel] != 0 && plin[in_channel] != 0) {
+					add_samples(plout[out_channel], plin[in_channel], sample_count, tvalues[value_channel].amp / (float)0x4000);
+					outcounts[out_channel]++;
+				}
 			}
 		}
+
 		for (int i = 0; i < mixer::max_channels; i++) {
 			if (pout[i] && outcounts[i] == 0)
 				pout[i] = 0;
 		}
 	}
-	
+
 }
 
 bool audio_connection::process_stereo(float** pin, float** pout, int sample_count, int mode) {
