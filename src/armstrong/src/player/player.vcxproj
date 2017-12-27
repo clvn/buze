@@ -202,7 +202,6 @@
   <ItemGroup>
     <ClCompile Include="armserveclient.cpp" />
     <ClCompile Include="audiodriver\audiodriver.cpp" />
-    <ClCompile Include="audiodriver\jack\JackWeakAPI.cpp" />
     <ClCompile Include="driver.cpp" />
     <ClCompile Include="driver_native.cpp" />
     <ClCompile Include="dummy.cpp" />

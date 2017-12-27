@@ -81,9 +81,6 @@
     <ClCompile Include="audiodriver\audiodriver.cpp">
       <Filter>audiodriver</Filter>
     </ClCompile>
-    <ClCompile Include="audiodriver\jack\JackWeakAPI.cpp">
-      <Filter>audiodriver\jack</Filter>
-    </ClCompile>
     <ClCompile Include="mididriver\portmidi\portmididriver.cpp">
       <Filter>mididriver\portmidi</Filter>
     </ClCompile>
