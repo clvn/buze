@@ -95,8 +95,8 @@ void CGraphCtrl::PaintConnectionTargetMenu(CDC& dc) {
 
 void CGraphCtrl::PaintNode(CDC& dc, CGraphNode* plugin, bool ledOnly) {
 
-	int halfWidth = (GetMachineWidth(plugin)/2) * scale;
-	int halfHeight = (GetMachineHeight(plugin)/2) * scale;
+	int halfWidth = (int)((GetMachineWidth(plugin) / 2) * scale);
+	int halfHeight = (int)((GetMachineHeight(plugin) / 2) * scale);
 
 	RECT mRect;
 	GetMachineRect(plugin, &mRect);
@@ -116,7 +116,7 @@ void CGraphCtrl::PaintNode(CDC& dc, CGraphNode* plugin, bool ledOnly) {
 	
 	// draw machine label 
 	// always draw text if skins are enabled, since big skins may overwrite the text
-	int fontIndex = (scale/MAX_MACHINE_SCALE)*((float)MAX_MACHINE_FONTS-0.5);
+	int fontIndex = (int)((scale / MAX_MACHINE_SCALE) * ((float)MAX_MACHINE_FONTS - 0.5f));
 	CFont prevFont = dc.SelectFont(machineFont[fontIndex]);
 
 	UINT prevAlign = dc.SetTextAlign(TA_CENTER);
@@ -131,14 +131,14 @@ void CGraphCtrl::PaintNode(CDC& dc, CGraphNode* plugin, bool ledOnly) {
 	//if (zzub_player_get_midi_lock(player) && plugin == zzub_player_get_midi_plugin(player))
 	//	label = "*"+label;
 
-	int adjustY = plugin->minimized ? -GetFontHeight() : 0;
+	int adjustY = plugin->minimized ? (int)-GetFontHeight() : 0;
 
 	//if (useSkins && pinfo.skin && pinfo.skin->skin && !zzub_plugin_get_minimize(plugin)) {
 	//	dc.SetTextColor(pinfo.skin->textColor);
 	//} else {
 		dc.SetTextColor(machineTextColor);
 	//}
-	dc.TextOut(mRect.left+halfWidth, mRect.top+halfHeight-(GetFontHeight()/2)+adjustY, label.c_str(), (int)label.length());
+	dc.TextOut(mRect.left + halfWidth, mRect.top + halfHeight - (int)(GetFontHeight() / 2) + adjustY, label.c_str(), (int)label.length());
 
 	dc.SelectFont(prevFont);
 	dc.SetTextAlign(prevAlign);
@@ -218,7 +218,7 @@ void CGraphCtrl::PaintNodes(CDC& dc) {
 		GetMachinePoint(to_plugin, &mPoint);
 
 		int type = edge->type;
-		int amp = edge->amp * 0x4000;
+		int amp = (int)(edge->amp * 0x4000);
 
 		CPen* pen = &borderPen;
 		if (edge->is_indirect) {
@@ -442,13 +442,13 @@ LRESULT CGraphCtrl::OnMouseWheel(UINT /*uMsg*/, WPARAM wParam, LPARAM /*lParam*/
 	if (IsCtrlDown()) {
 		if (d < 0) {
 			if (scale < MAX_MACHINE_SCALE) {
-				scale += 0.1;
+				scale += 0.1f;
 				GetParent().SendMessage(WM_COMMAND, MAKELONG(GetDlgCtrlID(), GN_SCALE_CHANGE), 0);
 				InvalidateMachines();
 			}
 		} else {
 			if (scale > MIN_MACHINE_SCALE) {
-				scale -= 0.1;
+				scale -= 0.1f;
 				GetParent().SendMessage(WM_COMMAND, MAKELONG(GetDlgCtrlID(), GN_SCALE_CHANGE), 0);
 				InvalidateMachines();
 			}
@@ -809,8 +809,8 @@ void CGraphCtrl::GetMachinePoint(CGraphNode* machine, POINT* pt) {
 void CGraphCtrl::GetMachineLeftTop(CGraphNode* machine, POINT* pt) {
 	GetMachinePoint(machine, pt);
 
-	pt->x -= ((GetMachineWidth(machine) / 2) * scale);
-	pt->y -= ((GetMachineHeight(machine) / 2) * scale);
+	pt->x -= (LONG)((GetMachineWidth(machine) / 2) * scale);
+	pt->y -= (LONG)((GetMachineHeight(machine) / 2) * scale);
 }
 
 void CGraphCtrl::GetStatusRect(CGraphNode* plugin, RECT* rc) {
@@ -830,10 +830,10 @@ void CGraphCtrl::GetStatusRect(CGraphNode* plugin, RECT* rc) {
 			(double)mRect.top + (double)bm.bmHeight * scale);
 	} else {*/
 
-	int left = (double)pt.x + 2.0f*scale;
-	int top = (double)pt.y + 2.0f*scale;
-	int right = (double)pt.x + (2.0f + led_width)*scale;
-	int bottom = (double)pt.y + (2.0f + led_height)*scale;
+	int left = (int)(pt.x + 2.0f * scale);
+	int top = (int)(pt.y + 2.0f * scale);
+	int right = (int)(pt.x + (2.0f + led_width) * scale);
+	int bottom = (int)(pt.y + (2.0f + led_height) * scale);
 
 	int width = std::max(right - left, led_width_minimum);
 	int height = std::max(bottom - top, led_height_minimum);
@@ -865,8 +865,8 @@ void CGraphCtrl::GetMachineRect(CGraphNode* machine, RECT* outputRect) {
 		right = rcStatus.right + diff_x;
 		bottom = rcStatus.bottom + diff_y;
 	} else {
-		right = left + (GetMachineWidth(machine) * scale);
-		bottom = top + (GetMachineHeight(machine) * scale);
+		right = left + (int)(GetMachineWidth(machine) * scale);
+		bottom = top + (int)(GetMachineHeight(machine) * scale);
 	}
 
 	SetRect(outputRect, left, top, right, bottom);
@@ -946,7 +946,7 @@ void CGraphCtrl::PaintVolumeSlider(CDC& dc, RECT vsr, CGraphEdge* audioconn) {
 	dc.Rectangle(hx, hy, hx+32, hy+128);
 
 //	int vx = ((volmax - volmin) - value) / ((volmax - volmin) / (128 - 20));
-	int vx = 108 - (audioconn->amp * 54);
+	int vx = 108 - (int)(audioconn->amp * 54);
 
 	dc.SelectBrush(ampHandleBrush);
 	dc.Rectangle(hx, hy + vx, hx + 32, hy + vx + 20);
@@ -978,16 +978,16 @@ void CGraphCtrl::PaintDirectionTriangle(CDC& dc, POINT const& mPoint, POINT cons
 
 	float fx = (hx + rx*-10*scale);
 	float fy = (hy + ry*-10*scale);
-	dc.MoveTo(fx, fy);
+	dc.MoveTo((int)fx, (int)fy);
 	POINT pts[3];
-	pts[0].x = (hx + rx*-10*scale);
-	pts[0].y = (hy + ry*-10*scale);
+	pts[0].x = (LONG)(hx + rx*-10*scale);
+	pts[0].y = (LONG)(hy + ry*-10*scale);
 
-	pts[1].x = (hx+rx*10*scale);
-	pts[1].y = (hy+ry*10*scale);
+	pts[1].x = (LONG)(hx+rx*10*scale);
+	pts[1].y = (LONG)(hy+ry*10*scale);
 
-	pts[2].x = (hx+ux*-16*scale);
-	pts[2].y = (hy+uy*-16*scale);
+	pts[2].x = (LONG)(hx+ux*-16*scale);
+	pts[2].y = (LONG)(hy+uy*-16*scale);
 
 	// Colorize based on amp
 
@@ -1017,18 +1017,18 @@ void CGraphCtrl::PaintDirectionTriangle(CDC& dc, POINT const& mPoint, POINT cons
 	// draw arrow label
 	{
 		// hx,hy er altså midten av tekstboksen vår
-		hx = mx+lx/2;
-		hy = my+ly/2;
+		hx = mx + lx / 2.0f;
+		hy = my + ly / 2.0f;
 		POINT tp;
-		tp.x = hx + ux*2;
-		tp.y = hy + ux*2;
+		tp.x = (LONG)(hx + ux * 2);
+		tp.y = (LONG)(hy + ux * 2);
 
-		int fontIndex = (scale/MAX_MACHINE_SCALE)*((float)MAX_MACHINE_FONTS-0.5);
+		int fontIndex = (int)((scale / MAX_MACHINE_SCALE) * ((float)MAX_MACHINE_FONTS - 0.5f));
 		CFont prevFont = dc.SelectFont(machineFont[fontIndex]);
 		UINT prevAlign = dc.SetTextAlign(TA_LEFT);
 		int prevBkMode = dc.SetBkMode(TRANSPARENT);
 
-		int offset_x = scale * 24;
+		int offset_x = (int)scale * 24;
 		int offset_y = -8;// * scale;
 
 		dc.SetTextColor(machineTextColor);
@@ -1142,8 +1142,8 @@ void CGraphCtrl::GetVolumeSliderRect(POINT const& mPoint, POINT const& sPoint, R
 	double ux = (double)lx/len;
 	double uy = (double)ly/len;
 
-	int hx = mx+lx/2 + ux*8;
-	int hy = my+ly/2 + uy*8;
+	int hx = (int)(mx + lx / 2 + ux * 8);
+	int hy = (int)(my + ly / 2 + uy * 8);
 
 	hx -= 16;	// ??
 	hy -= 64;	// ??
@@ -1411,10 +1411,10 @@ bool CGraphCtrl::GetConnectionRect(CGraphNodePair const& conn, RECT* rc) {
 	int hx = mx+lx/2;
 	int hy = my+ly/2;
 
-	rc->left = min(hx-scale*10, hx+scale*10);
-	rc->top = min(hy-scale*10, hy+scale*10);
-	rc->right = max(hx-scale*10, hx+scale*10);
-	rc->bottom = max(hy-scale*10, hy+scale*10);
+	rc->left = (LONG)min(hx-scale*10, hx+scale*10);
+	rc->top = (LONG)min(hy-scale*10, hy+scale*10);
+	rc->right = (LONG)max(hx-scale*10, hx+scale*10);
+	rc->bottom = (LONG)max(hy-scale*10, hy+scale*10);
 	return true;
 }
 
@@ -1425,7 +1425,7 @@ bool CGraphCtrl::GetConnectionTextRect(CGraphNodePair const& conn, RECT* rc) {
 	// still getting trails now and then.
 	rc->left = cRect.right;// + (scale*24);
 	rc->top = cRect.top;// - 8;
-	rc->right = cRect.right + (scale*125);
+	rc->right = cRect.right + (int)(scale*125);
 	rc->bottom = cRect.bottom;
 	return true;
 }
@@ -1439,10 +1439,10 @@ void CGraphCtrl::GetMachineInvalidRect(CGraphNode* machine, RECT* outputRect) {
 		RECT rc;
 		GetMachineRect(machine, &rc);
 
-		int halfWidth = (machine_width/2) * scale;
+		int halfWidth = (int)((machine_width / 2) * scale);
 
 		outputRect->left = pt.x - halfWidth;
-		outputRect->top = pt.y - (GetFontHeight()*2);
+		outputRect->top = pt.y - (int)(GetFontHeight() * 2);
 		outputRect->right = pt.x + halfWidth;
 		outputRect->bottom = rc.bottom;
 	} else {
