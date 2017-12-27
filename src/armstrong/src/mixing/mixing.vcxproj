@@ -221,11 +221,16 @@
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h
-</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">zidl %(FullPath) cheader %(RootDir)%(Directory)/pluginenum.h</Command>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|x64'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(RootDir)%(Directory)/pluginenum.h;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -39,6 +39,18 @@
           <Component Id="LIBSNDFILE_1.DLL" DiskId="1" Guid="EB5FA877-40E1-4B73-B74D-3663DAFD3DCA">
             <File Id="LIBSNDFILE_1.DLL" Name="libsndfile-1.dll" Source="$(var.SolutionDir)\libsndfile-1.dll" />
           </Component>
+          <Component Id="FLAC.DLL" DiskId="1" Guid="BD2483FE-9EB6-4514-969E-1E338B787541">
+            <File Id="FLAC.DLL" Name="flac.dll" Source="$(var.SolutionDir)\flac.dll" />
+          </Component>
+          <Component Id="OGG.DLL" DiskId="1" Guid="AB0179C2-9C43-4411-8872-9763CD740F6F">
+            <File Id="OGG.DLL" Name="ogg.dll" Source="$(var.SolutionDir)\ogg.dll" />
+          </Component>
+          <Component Id="VORBIS.DLL" DiskId="1" Guid="49909E2F-921F-4C2F-B330-00AEB4AEBB4C">
+            <File Id="VORBIS.DLL" Name="vorbis.dll" Source="$(var.SolutionDir)\vorbis.dll" />
+          </Component>
+          <Component Id="VORBISENC.DLL" DiskId="1" Guid="2E20B4AA-6054-4ED1-AA70-C9A127D905DF">
+            <File Id="VORBISENC.DLL" Name="vorbisenc.dll" Source="$(var.SolutionDir)\vorbisenc.dll" />
+          </Component>
           <Component Id="MAD.DLL" DiskId="1" Guid="81AC2AE3-B2F3-43F6-B5A2-7021558C63A6">
             <File Id="MAD.DLL" Name="mad.dll" Source="$(var.SolutionDir)\mad.dll" />
           </Component>
@@ -48,40 +60,51 @@
           <Component Id="DSPLIB.DLL" DiskId="1" Guid="FEB7E6D5-5C2D-440E-946E-E0B78BB9374F">
             <File Id="DSPLIB.DLL" Name="Dsplib.dll" Source="$(var.SolutionDir)\Dsplib.dll" />
           </Component>
+          <Component Id="PORTMIDI.DLL" DiskId="1" Guid="">
+            <File Id="PORTMIDI.DLL" Name="portmidi.dll" Source="$(var.SolutionDir)\portmidi.dll" />
+          </Component>
+          <Component Id="JSONCPP.DLL" DiskId="1" Guid="">
+            <File Id="JSONCPP.DLL" Name="jsoncpp.dll" Source="$(var.SolutionDir)\jsoncpp.dll" />
+          </Component>
           <?if $(sys.BUILDARCH)="x86" ?>
-          <Component Id="SOUNDTOUCHDLL.DLL" DiskId="1" Guid="FB4B5A04-0038-43B7-8E80-8F45EC2B4132">
-            <File Id="SOUNDTOUCHDLL.DLL" Name="SoundTouchDLL.dll" Source="$(var.SolutionDir)\SoundTouchDLL.dll" />
-          </Component>
-          <!--Component Id="AUXBUS.DLL" DiskId="1" Guid="2AC9C6E4-C7C9-4EDE-AF0D-8187C7D98EAF">
-            <File Id="AUXBUS.DLL" Name="Auxbus.dll" Source="$(var.SolutionDir)\Auxbus.dll" />
-          </Component-->
-          <Component Id="GLEW32.DLL" DiskId="1" Guid="1B068A00-A875-404F-A8EC-B4BD8B660932">
-            <File Id="GLEW32.DLL" Name="glew32.dll" Source="$(var.SolutionDir)\glew32.dll" />
-          </Component>
-          <!--Component Id="MSVCP50.DLL" DiskId="1" Guid="9E6214D9-E5F0-406D-8CF7-8CF5C4240C4F">
-            <File Id="MSVCP50.DLL" Name="msvcp50.dll" Source="$(var.SolutionDir)\msvcp50.dll" />
-          </Component>
-          <Component Id="MSVCR70.DLL" DiskId="1" Guid="11300BA5-E208-4F02-9036-087A9AAD3458">
-            <File Id="MSVCR70.DLL" Name="msvcr70.dll" Source="$(var.SolutionDir)\msvcr70.dll" />
-          </Component>
-          <Component Id="MSVCP71.DLL" DiskId="1" Guid="89D025E5-8DD9-4324-A84C-8527C5D1C276">
-            <File Id="MSVCP71.DLL" Name="msvcp71.dll" Source="$(var.SolutionDir)\msvcp71.dll" />
-          </Component>
-          <Component Id="MSVCR71.DLL" DiskId="1" Guid="83EFE74B-4CE8-4EA7-BDD9-BB07A09522A4">
-            <File Id="MSVCR71.DLL" Name="msvcr71.dll" Source="$(var.SolutionDir)\MSVCR71.dll" />
-          </Component>
-          <Component Id="MSVCP100.DLL" DiskId="1" Guid="2AD2AD33-2D75-4688-A06B-BDD608F3F5B5">
-            <File Id="MSVCP100.DLL" Name="msvcp100.dll" Source="$(var.SolutionDir)\msvcp100.dll" />
-          </Component>
-          <Component Id="MSVCR100.DLL" DiskId="1" Guid="CB4E4EAF-A2DE-4A60-B332-F09769D751D9">
-            <File Id="MSVCR100.DLL" Name="msvcr100.dll" Source="$(var.SolutionDir)\MSVCR100.dll" />
-          </Component>
-          <Component Id="MSVCP110.DLL" DiskId="1" Guid="80FDFA7A-491B-45BB-BF2B-DAAE0977A868">
-            <File Id="MSVCP110.DLL" Name="msvcp110.dll" Source="$(var.SolutionDir)\msvcp110.dll" />
-          </Component>
-          <Component Id="MSVCR110.DLL" DiskId="1" Guid="F80B2877-9D82-471F-91C6-1DC92B33A986">
-            <File Id="MSVCR110.DLL" Name="msvcr110.dll" Source="$(var.SolutionDir)\MSVCR110.dll" />
-          </Component-->
+            <Component Id="SOUNDTOUCH.DLL" DiskId="1" Guid="2F53061D-3FBF-42C3-A38A-83C63CE3A1BA">
+              <File Id="SOUNDTOUCH.DLL" Name="SoundTouch.dll" Source="$(var.SolutionDir)\SoundTouch.dll" />
+            </Component>
+            <!--Component Id="AUXBUS.DLL" DiskId="1" Guid="2AC9C6E4-C7C9-4EDE-AF0D-8187C7D98EAF">
+              <File Id="AUXBUS.DLL" Name="Auxbus.dll" Source="$(var.SolutionDir)\Auxbus.dll" />
+            </Component-->
+            <Component Id="GLEW32.DLL" DiskId="1" Guid="1B068A00-A875-404F-A8EC-B4BD8B660932">
+              <File Id="GLEW32.DLL" Name="glew32.dll" Source="$(var.SolutionDir)\glew32.dll" />
+            </Component>
+            <!--Component Id="MSVCP50.DLL" DiskId="1" Guid="9E6214D9-E5F0-406D-8CF7-8CF5C4240C4F">
+              <File Id="MSVCP50.DLL" Name="msvcp50.dll" Source="$(var.SolutionDir)\msvcp50.dll" />
+            </Component>
+            <Component Id="MSVCR70.DLL" DiskId="1" Guid="11300BA5-E208-4F02-9036-087A9AAD3458">
+              <File Id="MSVCR70.DLL" Name="msvcr70.dll" Source="$(var.SolutionDir)\msvcr70.dll" />
+            </Component>
+            <Component Id="MSVCP71.DLL" DiskId="1" Guid="89D025E5-8DD9-4324-A84C-8527C5D1C276">
+              <File Id="MSVCP71.DLL" Name="msvcp71.dll" Source="$(var.SolutionDir)\msvcp71.dll" />
+            </Component>
+            <Component Id="MSVCR71.DLL" DiskId="1" Guid="83EFE74B-4CE8-4EA7-BDD9-BB07A09522A4">
+              <File Id="MSVCR71.DLL" Name="msvcr71.dll" Source="$(var.SolutionDir)\MSVCR71.dll" />
+            </Component>
+            <Component Id="MSVCP100.DLL" DiskId="1" Guid="2AD2AD33-2D75-4688-A06B-BDD608F3F5B5">
+              <File Id="MSVCP100.DLL" Name="msvcp100.dll" Source="$(var.SolutionDir)\msvcp100.dll" />
+            </Component>
+            <Component Id="MSVCR100.DLL" DiskId="1" Guid="CB4E4EAF-A2DE-4A60-B332-F09769D751D9">
+              <File Id="MSVCR100.DLL" Name="msvcr100.dll" Source="$(var.SolutionDir)\MSVCR100.dll" />
+            </Component>
+            <Component Id="MSVCP110.DLL" DiskId="1" Guid="80FDFA7A-491B-45BB-BF2B-DAAE0977A868">
+              <File Id="MSVCP110.DLL" Name="msvcp110.dll" Source="$(var.SolutionDir)\msvcp110.dll" />
+            </Component>
+            <Component Id="MSVCR110.DLL" DiskId="1" Guid="F80B2877-9D82-471F-91C6-1DC92B33A986">
+              <File Id="MSVCR110.DLL" Name="msvcr110.dll" Source="$(var.SolutionDir)\MSVCR110.dll" />
+            </Component-->
+          <?endif ?>
+          <?if $(sys.BUILDARCH)="x64" ?>
+            <Component Id="SOUNDTOUCH_X64.DLL" DiskId="1" Guid="40DC1682-F5C9-4509-98F6-5880E60F070C">
+              <File Id="SOUNDTOUCH_X64.DLL" Name="SoundTouch_x64.dll" Source="$(var.SolutionDir)\SoundTouch_x64.dll" />
+            </Component>
           <?endif ?>
           <Component Id="BUZZ2ZZUB.INI" DiskId="1" Guid="BFB6714F-F0F0-4735-B585-153586DE061D">
             <File Id="BUZZ2ZZUB.INI" Name="buzz2zzub.ini" Source="..\..\buzz2zzub.ini" />
@@ -265,15 +288,24 @@
       <ComponentRef Id="ARMSTRONG.DLL" />
       <ComponentRef Id="SQLITE3.DLL" />
       <ComponentRef Id="LIBSNDFILE_1.DLL" />
+      <ComponentRef Id="FLAC.DLL" />
+      <ComponentRef Id="OGG.DLL" />
+      <ComponentRef Id="VORBIS.DLL" />
+      <ComponentRef Id="VORBISENC.DLL" />
       <ComponentRef Id="MAD.DLL" />
       <ComponentRef Id="ZLIB1.DLL" />
       <ComponentRef Id="DSPLIB.DLL" />
+      <ComponentRef Id="PORTMIDI.DLL" />
+      <ComponentRef Id="JSONCPP.DLL" />
       <?if $(sys.BUILDARCH)="x86" ?>
-      <ComponentRef Id="SOUNDTOUCHDLL.DLL" />
+      <ComponentRef Id="SOUNDTOUCH.DLL" />
       <!--ComponentRef Id="AUXBUS.DLL" /-->
       <ComponentRef Id="GLEW32.DLL" />
       <!--ComponentRef Id="MSVCP110.DLL" />
       <ComponentRef Id="MSVCR110.DLL" /-->
+      <?endif ?>
+      <?if $(sys.BUILDARCH)="x64" ?>
+      <ComponentRef Id="SOUNDTOUCH_X64.DLL" />
       <?endif ?>
       <ComponentRef Id="INPZL.COL" />
       <ComponentRef Id="BUZZ2ZZUB.INI" />

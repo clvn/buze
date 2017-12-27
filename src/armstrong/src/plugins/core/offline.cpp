@@ -199,7 +199,7 @@ zzub::plugin* reverse_plugin_info::create_plugin() {
 	return new reverseplugin();
 }
 
-#if defined(_WIN32) && !defined(_WIN64)
+#if defined(_WIN32)
 
 // TODO: consider moving into separate pluginlib with other plugins based on soundtouch, e.g a realtime pitchshifter
 #include <SoundTouchDLL.h>
