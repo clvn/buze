@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 #include <algorithm>
 
-size_t sizeFromWaveFormat(int waveFormat);
+int sizeFromWaveFormat(int waveFormat);
 
 // buffer tools
 //void AddS2SPanMC(float** output, float** input, int numSamples, float inAmp, float inPan);

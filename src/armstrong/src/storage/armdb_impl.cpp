@@ -2044,7 +2044,7 @@ void wavelevel::insert_chunks(std::vector<wavelevel::chunk>& chunks, int srcoffs
 		srclength += i->numsamples;
 
 	int destchannels = (wave.flags & (1 << 3)) ? 2 : 1;
-	int bytes_per_sample = destchannels * (int)sizeFromWaveFormat(format);
+	int bytes_per_sample = destchannels * sizeFromWaveFormat(format);
 	int resultlength = srclength * bytes_per_sample;
 	unsigned char* resultbuffer = new unsigned char[resultlength];
 	assert(resultbuffer != 0);
@@ -2077,7 +2077,7 @@ void wavelevel::insert_sample_range(const void* srcbuffer, int srcoffset, int sr
 	song.get_wave_by_wavelevel_id(id, wave);
 
 	int destchannels = (wave.flags & (1 << 3)) ? 2 : 1;
-	int bytes_per_sample = destchannels * (int)sizeFromWaveFormat(format);
+	int bytes_per_sample = destchannels * sizeFromWaveFormat(format);
 	int resultlength = srclength * bytes_per_sample;
 	unsigned char* resultbuffer = new unsigned char[resultlength];
 	assert(resultbuffer != 0);
@@ -2126,7 +2126,7 @@ void wavelevel::replace_sample_range(const void* srcbuffer, int srcoffset, int s
 	song.get_wave_by_wavelevel_id(id, wave);
 
 	int destchannels = (wave.flags & (1 << 3)) ? 2 : 1;
-	int bytes_per_sample = destchannels * (int)sizeFromWaveFormat(format);
+	int bytes_per_sample = destchannels * sizeFromWaveFormat(format);
 	int resultlength = srclength * bytes_per_sample;
 
 	unsigned char* resultbuffer = new unsigned char[resultlength];
@@ -2150,7 +2150,7 @@ void wavelevel::delete_sample_range(int offset, int length) {
 	song.get_wave_by_wavelevel_id(id, wave);
 
 	int destchannels = (wave.flags & (1 << 3)) ? 2 : 1;
-	int bytes_per_sample = destchannels * (int)sizeFromWaveFormat(format);
+	int bytes_per_sample = destchannels * sizeFromWaveFormat(format);
 	int resultlength = length * bytes_per_sample;
 	int resultoffset = offset * bytes_per_sample;
 
@@ -2215,7 +2215,7 @@ int wavelevel::get_bytes_per_sample() {
 	song.get_wave_by_wavelevel_id(id, wave);
 
 	int destchannels = (wave.flags & (1 << 3)) ? 2 : 1;
-	return destchannels * (int)sizeFromWaveFormat(format);
+	return destchannels * sizeFromWaveFormat(format);
 }
 
 void wavelevel::destroy() {

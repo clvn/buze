@@ -1937,7 +1937,7 @@ void mixer::process_graph_multithreaded_worker(multithreadworker* worker) {
 void mixer::process_graph_multithreaded(int sample_count) {
 	// add all leaves - ie generators etc - to the work queue
 	for (std::vector<metaplugin*>::iterator i = workorder.begin(); i != workorder.end(); ++i) {
-		(*i)->audiodata->dependencies.store((*i)->connections.size());
+		(*i)->audiodata->dependencies.store((int)(*i)->connections.size());
 		if ((*i)->connections.size() == 0) {
 			thread_workqueue.push(*i);
 		}
@@ -2013,7 +2013,7 @@ void mixer::set_thread_count(int threads) {
 		threadworkers.next().clear();
 	} else {
 		// create new worker threads - if the number of threads is reduced, it'll be handled in on_set_thread_count and finalize_set_thread_count
-		int curthreadcount = threadworkers.next().size();
+		int curthreadcount = (int)threadworkers.next().size();
 		threadworkers.next().resize(threads);
 		for (int i = curthreadcount; i < threads; i++) {
 			//DWORD threadID;

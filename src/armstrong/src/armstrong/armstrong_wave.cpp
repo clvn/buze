@@ -139,7 +139,7 @@ int zzub_wavelevel_load_wav(zzub_wavelevel_t* wavelevel, int offset, int clear, 
 			return -1;
 	}
 
-	int bytes_per_sample = (int)sizeFromWaveFormat(format) * sfinfo.channels;
+	int bytes_per_sample = sizeFromWaveFormat(format) * sfinfo.channels;
 	char* buffer = new char[bytes_per_sample * sfinfo.frames];
 
 	switch (format) {
@@ -844,7 +844,7 @@ void zzub_wave_importer_get_instrument_sample_info(zzub_wave_importer_t *waveimp
 
 	assert(wavedata.channels != 0);
 
-	int bytes_per_sample = (int)sizeFromWaveFormat(wavedata.format) * wavedata.channels;
+	int bytes_per_sample = sizeFromWaveFormat(wavedata.format) * wavedata.channels;
 	char* buffer = new char[bytes_per_sample * wavedata.sample_count];
 
 	importer->read_wave_level_samples(instrument, sample, buffer);

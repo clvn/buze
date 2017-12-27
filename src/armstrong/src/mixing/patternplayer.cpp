@@ -433,7 +433,7 @@ void patternplayer::update(bool offline) {
 		}
 	} else {
 		// recalc next_pattern_samples with tempo changes
-		next_pattern_samples = get_samplecount_for_rows(next_pattern_row, playpattern);
+		next_pattern_samples = (int)get_samplecount_for_rows(next_pattern_row, playpattern);
 	}
 	assert(next_pattern_samples > 0);
 }
@@ -580,7 +580,7 @@ void patternplayer::process_sequence(bool offline) {
 	if (playing) {
 		double n;
 		_master_info.tick_position = (int)tick_position;
-		_master_info.tick_position_frac = modf(tick_position, &n);
+		_master_info.tick_position_frac = (float)modf(tick_position, &n);
 		_master_info.row_position = pattern_row;
 
 		if (next_pattern_samples == 0) {
@@ -598,12 +598,12 @@ void patternplayer::set_speed(int bpm, int tpb, float swing, int swing_ticks) {
 	if (bpm == _master_info.beats_per_minute && tpb == _master_info.ticks_per_beat && swing == _master_info.swing_amount && swing_ticks == _master_info.swing_ticks)
 		return ;
 
-	_master_info.samples_per_second = sps;
+	_master_info.samples_per_second = (int)sps;
 	_master_info.beats_per_minute = bpm;
 	_master_info.ticks_per_beat = tpb;
-	_master_info.samples_per_tick = spt;
-	_master_info.samples_per_tick_frac = modf(spt, &n);
-	_master_info.ticks_per_second = (int)(sps / spt);
+	_master_info.samples_per_tick = (int)spt;
+	_master_info.samples_per_tick_frac = (float)modf(spt, &n);
+	_master_info.ticks_per_second = (float)(sps / spt);
 	_master_info.swing_amount = swing;
 	_master_info.swing_ticks = swing_ticks;
 	
@@ -614,7 +614,7 @@ void patternplayer::set_speed(int bpm, int tpb, float swing, int swing_ticks) {
 
 // swingamont must be between 0..1 where 0.5 = no swing
 void patternplayer::get_swing(double* samples_per_row_target, double* samples_per_row_before_swing, double* samples_per_row_after_swing, int* outbeat_rows) {
-	int pattern_resolution = get_pattern_resolution();
+	int pattern_resolution = (int)get_pattern_resolution();
 	int beat_rows = _master_info.ticks_per_beat * pattern_resolution;
 	int swing_beat_rows = beat_rows - (beat_rows % 2);
 	double sec_per_row = 60.0 / _master_info.beats_per_minute / beat_rows;

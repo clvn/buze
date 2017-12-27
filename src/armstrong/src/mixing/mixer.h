@@ -168,7 +168,7 @@ struct mixer {
 
 	int buffer_size;
 	int buffer_position;
-	int falloff; // set when samplerate changes
+	float falloff; // set when samplerate changes
 	int latency_buffer_position;
 
 	std::map<mutetrackkeytype, int> mutestate; // int = column_id. existence of a key means muting

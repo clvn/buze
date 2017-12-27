@@ -165,9 +165,7 @@ int interpolator::get_value_inertial() {
 	assert(timediff >= 0);
 
 	float valuedelta = (events[1].value - events[0].value) / (float)numsteps;
-
-	int value = events[0].value + valuedelta * timediff;
-
+	int value = (int)(events[0].value + valuedelta * timediff);
 	return value;
 }
 
@@ -187,9 +185,8 @@ int interpolator::get_value_linear() {
 
 	int valuetime = time - events[0].time;
 	float valuedelta = (events[1].value - events[0].value) / (float)timediff;
-	int value = events[0].value + valuedelta * valuetime;
+	int value = (int)(events[0].value + valuedelta * valuetime);
 	return value;
-
 }
 
 pluginstate::pluginstate() {

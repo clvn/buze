@@ -110,7 +110,7 @@ void AddS2SPanMC(float** output, float** input, int numSamples, float inAmp, flo
 	} while (--numSamples);
 }
 
-size_t sizeFromWaveFormat(int waveFormat) {
+int sizeFromWaveFormat(int waveFormat) {
 	switch (waveFormat) {
 		case zzub_wave_buffer_type_si16:
 			return 2;
@@ -128,7 +128,7 @@ size_t sizeFromWaveFormat(int waveFormat) {
 // det er kanskje mulig å oppgradere copy-metodene med en interleave på hver buffer for å gjøre konvertering mellom stereo/mono integrert
 void CopyMonoToStereoEx(void* srcbuf, void* targetbuf, size_t numSamples, int waveFormat) {
 
-	int sampleSize=(int)sizeFromWaveFormat(waveFormat);
+	int sampleSize = sizeFromWaveFormat(waveFormat);
 	char* tbl=(char*)targetbuf;
 	char* tbr=(char*)targetbuf;
 	tbr+=sampleSize;
