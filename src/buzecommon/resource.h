@@ -2,11 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by buzecommon.rc
 
-//manually added to make IDC_STATIC work
-#ifndef IDC_STATIC
-#define IDC_STATIC                        -1
-#endif
-
 #define IDD_WAITDIALOG  206
 #define IDC_WAITTEXT                    1000
 

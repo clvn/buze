@@ -2,7 +2,6 @@
 #define ID_FILE_SAVE_AS                 0xE104
 
 // Common for mainframe and all views
-#define ID_EDIT_DELETE                  32817
 #define ID_EDIT_SELECTALL               32818
 #define ID_EDIT_CLEARSELECTION          32819
 #define ID_BLANK_STRING                 32838

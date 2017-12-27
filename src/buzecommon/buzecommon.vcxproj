@@ -121,8 +121,8 @@
       <Command>rem lib /remove:.\Debug\buzecommon.res Debug/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib />
     <Lib>
@@ -147,8 +147,8 @@
       <Command>rem lib /remove:.\Debug\buzecommon.res Debug/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -167,8 +167,8 @@
       <Command>rem lib /remove:.\Release\buzecommon.res Release/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -190,8 +190,8 @@
       <Command>rem lib /remove:.\Release\buzecommon.res Release/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseChecked|Win32'">
@@ -210,8 +210,8 @@
       <Command>rem lib /remove:.\ReleaseChecked\buzecommon.res ReleaseChecked/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -233,8 +233,8 @@
       <Command>rem lib /remove:.\ReleaseChecked\buzecommon.res ReleaseChecked/buzecommon.lib</Command>
     </PostBuildEvent>
     <ResourceCompile>
-      <AdditionalIncludeDirectories>..\wtl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ResourceOutputFileName>$(OutDir)%(Filename).res</ResourceOutputFileName>
+      <AdditionalIncludeDirectories>$(IncludePath)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>

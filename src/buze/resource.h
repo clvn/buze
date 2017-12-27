@@ -2,11 +2,6 @@
 // Microsoft Visual C++ generated include file.
 // Used by buze.rc
 
-// manually added to make IDC_STATIC work
-#ifndef IDC_STATIC
-#define IDC_STATIC                        -1
-#endif
-
 // File commands
 #define ID_FILE_NEW                     0xE100
 #define ID_FILE_OPEN                    0xE101

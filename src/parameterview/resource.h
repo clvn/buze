@@ -1,8 +1,3 @@
-//manually added to make IDC_STATIC work
-#ifndef IDC_STATIC
-#define IDC_STATIC                        -1
-#endif
-
 // Common for mainframe and all views
 #define ID_BLANK_STRING                 32838
 
