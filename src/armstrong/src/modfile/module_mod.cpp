@@ -214,7 +214,7 @@ int module_mod::sample_bits_per_sample(int instrument, int sample) {
 }
 
 unsigned long module_mod::sample_samples(int instrument, int sample) {
-	return (float)header.sample[instrument].length * 2;
+	return header.sample[instrument].length * 2;
 }
 
 void module_mod::sample_seek(int instrument, int sample) {

@@ -326,10 +326,8 @@ enum mad_flow module_mad::zzub_mad_input(struct mad_stream *stream) {
 	if ((MAD_FRAMESIZE-bufferleft) > 0) {
 
 		strm.read((char*)&framebuffer[framepos], MAD_FRAMESIZE - bufferleft);
-		int bytes_read = strm.gcount();//MAD_FRAMESIZE - bufferleft;
-		//printf("bytes_read = %i\n", bytes_read);
+		int bytes_read = (int)strm.gcount();
 		framepos += bytes_read;
-		//~ printf("%i bytes read\n", bytes_read);
 		if (!bytes_read)
 			return MAD_FLOW_STOP;
 	}

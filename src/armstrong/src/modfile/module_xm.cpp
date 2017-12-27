@@ -66,10 +66,9 @@ bool module_xm::open(std::string fileName) {
 	for (int i = 0; i < header.numInstr; i++) {
 		instrument_xm xi;
 		int headerSize;
-		int headerOffset = strm.tellg();//reader.position();
+		int headerOffset = (int)strm.tellg();
 		strm.read((char*)&headerSize, sizeof(int));
 
-		//if (0 == strm.read((char*)&xi.header, sizeof(_XMINSTRUMENT))) break;	// eof = no more samples?
 		strm.read((char*)&xi.header, sizeof(_XMINSTRUMENT));
 		if (strm.eof()) break;
 
@@ -92,7 +91,7 @@ bool module_xm::open(std::string fileName) {
 
 			// here be sampledata
 			for (int j = 0; j < xi.header.numSamples; j++) {
-				xi.sampleOffsets.push_back(strm.tellg());
+				xi.sampleOffsets.push_back((long)strm.tellg());
 				int bytesPerSample = 1;//(xi.samples[j].flags & sample_flag_16bit)?2:1;
 				strm.seekg(xi.samples[j].len * bytesPerSample, SEEK_CUR);
 			}
@@ -121,7 +120,7 @@ fxtype module_xm::type() {
 }
 
 int module_xm::sample_count(int instrument) {
-	if (instrument<0 || instrument>=instruments.size()) return 0;
+	if (instrument<0 || instrument >= (int)instruments.size()) return 0;
 	return instruments[instrument].header.numSamples;
 }
 
@@ -260,7 +259,7 @@ int module_xm::instrument_count() {
 }
 
 std::string module_xm::instrument_name(int instrument) { 
-	if (instrument<0 || instrument>=instruments.size()) return "";
+	if (instrument<0 || instrument >= (int)instruments.size()) return "";
 	return instruments[instrument].header.name; 
 }
 

@@ -394,7 +394,7 @@ int itsex_decompress16_chunk (std::istream& module, void *dst, int len, int it21
 			word border = (0xFFFF >> (17 - width)) - 8;
 								/* lower border for width chg */
 
-			if (value > border && value <= (border + 16)) {
+			if (value > border && value <= (border + (dword)16)) {
 				value -= border;			/* convert width to 1-8 */
 				width = (value < width) ? value : value + 1;
 								/* and expand it */

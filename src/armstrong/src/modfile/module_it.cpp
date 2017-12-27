@@ -48,14 +48,14 @@ bool module_it::open(std::string fileName) {
 
 	instruments = new _ITINSTRUMENT_NEW[header.InsNum];
 	instrument_samples.resize(instrument_offsets.size());
-	for (int i = 0; i < instrument_offsets.size(); i++) {
+	for (int i = 0; i < (int)instrument_offsets.size(); i++) {
 		strm.seekg(instrument_offsets[i]);
 		strm.read((char*)&instruments[i], sizeof(_ITINSTRUMENT_NEW));
 		get_instrument_samples(instruments[i], instrument_samples[i]);
 	}
 
 	samples = new _ITSAMPLE[header.SmpNum];
-	for (int i = 0; i < sample_offsets.size(); i++) {
+	for (int i = 0; i < (int)sample_offsets.size(); i++) {
 		strm.seekg(sample_offsets[i]);
 		strm.read((char*)&samples[i], sizeof(_ITSAMPLE));
 	}
@@ -65,7 +65,7 @@ bool module_it::open(std::string fileName) {
 	if (header.ChnPan[i]&0x80) numChannels = i+1;
 	}*/
 	max_channel = 0;
-	for (int i = 0; i < pattern_offsets.size(); i++) {
+	for (int i = 0; i < (int)pattern_offsets.size(); i++) {
 		strm.seekg(pattern_offsets[i]);
 		unsigned short size, rows;
 		strm.read((char*)&size, sizeof(unsigned short));

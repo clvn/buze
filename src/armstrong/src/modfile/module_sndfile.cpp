@@ -169,7 +169,7 @@ int module_sndfile::sample_bits_per_sample(int instrument, int sample) {
 }
 
 unsigned long module_sndfile::sample_samples(int instrument, int sample) {
-	return sfinfo.frames;
+	return (unsigned long)sfinfo.frames;
 }
 
 void module_sndfile::sample_seek(int instrument, int sample) {
