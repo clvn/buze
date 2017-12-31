@@ -191,7 +191,7 @@ float CLadspaInfo::get_default_parameter_value(int idx, float *df, float *mi, fl
 	}*/	
 	
 	if ( LADSPA_IS_HINT_INTEGER(*range) ) {
-		def = (int)def;
+		def = (float)(int)def;
 	}
 
 	if (df) *df=def;

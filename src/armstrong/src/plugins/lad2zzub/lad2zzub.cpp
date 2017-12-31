@@ -171,9 +171,9 @@ void CLadspa::set_parameter(int idx, float val) {
 	PARAMS *p = &info->lad_parameters[idx];
 
 	if ( LADSPA_IS_HINT_INTEGER(p->hint) ) {
-		pluginparams[idx] = (int) ( p->min + ( (p->max - p->min) * val ) );
+		pluginparams[idx] = (float)(int) ( p->min + ( (p->max - p->min) * val ) );
 	} else if ( LADSPA_IS_HINT_TOGGLED(p->hint) ) {
-		pluginparams[idx] =(int)(val+0.5f);
+		pluginparams[idx] = (float)(int)(val+0.5f);
 	} else if ( LADSPA_IS_HINT_LOGARITHMIC(p->hint) ) {
 		pluginparams[idx] = scale(val,p->min,p->max);
 	} else {
