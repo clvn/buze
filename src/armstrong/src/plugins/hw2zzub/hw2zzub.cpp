@@ -104,7 +104,7 @@ struct hwplugin : zzub::plugin
 		{
 			int offset = 0;
 			
-			for (int i = 0; i < info->global_parameters.size(); ++i)
+			for (int i = 0; i < (int)info->global_parameters.size(); ++i)
 			{
 				int size = info->global_parameters[i]->get_bytesize();
 				offsets.push_back(offset);
@@ -303,9 +303,9 @@ bool hwplugincollection::add_plugin(std::string const& path, zzub::pluginfactory
 	if (!parsingSuccessful)
 	{
 		std::cerr << "hw2zzub: failed to parse description file: " << path << "\n";
-		std::cerr << "hw2zzub: parsing error: " << reader.getFormatedErrorMessages() << "\n";
+		std::cerr << "hw2zzub: parsing error: " << reader.getFormattedErrorMessages() << "\n";
 		
-		std::ostringstream sss; sss << path << "\n\n" << reader.getFormatedErrorMessages() << "\n";
+		std::ostringstream sss; sss << path << "\n\n" << reader.getFormattedErrorMessages() << "\n";
 		::MessageBox(::GetForegroundWindow(), sss.str().c_str(), "hw2zzub parse error!", MB_OK);
 
 		return false;
@@ -480,7 +480,7 @@ hwplugin::hwplugin(const hwplugininfo* info)
 	gvals.init(static_cast<unsigned char*>(global_values));
 	tvals = static_cast<tvals_t*>(track_values);
 	
-	for (int i = 0; i < info->max_tracks; ++i) {
+	for (unsigned int i = 0; i < (int)info->max_tracks; ++i) {
 		tracks.push_back(track(this, &tvals[i]));
 	}
 	
@@ -526,7 +526,7 @@ int buzz_to_midi_note(int value) {
 
 void hwplugin::midi_out(int time, unsigned int data)
 {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 
@@ -569,7 +569,7 @@ bool hwplugin::process_stereo(float** pin, float** pout, int numsamples, int mod
 		
 		//input
 		pnum = 0;
-		for (int i = 0; i < info->input_chans.size(); ++i) {
+		for (int i = 0; i < (int)info->input_chans.size(); ++i) {
 			int inchannel = info->input_chans[i];
 			if (pout[i] != 0 && _mixer->input_buffer[inchannel] != 0) {
 				memcpy(pout[i], _mixer->input_buffer[inchannel], numsamples * sizeof(float));
@@ -580,7 +580,7 @@ bool hwplugin::process_stereo(float** pin, float** pout, int numsamples, int mod
 		
 		//output
 		pnum = 0;
-		for (int i = 0; i < info->output_chans.size(); ++i) {
+		for (int i = 0; i < (int)info->output_chans.size(); ++i) {
 			_mixer->write_output(info->output_chans[i], writeoffset, pin[i], numsamples, 1.0f);
 		}
 	}
@@ -628,7 +628,7 @@ const char* hwplugin::describe_value(int param, int value)
 	// warning: not reentrant!
 	one_param_description[0] = 0;
 	
-	if (param < info->global_parameters.size())
+	if (param < (int)info->global_parameters.size())
 	{
 		const hwplugininfo::param_info& pi = info->param_infos[param];
 		
