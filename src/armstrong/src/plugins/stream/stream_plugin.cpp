@@ -58,5 +58,5 @@ const char* get_open_filename(const char* fileName, const char* filter) {
 }
 
 float lognote(int freq) {
-	return (logf(freq) - logf(440.0)) / logf(2.0) + 4.0;
+	return (logf((float)freq) - logf(440.0f)) / logf(2.0f) + 4.0f;
 }

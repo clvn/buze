@@ -34,7 +34,7 @@ struct stream_source {
 
 struct stream_file : stream_plugin<stream_source>, stream_provider {
 	char buffer[sizeof(float) * 2 * stream_resampler::max_samples_per_tick];
-	unsigned int current_position;
+	int current_position;
 	int trigger_song_position;
 	int trigger_offset;
 	int total_samples;
@@ -213,7 +213,7 @@ void stream_file::process_events() {
 	if (!source) return ;
 
 	bool triggered = false;
-	unsigned int offset = 0;
+	int offset = 0;
 
 	if (gval.note != zzub_note_value_none) {
 		if (gval.note == zzub_note_value_off || gval.note == zzub_note_value_cut) {
@@ -226,7 +226,7 @@ void stream_file::process_events() {
 	}
 
 	if (gval.offset != 0xFFFFFFFF) {
-		offset = get_offset();
+		offset = (int)get_offset();
 		triggered = true;
 	}
 

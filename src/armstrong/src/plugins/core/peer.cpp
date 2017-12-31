@@ -415,12 +415,12 @@ struct lfo_plugin : zzub::plugin {
 	int get_interval_size() {
 		float samples_per_tick = (float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac;
 		float tick_position = (float)_master_info->tick_position + _master_info->tick_position_frac;
-		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, _master_info->samples_per_second, tick_position);
+		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, (float)_master_info->samples_per_second, tick_position);
 	}
 
 	void update_value() {
 		float time = ((float)_mixer->work_position / _master_info->samples_per_second);
-		float phase = 2 * M_PI * time;
+		float phase = (float)(2 * M_PI * time);
 
 		float freq = (float)glastval.frequency / 32.0f;
 		float amp = (float)glastval.amplitude / 65534.0f;
@@ -440,7 +440,7 @@ struct lfo_plugin : zzub::plugin {
 				wave = abs(time * freq - floor(time * freq + 0.5f)) * 4.0f - 1;
 				break;
 			case 4:
-				wave = mtrand.randDblExc(2) - 1.0f;
+				wave = (float)mtrand.randDblExc(2) - 1.0f;
 				break;
 		}
 		float value = ((1.0f+wave)*0.5f) * amp + minval;
@@ -575,7 +575,7 @@ struct signal_plugin : zzub::plugin {
 	int get_interval_size() {
 		float samples_per_tick = (float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac;
 		float tick_position = (float)_master_info->tick_position + _master_info->tick_position_frac;
-		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, _master_info->samples_per_second, tick_position);
+		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, (float)_master_info->samples_per_second, tick_position);
 	}
 
 	void process_events() {
@@ -610,13 +610,13 @@ struct signal_plugin : zzub::plugin {
 	void update_value() {
 		switch (glastval.mode) {
 			case 0:
-				cval.value = maxsample * 65534.0f;
+				cval.value = (unsigned short)(maxsample * 65534.0f);
 				break;
 			case 1:
-				cval.value = (immediate / 2.0f + 0.5f) * 65534.0f;
+				cval.value = (unsigned short)((immediate / 2.0f + 0.5f) * 65534.0f);
 				break;
 			case 2:
-				cval.value = abs(immediate) * 65534.0f;
+				cval.value = (unsigned short)(abs(immediate) * 65534.0f);
 				break;
 		}
 	}
@@ -802,7 +802,7 @@ struct adsr_plugin : zzub::plugin {
 	int get_interval_size() {
 		float samples_per_tick = (float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac;
 		float tick_position = (float)_master_info->tick_position + _master_info->tick_position_frac;
-		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, _master_info->samples_per_second, tick_position);
+		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, (float)_master_info->samples_per_second, tick_position);
 	}
 
 	void process_events() {
@@ -843,7 +843,7 @@ struct adsr_plugin : zzub::plugin {
 			float decay = glastval.decay / 65534.0f;
 			float sustain = glastval.sustain / 65534.0f;
 			float release = glastval.release / 65534.0f;
-			gen.setup(_master_info->samples_per_second, attack, decay, sustain, release, 9999.0f);
+			gen.setup((float)_master_info->samples_per_second, attack, decay, sustain, release, 9999.0f);
 			pulse = true;
 		}
 
@@ -869,7 +869,7 @@ struct adsr_plugin : zzub::plugin {
 	}
 
 	void update_value() {
-		cval.value = adsrvalue * 65534.0f;
+		cval.value = (unsigned short)(adsrvalue * 65534.0f);
 	}
 
 	bool process_stereo(float** pin, float** pout, int numsamples, int mode) {
@@ -979,7 +979,7 @@ struct joystick_plugin : zzub::plugin {
 	int get_interval_size() {
 		float samples_per_tick = (float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac;
 		float tick_position = (float)_master_info->tick_position + _master_info->tick_position_frac;
-		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, _master_info->samples_per_second, tick_position);
+		return intervalhelper::schedule_interval(glastval.interval_type, glastval.interval_length, samples_per_tick, (float)_master_info->samples_per_second, tick_position);
 	}
 
 	void process_events() {
@@ -1013,8 +1013,8 @@ struct joystick_plugin : zzub::plugin {
 
 		DIJOYSTATE2 state;
 		if SUCCEEDED(info->poll(joystick, &state)) {
-			cval.joy_x = std::min(state.lX, 65534L);
-			cval.joy_y = std::min(state.lY, 65534L);
+			cval.joy_x = (unsigned short)std::min(state.lX, 65534L);
+			cval.joy_y = (unsigned short)std::min(state.lY, 65534L);
 			cval.button0 = (state.rgbButtons[0] & 0x80) != 0 ? 1 : 0;
 			cval.button1 = (state.rgbButtons[1] & 0x80) != 0 ? 1 : 0;
 		}

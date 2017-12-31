@@ -100,7 +100,7 @@ void vstplugin::init(zzub::archive* arc) {
 	InitializeCriticalSection(&labelcs);
 
 	effect->dispatcher(effect, effOpen, 0, 0, 0, 0);
-	effect->dispatcher(effect, effSetSampleRate, 0, 0, NULL, (int)_master_info->samples_per_second);
+	effect->dispatcher(effect, effSetSampleRate, 0, 0, NULL, (float)_master_info->samples_per_second);
 	effect->dispatcher(effect, effSetBlockSize, 0, blocksize, NULL, 0.0f); 
 	effect->dispatcher(effect, effMainsChanged, 0, 1, 0, 0);
 
@@ -409,7 +409,7 @@ void vstplugin::process_plugin_midi_events(VstEvents* events) {
 }
 
 void vstplugin::midi_out(int time, unsigned int data) {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 
@@ -517,7 +517,7 @@ VstIntPtr vstplugin::host_callback(VstInt32 opcode, VstInt32 index, VstIntPtr va
 			// generate an event that a parameter changed
 			//<index> parameter that has changed
 			//<opt> new value 
-			set_parameter(index, opt*127);
+			set_parameter(index, (int)(opt * 127));
 			break;
 		case audioMasterCurrentId:
 			break;
@@ -660,7 +660,7 @@ VstIntPtr vstplugin::host_callback(VstInt32 opcode, VstInt32 index, VstIntPtr va
 			// program change? send parameter update notifications
 			// NOTE: synth1's getParameter() some times returns out of range values, why? thread-stuff?
 			for (int i = 0; i < effect->numParams; i++) {
-				set_parameter(i, effect->getParameter(effect, i) * 127);
+				set_parameter(i, (int)(effect->getParameter(effect, i) * 127));
 			}
 			break;
 	}

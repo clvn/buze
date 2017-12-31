@@ -104,7 +104,7 @@ struct patternplugin : zzub::plugin {
 		if (shared_swing_amount == 0) {
 			swing = _master_info->swing_amount;
 		} else {
-			swing = shared_swing_amount * 0.01;
+			swing = shared_swing_amount * 0.01f;
 		}
 
 		int swing_ticks = shared_swing_ticks;
@@ -203,7 +203,7 @@ struct patternplugin : zzub::plugin {
 		if (swing == 0) 
 			fswing = _master_info->swing_amount;
 		else
-			fswing = shared_swing_amount * 0.01;
+			fswing = shared_swing_amount * 0.01f;
 		
 		if (swing_ticks == 0) swing_ticks = _master_info->swing_ticks;
 
@@ -249,7 +249,7 @@ struct patternplugin : zzub::plugin {
 					return "Time Source"; // or use name of time source plugin?
 				return 0;
 			case 4:
-				if (param >= 0 && param < _mixer->patterns.next().size())
+				if (param >= 0 && param < (int)_mixer->patterns.next().size())
 					pat = _mixer->patterns.next()[param].get();
 				if (pat == 0) return 0;
 				return pat->name.c_str();

@@ -108,7 +108,6 @@ LRESULT CALLBACK PluginProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 		return DefWindowProc(hWnd, msg, wParam, lParam);
 
 	vsteditor* self = i->second;
-	VstKeyCode keyCode;
 	int result;
 
 	switch (msg) {

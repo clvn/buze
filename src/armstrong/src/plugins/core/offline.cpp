@@ -427,7 +427,7 @@ struct soundtouchplugin : zzub::plugin {
 		std::stringstream strm;
 		switch (param) {
 			case 0: {// global param 0 - tempo
-				float tempodelta = ((float)value - 950.0) / 10.0f;
+				float tempodelta = ((float)value - 950.0f) / 10.0f;
 				std::stringstream strm;
 				strm << std::fixed << std::setprecision(1) << tempodelta << "%";
 				strcpy(desc, strm.str().c_str());
@@ -441,7 +441,7 @@ struct soundtouchplugin : zzub::plugin {
 				return desc;
 			}
 			case 2: { // global param 2 - finetune pitch
-				float ratedelta = ((float)value - 950.0) / 10.0f;
+				float ratedelta = ((float)value - 950.0f) / 10.0f;
 				std::stringstream strm;
 				strm << ratedelta << " percents";
 				strcpy(desc, strm.str().c_str());

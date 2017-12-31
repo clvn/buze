@@ -64,7 +64,7 @@ struct sequenceplugin : zzub::plugin {
 			changed = true;
 		}
 		if (gvals.swing != 255) {
-			swingamount = gvals.swing * 0.01;
+			swingamount = gvals.swing * 0.01f;
 			changed = true;
 		}
 		if (gvals.swingticks != 255) {

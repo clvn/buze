@@ -252,7 +252,7 @@ void semplugin::process_events() {
 bool semplugin::process_stereo(float** pin, float** pout, int numsamples, int mode) {
 	// map inputs&outputs to pins
 	float emptysamples[32][256];
-	for (int i = 0; i < audioinputs.size(); i++) {
+	for (int i = 0; i < (int)audioinputs.size(); i++) {
 		float** ins = (float**)audioinputs[i].prop.variable_address;
 		if (pin[i] != 0)
 			*ins = pin[i];
@@ -261,7 +261,7 @@ bool semplugin::process_stereo(float** pin, float** pout, int numsamples, int mo
 			std::fill(*ins, *ins + numsamples, audioinputs[i].floatvalue);
 		}
 	}
-	for (int i = 0; i < audiooutputs.size(); i++) {
+	for (int i = 0; i < (int)audiooutputs.size(); i++) {
 		float** outs = (float**)audiooutputs[i].prop.variable_address;
 		if (pout[i] != 0)
 			*outs = pout[i];

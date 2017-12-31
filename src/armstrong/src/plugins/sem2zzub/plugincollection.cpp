@@ -66,16 +66,16 @@ int semplugininfo::sem_to_internal_float(float value, semparameter* semparam) {
 	float minvalue, maxvalue;
 	if (semparam->range) {
 		if (semparam->range->IsRange()) {
-			minvalue = semparam->range->RangeLo();
-			maxvalue = semparam->range->RangeHi();
+			minvalue = (float)semparam->range->RangeLo();
+			maxvalue = (float)semparam->range->RangeHi();
 		} else {
 			// the range should be an array of 4 numbers: max, min, max, min - still dont know why there are two
 			if (semparam->range->FindIndex(1))
-				minvalue = _wtof(semparam->range->CurrentItem()->text.c_str());
+				minvalue = (float)_wtof(semparam->range->CurrentItem()->text.c_str());
 			else
 				minvalue = 0;
 			if (semparam->range->FindIndex(0))
-				maxvalue = _wtof(semparam->range->CurrentItem()->text.c_str());
+				maxvalue = (float)_wtof(semparam->range->CurrentItem()->text.c_str());
 			else
 				maxvalue = 1.0f;
 		}
@@ -85,7 +85,7 @@ int semplugininfo::sem_to_internal_float(float value, semparameter* semparam) {
 	}
 
 	float delta = 65534.0f * (1.0f / (maxvalue - minvalue));
-	return (value - minvalue) * delta;
+	return (int)((value - minvalue) * delta);
 	//return ((value + 1) * 32767);
 }
 
@@ -93,16 +93,16 @@ float semplugininfo::internal_to_sem_float(int value, semparameter* semparam) {
 	float minvalue, maxvalue;
 	if (semparam->range) {
 		if (semparam->range->IsRange()) {
-			minvalue = semparam->range->RangeLo();
-			maxvalue = semparam->range->RangeHi();
+			minvalue = (float)semparam->range->RangeLo();
+			maxvalue = (float)semparam->range->RangeHi();
 		} else {
 			// the range should be an array of 4 numbers: max, min, max, min - still dont know why there are two
 			if (semparam->range->FindIndex(1))
-				minvalue = _wtof(semparam->range->CurrentItem()->text.c_str());
+				minvalue = (float)_wtof(semparam->range->CurrentItem()->text.c_str());
 			else
 				minvalue = 0;
 			if (semparam->range->FindIndex(0))
-				maxvalue = _wtof(semparam->range->CurrentItem()->text.c_str());
+				maxvalue = (float)_wtof(semparam->range->CurrentItem()->text.c_str());
 			else
 				maxvalue = 1.0f;
 		}
@@ -139,7 +139,7 @@ semparameter* add_pin(semplugininfo* info, SEPinProperties& pinprop, int pininde
 	semparam.offset = 0;
 	semparam.channel = 0;
 	if (pinprop.default_value != 0)
-		semparam.defaultvalue = atof(pinprop.default_value);
+		semparam.defaultvalue = (float)atof(pinprop.default_value);
 	else
 		semparam.defaultvalue = 0.0f;
 	semparams->push_back(semparam);
@@ -164,7 +164,7 @@ void add_parameter(semplugininfo* info, SEPinProperties& pinprop, int pinindex, 
 				p.set_value_max(param->range->size() - 1);
 			else
 				p.set_value_max(0);
-			if (param->range && param->range->FindValue(param->defaultvalue))
+			if (param->range && param->range->FindValue((int)param->defaultvalue))
 				p.set_value_default(param->range->CurrentItem()->index);
 			else
 				p.set_value_default(0);
@@ -187,7 +187,7 @@ void add_parameter(semplugininfo* info, SEPinProperties& pinprop, int pinindex, 
 			p.set_value_min(0);
 			p.set_value_max(65534);
 			p.set_value_none(65535);
-			p.set_value_default(info->sem_to_internal_int(param->defaultvalue));
+			p.set_value_default(info->sem_to_internal_int((int)param->defaultvalue));
 			*parameteroffset += 2;
 			break;
 		case DT_FSAMPLE:

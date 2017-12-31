@@ -125,7 +125,7 @@ namespace zzub { namespace plugins { namespace psycle_to_zzub {
 		}
 		
 		inline bool is_denormal(const float & f) {
-			return *(reinterpret_cast<const unsigned int *>(&f)) & 0x7f800000 == 0;
+			return (*(reinterpret_cast<const unsigned int *>(&f)) & 0x7f800000) == 0;
 		}
 		
 		void replace_char(char *str,const char toReplace,const char replacedBy) {

@@ -150,14 +150,14 @@ struct note_plugin : zzub::plugin {
 				if (tnotes[i] != zzub_note_value_none) {
 					// send note off for one or more of: stop previous note, note_off, note_cut
 					int status = 0x80 | (midi_channel & 0x0f);
-					int data = MAKEMIDI(status, tnotes[i], velocity);
+					unsigned int data = MAKEMIDI(status, tnotes[i], velocity);
 					zzub::midi_message message = { -1, data, 0 };
 					_mixer->midi_out(_id, message);
 				}
 
 				if (note != zzub_note_value_off && note != zzub_note_value_cut) {
 					int status = 0x90 | (midi_channel & 0x0f);
-					int data = MAKEMIDI(status, midi_note, velocity);
+					unsigned int data = MAKEMIDI(status, midi_note, velocity);
 					zzub::midi_message message = { -1, data, 0 };
 					_mixer->midi_out(_id, message);
 					tnotes[i] = midi_note;
@@ -228,7 +228,7 @@ struct note_plugin : zzub::plugin {
 		for (int i = 0; i < track_count; i++) {
 			if (tnotes[i] != zzub_note_value_none) {
 				int status = 0x80 | (midi_channel & 0x0f);
-				int data = MAKEMIDI(status, tnotes[i], 0);
+				unsigned int data = MAKEMIDI(status, tnotes[i], 0);
 				zzub::midi_message message = { -1, data, 0 };
 				_mixer->midi_out(_id, message);
 				tnotes[i] = zzub_note_value_none;
