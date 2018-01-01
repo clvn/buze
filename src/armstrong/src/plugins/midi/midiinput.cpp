@@ -43,7 +43,7 @@ void midiinput::process_midi_events(zzub::midi_message* pin, int nummessages) {
 }
 
 void midiinput::midi_out(int time, unsigned int data) {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 

@@ -70,7 +70,7 @@ void midicc::process_events() {
 				int skip = _master_info->samples_per_second / 80;
 				int s = _master_info->samples_per_tick / skip;
 
-				float value = track[i].prevvalue;
+				float value = (float)track[i].prevvalue;
 				float valueskip = (tval[i].value - value) / s;
 				track[i].prevvalue = tval[i].value;
 
@@ -132,7 +132,7 @@ void midicc::midi_event(unsigned short status, unsigned char data1, unsigned cha
 }
 
 void midicc::midi_out(int time, unsigned int data) {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 

@@ -365,7 +365,7 @@ void miditracker::command(int index) {
 }
 
 void miditracker::midi_out(int time, unsigned int data) {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 

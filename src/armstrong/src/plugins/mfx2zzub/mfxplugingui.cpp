@@ -89,7 +89,7 @@ bool CMfxPluginGui::CreatePropertyPages() {
 	// TODO: i cannot seem to find out why OleCreatePropertyFrame
 	CComHeapPtr<GUID> elems(pages.pElems); // call CoTaskMemFree when going out of scope as per GetPages specification
 
-	for (int i = 0; i < pages.cElems; i++) {
+	for (int i = 0; i < (int)pages.cElems; i++) {
 
 		GUID propertyPageClsid = pages.pElems[i];
 

@@ -128,7 +128,7 @@ struct eventqueue
           ((status) & 0xFF))
 
 void mfxplugin::midi_out(int time, unsigned int data) {
-	zzub::midi_message msg = { -1, data, time };
+	zzub::midi_message msg = { -1, data, (unsigned long)time };
 	_mixer->midi_out(_id, msg);
 }
 
@@ -176,8 +176,8 @@ void mfxplugin::process_midi_events(zzub::midi_message* pin, int nummessages) {
 	if (eventFilter == 0) 
 		return ;
 
-	int tickpos = (float)_master_info->tick_position / ((float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac);
-	int ppqPos = (float)(_master_info->row_position + tickpos) / (float)_master_info->ticks_per_beat;
+	int tickpos = (int)((float)_master_info->tick_position / ((float)_master_info->samples_per_tick + _master_info->samples_per_tick_frac));
+	int ppqPos = (int)((float)(_master_info->row_position + tickpos) / (float)_master_info->ticks_per_beat);
 
 
 	CComObjectStackEx<eventqueue> inevents;
@@ -211,10 +211,9 @@ void mfxplugin::process_midi_events(zzub::midi_message* pin, int nummessages) {
 	if (_master_info->tick_position == 0 || inevents.events.size() != 0) {
 		eventFilter->OnEvents(ppqPos, ppqPos + 1, &inevents, &outevents); // for sequencer data!
 
-		for (int i = 0; i < outevents.events.size(); i++) {
+		for (int i = 0; i < (int)outevents.events.size(); i++) {
 			MfxData d;
 			unsigned int status;
-			unsigned int message;
 			switch (outevents.events[i].m_eType) {
 				case MfxEvent::Note:
 					cerr << "Note!" << endl;
@@ -236,7 +235,7 @@ void mfxplugin::process_midi_events(zzub::midi_message* pin, int nummessages) {
 		}
 	}
 
-	for (int i = 0; i < outdata.events.size(); i++) {
+	for (int i = 0; i < (int)outdata.events.size(); i++) {
 		cerr << "got data at " << outdata.events[i].m_lTime << endl;
 		midi_out(outdata.events[i].m_lTime - ppqPos, outdata.events[i].m_dwData);
 	}
