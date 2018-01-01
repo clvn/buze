@@ -391,7 +391,7 @@ extern "C" int zzub_player_load_mod(zzub_player_t* player, const char* filename)
 	zzub_player_set_order_loop_end(player, m->order_length() - 1);
 	for (int i = 0; i < m->order_length(); i++) {
 		int patindex = m->order_pattern(i);
-		if (patindex < patterns.size())
+		if (patindex < (int)patterns.size())
 			zzub_player_set_order_pattern(player, i, patterns[patindex]);
 	}
 

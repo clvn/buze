@@ -1,10 +1,7 @@
 #define _USE_MATH_DEFINES
 #include <cstring>
 #include <cmath>
-#if defined(USE_SNDFILE)
 #include <sndfile.h>
-#endif
-
 #include "library.h"
 
 namespace zzub {
@@ -56,7 +53,7 @@ void zzub_wave_set_flags(zzub_wave_t* wave, int flags) {
 }
 
 float zzub_wave_get_volume(zzub_wave_t* wave) {
-	return wave->datawave->volume;
+	return (float)wave->datawave->volume;
 }
 
 void zzub_wave_set_volume(zzub_wave_t* wave, float volume) {

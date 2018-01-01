@@ -465,12 +465,12 @@ zzub_plugin_t* zzub_player_get_plugin_by_name(zzub_player_t* player, const char*
 }
 
 zzub_plugin_t* zzub_player_get_plugin_by_id(zzub_player_t* player, int id) {
-	if (id >= player->plugins.size()) return 0;
+	if (id >= (int)player->plugins.size()) return 0;
 	return player->plugins[id].get();
 }
 
 zzub_plugin_group_t* zzub_player_get_plugin_group_by_id(zzub_player_t* player, int id) {
-	if (id >= player->plugingroups.size()) return 0;
+	if (id >= (int)player->plugingroups.size()) return 0;
 	return player->plugingroups[id].get();
 }
 
@@ -486,12 +486,12 @@ zzub_plugin_iterator_t *zzub_player_get_plugin_iterator(zzub_player_t *player) {
 }
 
 zzub_pattern_format_t* zzub_player_get_pattern_format_by_id(zzub_player_t* player, int id) {
-	if (id >= player->patternformats.size()) return 0;
+	if (id >= (int)player->patternformats.size()) return 0;
 	return player->patternformats[id].get();
 }
 
 zzub_pattern_t* zzub_player_get_pattern_by_id(zzub_player_t* player, int id) {
-	if (id >= player->patterns.size()) return 0;
+	if (id >= (int)player->patterns.size()) return 0;
 	return player->patterns[id].get();
 }
 
@@ -722,7 +722,7 @@ void zzub_player_set_infotext(zzub_player_t* player, const char* text) {
 }
 
 float zzub_player_get_bpm(zzub_player_t* player) {
-	return player->songdata->bpm;
+	return (float)player->songdata->bpm;
 }
 
 int zzub_player_get_tpb(zzub_player_t* player) {
@@ -730,11 +730,11 @@ int zzub_player_get_tpb(zzub_player_t* player) {
 }
 
 float zzub_player_get_swing(zzub_player_t* player) {
-	return player->songdata->swing;
+	return (float)player->songdata->swing;
 }
 
 void zzub_player_set_bpm(zzub_player_t* player, float bpm) {
-	player->songdata->bpm = bpm;
+	player->songdata->bpm = (int)bpm;
 	player->songdata->update();
 }
 
@@ -1131,11 +1131,11 @@ void zzub_plugin_group_set_parent(zzub_plugin_group_t* plugingroup, zzub_plugin_
 }
 
 float zzub_plugin_group_get_position_x(zzub_plugin_group_t* plugingroup) {
-	return plugingroup->dataplugingroup->position_x;
+	return (float)plugingroup->dataplugingroup->position_x;
 }
 
 float zzub_plugin_group_get_position_y(zzub_plugin_group_t* plugingroup) {
-	return plugingroup->dataplugingroup->position_y;
+	return (float)plugingroup->dataplugingroup->position_y;
 }
 
 void zzub_plugin_group_set_position(zzub_plugin_group_t* plugingroup, float x, float y) {

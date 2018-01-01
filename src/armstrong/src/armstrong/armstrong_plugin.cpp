@@ -245,11 +245,11 @@ void zzub_plugin_set_parameter_value_direct(zzub_plugin_t *plugin, int group, in
 }
 
 float zzub_plugin_get_position_x(zzub_plugin_t *plugin) {
-	return plugin->dataplugin->x;
+	return (float)plugin->dataplugin->x;
 }
 
 float zzub_plugin_get_position_y(zzub_plugin_t *plugin) {
-	return plugin->dataplugin->y;
+	return (float)plugin->dataplugin->y;
 }
 
 void zzub_plugin_set_position(zzub_plugin_t *plugin, float x, float y) {
@@ -297,7 +297,7 @@ zzub_connection_t* zzub_plugin_get_output_connection(zzub_plugin_t* plugin, int 
 }
 
 float zzub_plugin_get_last_peak(zzub_plugin_t *plugin, int channel) {
-	if (plugin->dataplugin->id >= plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) {
+	if (plugin->dataplugin->id >= (int)plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) {
 		return 0.0f;
 	}
 	return plugin->owner->mix->plugins.next()[plugin->dataplugin->id]->audiodata->last_work_max[channel];
@@ -502,17 +502,17 @@ void zzub_plugin_set_minimize(zzub_plugin_t *plugin, int minimized) {
 }
 
 double zzub_plugin_get_last_cpu_load(zzub_plugin_t *plugin) {
-	if (plugin->dataplugin->id >= plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0.0f;
+	if (plugin->dataplugin->id >= (int)plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0.0f;
 	return plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get()->audiodata->cpu_load;
 }
 
 int zzub_plugin_get_last_audio_result(zzub_plugin_t *plugin) {
-	if (plugin->dataplugin->id >= plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0;
+	if (plugin->dataplugin->id >= (int)plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0;
 	return plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get()->audiodata->last_work_audio_result?1:0;
 }
 
 int zzub_plugin_get_last_midi_result(zzub_plugin_t *plugin) {
-	if (plugin->dataplugin->id >= plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0;
+	if (plugin->dataplugin->id >= (int)plugin->owner->mix->plugins.next().size() || plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get() == 0) return 0;
 	return plugin->owner->mix->plugins.next()[plugin->dataplugin->id].get()->audiodata->last_work_midi_result?1:0;
 }
 
