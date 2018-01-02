@@ -1,0 +1,187 @@
+[
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=9165",
+		"hash" : "966b6f9a4f755859db930aa934875485cf9ee0f5",
+		"id" : "enceladus",
+		"version" : "1.3",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "effects/Joachims Enceladus Tube EQ v1.dll",
+				"target_filename": "Joachims Enceladus Tube EQ v1.dll"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8642",
+		"hash" : "5245f4a10a6bfc290f75b47250df60797780cb6a",
+		"id" : "tethys",
+		"version" : "1.3",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "effects/Joachims Tethys 1.3.dll",
+				"target_filename": "Joachims Tethys 1.3.dll"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "effects/Joachims Tethys 1.3.prs",
+				"target_filename": "Joachims Tethys 1.3.prs"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "effects/Joachims Tethys 1.3.html",
+				"target_filename": "Joachims Tethys 1.3.html"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "effects/Joachims Tethys 1.3.gif",
+				"target_filename": "Joachims Tethys 1.3.gif"
+			}
+
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8521",
+		"hash" : "629392566038bbb3c2ed6549e25c23449a675e80",
+		"id" : "hdcombo103",
+		"version" : "1.03",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "HD COmbO Delay.dll",
+				"target_filename": "HD COmbO Delay.dll"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8520",
+		"hash" : "e1c102d1aae6c24da6817091a44cd69771dd8275",
+		"id" : "hdcombo102",
+		"version" : "1.02",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "HD CombO Delay.dll",
+				"target_filename": "HD CombO Delay.dll"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8987",
+		"hash" : "491077a3c8ac903aae7e71a3bf5147d7a88b8fb7",
+		"id" : "greenfilter",
+		"version" : "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Zephod Green Filter.dll",
+				"target_filename": "Zephod Green Filter.dll"
+			}
+		]
+	},
+
+	{
+		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id" : "infector",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/FSM Infector.dll",
+				"target_filename": "FSM Infector.dll"
+			},
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/FSM Infector.html",
+				"target_filename": "FSM Infector.html"
+			},
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/FSM Infector.prs",
+				"target_filename": "FSM Infector.prs"
+			}
+		]
+	},
+	{
+		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id" : "kickxp",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/FSM KickXP.dll",
+				"target_filename": "FSM KickXP.dll"
+			}
+		]
+	},
+	{
+		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id" : "phatman",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Gear/Effects/FSM Phatman.dll",
+				"target_filename": "FSM Phatman.dll"
+			}
+		]
+	},
+	{
+		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id" : "aggressor",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/Oomek Aggressor 303.dll",
+				"target_filename": "Oomek Aggressor 303.dll"
+			}
+		]
+	},
+	{
+		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id" : "matilde2",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files" : [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Gear/Generators/Matilde Tracker2.dll",
+				"target_filename": "Matilde Tracker2.dll"
+			}
+		]
+	},
+	{
+		"url" : "https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe",
+		"hash" : "7dfa98be78249921dd0eedb9a3dd809e7d215c8d",
+		"id" : "vs2005sp1-vcredist",
+		"description" : "Visual C++ redistributables for plugins developed with Visual Studio 2005 (MSVC80)",
+		"version" : "1.0",
+		"platform" : "x86-windows",
+		"archive" : "exe"
+	},
+	{
+		"url" : "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe",
+		"hash" : "96b377a27ac5445328cbaae210fc4f0aaa750d3f",
+		"id" : "vs2012sp4-vcredist",
+		"description" : "Visual C++ redistributables for plugins developed with Visual Studio 2012 (MSVC110)",
+		"version" : "1.0",
+		"platform" : "x86-windows",
+		"archive" : "exe"
+	}
+]

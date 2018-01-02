@@ -28,15 +28,15 @@
 //==============================================================================
 
 #ifndef __ATLMISC_H__
-	#include <atlmisc.h>
+	#include <wtl/atlmisc.h>
 #endif
 
 #ifndef __ATLCTRLS_H__
-	#include <atlctrls.h>
+	#include <wtl/atlctrls.h>
 #endif
 
 #ifndef __ATLCRACK_H__
-	#include <atlcrack.h>
+	#include <wtl/atlcrack.h>
 #endif
 
  
@@ -718,6 +718,7 @@ class CWTLTabViewCtrlT : public CWindowImpl< T, CTabCtrl >
 }; 
 
 class CWTLTabViewCtrl : public CWTLTabViewCtrlT<CWTLTabViewCtrl> {
+public:
 	DECLARE_WND_CLASS_EX(_T("WTL_WTLTabViewCtrl"), CS_DBLCLKS, COLOR_WINDOW)
 };
 
