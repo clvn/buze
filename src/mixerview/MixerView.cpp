@@ -859,6 +859,8 @@ void CMixerView::InsertPluginKnobs(CMixerTrack* track, zzub_plugin_t* eqplugin, 
 	for (int j = 0; j < zzub_plugin_get_parameter_count(eqplugin, 1, 0); j++) {
 		if (visibleParameter(eqplugin, 1, j, paramFilters)) {
 			int knobindex = track->knobcount;
+			if (knobindex >= 100)
+				break;
 			track->knobs[knobindex].plugin = eqplugin;
 			track->knobs[knobindex].group = 1;
 			track->knobs[knobindex].column = j;
@@ -880,7 +882,7 @@ void CMixerView::InsertPluginTrack(zzub_plugin_t* eqplugin) {
 	track->knobcount = 0;
 
 	std::vector<std::string> paramFilters;
-	GetParameterFilter(paramFilters);
+	// GetParameterFilter(paramFilters);
 
 	InsertPluginKnobs(track, eqplugin, paramFilters);
 

@@ -465,12 +465,12 @@ zzub_plugin_t* zzub_player_get_plugin_by_name(zzub_player_t* player, const char*
 }
 
 zzub_plugin_t* zzub_player_get_plugin_by_id(zzub_player_t* player, int id) {
-	if (id >= (int)player->plugins.size()) return 0;
+	if (id < 0 || id >= (int)player->plugins.size()) return 0;
 	return player->plugins[id].get();
 }
 
 zzub_plugin_group_t* zzub_player_get_plugin_group_by_id(zzub_player_t* player, int id) {
-	if (id >= (int)player->plugingroups.size()) return 0;
+	if (id < 0 || id >= (int)player->plugingroups.size()) return 0;
 	return player->plugingroups[id].get();
 }
 
@@ -486,12 +486,12 @@ zzub_plugin_iterator_t *zzub_player_get_plugin_iterator(zzub_player_t *player) {
 }
 
 zzub_pattern_format_t* zzub_player_get_pattern_format_by_id(zzub_player_t* player, int id) {
-	if (id >= (int)player->patternformats.size()) return 0;
+	if (id < 0 || id >= (int)player->patternformats.size()) return 0;
 	return player->patternformats[id].get();
 }
 
 zzub_pattern_t* zzub_player_get_pattern_by_id(zzub_player_t* player, int id) {
-	if (id >= (int)player->patterns.size()) return 0;
+	if (id < 0 || id >= (int)player->patterns.size()) return 0;
 	return player->patterns[id].get();
 }
 

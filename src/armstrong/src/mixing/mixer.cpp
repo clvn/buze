@@ -481,6 +481,9 @@ void mixer::insert_plugin(int id, zzub::plugin* userplugin, zzub::info* loader, 
 void mixer::on_insert_plugin(metaplugin* plugin) {
 	if (plugin->info->flags & zzub_plugin_flag_is_encoder)
 		encodermgr.register_encoder(plugin->plugin);
+
+	// Is not fully initialized until swapped into the audio thread:
+	plugin->initialized = true;
 }
 
 void mixer::initialize_plugin(int id, std::vector<unsigned char>& data) {
@@ -497,7 +500,6 @@ void mixer::initialize_plugin(int id, std::vector<unsigned char>& data) {
 
 	on_process_events(k);
 
-	k->initialized = true;
 	dirty_graph = true;
 }
 
