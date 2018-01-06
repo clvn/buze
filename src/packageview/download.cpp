@@ -4,11 +4,6 @@
 #include <ostream>
 #include <iostream>
 
-using std::cout;
-using std::endl;
-
-// http://www.google.no/codesearch/p?hl=en#EuengHJwXig/~mooij/httpleech.cpp&q=HttpOpenRequest%20lang:c%2B%2B&sa=N&cd=10&ct=rc
-
 #define DOWNLOAD_CHUNK_SIZE  8192
 #define DOWNLOAD_UPDATE_SIZE 262144
 

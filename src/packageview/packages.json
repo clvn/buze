@@ -1,11 +1,11 @@
 [
 	{
 		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=9165",
-		"hash" : "966b6f9a4f755859db930aa934875485cf9ee0f5",
-		"id" : "enceladus",
-		"version" : "1.3",
+		"hash": "966b6f9a4f755859db930aa934875485cf9ee0f5",
+		"id": "Joachims Enceladus Tube EQ v1",
+		"version": "1.3",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
 				"source_filename": "effects/Joachims Enceladus Tube EQ v1.dll",
@@ -15,11 +15,11 @@
 	},
 	{
 		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8642",
-		"hash" : "5245f4a10a6bfc290f75b47250df60797780cb6a",
-		"id" : "tethys",
-		"version" : "1.3",
+		"hash": "5245f4a10a6bfc290f75b47250df60797780cb6a",
+		"id": "Joachims Tethys 1.3",
+		"version": "1.3",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
 				"source_filename": "effects/Joachims Tethys 1.3.dll",
@@ -45,11 +45,11 @@
 	},
 	{
 		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8521",
-		"hash" : "629392566038bbb3c2ed6549e25c23449a675e80",
-		"id" : "hdcombo103",
-		"version" : "1.03",
+		"hash": "629392566038bbb3c2ed6549e25c23449a675e80",
+		"id": "HD COmbO Delay",
+		"version": "1.03",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
 				"source_filename": "HD COmbO Delay.dll",
@@ -59,11 +59,11 @@
 	},
 	{
 		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8520",
-		"hash" : "e1c102d1aae6c24da6817091a44cd69771dd8275",
-		"id" : "hdcombo102",
-		"version" : "1.02",
+		"hash": "e1c102d1aae6c24da6817091a44cd69771dd8275",
+		"id": "HD CombO Delay",
+		"version": "1.02",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
 				"source_filename": "HD CombO Delay.dll",
@@ -73,11 +73,11 @@
 	},
 	{
 		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8987",
-		"hash" : "491077a3c8ac903aae7e71a3bf5147d7a88b8fb7",
-		"id" : "greenfilter",
-		"version" : "1.0",
+		"hash": "491077a3c8ac903aae7e71a3bf5147d7a88b8fb7",
+		"id": "Zephod Green Filter",
+		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
 				"source_filename": "Zephod Green Filter.dll",
@@ -85,14 +85,93 @@
 			}
 		]
 	},
-
 	{
-		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
-		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
-		"id" : "infector",
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=9115",
+		"hash": "7a12fe67014b6c730f6d667faba23b55e26477cb",
+		"id": "Fuzzpilz UnwieldyTracker2",
+		"version": "2.0",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Fuzzpilz UnwieldyTracker2.dll",
+				"target_filename": "Fuzzpilz UnwieldyTracker2.dll"
+			},
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Fuzzpilz UnwieldyTracker2.txt",
+				"target_filename": "Fuzzpilz UnwieldyTracker2.txt"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8706",
+		"hash": "9be4bcb87026ef248f7b4de2653f0cb328160d8a",
+		"id": "ld clap",
+		"version": "1.01",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "generators/ld clap.dll",
+				"target_filename": "ld clap.dll"
+			},
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "generators/ld clap.prs",
+				"target_filename": "ld clap.prs"
+			}
+		]
+	},
+	{
+		"url": "https://batman.no/buze/beta/ld%20hihat%20preview.zip",
+		"hash": "0c14a31021817fa500a945267924249cc5db4bc5",
+		"id": "ld hihat preview",
+		"version": "0-preview1",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "ld hihat preview.dll",
+				"target_filename": "ld hihat preview.dll"
+			}
+		]
+	},
+	{
+		"url": "https://batman.no/buze/beta/ld%20hihat%20preview5.zip",
+		"hash": "0f022a1a5a3d0033a748bbdabf1858638b34d4c9",
+		"id": "ld hihat preview5",
+		"version": "0-preview5",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "ld hihat preview5.dll",
+				"target_filename": "ld hihat preview5.dll"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8429",
+		"hash": "dff3b3fdc352ec9b9cd709bbfc15312cfc31a19d",
+		"id": "FSM Kick XP",
+		"version": "1.0 SP1",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "FSM Kick XP.dll",
+				"target_filename": "FSM Kick XP.dll"
+			}
+		]
+	},
+	{
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "FSM Infector",
 		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_generators",
 				"source_filename": "Gear/Generators/FSM Infector.dll",
@@ -111,12 +190,12 @@
 		]
 	},
 	{
-		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
-		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
-		"id" : "kickxp",
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "FSM KickXP",
 		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_generators",
 				"source_filename": "Gear/Generators/FSM KickXP.dll",
@@ -125,26 +204,26 @@
 		]
 	},
 	{
-		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
-		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
-		"id" : "phatman",
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "FSM PhatMan",
 		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_effects",
-				"source_filename": "Gear/Effects/FSM Phatman.dll",
-				"target_filename": "FSM Phatman.dll"
+				"source_filename": "Gear/Effects/FSM PhatMan.dll",
+				"target_filename": "FSM PhatMan.dll"
 			}
 		]
 	},
 	{
-		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
-		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
-		"id" : "aggressor",
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "Oomek Aggressor 303",
 		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
 			{
 				"filetype": "buzz_generators",
 				"source_filename": "Gear/Generators/Oomek Aggressor 303.dll",
@@ -153,12 +232,40 @@
 		]
 	},
 	{
-		"url" : "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
-		"hash" : "93eb3babf89e1d83433f804fbdcf83db54b695a2",
-		"id" : "matilde2",
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "Oomek Masterizer",
 		"version": "1.0",
 		"platform": "x86-windows",
-		"files" : [
+		"files": [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Gear/Effects/Oomek Masterizer.dll",
+				"target_filename": "Oomek Masterizer.dll"
+			}
+		]
+	},
+	{
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "Oomek Exciter",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Gear/Effects/Oomek Exciter.dll",
+				"target_filename": "Oomek Exciter.dll"
+			}
+		]
+	},
+	{
+		"url": "https://ci.appveyor.com/api/buildjobs/fkgc0w46o3aqj9k0/artifacts/buzzmachines_x86.zip",
+		"hash": "93eb3babf89e1d83433f804fbdcf83db54b695a2",
+		"id": "Matilde Tracker2",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files": [
 			{
 				"filetype": "buzz_generators",
 				"source_filename": "Gear/Generators/Matilde Tracker2.dll",
@@ -167,21 +274,214 @@
 		]
 	},
 	{
-		"url" : "https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe",
-		"hash" : "7dfa98be78249921dd0eedb9a3dd809e7d215c8d",
-		"id" : "vs2005sp1-vcredist",
-		"description" : "Visual C++ redistributables for plugins developed with Visual Studio 2005 (MSVC80)",
-		"version" : "1.0",
-		"platform" : "x86-windows",
-		"archive" : "exe"
+		"url": "https://batman.no/buze/beta/Matilde%20Tracker3.zip",
+		"hash": "32f63d91b6d55f7361a261c554be3020aa8ed02b",
+		"id": "Matilde Tracker3",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_generators",
+				"source_filename": "Matilde Tracker3.dll",
+				"target_filename": "Matilde Tracker3.dll"
+			}
+		]
 	},
 	{
-		"url" : "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe",
-		"hash" : "96b377a27ac5445328cbaae210fc4f0aaa750d3f",
-		"id" : "vs2012sp4-vcredist",
-		"description" : "Visual C++ redistributables for plugins developed with Visual Studio 2012 (MSVC110)",
-		"version" : "1.0",
-		"platform" : "x86-windows",
-		"archive" : "exe"
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=9149",
+		"hash": "6d3c0f104317e17cd7a02e073812c2cc6f8527cf",
+		"id": "FireSledge ParamEQ",
+		"version": "1.1",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "FireSledge ParamEQ 1.1/FireSledge ParamEQ.dll",
+				"target_filename": "FireSledge ParamEQ.dll"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "FireSledge ParamEQ 1.1/FireSledge ParamEQ.html",
+				"target_filename": "FireSledge ParamEQ.html"
+			}
+		]
+	},
+	{
+		"url": "http://buzz.robotplanet.dk/download.php?type=machine&id=8865",
+		"hash": "b9cd64d8378df933913b02e8f45e2e37887cea38",
+		"id": "Rymix StereoBox Pro",
+		"version": "1.1",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Rymix StereoBox Pro.dll",
+				"target_filename": "Rymix StereoBox Pro.dll"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Rymix StereoBox Pro.txt",
+				"target_filename": "Rymix StereoBox Pro.txt"
+			},
+			{
+				"filetype": "buzz_effects",
+				"source_filename": "Rymix StereoBox Pro.prs",
+				"target_filename": "Rymix StereoBox Pro.prs"
+			}
+		]
+	},
+	{
+		"url": "https://www.g200kg.com/software/kerovee161.zip",
+		"hash": "1e606ff2dfc9d620495e42be03e0649ab8622064",
+		"id": "KeroVee",
+		"version": "1.61",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "vst",
+				"source_filename": "KeroVee.dll",
+				"target_filename": "KeroVee.dll"
+			},
+			{
+				"filetype": "vst",
+				"source_filename": "ReadMe.txt",
+				"target_filename": "KeroVee.txt"
+			}
+		]
+	},
+	{
+		"url": "https://github.com/asb2m10/dexed/releases/download/v0.9.3/dexed-0.9.3-win.zip",
+		"hash": "ed211723d44247d797aa6362681aee42fa87b06e",
+		"id": "Dexed",
+		"version": "0.9.3",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.9.3/win32/Dexed.dll",
+				"target_filename": "Dexed.dll"
+			},
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.9.3/README.md",
+				"target_filename": "Dexed.txt"
+			}
+		]
+	},
+	{
+		"url": "https://github.com/asb2m10/dexed/releases/download/v0.9.3/dexed-0.9.3-win.zip",
+		"hash": "ed211723d44247d797aa6362681aee42fa87b06e",
+		"id": "Dexed",
+		"version": "0.9.3",
+		"platform": "x64-windows",
+		"files": [
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.9.3/x64/Dexed.dll",
+				"target_filename": "Dexed.dll"
+			},
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.9.3/README.md",
+				"target_filename": "Dexed.txt"
+			}
+		]
+	},
+
+	{
+		"url": "http://le-son666.com/software/dexed/dexed-0.8.0-win.zip",
+		"hash": "abb9e762082b697b69de1db550b5a176b7684375",
+		"id": "Dexed",
+		"version": "0.8.0",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.8.0/Dexed.dll",
+				"target_filename": "Dexed.dll"
+			},
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.8.0/README.md",
+				"target_filename": "Dexed.txt"
+			}
+		]
+	},
+	{
+		"url": "http://le-son666.com/software/dexed/dexed-0.8.0-win.zip",
+		"hash": "abb9e762082b697b69de1db550b5a176b7684375",
+		"id": "Dexed",
+		"version": "0.8.0",
+		"platform": "x64-windows",
+		"files": [
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.8.0/x64/Dexed.dll",
+				"target_filename": "Dexed.dll"
+			},
+			{
+				"filetype": "vst",
+				"source_filename": "dexed-0.8.0/README.md",
+				"target_filename": "Dexed.txt"
+			}
+		]
+	},
+
+
+	{
+		"url": "http://www.batman.no/buze/beta/vs2003_vc71_redist_x86.zip",
+		"hash": "7837bd76a54c4ee78f6c73c7b433a6278402b8cd",
+		"id": "vs2003-vcredist",
+		"description": "Visual C++ redistributables for plugins developed with Visual Studio 2003 (MSVC71)",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"files": [
+			{
+				"filetype": "program_directory",
+				"source_filename": "msvcp71.dll",
+				"target_filename": "msvcp71.dll"
+			},
+			{
+				"filetype": "program_directory",
+				"source_filename": "msvcr71.dll",
+				"target_filename": "msvcr71.dll"
+			}
+		]
+	},
+	{
+		"url": "https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe",
+		"hash": "7dfa98be78249921dd0eedb9a3dd809e7d215c8d",
+		"id": "vs2005sp1-vcredist",
+		"description": "Visual C++ redistributables for plugins developed with Visual Studio 2005 (MSVC80)",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"archive": "exe"
+	},
+	{
+		"url": "https://download.microsoft.com/download/5/D/8/5D8C65CB-C849-4025-8E95-C3966CAFD8AE/vcredist_x86.exe",
+		"hash": "7dfa98be78249921dd0eedb9a3dd809e7d215c8d",
+		"id": "vs2008-vcredist",
+		"description": "Visual C++ redistributables for plugins developed with Visual Studio 2008 (MSVC90)",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"archive": "exe"
+	},
+	{
+		"url": "https://download.microsoft.com/download/C/6/D/C6D0FD4E-9E53-4897-9B91-836EBA2AACD3/vcredist_x86.exe",
+		"hash": "7dfa98be78249921dd0eedb9a3dd809e7d215c8d",
+		"id": "vs2010-vcredist",
+		"description": "Visual C++ redistributables for plugins developed with Visual Studio 2010 (MSVC100)",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"archive": "exe"
+	},
+	{
+		"url": "https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe",
+		"hash": "96b377a27ac5445328cbaae210fc4f0aaa750d3f",
+		"id": "vs2012sp4-vcredist",
+		"description": "Visual C++ redistributables for plugins developed with Visual Studio 2012 (MSVC110)",
+		"version": "1.0",
+		"platform": "x86-windows",
+		"archive": "exe"
 	}
 ]

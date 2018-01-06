@@ -119,6 +119,8 @@ struct package_manager {
 			return "buzz_generators";
 		case package_file_target::buzz_effects:
 			return "buzz_effects";
+		case package_file_target::vst:
+			return "vst";
 		case package_file_target::program_directory:
 			return "program_directory";
 		case package_file_target::user_directory:
@@ -213,6 +215,8 @@ struct package_manager {
 			result_file.filetype = package_file_target::buzz_generators;
 		else if (filetype == "buzz_effects")
 			result_file.filetype = package_file_target::buzz_effects;
+		else if (filetype == "vst")
+			result_file.filetype = package_file_target::vst;
 		else if (filetype == "program_directory")
 			result_file.filetype = package_file_target::program_directory;
 		else if (filetype == "user_directory")
@@ -306,6 +310,9 @@ struct package_manager {
 			break;
 		case package_file_target::buzz_effects:
 			target_directory = (boost::filesystem::path(program_directory) / boost::filesystem::path("Gear\\Effects")).string();
+			break;
+		case package_file_target::vst:
+			target_directory = (boost::filesystem::path(program_directory) / boost::filesystem::path("Gear\\Vst")).string();
 			break;
 		case package_file_target::program_directory:
 			target_directory = boost::filesystem::path(program_directory).string();
